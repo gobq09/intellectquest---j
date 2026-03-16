@@ -1,0 +1,61 @@
+[gd_scene load_steps=12 format=3 uid="uid://dflg8r076r3qe"]
+
+[ext_resource type="Texture2D" uid="uid://cgk2a51he56qn" path="res://ui/hud/interface-hud-hpbar3.png" id="1_hx0r7"]
+[ext_resource type="Texture2D" uid="uid://gaxtq7vrwunw" path="res://ui/hud/interface-hud-hpbar4.png" id="1_t4iiy"]
+[ext_resource type="Texture2D" uid="uid://cal67v0llx588" path="res://ui/hud/interface-hud-hpbar2.png" id="2_leufo"]
+[ext_resource type="Texture2D" uid="uid://c6lkpumxvacb2" path="res://ui/hud/interface-hud-level.png" id="2_t4iiy"]
+[ext_resource type="Texture2D" uid="uid://ceu81ju5a1voq" path="res://ui/hud/interface-hud-hpbar1.png" id="5_dx70t"]
+[ext_resource type="Texture2D" uid="uid://bbyvf385jbh2v" path="res://ui/hud/interface-hud-topright2.png" id="6_pi4vh"]
+[ext_resource type="Texture2D" uid="uid://bw3331mxk3fd3" path="res://ui/hud/interface-hud-todo.png" id="7_okx43"]
+[ext_resource type="Texture2D" uid="uid://btk3gygpn2ao1" path="res://ui/hud/interface-hud-topright1.png" id="7_uce80"]
+[ext_resource type="Texture2D" uid="uid://oqc5jik5j7hs" path="res://ui/hud/interface-hud-archivebutton.png" id="9_okx43"]
+[ext_resource type="Texture2D" uid="uid://dvciqueies7yf" path="res://ui/hud/interface-hud-mapbutton.png" id="10_ol2f5"]
+[ext_resource type="Texture2D" uid="uid://vgcrkf3sxh1o" path="res://ui/hud/interface-hud-settingsbutton.png" id="11_7m5cb"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+scale = Vector2(4, 4)
+transform = Transform2D(4, 0, 0, 4, 0, 0)
+
+[node name="Interface-hud-hpbar4" type="Sprite2D" parent="."]
+position = Vector2(66, 16)
+texture = ExtResource("1_t4iiy")
+
+[node name="Interface-hud-hpbar2" type="Sprite2D" parent="."]
+position = Vector2(48, 14)
+texture = ExtResource("2_leufo")
+
+[node name="Interface-hud-hpbar3" type="Sprite2D" parent="."]
+position = Vector2(66, 16)
+texture = ExtResource("1_hx0r7")
+
+[node name="Interface-hud-level" type="Sprite2D" parent="."]
+position = Vector2(20, 16)
+texture = ExtResource("2_t4iiy")
+
+[node name="Interface-hud-hpbar1" type="Sprite2D" parent="."]
+position = Vector2(72, 16)
+texture = ExtResource("5_dx70t")
+
+[node name="Interface-hud-topright2" type="Sprite2D" parent="."]
+position = Vector2(252, 24)
+texture = ExtResource("6_pi4vh")
+
+[node name="Interface-hud-todo" type="Sprite2D" parent="."]
+position = Vector2(256, 12)
+texture = ExtResource("7_okx43")
+
+[node name="Interface-hud-topright1" type="Sprite2D" parent="."]
+position = Vector2(252, 24)
+texture = ExtResource("7_uce80")
+
+[node name="Interface-hud-archivebutton" type="Sprite2D" parent="."]
+position = Vector2(16, 48)
+texture = ExtResource("9_okx43")
+
+[node name="Interface-hud-mapbutton" type="Sprite2D" parent="."]
+position = Vector2(242, 16)
+texture = ExtResource("10_ol2f5")
+
+[node name="Interface-hud-settingsbutton" type="Sprite2D" parent="."]
+position = Vector2(272, 16)
+texture = ExtResource("11_7m5cb")

@@ -1,0 +1,116 @@
+[gd_scene load_steps=14 format=3 uid="uid://dnaruyj6662x1"]
+
+[ext_resource type="Texture2D" uid="uid://wk2mqol45s38" path="res://Sprites/npc/npc-male2.png" id="1_54nqp"]
+[ext_resource type="Script" uid="uid://bhr5p5pvi40al" path="res://Scenes/npc_2.gd" id="1_sdpn4"]
+[ext_resource type="Texture2D" uid="uid://cp84ckp6bwp2i" path="res://Sprites/misc/shadow.png" id="2_sdpn4"]
+[ext_resource type="PackedScene" uid="uid://boxx7tqk1eq7f" path="res://Scenes/dialogue.tscn" id="3_ieajl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6manb"]
+atlas = ExtResource("1_54nqp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdpn4"]
+atlas = ExtResource("1_54nqp")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ieajl"]
+atlas = ExtResource("1_54nqp")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fph2t"]
+atlas = ExtResource("1_54nqp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_36ark"]
+atlas = ExtResource("1_54nqp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fph2t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6manb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdpn4")
+}],
+"loop": true,
+"name": &"walk_e",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ieajl")
+}],
+"loop": true,
+"name": &"walk_n",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fph2t")
+}],
+"loop": true,
+"name": &"walk_s",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_36ark")
+}],
+"loop": true,
+"name": &"walk_w",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_36ark"]
+radius = 7.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_yfs3k"]
+closed = false
+polygon = PackedVector2Array(-5, 7, -4, 1, -5, -3, -3, -7, 3, -7, 5, -3, 4, 1, 5, 2, 5, 7, 5, 10, 2, 10, 0, 8, -2, 10, -4, 10, -5, 7)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jdp4r"]
+radius = 32.0624
+
+[node name="npc2" type="CharacterBody2D"]
+script = ExtResource("1_sdpn4")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture = ExtResource("2_sdpn4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fph2t")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_36ark")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(0, -1)
+occluder = SubResource("OccluderPolygon2D_yfs3k")
+
+[node name="detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
+shape = SubResource("CircleShape2D_jdp4r")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Dialogue" parent="." instance=ExtResource("3_ieajl")]
+offset_left = -152.0
+offset_top = -185.0
+offset_right = 153.0
+offset_bottom = 116.0
+
+[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="dialogue_finished" from="Dialogue" to="." method="_on_dialogue_dialogue_finished"]

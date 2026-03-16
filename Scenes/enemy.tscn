@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://dt0reecx2hip5"]
+
+[ext_resource type="Script" uid="uid://c6so2pcgdywgp" path="res://Scenes/enemy.gd" id="1_1f0kj"]
+[ext_resource type="Texture2D" uid="uid://b7g5jbb68lvpd" path="res://Sprites/npc/enemy.png" id="2_afpow"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_287tu"]
+atlas = ExtResource("2_afpow")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0830c"]
+atlas = ExtResource("2_afpow")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ghaa6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_287tu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0830c")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1dp5w"]
+size = Vector2(16, 19)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_auwsv"]
+radius = 61.131
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8uf12"]
+radius = 7.0
+
+[node name="enemy" type="CharacterBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_1f0kj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ghaa6")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_1dp5w")
+
+[node name="detection_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
+position = Vector2(0, 3)
+shape = SubResource("CircleShape2D_auwsv")
+
+[node name="BattleTrigger" type="Area2D" parent="."]
+position = Vector2(-3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleTrigger"]
+position = Vector2(3, 1)
+shape = SubResource("CircleShape2D_8uf12")
+
+[connection signal="area_entered" from="detection_area" to="." method="_on_detection_area_area_entered"]
+[connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="BattleTrigger" to="." method="_on_collision_area_body_entered"]

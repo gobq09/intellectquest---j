@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3gipqtumgqb5"]
+
+[ext_resource type="Script" uid="uid://bab0qlojhuk8x" path="res://joystick.gd" id="1_626ei"]
+[ext_resource type="Texture2D" uid="uid://1rv3dn041il0" path="res://Sprites/misc/LargeHandleFilled.png" id="2_bmey2"]
+[ext_resource type="Texture2D" uid="uid://13oe47oxi0la" path="res://Sprites/misc/SmallHandleFilledGrey.png" id="3_uvkn4"]
+
+[node name="joystick" type="CanvasLayer"]
+
+[node name="joystick" type="Control" parent="." groups=["joystick"]]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+script = ExtResource("1_626ei")
+
+[node name="Background" type="TextureRect" parent="joystick"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 10.651
+offset_left = 153.0
+offset_top = -256.0
+offset_right = -65.04
+offset_bottom = -48.0
+texture = ExtResource("2_bmey2")
+
+[node name="Knob" type="TextureRect" parent="joystick"]
+layout_mode = 0
+offset_left = 207.0
+offset_top = -201.0
+offset_right = 307.0
+offset_bottom = -101.0
+texture = ExtResource("3_uvkn4")

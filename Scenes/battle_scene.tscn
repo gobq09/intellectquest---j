@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://iynuxltwooek"]
+
+[ext_resource type="Texture2D" uid="uid://g0lbudygcd5f" path="res://Sprites/misc/blue-gradient-in-pixel-art-style-vector.jpg" id="1_hdvqd"]
+[ext_resource type="Texture2D" uid="uid://3khnk2n5meu7" path="res://ui/combat/combat-actions.png" id="2_anwxn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5vbs"]
+atlas = ExtResource("2_anwxn")
+region = Rect2(8, 55, 32, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gnqe"]
+atlas = ExtResource("2_anwxn")
+region = Rect2(7.90022, 102.978, 32.0709, 32.9603)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gt16y"]
+atlas = ExtResource("2_anwxn")
+region = Rect2(8, 151, 32, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20f6w"]
+atlas = ExtResource("2_anwxn")
+region = Rect2(8, 199, 32, 33)
+
+[node name="battle_scene" type="CanvasLayer"]
+
+[node name="BackGround" type="Sprite2D" parent="."]
+position = Vector2(576.5, 324.5)
+scale = Vector2(0.75049, 0.656122)
+texture = ExtResource("1_hdvqd")
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+
+[node name="CombatUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AttackButton" type="TextureButton" parent="CombatUI"]
+layout_mode = 0
+offset_left = 941.0
+offset_top = 473.0
+offset_right = 1026.0
+offset_bottom = 560.0
+texture_normal = SubResource("AtlasTexture_e5vbs")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="ItemButton" type="TextureButton" parent="CombatUI"]
+layout_mode = 0
+offset_left = 897.0
+offset_top = 519.0
+offset_right = 983.0
+offset_bottom = 598.0
+texture_normal = SubResource("AtlasTexture_3gnqe")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollButton" type="TextureButton" parent="CombatUI"]
+layout_mode = 0
+offset_left = 986.0
+offset_top = 514.0
+offset_right = 1081.0
+offset_bottom = 609.0
+texture_normal = SubResource("AtlasTexture_gt16y")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="RunButton" type="TextureButton" parent="CombatUI"]
+layout_mode = 0
+offset_left = 945.0
+offset_top = 559.0
+offset_right = 1028.0
+offset_bottom = 642.0
+texture_normal = SubResource("AtlasTexture_20f6w")
+stretch_mode = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="QuestionPanel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 46.0
+offset_top = 197.0
+offset_right = 86.0
+offset_bottom = 237.0
+metadata/_edit_use_anchors_ = true

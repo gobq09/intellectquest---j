@@ -1,0 +1,121 @@
+[gd_scene load_steps=15 format=3 uid="uid://dfhccnj4vvm1r"]
+
+[ext_resource type="Script" uid="uid://0rwh2a1atk8u" path="res://Scenes/npc.gd" id="1_fjoax"]
+[ext_resource type="Texture2D" uid="uid://br1lan3wx6wr5" path="res://Sprites/npc/npc-male1.png" id="2_h1ryf"]
+[ext_resource type="Texture2D" uid="uid://cp84ckp6bwp2i" path="res://Sprites/misc/shadow.png" id="3_e4l46"]
+[ext_resource type="PackedScene" uid="uid://boxx7tqk1eq7f" path="res://Scenes/dialogue.tscn" id="4_h1ryf"]
+[ext_resource type="PackedScene" uid="uid://dp00pu2vy6uq6" path="res://Scenes/npc_quest.tscn" id="5_1ig1v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ig1v"]
+atlas = ExtResource("2_h1ryf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6atyd"]
+atlas = ExtResource("2_h1ryf")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xkex"]
+atlas = ExtResource("2_h1ryf")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gudg"]
+atlas = ExtResource("2_h1ryf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qi7up"]
+atlas = ExtResource("2_h1ryf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a6nw3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ig1v")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6atyd")
+}],
+"loop": true,
+"name": &"walk_e",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xkex")
+}],
+"loop": true,
+"name": &"walk_n",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gudg")
+}],
+"loop": true,
+"name": &"walk_s",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qi7up")
+}],
+"loop": true,
+"name": &"walk_w",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8n2s3"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_opnxy"]
+closed = false
+polygon = PackedVector2Array(-5, 7, -4, 1, -5, -3, -3, -7, 3, -7, 5, -3, 4, 1, 5, 2, 5, 7, 4, 10, 2, 10, 0, 8, -2, 10, -4, 10, -5, 7)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g6unj"]
+radius = 29.4279
+
+[node name="NPC" type="CharacterBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_fjoax")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture = ExtResource("3_e4l46")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_a6nw3")
+animation = &"walk_s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_8n2s3")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_opnxy")
+
+[node name="detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
+shape = SubResource("CircleShape2D_g6unj")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Dialogue" parent="." instance=ExtResource("4_h1ryf")]
+offset_left = -152.0
+offset_top = -185.0
+offset_right = 153.0
+offset_bottom = 116.0
+
+[node name="npc_quest" parent="." instance=ExtResource("5_1ig1v")]
+
+[connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="dialogue_finished" from="Dialogue" to="." method="_on_dialogue_dialogue_finished"]
+[connection signal="quest_menu_closed" from="npc_quest" to="." method="_on_npc_quest_quest_menu_closed"]
