@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvxjgjbyxdvee"]
+
+[ext_resource type="Texture2D" uid="uid://cocirnqmaocmm" path="res://ui/combat/interface-combat-bg1.png" id="1_wtcfe"]
+[ext_resource type="Texture2D" uid="uid://oihepmv71k2w" path="res://ui/combat/combat_sprites/combat-player.png" id="2_epypp"]
+[ext_resource type="Texture2D" uid="uid://blyn7fisxmv3j" path="res://ui/combat/combat_sprites/combat-squidbit.png" id="3_0hol4"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(45, 41)
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(529, 219)
+scale = Vector2(4.10357, 3.7)
+texture = ExtResource("1_wtcfe")
+
+[node name="Combat-player" type="Sprite2D" parent="."]
+position = Vector2(255, 314)
+scale = Vector2(4.76563, 3.89583)
+texture = ExtResource("2_epypp")
+
+[node name="Combat-squidbit" type="Sprite2D" parent="."]
+position = Vector2(843, 282)
+scale = Vector2(3.375, 4.09821)
+texture = ExtResource("3_0hol4")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 29.0
+offset_top = 35.0
+offset_right = 82.0
+offset_bottom = 86.0

@@ -57,6 +57,7 @@ _data = {
 }
 
 [node name="transition" type="CanvasLayer"]
+visible = false
 script = ExtResource("1_jnsx0")
 
 [node name="ColorRect" type="ColorRect" parent="."]

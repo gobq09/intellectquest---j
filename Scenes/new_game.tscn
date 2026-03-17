@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=3 uid="uid://c7tt14ff1tmn0"]
+
+[ext_resource type="Script" uid="uid://cv5c7xdoybt7s" path="res://Scenes/new_game.gd" id="1_rqjoh"]
+[ext_resource type="Texture2D" uid="uid://chafut360r0tq" path="res://ui/title/interface-prompt.png" id="1_v0bqk"]
+[ext_resource type="Texture2D" uid="uid://bbsfdtp4q4a4h" path="res://ui/title/interface-prompt-newgame.png" id="2_84ke3"]
+[ext_resource type="Texture2D" uid="uid://db1sk3s5weov1" path="res://ui/title/interface-title-bg.png" id="2_auxcl"]
+[ext_resource type="Texture2D" uid="uid://csc0os8ayadj1" path="res://ui/title/interface-prompt-cancel.png" id="3_ned08"]
+[ext_resource type="Texture2D" uid="uid://d0ycw54b0kcxd" path="res://ui/title/interface-prompt-confirm.png" id="4_rqjoh"]
+
+[sub_resource type="Gradient" id="Gradient_auxcl"]
+colors = PackedColorArray(0, 0, 0, 0.588235, 0, 0, 0, 0.588235)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rnujv"]
+gradient = SubResource("Gradient_auxcl")
+
+[sub_resource type="Theme" id="Theme_ned08"]
+
+[node name="New Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_rqjoh")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_auxcl")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+texture = SubResource("GradientTexture2D_rnujv")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = 52.0
+offset_top = 20.0
+offset_right = 236.0
+offset_bottom = 132.0
+texture = ExtResource("1_v0bqk")
+
+[node name="Interface-prompt-newgame" type="Sprite2D" parent="."]
+position = Vector2(118, 38)
+texture = ExtResource("2_84ke3")
+
+[node name="Cancel" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 100.0
+offset_right = 122.0
+offset_bottom = 132.0
+texture_normal = ExtResource("3_ned08")
+stretch_mode = 3
+
+[node name="Confirm" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 166.5
+offset_top = 100.0
+offset_right = 214.5
+offset_bottom = 132.0
+texture_normal = ExtResource("4_rqjoh")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 68.0
+offset_right = 508.0
+offset_bottom = 191.0
+scale = Vector2(0.25, 0.25)
+theme = SubResource("Theme_ned08")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Are you sure you want to start a new game?
+
+This will overwrite your current save."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Confirm" to="." method="_on_confirm_pressed"]

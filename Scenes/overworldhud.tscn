@@ -1,0 +1,297 @@
+[gd_scene load_steps=21 format=3 uid="uid://dflg8r076r3qe"]
+
+[ext_resource type="Script" uid="uid://cj0426geyvlas" path="res://Scenes/hud.gd" id="1_17k45"]
+[ext_resource type="Script" uid="uid://clgv6o6pu2dyr" path="res://hud.gd" id="1_54vkx"]
+[ext_resource type="Texture2D" uid="uid://gaxtq7vrwunw" path="res://ui/hud/interface-hud-hpbar4.png" id="2_7n2a2"]
+[ext_resource type="Texture2D" uid="uid://cgk2a51he56qn" path="res://ui/hud/interface-hud-hpbar3.png" id="3_17k45"]
+[ext_resource type="Texture2D" uid="uid://ceu81ju5a1voq" path="res://ui/hud/interface-hud-hpbar1.png" id="4_farlp"]
+[ext_resource type="Texture2D" uid="uid://c6lkpumxvacb2" path="res://ui/hud/interface-hud-level.png" id="5_flbuw"]
+[ext_resource type="Texture2D" uid="uid://bbyvf385jbh2v" path="res://ui/hud/interface-hud-topright2.png" id="6_bdvyw"]
+[ext_resource type="Texture2D" uid="uid://bw3331mxk3fd3" path="res://ui/hud/interface-hud-todo.png" id="7_wruxn"]
+[ext_resource type="Texture2D" uid="uid://btk3gygpn2ao1" path="res://ui/hud/interface-hud-topright1.png" id="8_b3mme"]
+[ext_resource type="Texture2D" uid="uid://dvciqueies7yf" path="res://ui/hud/interface-hud-mapbutton.png" id="9_7bydo"]
+[ext_resource type="Texture2D" uid="uid://vgcrkf3sxh1o" path="res://ui/hud/interface-hud-settingsbutton.png" id="10_dpbjw"]
+[ext_resource type="Texture2D" uid="uid://oqc5jik5j7hs" path="res://ui/hud/interface-hud-archivebutton.png" id="11_7n2a2"]
+
+[sub_resource type="Gradient" id="Gradient_hx0r7"]
+offsets = PackedFloat32Array(0, 0.197183, 0.457746, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.408611, 0.408611, 0.408611, 1, 0.78169, 0.78169, 0.78169, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t4iiy"]
+gradient = SubResource("Gradient_hx0r7")
+width = 56
+height = 9
+
+[sub_resource type="Theme" id="Theme_7n2a2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_17k45"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_7n2a2"]
+resource_name = "cutscene"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 648), Vector2(0, 520)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -128), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_17k45"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 520)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../HUD:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_farlp"]
+resource_name = "hud_fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../HUD:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_farlp"]
+_data = {
+&"RESET": SubResource("Animation_17k45"),
+&"cutscene": SubResource("Animation_7n2a2"),
+&"hud_fade": SubResource("Animation_farlp")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_17k45")
+animation_player = NodePath("Panels/AnimationPlayer")
+
+[node name="HUD" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_54vkx")
+
+[node name="HP" type="Control" parent="HUD"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Interface-hud-hpbar4" type="Sprite2D" parent="HUD/HP"]
+position = Vector2(69, 20)
+texture = ExtResource("2_7n2a2")
+
+[node name="HP Bar" type="TextureProgressBar" parent="HUD/HP"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 14.0
+offset_right = 85.0
+offset_bottom = 23.0
+value = 50.0
+texture_progress = SubResource("GradientTexture2D_t4iiy")
+tint_progress = Color(0.99, 0.29502, 0.1881, 1)
+
+[node name="Interface-hud-hpbar3" type="Sprite2D" parent="HUD/HP"]
+position = Vector2(69, 20)
+texture = ExtResource("3_17k45")
+
+[node name="Interface-hud-hpbar1" type="Sprite2D" parent="HUD/HP"]
+position = Vector2(59, 19)
+texture = ExtResource("4_farlp")
+
+[node name="Interface-hud-level" type="Sprite2D" parent="HUD/HP"]
+position = Vector2(18, 18)
+texture = ExtResource("5_flbuw")
+
+[node name="Control" type="Control" parent="HUD"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Interface-hud-topright2" type="Sprite2D" parent="HUD"]
+position = Vector2(252, 24)
+texture = ExtResource("6_bdvyw")
+
+[node name="Task" type="TextureButton" parent="HUD"]
+layout_mode = 0
+offset_left = 234.0
+offset_top = -30.0
+offset_right = 282.0
+offset_bottom = 50.0
+texture_normal = ExtResource("7_wruxn")
+stretch_mode = 3
+
+[node name="Interface-hud-topright1" type="Sprite2D" parent="HUD"]
+position = Vector2(252, 24)
+texture = ExtResource("8_b3mme")
+
+[node name="Map Button" type="TextureButton" parent="HUD"]
+layout_mode = 0
+offset_left = 226.0
+offset_right = 258.0
+offset_bottom = 32.0
+texture_normal = ExtResource("9_7bydo")
+
+[node name="Settings Button" type="TextureButton" parent="HUD"]
+layout_mode = 0
+offset_left = 256.0
+offset_right = 288.0
+offset_bottom = 32.0
+texture_normal = ExtResource("10_dpbjw")
+
+[node name="Archive Button" type="TextureButton" parent="HUD"]
+layout_mode = 0
+offset_top = 46.0
+offset_right = 32.0
+offset_bottom = 78.0
+texture_normal = ExtResource("11_7n2a2")
+
+[node name="Panels" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Panels"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -128.0
+grow_horizontal = 2
+theme = SubResource("Theme_7n2a2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_17k45")
+
+[node name="Panel2" type="Panel" parent="Panels"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_7n2a2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_17k45")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Panels"]
+libraries = {
+&"": SubResource("AnimationLibrary_farlp")
+}
+autoplay = "cutscene"
+
+[connection signal="pressed" from="HUD/Task" to="HUD" method="_on_interfacehudtodo_pressed"]
+[connection signal="pressed" from="HUD/Map Button" to="HUD" method="_on_map_button_pressed"]
+[connection signal="pressed" from="HUD/Settings Button" to="HUD" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="HUD/Archive Button" to="HUD" method="_on_archive_button_pressed"]

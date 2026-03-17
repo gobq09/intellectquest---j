@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://cgpyuggor3stu"]
+
+[ext_resource type="Script" uid="uid://bhb18oxcvg71n" path="res://Scenes/loading.gd" id="1_fim2r"]
+
+[sub_resource type="Gradient" id="Gradient_ph0vb"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fim2r"]
+gradient = SubResource("Gradient_ph0vb")
+
+[sub_resource type="LabelSettings" id="LabelSettings_k66n3"]
+font_size = 24
+
+[sub_resource type="Theme" id="Theme_fim2r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k66n3"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_31xe0"]
+resource_name = "loading"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xrc7h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4tbtc"]
+_data = {
+&"RESET": SubResource("Animation_xrc7h"),
+&"loading": SubResource("Animation_31xe0")
+}
+
+[node name="Loading" type="CanvasLayer" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_fim2r")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = SubResource("GradientTexture2D_fim2r")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 944.0
+offset_top = 544.0
+offset_right = 1056.0
+offset_bottom = 578.0
+text = "Loading..."
+label_settings = SubResource("LabelSettings_k66n3")
+horizontal_alignment = 2
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_fim2r")
+theme_override_styles/panel = SubResource("StyleBoxFlat_k66n3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4tbtc")
+}
+autoplay = "loading"

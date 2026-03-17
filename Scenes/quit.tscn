@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=3 uid="uid://nxlclj2vm1y2"]
+
+[ext_resource type="Script" uid="uid://no7yhxifdfev" path="res://Scenes/quit.gd" id="1_26s04"]
+[ext_resource type="Texture2D" uid="uid://chafut360r0tq" path="res://ui/title/interface-prompt.png" id="1_pw5xw"]
+[ext_resource type="Texture2D" uid="uid://db1sk3s5weov1" path="res://ui/title/interface-title-bg.png" id="2_lolib"]
+[ext_resource type="Texture2D" uid="uid://boyb5c583xop6" path="res://ui/title/interface-prompt-quitgame.png" id="2_pw5xw"]
+[ext_resource type="Texture2D" uid="uid://csc0os8ayadj1" path="res://ui/title/interface-prompt-cancel.png" id="3_lolib"]
+[ext_resource type="Texture2D" uid="uid://d0ycw54b0kcxd" path="res://ui/title/interface-prompt-confirm.png" id="4_8fgrr"]
+
+[sub_resource type="Gradient" id="Gradient_hdjji"]
+colors = PackedColorArray(0, 0, 0, 0.588235, 0, 0, 0, 0.588235)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_whpx0"]
+gradient = SubResource("Gradient_hdjji")
+
+[sub_resource type="Theme" id="Theme_ldxdp"]
+
+[node name="Quit" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+script = ExtResource("1_26s04")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_lolib")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+texture = SubResource("GradientTexture2D_whpx0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 52.0
+offset_top = 20.0
+offset_right = 236.0
+offset_bottom = 132.0
+texture = ExtResource("1_pw5xw")
+
+[node name="Interface-prompt-newgame" type="Sprite2D" parent="."]
+position = Vector2(118, 38)
+texture = ExtResource("2_pw5xw")
+
+[node name="Cancel" type="TextureButton" parent="."]
+offset_left = 74.0
+offset_top = 100.0
+offset_right = 122.0
+offset_bottom = 132.0
+texture_normal = ExtResource("3_lolib")
+stretch_mode = 3
+
+[node name="Confirm" type="TextureButton" parent="."]
+offset_left = 166.5
+offset_top = 100.0
+offset_right = 214.5
+offset_bottom = 132.0
+texture_normal = ExtResource("4_8fgrr")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="."]
+offset_left = 92.0
+offset_top = 62.0
+offset_right = 508.0
+offset_bottom = 185.0
+scale = Vector2(0.25, 0.25)
+theme = SubResource("Theme_ldxdp")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Are you sure you want to quit the game?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="Confirm" to="." method="_on_confirm_pressed"]

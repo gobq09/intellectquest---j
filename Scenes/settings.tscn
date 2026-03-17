@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=3 uid="uid://tj4vo1mmxfyt"]
+
+[ext_resource type="Texture2D" uid="uid://dghrby8lsskee" path="res://ui/settings/interface-settings-bottom.png" id="1_4geyq"]
+[ext_resource type="Script" uid="uid://stfwy03w1s4n" path="res://Scenes/settings.gd" id="1_6vr2p"]
+[ext_resource type="Texture2D" uid="uid://dxcpdwuu3aryg" path="res://ui/settings/interface-settings-top.png" id="2_i44u3"]
+[ext_resource type="Texture2D" uid="uid://c0aurjg4m3hgn" path="res://ui/settings/interface-settings-general.png" id="2_lhmql"]
+[ext_resource type="Texture2D" uid="uid://bb4d6hsoc6ya" path="res://ui/settings/interface-settings-video.png" id="3_6kysc"]
+[ext_resource type="Texture2D" uid="uid://xosfel3ncwdv" path="res://ui/settings/interface-settings-audio.png" id="4_6vr2p"]
+[ext_resource type="Texture2D" uid="uid://c81heiunfuifc" path="res://ui/settings/interface-settings-return.png" id="5_f60ng"]
+
+[sub_resource type="Gradient" id="Gradient_84ke3"]
+colors = PackedColorArray(0, 0, 0, 0.588235, 0, 0, 0, 0.588235)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6kysc"]
+gradient = SubResource("Gradient_84ke3")
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+script = ExtResource("1_6vr2p")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+texture = SubResource("GradientTexture2D_6kysc")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -32.0
+offset_right = 288.0
+offset_bottom = 180.0
+texture = ExtResource("1_4geyq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 320.0
+offset_bottom = 178.0
+texture = ExtResource("1_4geyq")
+
+[node name="General" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 96.0
+offset_bottom = 48.0
+texture_normal = ExtResource("2_lhmql")
+
+[node name="Video" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 40.0
+offset_right = 96.0
+offset_bottom = 80.0
+texture_normal = ExtResource("3_6kysc")
+
+[node name="Audio" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 72.0
+offset_right = 96.0
+offset_bottom = 112.0
+texture_normal = ExtResource("4_6vr2p")
+
+[node name="Return" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 126.0
+offset_right = 96.0
+offset_bottom = 166.0
+texture_normal = ExtResource("5_f60ng")
+
+[node name="Interface-settings-top" type="Sprite2D" parent="."]
+position = Vector2(16, 88)
+texture = ExtResource("2_i44u3")
+
+[connection signal="pressed" from="General" to="." method="_on_general_pressed"]
+[connection signal="pressed" from="Video" to="." method="_on_video_pressed"]
+[connection signal="pressed" from="Audio" to="." method="_on_audio_pressed"]
+[connection signal="pressed" from="Return" to="." method="_on_return_pressed"]

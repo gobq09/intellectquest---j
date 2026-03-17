@@ -1,0 +1,184 @@
+[gd_scene load_steps=17 format=3 uid="uid://cfvteqvw7wwp"]
+
+[ext_resource type="Script" uid="uid://m8s68lxdxkf0" path="res://Scenes/archive.gd" id="1_mrhtk"]
+[ext_resource type="Texture2D" uid="uid://dgw5gi1dwvy3w" path="res://ui/archive/interface-archive-book.png" id="1_ycmab"]
+[ext_resource type="Texture2D" uid="uid://gfo4nfxodp7d" path="res://ui/archive/interface-archive-closebutton.png" id="2_xlv38"]
+[ext_resource type="Texture2D" uid="uid://bt1mf6b6yuob8" path="res://ui/archive/interface-archive-nextpage.png" id="3_m6k2q"]
+[ext_resource type="Texture2D" uid="uid://c0qj2qlehx7fs" path="res://ui/archive/interface-archive-previouspage.png" id="4_2r2lc"]
+[ext_resource type="Texture2D" uid="uid://cceakh24dcsj0" path="res://ui/archive/interface-archive-subj_eng.png" id="5_2r2lc"]
+[ext_resource type="Texture2D" uid="uid://dmjcu37333lv3" path="res://ui/archive/interface-archive-subj_sci.png" id="6_0ulwn"]
+[ext_resource type="Texture2D" uid="uid://bg4kwwuer5kcu" path="res://ui/archive/interface-archive-page.png" id="6_08hgs"]
+[ext_resource type="Texture2D" uid="uid://r6rij06c8413" path="res://ui/archive/interface-archive-subj_math.png" id="6_oa377"]
+[ext_resource type="Texture2D" uid="uid://s0cwm8xwo3w0" path="res://ui/archive/interface-archive-subj_fil.png" id="7_0ulwn"]
+
+[sub_resource type="Gradient" id="Gradient_hdjji"]
+colors = PackedColorArray(0, 0, 0, 0.588235, 0, 0, 0, 0.588235)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_25x8g"]
+gradient = SubResource("Gradient_hdjji")
+
+[sub_resource type="Animation" id="Animation_k0voi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_08hgs"]
+resource_name = "archive-next"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0]
+}
+
+[sub_resource type="Animation" id="Animation_oa377"]
+resource_name = "archive-previous"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oa377"]
+_data = {
+&"RESET": SubResource("Animation_k0voi"),
+&"archive-next": SubResource("Animation_08hgs"),
+&"archive-previous": SubResource("Animation_oa377")
+}
+
+[node name="Archive" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+script = ExtResource("1_mrhtk")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+texture = SubResource("GradientTexture2D_25x8g")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 30.0
+offset_right = 252.0
+offset_bottom = 158.0
+texture = ExtResource("1_ycmab")
+
+[node name="Close" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 256.0
+offset_right = 288.0
+offset_bottom = 32.0
+texture_normal = ExtResource("2_xlv38")
+stretch_mode = 3
+
+[node name="Next" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 108.0
+offset_right = 278.0
+offset_bottom = 140.0
+texture_normal = ExtResource("3_m6k2q")
+stretch_mode = 3
+
+[node name="Previous" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 108.0
+offset_right = 58.0
+offset_bottom = 140.0
+texture_normal = ExtResource("4_2r2lc")
+stretch_mode = 3
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="English" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_top = 44.0
+offset_right = 64.0
+offset_bottom = 76.0
+texture_normal = ExtResource("5_2r2lc")
+stretch_mode = 3
+
+[node name="Science" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_top = 68.0
+offset_right = 64.0
+offset_bottom = 100.0
+texture_normal = ExtResource("6_0ulwn")
+stretch_mode = 3
+
+[node name="Math" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 44.0
+offset_right = 288.0
+offset_bottom = 76.0
+texture_normal = ExtResource("6_oa377")
+stretch_mode = 3
+
+[node name="Filipino" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 68.0
+offset_right = 288.0
+offset_bottom = 100.0
+texture_normal = ExtResource("7_0ulwn")
+stretch_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(144, 62)
+texture = ExtResource("6_08hgs")
+vframes = 11
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_oa377")
+}
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Next" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="Previous" to="." method="_on_previous_pressed"]
+[connection signal="pressed" from="Control/English" to="." method="_on_english_pressed"]
+[connection signal="pressed" from="Control/Science" to="." method="_on_science_pressed"]
+[connection signal="pressed" from="Control/Math" to="." method="_on_math_pressed"]
+[connection signal="pressed" from="Control/Filipino" to="." method="_on_filipino_pressed"]

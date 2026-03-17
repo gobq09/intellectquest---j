@@ -1,43 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://dkefgsuwak2hj"]
+[gd_scene load_steps=9 format=3 uid="uid://dkefgsuwak2hj"]
 
-[ext_resource type="Texture2D" uid="uid://btfh3i0w4rc43" path="res://Sprites/tilesets/main_menu_bg.png" id="1_28flt"]
 [ext_resource type="Script" uid="uid://dfqow415vx5vr" path="res://Scenes/main_menu.gd" id="1_48xlc"]
 [ext_resource type="Texture2D" uid="uid://db1sk3s5weov1" path="res://ui/title/interface-title-bg.png" id="3_1ehe0"]
-[ext_resource type="Script" uid="uid://npnk8sa1clvg" path="res://Scenes/canvas_layer.gd" id="3_opfnp"]
 [ext_resource type="Texture2D" uid="uid://b1ihfnea5ko6l" path="res://ui/title/interface-title-title.png" id="4_ce3w2"]
 [ext_resource type="Texture2D" uid="uid://dca1ucx42xnok" path="res://ui/title/interface-title-menu.png" id="5_n45e2"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_48xlc"]
-texture = ExtResource("1_28flt")
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_28flt"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28flt"]
-bg_color = Color(0.808998, 0.808998, 0.808998, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-shadow_offset = Vector2(0, 3.14)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48xlc"]
-bg_color = Color(0.716296, 0.716296, 0.716296, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-shadow_offset = Vector2(0, 3.14)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ehe0"]
-bg_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-shadow_size = 5
-shadow_offset = Vector2(0, 3.14)
+[ext_resource type="Texture2D" uid="uid://b0vv5wx3cci8a" path="res://ui/title/interface-title-menu4.png" id="7_16hvj"]
+[ext_resource type="Texture2D" uid="uid://fns52kwiw2ai" path="res://ui/title/interface-title-menu1.png" id="7_cp0ys"]
+[ext_resource type="Texture2D" uid="uid://caqb16vsk8ymr" path="res://ui/title/interface-title-menu3.png" id="8_vr1f0"]
+[ext_resource type="Texture2D" uid="uid://bbj1w02uk6ub0" path="res://ui/title/interface-title-menu2.png" id="9_t1dhk"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -46,109 +16,69 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(4, 4)
 script = ExtResource("1_48xlc")
 
-[node name="Panel" type="Panel" parent="."]
-visible = false
+[node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_48xlc")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 36.0
-offset_top = 256.0
-offset_right = 388.0
-offset_bottom = 584.0
-theme_override_constants/separation = 20
-
-[node name="Button" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxEmpty_28flt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
-theme_override_styles/normal = SubResource("StyleBoxFlat_1ehe0")
-text = "New Game"
-
-[node name="Button2" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxEmpty_28flt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
-theme_override_styles/normal = SubResource("StyleBoxFlat_1ehe0")
-text = "Load Game"
-
-[node name="Button3" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxEmpty_28flt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
-theme_override_styles/normal = SubResource("StyleBoxFlat_1ehe0")
-text = "Settings"
-
-[node name="Button4" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-theme_override_styles/focus = SubResource("StyleBoxEmpty_28flt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_28flt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_48xlc")
-theme_override_styles/normal = SubResource("StyleBoxFlat_1ehe0")
-text = "Quit Game"
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-scale = Vector2(4, 4)
-transform = Transform2D(4, 0, 0, 4, 0, 0)
-script = ExtResource("3_opfnp")
-
-[node name="Interface-title-bg" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(146, 81)
-scale = Vector2(1.15714, 1.15714)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_1ehe0")
 
-[node name="Interface-title-title" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(88, 46)
+[node name="Interface-title-title" type="Sprite2D" parent="."]
+position = Vector2(80, 44)
 texture = ExtResource("4_ce3w2")
 
-[node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 54.0
-offset_top = 80.0
-offset_right = 122.0
-offset_bottom = 102.0
-
-[node name="Interface-title-menu" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(88, 102)
+[node name="Interface-title-menu" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(82, 104)
 texture = ExtResource("5_n45e2")
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_new_game_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_load_game_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button3" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button4" to="." method="_on_quit_game_pressed"]
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[node name="Quit Game" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 122.0
+offset_right = 120.0
+offset_bottom = 146.0
+texture_normal = ExtResource("7_16hvj")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Settings" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 100.0
+offset_right = 120.0
+offset_bottom = 124.0
+texture_normal = ExtResource("8_vr1f0")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Continue" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 78.0
+offset_right = 120.0
+offset_bottom = 102.0
+texture_normal = ExtResource("9_t1dhk")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="New Game" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 58.0
+offset_right = 120.0
+offset_bottom = 86.0
+texture_normal = ExtResource("7_cp0ys")
+ignore_texture_size = true
+stretch_mode = 3
+
+[connection signal="pressed" from="Quit Game" to="." method="_on_quit_game_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="New Game" to="." method="_on_new_game_pressed"]

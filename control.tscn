@@ -1,0 +1,317 @@
+[gd_scene load_steps=18 format=3 uid="uid://dxyqp6ytcpnf4"]
+
+[ext_resource type="Texture2D" uid="uid://cocirnqmaocmm" path="res://ui/combat/interface-combat-bg1.png" id="1_qtu10"]
+[ext_resource type="Texture2D" uid="uid://blyn7fisxmv3j" path="res://ui/combat/combat_sprites/combat-squidbit.png" id="2_ee4bf"]
+[ext_resource type="Texture2D" uid="uid://oihepmv71k2w" path="res://ui/combat/combat_sprites/combat-player.png" id="3_kbped"]
+[ext_resource type="Texture2D" uid="uid://dq7037c1qd408" path="res://ui/combat/interface-combat-hpbar2.png" id="4_kbped"]
+[ext_resource type="Texture2D" uid="uid://tbos3kc0l44d" path="res://ui/combat/interface-combat-enemyhpbar1.png" id="5_6a6wx"]
+[ext_resource type="Texture2D" uid="uid://dhnjdxfh7ouqy" path="res://ui/combat/interface-combat-enemyhpbar2.png" id="5_fj5cn"]
+[ext_resource type="Texture2D" uid="uid://b2kk7xo4wwt83" path="res://ui/combat/interface-combat-hpbar1.png" id="7_sky72"]
+[ext_resource type="Texture2D" uid="uid://cgk2a51he56qn" path="res://ui/hud/interface-hud-hpbar3.png" id="8_0ytqx"]
+
+[sub_resource type="GDScript" id="GDScript_6a6wx"]
+script/source = "extends Node2D
+
+# Health values
+var player_health = 100
+var player_max_health = 100
+var enemy_health = 100
+var enemy_max_health = 100
+
+# Damage amounts
+var player_damage = 50
+var enemy_damage = 100
+
+# Shake settings
+var shake_amount = 8
+var shake_duration = 0.4
+
+# Track game state
+var player_won = false
+var textbox1_was_open = false
+
+# References
+@onready var player_health_bar = $\"Combat-player/MC HP BAR/hpbar/$PlayerHealthBar\"
+@onready var enemy_health_bar = $\"Combat-squidbit/ENEMY HP BAR/Interface-combat-enemyhpbar2/$EnemyHealthBar\"
+@onready var btn_a = $\"optionpanel/options/$ButtonA\"
+@onready var btn_b = $\"optionpanel/options/$ButtonB\"
+@onready var btn_c = $\"optionpanel/options/$ButtonC\"
+@onready var btn_d = $\"optionpanel/options/$ButtonD\"
+
+# Character sprites
+@onready var player_sprite = $\"Combat-player\"
+@onready var enemy_sprite = $\"Combat-squidbit\"
+
+# Textboxes and labels
+@onready var winner_label = $\"textbox/winner\"
+@onready var loser_label = $\"textbox/loser\"
+@onready var textbox2 = $\"textbox2\"
+
+func _ready():
+	player_health_bar.max_value = player_max_health
+	player_health_bar.value = player_health
+	enemy_health_bar.max_value = enemy_max_health
+	enemy_health_bar.value = enemy_health
+	btn_a.pressed.connect(_on_wrong_answer)
+	btn_b.pressed.connect(_on_correct_answer)
+	btn_c.pressed.connect(_on_wrong_answer)
+	btn_d.pressed.connect(_on_wrong_answer)
+	winner_label.visible = false
+	loser_label.visible = false
+	$\"textbox\".visible = false
+	textbox2.visible = false   # Hidden at start
+
+func _on_correct_answer():
+	enemy_health -= enemy_damage
+	enemy_health = max(enemy_health, 0)
+	enemy_health_bar.value = enemy_health
+	shake(enemy_sprite)
+	print(\"Correct! Enemy HP: \", enemy_health)
+	if enemy_health <= 0:
+		_on_enemy_defeated()
+
+func _on_wrong_answer():
+	player_health -= player_damage
+	player_health = max(player_health, 0)
+	player_health_bar.value = player_health
+	shake(player_sprite)
+	print(\"Wrong! Player HP: \", player_health)
+	if player_health <= 0:
+		_on_player_defeated()
+
+func shake(node: Node2D):
+	var origin = node.position
+	var elapsed = 0.0
+	while elapsed < shake_duration:
+		var offset = Vector2(
+			randf_range(-shake_amount, shake_amount),
+			randf_range(-shake_amount, shake_amount)
+		)
+		node.position = origin + offset
+		await get_tree().process_frame
+		elapsed += get_process_delta_time()
+	node.position = origin
+
+func _on_enemy_defeated():
+	print(\"Enemy defeated! You win!\")
+	player_won = true
+	textbox1_was_open = true
+	$\"textbox\".visible = true
+	winner_label.visible = true
+	btn_a.disabled = true
+	btn_b.disabled = true
+	btn_c.disabled = true
+	btn_d.disabled = true
+
+func _on_player_defeated():
+	print(\"Player defeated! Game over!\")
+	player_won = false
+	$\"textbox\".visible = true
+	loser_label.visible = true
+	btn_a.disabled = true
+	btn_b.disabled = true
+	btn_c.disabled = true
+	btn_d.disabled = true
+
+func _input(event):
+	if event is InputEventMouseButton and event.pressed:
+		if $\"textbox\".visible:
+			# Close textbox1
+			winner_label.visible = false
+			loser_label.visible = false
+			$\"textbox\".visible = false
+			# If player won, show textbox2 after closing textbox1
+			if player_won and textbox1_was_open:
+				textbox2.visible = true
+				textbox1_was_open = false
+		elif textbox2.visible:
+			# Close textbox2 on next click
+			textbox2.visible = false
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pxugv"]
+bg_color = Color(0.774211, 0.519502, 0.551785, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eh0v1"]
+bg_color = Color(0.533163, 0, 0.00949827, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_am1vj"]
+bg_color = Color(0.727193, 0.429174, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g31lc"]
+bg_color = Color(0.639301, 7.90307e-05, 0.539379, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_6a6wx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sky72"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0ytqx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6a6wx"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Node2D"]
+script = SubResource("GDScript_6a6wx")
+
+[node name="Interface-combat-bg1" type="Sprite2D" parent="."]
+position = Vector2(576.25, 325.25)
+scale = Vector2(4.10536, 4.625)
+texture = ExtResource("1_qtu10")
+
+[node name="Combat-squidbit" type="Sprite2D" parent="."]
+position = Vector2(891, 336)
+scale = Vector2(3.96094, 4.49721)
+texture = ExtResource("2_ee4bf")
+
+[node name="ENEMY HP BAR" type="VBoxContainer" parent="Combat-squidbit"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Interface-combat-enemyhpbar2" type="Sprite2D" parent="Combat-squidbit/ENEMY HP BAR"]
+position = Vector2(-171.677, -63.8173)
+scale = Vector2(0.70481, 0.48919)
+texture = ExtResource("5_fj5cn")
+
+[node name="$EnemyHealthBar" type="ProgressBar" parent="Combat-squidbit/ENEMY HP BAR/Interface-combat-enemyhpbar2"]
+offset_left = -29.7309
+offset_top = -8.18185
+offset_right = 43.2691
+offset_bottom = 7.81815
+theme_override_styles/background = SubResource("StyleBoxFlat_pxugv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_eh0v1")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="enemyhpbar1" type="Sprite2D" parent="Combat-squidbit/ENEMY HP BAR"]
+position = Vector2(-168.899, -64.0397)
+scale = Vector2(0.668915, 0.557323)
+texture = ExtResource("5_6a6wx")
+
+[node name="Combat-player" type="Sprite2D" parent="."]
+position = Vector2(243, 476)
+scale = Vector2(5.03516, 4.40365)
+texture = ExtResource("3_kbped")
+
+[node name="MC HP BAR" type="VBoxContainer" parent="Combat-player"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="hpbar" type="Sprite2D" parent="Combat-player/MC HP BAR"]
+position = Vector2(139.618, -97.8734)
+scale = Vector2(0.621714, 0.527571)
+texture = ExtResource("4_kbped")
+
+[node name="$PlayerHealthBar" type="ProgressBar" parent="Combat-player/MC HP BAR/hpbar"]
+offset_left = -43.2232
+offset_top = -7.4357
+offset_right = 28.7768
+offset_bottom = 7.5643
+theme_override_styles/background = SubResource("StyleBoxFlat_am1vj")
+theme_override_styles/fill = SubResource("StyleBoxFlat_g31lc")
+step = 1.0
+value = 100.0
+show_percentage = false
+
+[node name="Interface-combat-hpbar1" type="Sprite2D" parent="Combat-player/MC HP BAR/hpbar"]
+position = Vector2(-370.384, 116.518)
+scale = Vector2(0.965696, 1.01827)
+texture = ExtResource("7_sky72")
+
+[node name="Interface-hud-hpbar3" type="Sprite2D" parent="Combat-player/MC HP BAR/hpbar"]
+position = Vector2(-371.005, 182.007)
+scale = Vector2(1.03361, 1.00498)
+texture = ExtResource("8_0ytqx")
+
+[node name="questionpanel" type="Panel" parent="."]
+offset_left = 352.0
+offset_top = 153.0
+offset_right = 764.0
+offset_bottom = 372.0
+
+[node name="question" type="TextEdit" parent="questionpanel"]
+layout_mode = 0
+offset_right = 415.0
+offset_bottom = 217.0
+text = "Which word is a noun?"
+editable = false
+
+[node name="optionpanel" type="Panel" parent="."]
+offset_left = 5.0
+offset_top = 470.0
+offset_right = 297.0
+offset_bottom = 572.0
+
+[node name="options" type="HBoxContainer" parent="optionpanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00201207
+anchor_top = 0.00980392
+anchor_right = 0.585513
+anchor_bottom = 1.01961
+metadata/_edit_use_anchors_ = true
+
+[node name="$ButtonA" type="Button" parent="optionpanel/options"]
+layout_mode = 2
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_6a6wx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_sky72")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0ytqx")
+text = "A. Run"
+
+[node name="$ButtonB" type="Button" parent="optionpanel/options"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_6a6wx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_sky72")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0ytqx")
+text = "B. Apple"
+
+[node name="$ButtonC" type="Button" parent="optionpanel/options"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_6a6wx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_sky72")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0ytqx")
+text = "C. Quickly"
+
+[node name="$ButtonD" type="Button" parent="optionpanel/options"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_6a6wx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_sky72")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0ytqx")
+text = "D. Blue"
+
+[node name="textbox" type="Panel" parent="."]
+offset_left = 402.0
+offset_top = 49.0
+offset_right = 685.0
+offset_bottom = 141.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6a6wx")
+
+[node name="loser" type="Label" parent="textbox"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "You Lose"
+
+[node name="winner" type="Label" parent="textbox"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "You Win"
+
+[node name="textbox2" type="Panel" parent="."]
+offset_left = 398.0
+offset_top = 124.0
+offset_right = 739.0
+offset_bottom = 482.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6a6wx")
+
+[node name="winner" type="Label" parent="textbox2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "You Win,
+Which Word is a Noun?
+Correct Answer: B. Apple
+
+"

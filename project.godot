@@ -11,13 +11,15 @@ config_version=5
 [application]
 
 config/name="IntellectQuest"
-run/main_scene="res://Scenes/game.tscn"
+run/main_scene="uid://bv2jvo7wjipfe"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Transition="*res://Scenes/transition.tscn"
+SceneLoader="*res://Scenes/scene_loader.gd"
+HUD="*res://hud.gd"
 
 [input]
 
@@ -56,3 +58,4 @@ quest={
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="mobile"
+textures/main_scene="res://Scenes/game.tscn"

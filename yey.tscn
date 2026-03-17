@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://couxy7wh0geja"]
+
+[ext_resource type="Texture2D" uid="uid://cocirnqmaocmm" path="res://ui/combat/interface-combat-bg1.png" id="1_eg0rd"]
+[ext_resource type="Texture2D" uid="uid://oihepmv71k2w" path="res://ui/combat/combat_sprites/combat-player.png" id="2_iqx54"]
+[ext_resource type="Texture2D" uid="uid://blyn7fisxmv3j" path="res://ui/combat/combat_sprites/combat-squidbit.png" id="3_4i6n1"]
+
+[node name="yey" type="Node2D"]
+position = Vector2(55, 50)
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(574.5, 256.5)
+scale = Vector2(4.10357, 3.65)
+texture = ExtResource("1_eg0rd")
+
+[node name="Player" type="Sprite2D" parent="."]
+position = Vector2(151, 370)
+scale = Vector2(2.9375, 3.39583)
+texture = ExtResource("2_iqx54")
+
+[node name="Squidbit" type="Sprite2D" parent="."]
+position = Vector2(891, 327)
+scale = Vector2(2.63542, 3.28571)
+texture = ExtResource("3_4i6n1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer"]
+layout_mode = 2
