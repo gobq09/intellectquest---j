@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://nxlclj2vm1y2"]
 
-[ext_resource type="Script" uid="uid://no7yhxifdfev" path="res://Scenes/quit.gd" id="1_26s04"]
+[ext_resource type="Script" uid="uid://no7yhxifdfev" path="res://Scenes/Scripts/quit.gd" id="1_26s04"]
 [ext_resource type="Texture2D" uid="uid://chafut360r0tq" path="res://ui/title/interface-prompt.png" id="1_pw5xw"]
 [ext_resource type="Texture2D" uid="uid://db1sk3s5weov1" path="res://ui/title/interface-title-bg.png" id="2_lolib"]
 [ext_resource type="Texture2D" uid="uid://boyb5c583xop6" path="res://ui/title/interface-prompt-quitgame.png" id="2_pw5xw"]

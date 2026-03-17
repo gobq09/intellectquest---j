@@ -18,8 +18,8 @@ var enemy_health = 100
 var enemy_max_health = 100
 
 # Damage amounts
-var player_damage = 50
-var enemy_damage = 50
+var player_damage = 100
+var enemy_damage = 100
 
 # Shake settings
 var shake_amount = 8
@@ -34,38 +34,36 @@ var question: String
 var answers: Array
 var correct_answer: String
 
+var question_type = Questions.questions_english_elementary
+
 func _ready() -> void:
 	_new_question()
+	$Summary.visible = false
 
 func _new_question() -> void:
-	var question_id: int = randi_range(0, Questions.questions.size() - 1)
-	
-	print(question_id)
+	var question_id: int = randi_range(0, question_type.size() - 1)
 	
 	answers.clear()
-	answers.append(Questions.questions[question_id]["Choice1"])
-	answers.append(Questions.questions[question_id]["Choice2"])
-	answers.append(Questions.questions[question_id]["Choice3"])
-	answers.append(Questions.questions[question_id]["Choice4"])
+	answers.append(question_type[question_id]["Choice1"])
+	answers.append(question_type[question_id]["Choice2"])
+	answers.append(question_type[question_id]["Choice3"])
+	answers.append(question_type[question_id]["Choice4"])
 	
-	question = Questions.questions[question_id]["Question"]
-	correct_answer = Questions.questions[question_id]["Answer"]
+	question = question_type[question_id]["Question"]
+	correct_answer = question_type[question_id]["Answer"]
 	
 	ans_label.text = answers[0]
 	ques_label.text = question
 	
-	print(answers)
-	
 	ui.visible = true
 	panel.visible = true
-	$Control/AnimationPlayer.play_backwards("fade")
-	await $Control/AnimationPlayer.animation_finished
+	$AnimationPlayer.play_backwards("fade")
+	await $AnimationPlayer.animation_finished
 	okay_button.disabled = false
 	question_id += 1
 
 func _on_answer_button_pressed() -> void:
 	answers.push_back(answers.pop_at(0))
-	print(answers)
 	ans_label.text = answers[0]
 
 func _on_ok_button_pressed() -> void:
@@ -76,31 +74,39 @@ func _on_ok_button_pressed() -> void:
 		_on_wrong_answer()
 
 func _on_correct_answer():
+	var tween = create_tween()
+	
 	enemy_health -= enemy_damage
 	enemy_health = max(enemy_health, 0)
-	enemy_health_bar.value = enemy_health
+	tween.tween_property(enemy_health_bar, "value", enemy_health, 0.25)\
+	.set_ease(Tween.EASE_OUT)\
+	.set_trans(Tween.TRANS_SINE)
 	shake(enemy_sprite)
 	print("Correct! Enemy HP: ", enemy_health)
 	if enemy_health <= 0:
 		_on_enemy_defeated()
 	else:
-		$Control/AnimationPlayer.play("fade")
-		await $Control/AnimationPlayer.animation_finished
+		$AnimationPlayer.play("fade")
+		await $AnimationPlayer.animation_finished
 		ui.visible = false
 		panel.visible = false
 		_new_question()
 
 func _on_wrong_answer():
+	var tween = create_tween()
+	
 	player_health -= player_damage
 	player_health = max(player_health, 0)
-	player_health_bar.value = player_health
+	tween.tween_property(player_health_bar, "value", player_health, 0.25)\
+	.set_ease(Tween.EASE_OUT)\
+	.set_trans(Tween.TRANS_SINE)
 	shake(player_sprite)
 	print("Wrong! Player HP: ", player_health)
 	if player_health <= 0:
 		_on_player_defeated()
 	else:
-		$Control/AnimationPlayer.play("fade")
-		await $Control/AnimationPlayer.animation_finished
+		$AnimationPlayer.play("fade")
+		await $AnimationPlayer.animation_finished
 		ui.visible = false
 		panel.visible = false
 		_new_question()
@@ -108,25 +114,40 @@ func _on_wrong_answer():
 func shake(node: Node2D):
 	var origin = node.position
 	var elapsed = 0.0
+	var orig = node.modulate
+	
 	while elapsed < shake_duration:
 		var offset = Vector2(
 			randf_range(-shake_amount, shake_amount),
 			randf_range(-shake_amount, shake_amount)
 		)
 		node.position = origin + offset
+		node.modulate = Color(255, 255, 255)
 		await get_tree().process_frame
 		elapsed += get_process_delta_time()
+	node.modulate = orig
 	node.position = origin
 	
 func _on_enemy_defeated():
 	print("Enemy defeated! You win!")
 	player_won = true
-	textbox1_was_open = true
+	_battle_summary()
+	#textbox1_was_open = true
 	#$"textbox".visible = true
 	#winner_label.visible = true
 
 func _on_player_defeated():
 	print("Player defeated! Game over!")
 	player_won = false
+	_battle_summary()
 	#$"textbox".visible = true
 	#loser_label.visible = true
+
+func _battle_summary():
+	$Control.visible = false
+	$HP.visible = false
+	$Summary.visible = true
+	
+	$AnimationPlayer.play("summary")
+	await $AnimationPlayer.animation_finished
+	# summary screen

@@ -17,8 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Transition="*res://Scenes/transition.tscn"
-SceneLoader="*res://Scenes/scene_loader.gd"
+SceneLoader="*res://Scenes/Scripts/scene_loader.gd"
 HUD="*res://hud.gd"
 Questions="*res://Resources/questions.gd"
 

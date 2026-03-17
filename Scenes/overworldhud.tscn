@@ -1,8 +1,8 @@
 [gd_scene load_steps=21 format=3 uid="uid://dflg8r076r3qe"]
 
-[ext_resource type="Script" uid="uid://cj0426geyvlas" path="res://Scenes/hud.gd" id="1_17k45"]
-[ext_resource type="Script" uid="uid://clgv6o6pu2dyr" path="res://hud.gd" id="1_54vkx"]
+[ext_resource type="Script" uid="uid://cj0426geyvlas" path="res://Scenes/Scripts/hud.gd" id="1_17k45"]
 [ext_resource type="Texture2D" uid="uid://gaxtq7vrwunw" path="res://ui/hud/interface-hud-hpbar4.png" id="2_7n2a2"]
+[ext_resource type="Script" uid="uid://b6hsrpxy0s404" path="res://Scenes/hud_control.gd" id="2_17k45"]
 [ext_resource type="Texture2D" uid="uid://cgk2a51he56qn" path="res://ui/hud/interface-hud-hpbar3.png" id="3_17k45"]
 [ext_resource type="Texture2D" uid="uid://ceu81ju5a1voq" path="res://ui/hud/interface-hud-hpbar1.png" id="4_farlp"]
 [ext_resource type="Texture2D" uid="uid://c6lkpumxvacb2" path="res://ui/hud/interface-hud-level.png" id="5_flbuw"]
@@ -179,7 +179,8 @@ grow_vertical = 2
 scale = Vector2(4, 4)
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_54vkx")
+script = ExtResource("2_17k45")
+Task_Expanded = false
 
 [node name="HP" type="Control" parent="HUD"]
 anchors_preset = 0
@@ -268,7 +269,7 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = -128.0
+offset_bottom = 128.0
 grow_horizontal = 2
 theme = SubResource("Theme_7n2a2")
 theme_override_styles/panel = SubResource("StyleBoxFlat_17k45")
@@ -279,7 +280,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 128.0
+offset_top = -128.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_7n2a2")

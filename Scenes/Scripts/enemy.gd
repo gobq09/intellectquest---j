@@ -23,7 +23,7 @@ func _on_BattleTrigger_body_entered(body: CharacterBody2D) -> void:
 		battle_started = true
 		start_battle()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if chasing and player != null:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = direction * speed
@@ -40,7 +40,7 @@ func start_battle() -> void:
 	if player != null:
 		player.velocity = Vector2.ZERO
 	print("Starting battle!")
-	Transition.fade_to_scene(battle_scene)
+	#Transition.fade_to_scene(battle_scene)
 
-func _on_detection_area_area_entered(area: Area2D) -> void:
+func _on_detection_area_area_entered(_area: Area2D) -> void:
 	print("Test")

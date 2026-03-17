@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://boxx7tqk1eq7f"]
 
-[ext_resource type="Script" uid="uid://dfghu6lg0ybx" path="res://Scenes/dialogueplayer.gd" id="1_dgfud"]
+[ext_resource type="Script" uid="uid://dfghu6lg0ybx" path="res://Scenes/Scripts/dialogueplayer.gd" id="1_dgfud"]
 [ext_resource type="Texture2D" uid="uid://cu1uq46050d66" path="res://ui/interface-dialogue.png" id="2_dgfud"]
 
 [sub_resource type="Theme" id="Theme_dgfud"]

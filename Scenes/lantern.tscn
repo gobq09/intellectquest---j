@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dd5k01cxmgxoh"]
 
-[ext_resource type="Script" uid="uid://cdxej0wj8yfjr" path="res://Scenes/lantern.gd" id="1_5r8xx"]
+[ext_resource type="Script" uid="uid://cdxej0wj8yfjr" path="res://Scenes/Scripts/lantern.gd" id="1_5r8xx"]
 [ext_resource type="Texture2D" uid="uid://c50lq6ngqmurc" path="res://Sprites/tilesets/lantern-1.png" id="1_hmmny"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hew7k"]

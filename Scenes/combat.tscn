@@ -1,9 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://dxhaxrctujkex"]
+[gd_scene load_steps=25 format=3 uid="uid://dxhaxrctujkex"]
 
-[ext_resource type="Script" uid="uid://c0dbktvohlh5" path="res://Scenes/combat.gd" id="1_8xcd4"]
+[ext_resource type="Script" uid="uid://c0dbktvohlh5" path="res://Scenes/Scripts/combat.gd" id="1_8xcd4"]
 [ext_resource type="Texture2D" uid="uid://cocirnqmaocmm" path="res://ui/combat/interface-combat-bg1.png" id="1_xisnc"]
-[ext_resource type="Texture2D" uid="uid://jsiqpuvw66oh" path="res://ui/combat/combat_sprites/combat-driftwood.png" id="2_y8jr2"]
 [ext_resource type="Texture2D" uid="uid://oihepmv71k2w" path="res://ui/combat/combat_sprites/combat-player.png" id="3_8xcd4"]
+[ext_resource type="Texture2D" uid="uid://blyn7fisxmv3j" path="res://ui/combat/combat_sprites/combat-squidbit.png" id="3_y8jr2"]
 [ext_resource type="Texture2D" uid="uid://b2kk7xo4wwt83" path="res://ui/combat/interface-combat-hpbar1.png" id="5_50454"]
 [ext_resource type="Texture2D" uid="uid://churc6kbe1e4c" path="res://ui/combat/interface-combat-playerportait2.png" id="6_ceo1n"]
 [ext_resource type="Texture2D" uid="uid://bpltk3o4cxcrg" path="res://ui/combat/interface-combat-playerportait1-male.png" id="7_jcm61"]
@@ -16,22 +16,6 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8ge6"]
 bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50454"]
-bg_color = Color(0.121569, 0.0627451, 0.164706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ceo1n"]
-bg_color = Color(0.701845, 0.497721, 0.889583, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcm61"]
-bg_color = Color(0.121569, 0.0627451, 0.164706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ley77"]
-bg_color = Color(1, 0.510256, 0.443869, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_tmuf1"]
-font_size = 20
-font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_f8ge6"]
 length = 0.001
@@ -58,6 +42,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.360784)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Summary/Panel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_8xcd4"]
@@ -87,11 +83,43 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0.360784), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_y8jr2"]
+resource_name = "summary"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Summary/Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_50454"]
 _data = {
 &"RESET": SubResource("Animation_f8ge6"),
-&"fade": SubResource("Animation_8xcd4")
+&"fade": SubResource("Animation_8xcd4"),
+&"summary": SubResource("Animation_y8jr2")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50454"]
+bg_color = Color(0.121569, 0.0627451, 0.164706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ceo1n"]
+bg_color = Color(0.701845, 0.497721, 0.889583, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcm61"]
+bg_color = Color(0.121569, 0.0627451, 0.164706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ley77"]
+bg_color = Color(1, 0.510256, 0.443869, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tmuf1"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kjvk"]
 bg_color = Color(0, 0, 0, 1)
@@ -115,7 +143,7 @@ texture = ExtResource("1_xisnc")
 [node name="Enemy" type="Sprite2D" parent="."]
 position = Vector2(864, 248)
 scale = Vector2(4, 4)
-texture = ExtResource("2_y8jr2")
+texture = ExtResource("3_y8jr2")
 
 [node name="Player" type="Sprite2D" parent="."]
 position = Vector2(272, 496)
@@ -131,6 +159,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_f8ge6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Control")
+libraries = {
+&"": SubResource("AnimationLibrary_50454")
+}
 
 [node name="HP" type="Control" parent="."]
 layout_mode = 3
@@ -251,13 +285,7 @@ offset_bottom = 158.0
 texture_normal = ExtResource("13_y8jr2")
 stretch_mode = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
-libraries = {
-&"": SubResource("AnimationLibrary_50454")
-}
-
 [node name="Summary" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -266,6 +294,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="Summary"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
