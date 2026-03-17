@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Transition="*res://Scenes/transition.tscn"
 SceneLoader="*res://Scenes/scene_loader.gd"
 HUD="*res://hud.gd"
+Questions="*res://Resources/questions.gd"
 
 [input]
 

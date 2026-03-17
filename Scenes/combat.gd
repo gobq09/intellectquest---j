@@ -35,43 +35,37 @@ var answers: Array
 var correct_answer: String
 
 func _ready() -> void:
-	question = "Which word is a Noun?"
-	answers = ["Apple", "Run", "Blue", "Quickly"]
-	correct_answer = "Apple"
-	
-	ques_label.text = question
-	ans_label.text = answers[0]
-
-var i = 1
+	_new_question()
 
 func _new_question() -> void:
-	$Control/AnimationPlayer.play("fade")
-	await $Control/AnimationPlayer.animation_finished
-	ui.visible = false
-	panel.visible = false
+	var question_id: int = randi_range(0, Questions.questions.size() - 1)
 	
-	if i == 1:
-		question = "Which punctuation mark ends a question?"
-		answers = ["Period(.)", "Comma(,)", "Exclamation Mark(!)", "Question Mark(?)"]
-		correct_answer = "Question Mark(?)"
-		ans_label.text = answers[0]
-		ques_label.text = question
-		i += 1
-	else:
-		question = "What does the word Annual mean?"
-		answers = ["Every day", "Every month", "Every year", "Every week"]
-		correct_answer = "Every year"
-		ans_label.text = answers[0]
-		ques_label.text = question
+	print(question_id)
+	
+	answers.clear()
+	answers.append(Questions.questions[question_id]["Choice1"])
+	answers.append(Questions.questions[question_id]["Choice2"])
+	answers.append(Questions.questions[question_id]["Choice3"])
+	answers.append(Questions.questions[question_id]["Choice4"])
+	
+	question = Questions.questions[question_id]["Question"]
+	correct_answer = Questions.questions[question_id]["Answer"]
+	
+	ans_label.text = answers[0]
+	ques_label.text = question
+	
+	print(answers)
 	
 	ui.visible = true
 	panel.visible = true
 	$Control/AnimationPlayer.play_backwards("fade")
 	await $Control/AnimationPlayer.animation_finished
 	okay_button.disabled = false
+	question_id += 1
 
 func _on_answer_button_pressed() -> void:
 	answers.push_back(answers.pop_at(0))
+	print(answers)
 	ans_label.text = answers[0]
 
 func _on_ok_button_pressed() -> void:
@@ -90,6 +84,10 @@ func _on_correct_answer():
 	if enemy_health <= 0:
 		_on_enemy_defeated()
 	else:
+		$Control/AnimationPlayer.play("fade")
+		await $Control/AnimationPlayer.animation_finished
+		ui.visible = false
+		panel.visible = false
 		_new_question()
 
 func _on_wrong_answer():
@@ -101,6 +99,10 @@ func _on_wrong_answer():
 	if player_health <= 0:
 		_on_player_defeated()
 	else:
+		$Control/AnimationPlayer.play("fade")
+		await $Control/AnimationPlayer.animation_finished
+		ui.visible = false
+		panel.visible = false
 		_new_question()
 
 func shake(node: Node2D):
