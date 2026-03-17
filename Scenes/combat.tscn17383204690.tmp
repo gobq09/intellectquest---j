@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dxhaxrctujkex"]
+[gd_scene load_steps=31 format=3 uid="uid://dxhaxrctujkex"]
 
 [ext_resource type="Script" uid="uid://c0dbktvohlh5" path="res://Scenes/Scripts/combat.gd" id="1_8xcd4"]
 [ext_resource type="Texture2D" uid="uid://cocirnqmaocmm" path="res://ui/combat/interface-combat-bg1.png" id="1_xisnc"]
@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://c706dluw8hn1t" path="res://ui/combat/interface-combat-summary1.png" id="15_f8ge6"]
 [ext_resource type="Texture2D" uid="uid://4ydit3mps4hi" path="res://ui/combat/interface-combat-summary-confirm.png" id="16_50454"]
 [ext_resource type="Texture2D" uid="uid://c4478gu8bk1l6" path="res://ui/combat/interface-combat-summary-confirm1.png" id="17_ceo1n"]
-[ext_resource type="Script" uid="uid://bugv77tf4duj" path="res://Scenes/scroll_container.gd" id="18_jcm61"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8ge6"]
 bg_color = Color(0, 0, 0, 1)
@@ -95,18 +94,6 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Summary/Control/TextureButton:modulate")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_8xcd4"]
@@ -190,25 +177,9 @@ tracks/1/keys = {
 "values": [Vector2(2, 2), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_jcm61"]
-resource_name = "confirm_fade"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Summary/Control/TextureButton:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.406994),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_50454"]
 _data = {
 &"RESET": SubResource("Animation_f8ge6"),
-&"confirm_fade": SubResource("Animation_jcm61"),
 &"fade": SubResource("Animation_8xcd4"),
 &"summary": SubResource("Animation_y8jr2"),
 &"summary_confirm": SubResource("Animation_ceo1n")
@@ -435,7 +406,6 @@ offset_bottom = 60.0
 texture = ExtResource("15_f8ge6")
 
 [node name="TextureButton" type="TextureButton" parent="Summary/Control"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 116.0
 offset_top = 138.0
@@ -467,15 +437,36 @@ offset_left = 76.0
 offset_top = 58.0
 offset_right = 596.0
 offset_bottom = 378.0
-rotation = -0.0174533
+rotation = -0.0523599
 scale = Vector2(0.25, 0.25)
-follow_focus = true
-horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
-script = ExtResource("18_jcm61")
 
-[node name="SummaryLabel" type="Label" parent="Summary/Control/ScrollContainer"]
+[node name="Label" type="Label" parent="Summary/Control/ScrollContainer"]
 layout_mode = 2
+text = "Question
+Answer ✔❌
+
+Question
+Answer ✔❌
+
+Question
+Answer ✔❌
+
+Question
+Answer ✔❌
+
+Question
+Answer ✔❌
+
+Question
+Answer ✔❌
+
+Question
+Answer ✔❌
+
+Question
+Answer ✔❌
+"
 label_settings = SubResource("LabelSettings_jcm61")
 
 [connection signal="pressed" from="Control/AnswerButton" to="." method="_on_answer_button_pressed"]

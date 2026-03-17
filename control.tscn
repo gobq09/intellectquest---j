@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dxyqp6ytcpnf4"]
+[gd_scene load_steps=18 format=3 uid="uid://cy3vkvhgul38g"]
 
 [ext_resource type="Texture2D" uid="uid://cocirnqmaocmm" path="res://ui/combat/interface-combat-bg1.png" id="1_qtu10"]
 [ext_resource type="Texture2D" uid="uid://blyn7fisxmv3j" path="res://ui/combat/combat_sprites/combat-squidbit.png" id="2_ee4bf"]

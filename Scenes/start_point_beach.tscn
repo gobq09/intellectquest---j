@@ -75,6 +75,9 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
+[node name="enemy" parent="Node2D" instance=ExtResource("10_8s118")]
+position = Vector2(-274, -19)
+
 [node name="start_point_beach" type="Area2D" parent="."]
 script = ExtResource("8_h5vou")
 
@@ -87,8 +90,5 @@ shape = SubResource("RectangleShape2D_gophc")
 [node name="start_point_beach" type="Marker2D" parent="SpawnPoints"]
 
 [node name="game" type="Marker2D" parent="SpawnPoints"]
-
-[node name="enemy" parent="." instance=ExtResource("10_8s118")]
-position = Vector2(-274, -19)
 
 [connection signal="body_entered" from="start_point_beach" to="start_point_beach" method="_on_body_entered"]

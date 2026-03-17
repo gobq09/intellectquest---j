@@ -5,7 +5,7 @@ signal apple_collected
 signal enemy_collected
 
 var locked = false
-@export var new_game : bool = true
+@export var new_game : bool = false
 
 @export var speed = 80
 @export var friction = 0.3
@@ -16,10 +16,10 @@ var locked = false
 @onready var joystick = get_tree().get_first_node_in_group("joystick")
 
 func _ready() -> void:
-	print(ani_tree)
 	#if  new_game == true:
 	#_cutscene("wakeup")
 	ani_tree.set("parameters/Idle/blend_position", Vector2(0,1))
+	self.set_process_input(false) 
 
 func get_input():
 	var input = Vector2()
@@ -46,10 +46,9 @@ func _physics_process(_delta):
 	if  new_game == true:
 		#is_locked = true
 		#_cutscene("wakeup")
-		self.set_process_input(false) 
 		ani_tree.get("parameters/playback").travel("Wake Up")
 		velocity = Vector2.ZERO
-		move_and_slide()
+		#move_and_slide()
 		await ani_tree.animation_finished
 		new_game = false
 		self.set_process_input(true) 

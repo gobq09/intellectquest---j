@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-@export var speed = 90
-@export var battle_scene = "res://combat_scene.tscn"
+@export var speed = 30
+@export var battle_scene = "res://Scenes/combat.tscn"
 
 var player = null
 var chasing = false
@@ -40,7 +40,25 @@ func start_battle() -> void:
 	if player != null:
 		player.velocity = Vector2.ZERO
 	print("Starting battle!")
-	#Transition.fade_to_scene(battle_scene)
+	SceneLoader.load_scene(battle_scene)
 
 func _on_detection_area_area_entered(_area: Area2D) -> void:
 	print("Test")
+
+
+func _on_detection_area_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		player = body
+		player.locked = true
+		chasing = true
+		print("Player detected, chasing now!")
+
+
+func _on_battle_trigger_body_entered(body: Node2D) -> void:
+	if body.name == "Player" and not battle_started:
+		battle_started = true
+		start_battle()
+
+
+func _on_detection_area_body_exited(body: Node2D) -> void:
+	chasing = false

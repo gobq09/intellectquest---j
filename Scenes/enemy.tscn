@@ -37,13 +37,14 @@ size = Vector2(16, 19)
 radius = 61.131
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8uf12"]
-radius = 7.0
+radius = 11.0
 
 [node name="enemy" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_1f0kj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_ghaa6")
 animation = &"walk"
 
@@ -67,4 +68,4 @@ shape = SubResource("CircleShape2D_8uf12")
 [connection signal="area_entered" from="detection_area" to="." method="_on_detection_area_area_entered"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
-[connection signal="body_entered" from="BattleTrigger" to="." method="_on_collision_area_body_entered"]
+[connection signal="body_entered" from="BattleTrigger" to="." method="_on_battle_trigger_body_entered"]
