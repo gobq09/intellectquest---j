@@ -1,11 +1,11 @@
-extends Node2D
+extends Control
 
-@export var ques_label: Label
-@export var ans_button: TextureButton
-@export var ans_label: Label
-@export var okay_button: TextureButton
-@export var enemy_sprite: Sprite2D
-@export var player_sprite: Sprite2D
+@onready var ques_label: Label = $Control/QuestionBg/QuestionLabel
+@onready var ans_button: TextureButton = $Control/AnswerButton
+@onready var ans_label: Label = $Control/AnswerButton/AnswerLabel
+@onready var okay_button: TextureButton = $Control/OkButton
+@onready var enemy_sprite: Sprite2D = $Enemy
+@onready var player_sprite: Sprite2D = $Player
 @onready var player_health_bar = $"HP/PlayerHP/$PlayerHealthBar"
 @onready var enemy_health_bar= $"HP/EnemyHP/$EnemyHealthBar"
 @onready var ui = $Control
@@ -49,8 +49,6 @@ func _new_question() -> void:
 	await $Control/AnimationPlayer.animation_finished
 	ui.visible = false
 	panel.visible = false
-	
-	#await get_tree().create_timer(2).timeout
 	
 	if i == 1:
 		question = "Which punctuation mark ends a question?"

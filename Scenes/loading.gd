@@ -7,7 +7,7 @@ func _ready() -> void:
 	await animation_player.animation_finished
 	loading_screen_ready.emit()
 
-func _on_progress_changed(new_value: float) -> void:
+func _on_progress_changed(_new_value: float) -> void:
 	pass
 
 func _on_load_finished() -> void:
@@ -15,7 +15,7 @@ func _on_load_finished() -> void:
 	await animation_player.animation_finished
 	queue_free()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var count: int = 6
 	var repeat: int = 20
 	
