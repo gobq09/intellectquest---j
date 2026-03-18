@@ -269,7 +269,7 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 128.0
+offset_top = -128.0
 grow_horizontal = 2
 theme = SubResource("Theme_7n2a2")
 theme_override_styles/panel = SubResource("StyleBoxFlat_17k45")
@@ -280,7 +280,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -128.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_7n2a2")
@@ -290,7 +290,6 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_17k45")
 libraries = {
 &"": SubResource("AnimationLibrary_farlp")
 }
-autoplay = "cutscene"
 
 [connection signal="pressed" from="HUD/Task" to="HUD" method="_on_interfacehudtodo_pressed"]
 [connection signal="pressed" from="HUD/Map Button" to="HUD" method="_on_map_button_pressed"]

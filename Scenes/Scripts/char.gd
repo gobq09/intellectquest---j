@@ -16,10 +16,9 @@ var game_data = SaveManager.game_data
 @onready var joystick = get_tree().get_first_node_in_group("joystick")
 
 func _ready() -> void:
-	SaveManager.load_game()
 	ani_tree.set("parameters/Idle/blend_position", Vector2(0,1))
 	self.set_process_input(false) 
-	if  SaveManager.game_data["new_game"] == true:
+	if  SaveManager.load_game()["new_game"] == true:
 		set_physics_process(false)
 		_cutscene("wakeup")
 		#await ani_tree.animation_finished
