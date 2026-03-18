@@ -76,7 +76,16 @@ position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
 [node name="enemy" parent="Node2D" instance=ExtResource("10_8s118")]
-position = Vector2(-274, -19)
+position = Vector2(-216, -26)
+enemy_type = "med"
+
+[node name="enemy2" parent="Node2D" instance=ExtResource("10_8s118")]
+position = Vector2(-302, -26)
+enemy_type = "small"
+
+[node name="enemy3" parent="Node2D" instance=ExtResource("10_8s118")]
+position = Vector2(-150, -24)
+enemy_type = "large"
 
 [node name="start_point_beach" type="Area2D" parent="."]
 script = ExtResource("8_h5vou")

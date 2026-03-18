@@ -5,7 +5,7 @@ signal apple_collected
 signal enemy_collected
 
 var locked = false
-@export var new_game : bool = false
+var game_data = SaveManager.game_data
 
 @export var speed = 80
 @export var friction = 0.3
@@ -16,10 +16,13 @@ var locked = false
 @onready var joystick = get_tree().get_first_node_in_group("joystick")
 
 func _ready() -> void:
-	#if  new_game == true:
-	#_cutscene("wakeup")
+	SaveManager.load_game()
 	ani_tree.set("parameters/Idle/blend_position", Vector2(0,1))
 	self.set_process_input(false) 
+	if  SaveManager.game_data["new_game"] == true:
+		set_physics_process(false)
+		_cutscene("wakeup")
+		#await ani_tree.animation_finished
 
 func get_input():
 	var input = Vector2()
@@ -38,21 +41,12 @@ func get_input():
 func _cutscene(animation: String = "null") -> void:
 	if animation == "wakeup":
 		ani_tree.get("parameters/playback").travel("Wake Up")
-	velocity = Vector2.ZERO
-	move_and_slide()
-	await ani_tree.animation_finished
+		await ani_tree.animation_finished
+		SaveManager.game_data["new_game"] = false
+		SaveManager.save_game(game_data)
+	set_physics_process(true)
 
 func _physics_process(_delta):
-	if  new_game == true:
-		#is_locked = true
-		#_cutscene("wakeup")
-		ani_tree.get("parameters/playback").travel("Wake Up")
-		velocity = Vector2.ZERO
-		#move_and_slide()
-		await ani_tree.animation_finished
-		new_game = false
-		self.set_process_input(true) 
-	
 	var direction = get_input()
 	
 	# joystick override (for mobile)

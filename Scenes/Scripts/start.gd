@@ -1,14 +1,13 @@
 extends Node2D
 
-const SAVE_PATH := "user://simple_save.tres"
+#const SAVE_PATH := "user://simple_save.tres"
 
-var save_game: SaveGame = null
 
 func _ready() -> void:
-	if ResourceLoader.exists(SAVE_PATH):
-		save_game = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE)
-	else:
-		save_game = SaveGame.new()
+	#if ResourceLoader.exists(SAVE_PATH):
+		#save_game = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE)
+	#else:
+		#save_game = SaveGame.new()
 	#if Transition.next_spawn != "":
 		#var spawn_point = $SpawnPoints.get_node_or_null(Transition.next_spawn)
 		#if spawn_point:

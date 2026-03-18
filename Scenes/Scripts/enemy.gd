@@ -1,13 +1,24 @@
 extends CharacterBody2D
 
+@export_enum("small", "med", "large") var enemy_type: String
+
 @export var speed = 30
 @export var battle_scene = "res://Scenes/combat.tscn"
+
+var enemy_small = "res://Sprites/npc/sprite-enemy-small.png"
+var enemy_med = "res://Sprites/npc/sprite-enemy-med.png"
+var enemy_large = "res://Sprites/npc/sprite-enemy-large.png"
 
 var player = null
 var chasing = false
 var battle_started = false  # prevent multiple triggers
 
-
+func _ready() -> void:
+	var path = "res://Sprites/npc/sprite-enemy-" + enemy_type +".png"
+	if enemy_type != null:
+		$Sprite2D.texture = load(path)
+	else:
+		$Sprite2D.texture = load("res://Sprites/npc/sprite-enemy-med.png")
 
 # DetectionArea triggers chasing
 func _on_DetectionArea_body_entered(body: CharacterBody2D) -> void:
@@ -27,11 +38,17 @@ func _physics_process(_delta: float) -> void:
 	if chasing and player != null:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = direction * speed
+		
+		$AnimationTree.get("parameters/playback").travel("Walk")
+		$AnimationTree.set("parameters/Walk/blend_position", velocity)
+		$AnimationTree.set("parameters/Idle/blend_position", velocity)
+		
 		move_and_slide()
 
 		# Optional: backup distance check
 		if not battle_started and global_position.distance_to(player.global_position) < 10:
 			battle_started = true
+			$AnimationTree.get("parameters/playback").travel("Idle")
 			start_battle()
 
 func start_battle() -> void:
@@ -43,7 +60,8 @@ func start_battle() -> void:
 	SceneLoader.load_scene(battle_scene)
 
 func _on_detection_area_area_entered(_area: Area2D) -> void:
-	print("Test")
+	#print("Test")
+	pass
 
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
@@ -61,4 +79,5 @@ func _on_battle_trigger_body_entered(body: Node2D) -> void:
 
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
+	$AnimationTree.get("parameters/playback").travel("Idle")
 	chasing = false

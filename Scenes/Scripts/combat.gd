@@ -248,3 +248,5 @@ func _evaluate():
 
 func _on_texture_button_pressed() -> void:
 	$AnimationPlayer.play("summary_confirm")
+	await $AnimationPlayer.animation_finished
+	SceneLoader.load_scene("uid://x8j1q0cr8ykf")

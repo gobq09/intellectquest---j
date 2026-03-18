@@ -1,37 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://dt0reecx2hip5"]
+[gd_scene load_steps=31 format=3 uid="uid://dt0reecx2hip5"]
 
 [ext_resource type="Script" uid="uid://c6so2pcgdywgp" path="res://Scenes/Scripts/enemy.gd" id="1_1f0kj"]
-[ext_resource type="Texture2D" uid="uid://b7g5jbb68lvpd" path="res://Sprites/npc/enemy.png" id="2_afpow"]
+[ext_resource type="Texture2D" uid="uid://cp84ckp6bwp2i" path="res://Sprites/misc/shadow.png" id="2_287tu"]
+[ext_resource type="Texture2D" uid="uid://dwpj8v76nn1cp" path="res://Sprites/npc/sprite-enemy-med.png" id="4_0830c"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_287tu"]
-atlas = ExtResource("2_afpow")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0830c"]
-atlas = ExtResource("2_afpow")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ghaa6"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_287tu")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0830c")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1dp5w"]
-size = Vector2(16, 19)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_afpow"]
+radius = 6.0
+height = 14.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_auwsv"]
 radius = 61.131
@@ -39,31 +14,276 @@ radius = 61.131
 [sub_resource type="CircleShape2D" id="CircleShape2D_8uf12"]
 radius = 11.0
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_afpow"]
+animation = &"enemy-idle-up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_287tu"]
+animation = &"enemy-idle-left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0830c"]
+animation = &"enemy-idle-right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ghaa6"]
+animation = &"enemy-idle-down"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_287tu"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_afpow")
+blend_point_0/pos = Vector2(0, 0.8)
+blend_point_1/node = SubResource("AnimationNodeAnimation_287tu")
+blend_point_1/pos = Vector2(-0.9, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_0830c")
+blend_point_2/pos = Vector2(0.9, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_ghaa6")
+blend_point_3/pos = Vector2(0, -0.8)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1dp5w"]
+animation = &"enemy-walk-up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_auwsv"]
+animation = &"enemy-walk-left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8uf12"]
+animation = &"enemy-walk-right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_po0sg"]
+animation = &"enemy-walk-down"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_afpow"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_1dp5w")
+blend_point_0/pos = Vector2(0, 0.9)
+blend_point_1/node = SubResource("AnimationNodeAnimation_auwsv")
+blend_point_1/pos = Vector2(-0.8, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_8uf12")
+blend_point_2/pos = Vector2(0.8, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_po0sg")
+blend_point_3/pos = Vector2(0, -0.8)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0830c"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ghaa6"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1dp5w"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ghaa6"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_287tu")
+states/Idle/position = Vector2(498, 150)
+states/Start/position = Vector2(215, 97)
+states/Walk/node = SubResource("AnimationNodeBlendSpace2D_afpow")
+states/Walk/position = Vector2(498, 51)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_0830c"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_ghaa6"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_1dp5w")]
+
+[sub_resource type="Animation" id="Animation_0830c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8uf12"]
+resource_name = "enemy-idle-down"
+length = 0.001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_po0sg"]
+resource_name = "enemy-idle-left"
+length = 0.001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_haro7"]
+resource_name = "enemy-idle-right"
+length = 0.001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_56vhr"]
+resource_name = "enemy-idle-up"
+length = 0.001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_287tu"]
+resource_name = "enemy-walk-down"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0994332, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3), Vector2i(0, 4), Vector2i(0, 5), Vector2i(0, 6), Vector2i(0, 7), Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ghaa6"]
+resource_name = "enemy-walk-left"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(1, 1), Vector2i(1, 2), Vector2i(1, 3), Vector2i(1, 4), Vector2i(1, 5), Vector2i(1, 6), Vector2i(1, 7), Vector2i(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1dp5w"]
+resource_name = "enemy-walk-right"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(2, 1), Vector2i(2, 2), Vector2i(2, 3), Vector2i(2, 4), Vector2i(2, 5), Vector2i(2, 6), Vector2i(2, 7), Vector2i(2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_auwsv"]
+resource_name = "enemy-walk-up"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3), Vector2i(3, 4), Vector2i(3, 5), Vector2i(3, 6), Vector2i(3, 7), Vector2i(3, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ghaa6"]
+_data = {
+&"RESET": SubResource("Animation_0830c"),
+&"enemy-idle-down": SubResource("Animation_8uf12"),
+&"enemy-idle-left": SubResource("Animation_po0sg"),
+&"enemy-idle-right": SubResource("Animation_haro7"),
+&"enemy-idle-up": SubResource("Animation_56vhr"),
+&"enemy-walk-down": SubResource("Animation_287tu"),
+&"enemy-walk-left": SubResource("Animation_ghaa6"),
+&"enemy-walk-right": SubResource("Animation_1dp5w"),
+&"enemy-walk-up": SubResource("Animation_auwsv")
+}
+
 [node name="enemy" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_1f0kj")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-y_sort_enabled = true
-sprite_frames = SubResource("SpriteFrames_ghaa6")
-animation = &"walk"
+[node name="Shadow" type="Sprite2D" parent="."]
+texture = ExtResource("2_287tu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_0830c")
+hframes = 4
+vframes = 8
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_1dp5w")
+position = Vector2(0, 5)
+shape = SubResource("CapsuleShape2D_afpow")
 
 [node name="detection_area" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
 position = Vector2(0, 3)
 shape = SubResource("CircleShape2D_auwsv")
 
 [node name="BattleTrigger" type="Area2D" parent="."]
+visible = false
 position = Vector2(-3, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleTrigger"]
 position = Vector2(3, 1)
 shape = SubResource("CircleShape2D_8uf12")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath(".")
+tree_root = SubResource("AnimationNodeStateMachine_ghaa6")
+anim_player = NodePath("AnimationPlayer")
+parameters/Idle/blend_position = Vector2(0.314239, 0.121076)
+parameters/Walk/blend_position = Vector2(-0.12766, 0.381166)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+libraries = {
+&"": SubResource("AnimationLibrary_ghaa6")
+}
 
 [connection signal="area_entered" from="detection_area" to="." method="_on_detection_area_area_entered"]
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
