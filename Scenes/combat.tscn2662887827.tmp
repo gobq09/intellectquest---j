@@ -273,35 +273,20 @@ expand_mode = 5
 stretch_mode = 6
 
 [node name="Control" type="Control" parent="Back"]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -20.0
+anchors_preset = 0
 offset_right = 40.0
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 2
+offset_bottom = 40.0
 
 [node name="Enemy" type="Sprite2D" parent="Back/Control"]
-position = Vector2(-256, 0)
 scale = Vector2(4, 4)
 texture = ExtResource("5_ley77")
 
 [node name="Control2" type="Control" parent="Back"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -20.0
+anchors_preset = 0
 offset_right = 40.0
-offset_bottom = 20.0
-grow_vertical = 2
+offset_bottom = 40.0
 
 [node name="Player" type="Sprite2D" parent="Back/Control2"]
-position = Vector2(256, 208)
 scale = Vector2(4, 4)
 texture = ExtResource("3_8xcd4")
 
@@ -316,6 +301,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_f8ge6")
 
 [node name="HP" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -386,6 +372,7 @@ position = Vector2(264, 24)
 texture = ExtResource("11_3cqtn")
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -475,6 +462,7 @@ texture_normal = ExtResource("13_y8jr2")
 stretch_mode = 3
 
 [node name="Summary" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -490,6 +478,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.25, 0.25)
 theme_override_styles/panel = SubResource("StyleBoxFlat_5kjvk")
 
 [node name="Control" type="Control" parent="Summary"]
@@ -555,6 +544,7 @@ offset_left = 76.0
 offset_top = 58.0
 offset_right = 596.0
 offset_bottom = 378.0
+rotation = -0.0174533
 scale = Vector2(0.25, 0.25)
 follow_focus = true
 horizontal_scroll_mode = 0

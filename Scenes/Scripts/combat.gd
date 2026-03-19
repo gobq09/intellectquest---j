@@ -1,11 +1,11 @@
 extends Control
 
-@onready var ques_label: Label = $Control/QuestionBg/QuestionLabel
+@onready var ques_label: Label = $Control/Control/QuestionBg/QuestionLabel
 @onready var ans_button: TextureButton = $Control/AnswerButton
 @onready var ans_label: Label = $Control/AnswerButton/AnswerLabel
 @onready var okay_button: TextureButton = $Control/OkButton
-@onready var enemy_sprite: Sprite2D = $Enemy
-@onready var player_sprite: Sprite2D = $Player
+@onready var enemy_sprite: Sprite2D = $Back/Control/Enemy
+@onready var player_sprite: Sprite2D = $Back/Control2/Player
 @onready var player_health_bar = $"HP/PlayerHP/$PlayerHealthBar"
 @onready var enemy_health_bar= $"HP/EnemyHP/$EnemyHealthBar"
 @onready var ui = $Control

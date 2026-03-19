@@ -386,6 +386,7 @@ position = Vector2(264, 24)
 texture = ExtResource("11_3cqtn")
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -475,6 +476,7 @@ texture_normal = ExtResource("13_y8jr2")
 stretch_mode = 3
 
 [node name="Summary" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -490,6 +492,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.25, 0.25)
 theme_override_styles/panel = SubResource("StyleBoxFlat_5kjvk")
 
 [node name="Control" type="Control" parent="Summary"]
@@ -555,6 +558,7 @@ offset_left = 76.0
 offset_top = 58.0
 offset_right = 596.0
 offset_bottom = 378.0
+rotation = -0.0174533
 scale = Vector2(0.25, 0.25)
 follow_focus = true
 horizontal_scroll_mode = 0
