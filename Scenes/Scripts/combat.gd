@@ -44,7 +44,7 @@ var correct_answer: String
 
 var encountered_questions: Dictionary
 
-var question_type = Questions.questions_english_elementary
+var question_type = Questions.elem_english_questions
 var question_id: int
 
 func _ready() -> void:
@@ -58,13 +58,15 @@ func _new_question() -> void:
 	question_id = randi_range(0, question_type.size() - 1)
 	
 	answers.clear()
-	answers.append(question_type[question_id]["Choice1"])
-	answers.append(question_type[question_id]["Choice2"])
-	answers.append(question_type[question_id]["Choice3"])
-	answers.append(question_type[question_id]["Choice4"])
+	answers.append(question_type[question_id]["Ans1"])
+	answers.append(question_type[question_id]["Ans2"])
+	answers.append(question_type[question_id]["Ans3"])
+	answers.append(question_type[question_id]["Ans4"])
+	
+	print(question_type[question_id]["TopicID"])
 	
 	question = question_type[question_id]["Question"]
-	correct_answer = question_type[question_id]["Answer"]
+	correct_answer = question_type[question_id]["Correct"]
 	
 	ans_label.text = answers[0]
 	ques_label.text = question

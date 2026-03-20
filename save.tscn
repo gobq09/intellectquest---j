@@ -11,27 +11,30 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tknle")
 
-[node name="Save" type="Button" parent="."]
-layout_mode = 0
-offset_left = 370.0
-offset_top = 128.0
-offset_right = 719.0
-offset_bottom = 228.0
-
 [node name="Load" type="Button" parent="."]
 layout_mode = 0
-offset_left = 172.0
-offset_top = 275.0
-offset_right = 521.0
-offset_bottom = 375.0
+offset_left = 376.0
+offset_top = 144.0
+offset_right = 725.0
+offset_bottom = 244.0
+text = "Load"
 
-[node name="New" type="Button" parent="."]
+[node name="Reset" type="Button" parent="."]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 288.0
+offset_right = 725.0
+offset_bottom = 388.0
+text = "Reset"
+
+[node name="Display" type="Button" parent="."]
 layout_mode = 0
 offset_left = 370.0
 offset_top = 421.0
 offset_right = 719.0
 offset_bottom = 521.0
+text = "Display"
 
-[connection signal="pressed" from="Save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="Load" to="." method="_on_load_pressed"]
-[connection signal="pressed" from="New" to="." method="_on_new_pressed"]
+[connection signal="pressed" from="Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="Display" to="." method="_on_display_pressed"]

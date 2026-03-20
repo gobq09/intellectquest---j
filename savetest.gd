@@ -16,3 +16,11 @@ func _on_load_pressed() -> void:
 func _on_new_pressed() -> void:
 	print("Confirm Pressed")
 	SaveManager.save_game(SaveManager.default_game_data)
+
+
+func _on_display_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_reset_pressed() -> void:
+	pass # Replace with function body.
