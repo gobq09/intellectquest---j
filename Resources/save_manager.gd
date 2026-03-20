@@ -7,7 +7,12 @@ var default_game_data: Dictionary = {
 	"difficulty": "Elementary",
 	"player_level": 1,
 	"player_exp": 0,
-	"new_game": true
+	"new_game": true,
+	"player_int": 1,
+	"player_end": 1,
+	"player_wis": 1,
+	"player_str": 1,
+	"unused_stats": 0
 }
 
 var game_data: Dictionary = {
@@ -15,7 +20,12 @@ var game_data: Dictionary = {
 	"difficulty": "Elementary",
 	"player_level": 1,
 	"player_exp": 0,
-	"new_game": true
+	"new_game": true,
+	"player_int": 1,
+	"player_end": 1,
+	"player_wis": 1,
+	"player_str": 1,
+	"unused_stats": 0,
 }
 
 func _ready():

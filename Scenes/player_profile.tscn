@@ -1,0 +1,580 @@
+[gd_scene load_steps=16 format=3 uid="uid://0q5mlknq6fk0"]
+
+[ext_resource type="Texture2D" uid="uid://o342v3n4w6uf" path="res://ui/profile/interface-profile.png" id="1_3u2c1"]
+[ext_resource type="Script" uid="uid://dx7c1wnqfm8e4" path="res://Scenes/Scripts/player_profile.gd" id="1_qnuou"]
+[ext_resource type="Texture2D" uid="uid://gfo4nfxodp7d" path="res://ui/archive/interface-archive-closebutton.png" id="2_8c4xn"]
+[ext_resource type="Texture2D" uid="uid://dgb7dvrsn21dk" path="res://ui/profile/interface-profile-help.png" id="3_2hgu0"]
+[ext_resource type="Texture2D" uid="uid://bbijjcfc3nmun" path="res://ui/profile/interface-profile-reset.png" id="3_hep3m"]
+[ext_resource type="Texture2D" uid="uid://blwsadja7kaou" path="res://ui/profile/interface-profile-prompt.png" id="4_jwamr"]
+[ext_resource type="Texture2D" uid="uid://brx3lcr31qduk" path="res://ui/profile/interface-profile-confirm.png" id="4_q38xl"]
+[ext_resource type="Texture2D" uid="uid://06xk3bsequyh" path="res://Sprites/player/sprite-playermale.png" id="5_wl0qr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vtj1"]
+bg_color = Color(0, 0, 0, 0.439216)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_csj3o"]
+bg_color = Color(0.239443, 0.308667, 0.261722, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.13886, 0.104002, 0.178859, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4x0ni"]
+bg_color = Color(0.721011, 0.853591, 0.273191, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0, 0.0156863, 0.168627, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="Animation" id="Animation_wl0qr"]
+resource_name = "fade"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_csj3o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4x0ni"]
+_data = {
+&"RESET": SubResource("Animation_csj3o"),
+&"fade": SubResource("Animation_wl0qr")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wl0qr"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="PlayerProfile" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qnuou")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5vtj1")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = -91.0
+offset_top = -74.0
+offset_right = 101.0
+offset_bottom = 86.0
+texture = ExtResource("1_3u2c1")
+
+[node name="Name" type="RichTextLabel" parent="Control/TextureRect"]
+layout_mode = 0
+offset_left = 56.25
+offset_top = 25.75
+offset_right = 388.25
+offset_bottom = 48.75
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Name: Name here"
+fit_content = true
+scroll_active = false
+
+[node name="Level" type="RichTextLabel" parent="Control/TextureRect"]
+layout_mode = 0
+offset_left = 57.5
+offset_top = 34.5
+offset_right = 169.5
+offset_bottom = 57.5
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Level: 1"
+fit_content = true
+scroll_active = false
+
+[node name="Exp" type="RichTextLabel" parent="Control/TextureRect"]
+layout_mode = 0
+offset_left = 80.5
+offset_top = 33.75
+offset_right = 192.5
+offset_bottom = 56.75
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Exp: 12/23"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/TextureRect"]
+layout_mode = 0
+offset_left = 110.25
+offset_top = 35.25
+offset_right = 231.25
+offset_bottom = 48.25
+scale = Vector2(0.25, 0.25)
+theme_override_styles/background = SubResource("StyleBoxFlat_csj3o")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4x0ni")
+rounded = true
+show_percentage = false
+
+[node name="Reset" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = -37.0
+offset_top = 56.0
+offset_right = -5.0
+offset_bottom = 72.0
+texture_normal = ExtResource("3_hep3m")
+stretch_mode = 3
+
+[node name="Confirm" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 54.0
+offset_right = 47.0
+offset_bottom = 70.0
+texture_normal = ExtResource("4_q38xl")
+stretch_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Control"]
+position = Vector2(-65, -42)
+texture = ExtResource("5_wl0qr")
+hframes = 8
+vframes = 8
+
+[node name="Stats" type="Control" parent="Control"]
+anchors_preset = 0
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 44.0
+
+[node name="UnusedStat" type="RichTextLabel" parent="Control/Stats"]
+layout_mode = 0
+offset_left = -1.5
+offset_top = -12.0
+offset_right = 210.5
+offset_bottom = 11.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Unused Stat Points: 0"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 2
+
+[node name="Intelligence" type="RichTextLabel" parent="Control/Stats"]
+layout_mode = 0
+offset_left = -34.5
+offset_top = -2.0
+offset_right = 191.5
+offset_bottom = 21.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[b]Intelligence: [/b] 1"
+fit_content = true
+scroll_active = false
+
+[node name="Endurance" type="RichTextLabel" parent="Control/Stats"]
+layout_mode = 0
+offset_left = -34.5
+offset_top = 10.0
+offset_right = 191.5
+offset_bottom = 33.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[b]Endurance: [/b] 1"
+fit_content = true
+scroll_active = false
+
+[node name="Wisdom" type="RichTextLabel" parent="Control/Stats"]
+layout_mode = 0
+offset_left = -34.5
+offset_top = 22.0
+offset_right = 191.5
+offset_bottom = 45.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[b]Wisdom: [/b] 1"
+fit_content = true
+scroll_active = false
+
+[node name="Strength" type="RichTextLabel" parent="Control/Stats"]
+layout_mode = 0
+offset_left = -34.5
+offset_top = 35.0
+offset_right = 191.5
+offset_bottom = 58.0
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[b]Strength: [/b] 1"
+fit_content = true
+scroll_active = false
+
+[node name="Control" type="Control" parent="Control/Stats"]
+anchors_preset = 0
+offset_left = -7.75
+offset_top = -3.25
+offset_right = 32.25
+offset_bottom = 36.75
+scale = Vector2(0.25, 0.25)
+
+[node name="Int_Buttons" type="Control" parent="Control/Stats/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="add" type="Button" parent="Control/Stats/Control/Int_Buttons"]
+layout_mode = 0
+offset_left = 188.0
+offset_right = 212.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 12
+text = "+"
+
+[node name="sub" type="Button" parent="Control/Stats/Control/Int_Buttons"]
+layout_mode = 0
+offset_left = 124.0
+offset_right = 148.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 12
+disabled = true
+text = "-"
+
+[node name="counter" type="RichTextLabel" parent="Control/Stats/Control/Int_Buttons"]
+layout_mode = 0
+offset_left = 153.0
+offset_right = 185.0
+offset_bottom = 25.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "0
+"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="End_Buttons" type="Control" parent="Control/Stats/Control"]
+anchors_preset = 0
+offset_top = 48.0
+offset_right = 40.0
+offset_bottom = 88.0
+
+[node name="add" type="Button" parent="Control/Stats/Control/End_Buttons"]
+layout_mode = 0
+offset_left = 188.0
+offset_right = 212.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 12
+text = "+"
+
+[node name="sub" type="Button" parent="Control/Stats/Control/End_Buttons"]
+layout_mode = 0
+offset_left = 124.0
+offset_right = 148.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 12
+disabled = true
+text = "-"
+
+[node name="counter" type="RichTextLabel" parent="Control/Stats/Control/End_Buttons"]
+layout_mode = 0
+offset_left = 153.0
+offset_right = 185.0
+offset_bottom = 25.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "0
+"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Wis_Buttons" type="Control" parent="Control/Stats/Control"]
+anchors_preset = 0
+offset_top = 96.0
+offset_right = 40.0
+offset_bottom = 136.0
+
+[node name="add" type="Button" parent="Control/Stats/Control/Wis_Buttons"]
+layout_mode = 0
+offset_left = 188.0
+offset_right = 212.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 12
+text = "+"
+
+[node name="sub" type="Button" parent="Control/Stats/Control/Wis_Buttons"]
+layout_mode = 0
+offset_left = 124.0
+offset_right = 148.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 12
+disabled = true
+text = "-"
+
+[node name="counter" type="RichTextLabel" parent="Control/Stats/Control/Wis_Buttons"]
+layout_mode = 0
+offset_left = 153.0
+offset_right = 185.0
+offset_bottom = 25.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "0
+"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Str_Buttons" type="Control" parent="Control/Stats/Control"]
+anchors_preset = 0
+offset_top = 148.0
+offset_right = 40.0
+offset_bottom = 188.0
+
+[node name="add" type="Button" parent="Control/Stats/Control/Str_Buttons"]
+layout_mode = 0
+offset_left = 188.0
+offset_right = 212.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 12
+text = "+"
+
+[node name="sub" type="Button" parent="Control/Stats/Control/Str_Buttons"]
+layout_mode = 0
+offset_left = 124.0
+offset_right = 148.0
+offset_bottom = 25.0
+theme_override_font_sizes/font_size = 12
+disabled = true
+text = "-"
+
+[node name="counter" type="RichTextLabel" parent="Control/Stats/Control/Str_Buttons"]
+layout_mode = 0
+offset_left = 153.0
+offset_right = 185.0
+offset_bottom = 25.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "0
+"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = -96.0
+offset_bottom = 32.0
+grow_horizontal = 0
+scale = Vector2(4, 4)
+texture_normal = ExtResource("2_8c4xn")
+stretch_mode = 3
+
+[node name="Help" type="TextureButton" parent="."]
+layout_mode = 1
+offset_right = 32.0
+offset_bottom = 32.0
+scale = Vector2(4, 4)
+texture_normal = ExtResource("3_2hgu0")
+stretch_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4x0ni")
+}
+
+[node name="Button" type="Button" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+action_mode = 0
+flat = true
+
+[node name="Panel" type="Panel" parent="Button"]
+modulate = Color(1, 1, 1, 0.658824)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_wl0qr")
+
+[node name="TextureRect" type="TextureRect" parent="Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -172.0
+offset_right = -104.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+mouse_filter = 2
+texture = ExtResource("4_jwamr")
+
+[node name="Label4" type="RichTextLabel" parent="Button/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -24.0
+offset_right = 226.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 14
+bbcode_enabled = true
+text = "[b]Intelligence[/b]  affects the amount of damage you deal during combat."
+fit_content = true
+scroll_active = false
+
+[node name="Label3" type="RichTextLabel" parent="Button/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -12.0
+offset_right = 226.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 14
+bbcode_enabled = true
+text = "[b]Endurance[/b] determines your maximum health points."
+fit_content = true
+scroll_active = false
+
+[node name="Label5" type="RichTextLabel" parent="Button/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_right = 226.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 14
+bbcode_enabled = true
+text = "[b]Wisdom[/b] influences your chance to deal a critical hit."
+fit_content = true
+scroll_active = false
+
+[node name="Label6" type="RichTextLabel" parent="Button/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = 12.0
+offset_right = 226.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 14
+bbcode_enabled = true
+text = "[b]Strength[/b] determines the amount of bonus damage you deal in a critical hit."
+fit_content = true
+scroll_active = false
+
+[connection signal="pressed" from="Control/Reset" to="." method="_on_reset_pressed"]
+[connection signal="pressed" from="Control/Confirm" to="." method="_on_confirm_pressed"]
+[connection signal="pressed" from="Control/Stats/Control/Int_Buttons/add" to="." method="_on_int_add_pressed"]
+[connection signal="pressed" from="Control/Stats/Control/Int_Buttons/sub" to="." method="_on_int_sub_pressed"]
+[connection signal="pressed" from="Control/Stats/Control/End_Buttons/add" to="." method="_on_end_add_pressed"]
+[connection signal="pressed" from="Control/Stats/Control/End_Buttons/sub" to="." method="_on_end_sub_pressed"]
+[connection signal="pressed" from="Control/Stats/Control/Wis_Buttons/add" to="." method="_on_wis_add_pressed"]
+[connection signal="pressed" from="Control/Stats/Control/Wis_Buttons/sub" to="." method="_on_wis_sub_pressed"]
+[connection signal="pressed" from="Control/Stats/Control/Str_Buttons/add" to="." method="_on_str_add_pressed"]
+[connection signal="pressed" from="Control/Stats/Control/Str_Buttons/sub" to="." method="_on_str_sub_pressed"]
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Help" to="." method="_on_help_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
