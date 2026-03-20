@@ -810,7 +810,6 @@ var elem_english_questions = {
 }
 
 var jhs_english_questions = {
-
 	500: { "Question": "Which sentence uses the passive voice?", "Ans1": "The chef prepared the meal.", "Ans2": "The meal was prepared by the chef.", "Ans3": "The chef is preparing the meal.", "Ans4": "The chef will prepare the meal.", "Correct": "The meal was prepared by the chef.", "TopicID": 21 },
 	501: { "Question": "Identify the conjunction in: 'I wanted to go, yet I stayed.'", "Ans1": "Wanted", "Ans2": "Go", "Ans3": "Yet", "Ans4": "Stayed", "Correct": "Yet", "TopicID": 22 },
 	502: { "Question": "Which of these is an intensive pronoun?", "Ans1": "Him", "Ans2": "Himself", "Ans3": "He", "Ans4": "His", "Correct": "Himself", "TopicID": 22 },
@@ -1111,9 +1110,6 @@ var jhs_english_questions = {
 	797: {"Question": "What does 'Grad' mean in 'gradual'?", "Ans1": "To jump", "Ans2": "To step/go", "Ans3": "To finish", "Ans4": "To start", "Correct": "To step/go", "TopicID": 28},
 	798: {"Question": "What does 'Equi' mean?", "Ans1": "Horse", "Ans2": "Equal", "Ans3": "Near", "Ans4": "Fast", "Correct": "Equal", "TopicID": 28},
 	799: {"Question": "What does 'Voc' mean in 'vocal'?", "Ans1": "Voice/To call", "Ans2": "To hear", "Ans3": "To sing", "Ans4": "To listen", "Correct": "Voice/To call", "TopicID": 28},
-}
-
-var shs_english_questions = {
 	800: {"Question": "What is 'Non-verbal Communication'?", "Ans1": "Speaking clearly", "Ans2": "Communication through body language and gestures", "Ans3": "Writing a letter", "Ans4": "Reading a book", "Correct": "Communication through body language and gestures", "TopicID": 30},
 	801: {"Question": "Which of these is an example of 'Active Listening'?", "Ans1": "Checking your phone while someone talks", "Ans2": "Nodding and asking clarifying questions", "Ans3": "Interrupting the speaker frequently", "Ans4": "Looking out the window", "Correct": "Nodding and asking clarifying questions", "TopicID": 29},
 	802: {"Question": "What does 'Tone of Voice' convey in a speech?", "Ans1": "The number of words used", "Ans2": "The emotion and attitude of the speaker", "Ans3": "The volume of the speaker only", "Ans4": "The dictionary definition of words", "Correct": "The emotion and attitude of the speaker", "TopicID": 30},
@@ -1316,7 +1312,7 @@ var shs_english_questions = {
 	999: {"Question": "What is the 'Objective' of reading?", "Ans1": "To close the book", "Ans2": "To understand and interpret the text", "Ans3": "To count the pages", "Ans4": "To change the colors", "Correct": "To understand and interpret the text", "TopicID": 32},
 }
 
-var college_english_questions = {
+var shs_english_questions = {
 	1000: {"Question": "Which sentence demonstrates correct parallel structure?", "Ans1": "He likes swimming, to hike, and dancing.", "Ans2": "He likes swimming, hiking, and dancing.", "Ans3": "He likes to swim, hiking, and to dance.", "Ans4": "He likes swimming, hiking, and to dance.", "Correct": "He likes swimming, hiking, and dancing.", "TopicID": 34},
 	1001: {"Question": "Identify the 'Dangling Modifier' in this sentence: 'Walking down the street, the trees were beautiful.'", "Ans1": "Walking down the street", "Ans2": "the trees", "Ans3": "were beautiful", "Ans4": "down the street", "Correct": "Walking down the street", "TopicID": 35},
 	1002: {"Question": "Which of these is a 'Comma Splice'?", "Ans1": "I am tired; I will sleep.", "Ans2": "I am tired, I will sleep.", "Ans3": "I am tired, so I will sleep.", "Ans4": "Because I am tired, I will sleep.", "Correct": "I am tired, I will sleep.", "TopicID": 35},
@@ -1817,6 +1813,9 @@ var college_english_questions = {
 	1497: {"Question": "What is 'Parody'?", "Ans1": "A serious tribute", "Ans2": "An imitation of a style with deliberate exaggeration for comic effect", "Ans3": "A type of bird", "Ans4": "A type of long sentence", "Correct": "An imitation of a style with deliberate exaggeration for comic effect", "TopicID": 45},
 	1498: {"Question": "What is 'Dystopia'?", "Ans1": "A perfect world", "Ans2": "An imagined society that is full of suffering and injustice", "Ans3": "A place with no rules", "Ans4": "A futuristic city with flying cars", "Correct": "An imagined society that is full of suffering and injustice", "TopicID": 45},
 	1499: {"Question": "What is 'Utopia'?", "Ans1": "A scary world", "Ans2": "An imagined place or state where everything is perfect", "Ans3": "A type of desert", "Ans4": "A planet in space", "Correct": "An imagined place or state where everything is perfect", "TopicID": 45},
+}
+
+var college_english_questions = {
 	1500: {"Question": "Identify the 'dangling modifier' in this sentence: 'After rotting in the cellar, the farmer finally used the potatoes.'", "Ans1": "After rotting", "Ans2": "in the cellar", "Ans3": "the farmer", "Ans4": "used the potatoes", "Correct": "the farmer", "TopicID": 46},
 	1501: {"Question": "Which sentence uses a semicolon correctly?", "Ans1": "I like cake; and pie.", "Ans2": "The weather was cold; however, we went out.", "Ans3": "She said; 'Hello.'", "Ans4": "Wait; for me.", "Correct": "The weather was cold; however, we went out.", "TopicID": 46},
 	1502: {"Question": "What is 'Parallel Structure'?", "Ans1": "Using two different tenses", "Ans2": "Using the same pattern of words for two or more ideas", "Ans3": "Writing in circles", "Ans4": "Using only long words", "Correct": "Using the same pattern of words for two or more ideas", "TopicID": 46},

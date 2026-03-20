@@ -1,0 +1,339 @@
+[gd_scene load_steps=18 format=3 uid="uid://dvf5porvudl4f"]
+
+[ext_resource type="Texture2D" uid="uid://06xk3bsequyh" path="res://Sprites/player/sprite-playermale.png" id="1_4qmvq"]
+[ext_resource type="Script" uid="uid://bde7yfniate41" path="res://Scenes/creation.gd" id="1_lway5"]
+[ext_resource type="Texture2D" uid="uid://cq3t81mx8oppr" path="res://Sprites/player/sprite-playerfemale.png" id="2_mia30"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mia30"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_lway5"]
+
+[sub_resource type="Animation" id="Animation_4o7tb"]
+resource_name = "player_walk-down"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Female/Sprite2D2:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3), Vector2i(0, 4), Vector2i(0, 5), Vector2i(0, 6), Vector2i(0, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_uhwmv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Female/Sprite2D2:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lwrdn"]
+resource_name = "player_idle"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Female/Sprite2D2:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4qmvq"]
+_data = {
+&"RESET": SubResource("Animation_uhwmv"),
+&"player_idle": SubResource("Animation_lwrdn"),
+&"player_walk-down": SubResource("Animation_4o7tb")
+}
+
+[sub_resource type="Animation" id="Animation_x073x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mia30"]
+resource_name = "player_idle"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(4, 0), Vector2i(4, 1), Vector2i(4, 2), Vector2i(4, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_lway5"]
+resource_name = "player_walk-down"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3), Vector2i(0, 4), Vector2i(0, 5), Vector2i(0, 6), Vector2i(0, 7)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lwrdn"]
+_data = {
+&"RESET": SubResource("Animation_x073x"),
+&"player_idle": SubResource("Animation_mia30"),
+&"player_walk-down": SubResource("Animation_lway5")
+}
+
+[sub_resource type="Animation" id="Animation_5qgln"]
+resource_name = "fade"
+length = 0.2
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.627451)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.627451), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4rmuh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.627451)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.627451)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4rmuh"]
+_data = {
+&"RESET": SubResource("Animation_4rmuh"),
+&"fade": SubResource("Animation_5qgln")
+}
+
+[sub_resource type="Theme" id="Theme_x073x"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lway5")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mia30")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+
+[node name="Female" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = -28.0
+offset_right = 85.0
+offset_bottom = 36.0
+theme = SubResource("Theme_lway5")
+theme_type_variation = &"FlatButton"
+flat = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="Control/Female"]
+position = Vector2(32, 32)
+texture = ExtResource("2_mia30")
+hframes = 8
+vframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Female/Sprite2D2"]
+root_node = NodePath("../../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_4qmvq")
+}
+autoplay = "player_idle"
+
+[node name="Male" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = -75.0
+offset_top = -28.0
+offset_right = -11.0
+offset_bottom = 36.0
+keep_pressed_outside = true
+flat = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/Male"]
+position = Vector2(32, 32)
+texture = ExtResource("1_4qmvq")
+hframes = 8
+vframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Male/Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_lwrdn")
+}
+autoplay = "player_idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4rmuh")
+}
+
+[node name="Panel2" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.627451)
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -576.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mia30")
+
+[node name="Panel3" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.627451)
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 576.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mia30")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 2
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -448.0
+offset_top = 72.0
+offset_right = 452.0
+offset_bottom = 130.0
+grow_horizontal = 2
+theme_override_font_sizes/bold_font_size = 42
+bbcode_enabled = true
+text = "[b]CHOOSE YOUR CHARACTER"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+z_index = 2
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -136.0
+offset_right = 69.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_x073x")
+theme_type_variation = &"FlatButton"
+theme_override_font_sizes/font_size = 32
+text = "Confirm"
+flat = true
+
+[connection signal="pressed" from="Control/Female" to="." method="_on_female_pressed"]
+[connection signal="pressed" from="Control/Male" to="." method="_on_male_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

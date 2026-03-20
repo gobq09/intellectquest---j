@@ -242,7 +242,7 @@ tracks/0/keys = {
 "values": [11, 19, 27, 35, 43, 51, 59, 3]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2s687"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ljijv"]
 _data = {
 &"RESET": SubResource("Animation_ap31j"),
 &"player-wakeup": ExtResource("2_ljijv"),
@@ -282,7 +282,7 @@ parameters/Walk/blend_position = Vector2(0.00476944, -0.117021)
 active = false
 root_node = NodePath("../..")
 libraries = {
-&"": SubResource("AnimationLibrary_2s687")
+&"": SubResource("AnimationLibrary_ljijv")
 }
 autoplay = "player_idle-down"
 

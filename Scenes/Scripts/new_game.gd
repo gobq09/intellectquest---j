@@ -2,12 +2,11 @@ extends Control
 
 
 func _ready() -> void:
-	SaveManager.load_game()
+	pass
 
 func _on_confirm_pressed() -> void:
 	print("Confirm Pressed")
-	SaveManager.save_game(SaveManager.default_game_data)
-	SceneLoader.load_scene("uid://dt532wlk4w78h")
+	SceneLoader.load_scene("uid://dvf5porvudl4f")
 
 
 func _on_cancel_pressed() -> void:

@@ -1,5 +1,8 @@
 extends Control
 
+#region variables
+
+@onready var english_questions = SaveManager.load_game("res://player_questions.json")["english_questions"]
 @onready var ques_label: Label = $Control/Control/QuestionBg/QuestionLabel
 @onready var ans_button1: TextureButton = $Control/Control2/AnswerButton1
 @onready var ans_button2: TextureButton = $Control/Control2/AnswerButton2
@@ -18,6 +21,9 @@ extends Control
 @onready var anim_player = $AnimationPlayer
 
 @onready var ans_sprite: Array = [ans1, ans2, ans3, ans4]
+#endregion
+
+#region more variables
 
 # Health values
 var player_health = 100
@@ -44,29 +50,35 @@ var correct_answer: String
 
 var encountered_questions: Dictionary
 
-var question_type = Questions.elem_english_questions
+@export var question_subject: String = "English"
+var question_type
 var question_id: int
+#endregion
 
 func _ready() -> void:
 	$Summary.visible = false
-	_new_question()
 	
+	if question_subject == "English":
+		question_type = english_questions
+	
+	_new_question()
 
+#region combat ui
 func _new_question() -> void:
 	okay_button.disabled = true
 	ans_button1.disabled = true
 	question_id = randi_range(0, question_type.size() - 1)
 	
 	answers.clear()
-	answers.append(question_type[question_id]["Ans1"])
-	answers.append(question_type[question_id]["Ans2"])
-	answers.append(question_type[question_id]["Ans3"])
-	answers.append(question_type[question_id]["Ans4"])
+	answers.append(question_type[str(question_id)]["Ans1"])
+	answers.append(question_type[str(question_id)]["Ans2"])
+	answers.append(question_type[str(question_id)]["Ans3"])
+	answers.append(question_type[str(question_id)]["Ans4"])
 	
-	print(question_type[question_id]["TopicID"])
+	print(question_type[str(question_id)]["TopicID"])
 	
-	question = question_type[question_id]["Question"]
-	correct_answer = question_type[question_id]["Correct"]
+	question = question_type[str(question_id)]["Question"]
+	correct_answer = question_type[str(question_id)]["Correct"]
 	
 	ans_label.text = answers[0]
 	ques_label.text = question
@@ -120,6 +132,8 @@ func _on_correct_answer():
 	tween.tween_property(enemy_health_bar, "value", enemy_health, 0.25)\
 	.set_ease(Tween.EASE_OUT)\
 	.set_trans(Tween.TRANS_SINE)
+	anim_player.play("RESET")
+	await anim_player.animation_finished
 	shake(enemy_sprite)
 	print("Correct! Enemy HP: ", enemy_health)
 	if enemy_health <= 0:
@@ -140,6 +154,8 @@ func _on_wrong_answer():
 	tween.tween_property(player_health_bar, "value", player_health, 0.25)\
 	.set_ease(Tween.EASE_OUT)\
 	.set_trans(Tween.TRANS_SINE)
+	anim_player.play("RESET")
+	await anim_player.animation_finished
 	shake(player_sprite)
 	print("Wrong! Player HP: ", player_health)
 	if player_health <= 0:
@@ -153,7 +169,9 @@ func _on_wrong_answer():
 		ui.visible = false
 		panel.visible = false
 		_new_question()
+#endregion
 
+#region combat logic
 func shake(node: Node2D):
 	var origin = node.position
 	var elapsed = 0.0
@@ -161,8 +179,6 @@ func shake(node: Node2D):
 	
 	okay_button.disabled = true
 	ans_button1.disabled = true
-	anim_player.play("RESET")
-	await anim_player.animation_finished
 	
 	while elapsed < shake_duration:
 		var offset = Vector2(
@@ -240,7 +256,9 @@ func _on_player_defeated():
 	_battle_summary()
 	#$"textbox".visible = true
 	#loser_label.visible = true
+#endregion
 
+#region summary
 func _battle_summary():
 	$Control.visible = false
 	$HP.visible = false
@@ -283,3 +301,4 @@ func _on_texture_button_pressed() -> void:
 	anim_player.play("summary_confirm")
 	await anim_player.animation_finished
 	SceneLoader.load_scene("uid://x8j1q0cr8ykf")
+#endregion

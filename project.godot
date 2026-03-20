@@ -22,6 +22,7 @@ HUD="*res://hud.gd"
 Questions="*res://Resources/questions.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SaveManager="*res://Resources/save_manager.gd"
+PlayerQuestions="*res://Scenes/Scripts/player_questions.gd"
 
 [editor_plugins]
 
