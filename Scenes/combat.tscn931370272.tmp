@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dxhaxrctujkex"]
+[gd_scene load_steps=36 format=3 uid="uid://dxhaxrctujkex"]
 
 [ext_resource type="Script" uid="uid://c0dbktvohlh5" path="res://Scenes/Scripts/combat.gd" id="1_8xcd4"]
 [ext_resource type="Texture2D" uid="uid://cocirnqmaocmm" path="res://ui/combat/interface-combat-bg1.png" id="1_xisnc"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dswar4edutstg" path="res://ui/combat/combat-answer1.png" id="11_ley77"]
 [ext_resource type="Texture2D" uid="uid://bmw67buqvokfd" path="res://ui/combat/combat-question.png" id="11_w6tjk"]
 [ext_resource type="Texture2D" uid="uid://ppxuoww47ws0" path="res://ui/combat/combat-answer2.png" id="12_3cqtn"]
+[ext_resource type="Texture2D" uid="uid://cmg4l3h6316r0" path="res://ui/combat/combat-answer.png" id="12_xisnc"]
 [ext_resource type="Texture2D" uid="uid://dy8d7oga35bub" path="res://ui/combat/interface-combat-okbutton.png" id="13_y8jr2"]
 [ext_resource type="Texture2D" uid="uid://bdy36dli2qnkd" path="res://ui/combat/interface-combat-summary2.png" id="14_8xcd4"]
 [ext_resource type="Texture2D" uid="uid://c706dluw8hn1t" path="res://ui/combat/interface-combat-summary1.png" id="15_f8ge6"]
@@ -152,7 +153,7 @@ tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-20, -54)]
+"values": [Vector2(-22, -52)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -190,10 +191,10 @@ tracks/0/path = NodePath("Control2/AnswerButton1:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.3, 0.35, 0.4, 0.5),
+"times": PackedFloat32Array(0.1, 0.3, 0.35, 0.4, 0.497361),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-22, -52), Vector2(-76, -72), Vector2(-80, -76), Vector2(-76, -72), Vector2(-20, -54)]
+"values": [Vector2(-22, -52), Vector2(-76, -72), Vector2(-80, -76), Vector2(-76, -72), Vector2(-22, -52)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -214,7 +215,7 @@ tracks/2/path = NodePath("Control2/AnswerButton1:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.1, 0.3, 0.35, 0.4, 0.5),
+"times": PackedFloat32Array(0.1, 0.3, 0.35, 0.4, 0.497361),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, -0.528835, -0.66148, -0.528835, 0.0]
@@ -229,7 +230,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.35, 0.45),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-20, -54), Vector2(-22, -52), Vector2(-22, -34), Vector2(-22, -52)]
+"values": [Vector2(-22, -34), Vector2(-22, -52), Vector2(-22, -34), Vector2(-22, -52)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -464,7 +465,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_f8ge6")
 
 [node name="HP" type="Control" parent="."]
@@ -564,13 +564,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -74.0
-offset_right = 104.0
-offset_bottom = 6.0
+offset_left = -42.0
+offset_top = -72.0
+offset_right = 102.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
-disabled = true
 texture_normal = ExtResource("12_3cqtn")
 
 [node name="AnswerButton1" type="TextureButton" parent="Control/Control2"]
@@ -646,6 +645,33 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="AnswerButton" type="TextureButton" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -240.0
+offset_right = 144.0
+offset_bottom = -180.0
+grow_vertical = 0
+scale = Vector2(4, 4)
+texture_normal = ExtResource("12_xisnc")
+
+[node name="AnswerLabel" type="Label" parent="Control/AnswerButton"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 25.0
+offset_right = 337.0
+offset_bottom = 143.0
+scale = Vector2(0.25, 0.25)
+text = "
+test"
+label_settings = SubResource("LabelSettings_tmuf1")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="OkButton" type="TextureButton" parent="Control"]
 layout_mode = 1
 anchors_preset = 3
@@ -664,6 +690,7 @@ texture_normal = ExtResource("13_y8jr2")
 stretch_mode = 3
 
 [node name="Summary" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -755,5 +782,6 @@ layout_mode = 2
 label_settings = SubResource("LabelSettings_jcm61")
 
 [connection signal="pressed" from="Control/Control2/AnswerButton1" to="." method="_on_answer_button_1_pressed"]
+[connection signal="pressed" from="Control/AnswerButton" to="." method="_on_answer_button_pressed"]
 [connection signal="pressed" from="Control/OkButton" to="." method="_on_ok_button_pressed"]
 [connection signal="pressed" from="Summary/Control/TextureButton" to="." method="_on_texture_button_pressed"]

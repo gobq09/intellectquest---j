@@ -1,8 +1,13 @@
 extends Control
 
 @onready var ques_label: Label = $Control/Control/QuestionBg/QuestionLabel
-@onready var ans_button: TextureButton = $Control/AnswerButton
-@onready var ans_label: Label = $Control/AnswerButton/AnswerLabel
+@onready var ans_button1: TextureButton = $Control/Control2/AnswerButton1
+@onready var ans_button2: TextureButton = $Control/Control2/AnswerButton2
+@onready var ans_label: Label = $Control/Control2/AnswerLabel
+@onready var ans1 : Texture2D = preload("res://ui/combat/combat-answer1.png")
+@onready var ans2 : Texture2D = preload("res://ui/combat/combat-answer2.png")
+@onready var ans3 : Texture2D = preload("res://ui/combat/combat-answer3.png")
+@onready var ans4 : Texture2D = preload("res://ui/combat/combat-answer4.png")
 @onready var okay_button: TextureButton = $Control/OkButton
 @onready var enemy_sprite: Sprite2D = $Back/Control/Enemy
 @onready var player_sprite: Sprite2D = $Back/Control2/Player
@@ -10,6 +15,9 @@ extends Control
 @onready var enemy_health_bar= $"HP/EnemyHP/$EnemyHealthBar"
 @onready var ui = $Control
 @onready var panel = $Panel
+@onready var anim_player = $AnimationPlayer
+
+@onready var ans_sprite: Array = [ans1, ans2, ans3, ans4]
 
 # Health values
 var player_health = 100
@@ -40,10 +48,13 @@ var question_type = Questions.questions_english_elementary
 var question_id: int
 
 func _ready() -> void:
-	_new_question()
 	$Summary.visible = false
+	_new_question()
+	
 
 func _new_question() -> void:
+	okay_button.disabled = true
+	ans_button1.disabled = true
 	question_id = randi_range(0, question_type.size() - 1)
 	
 	answers.clear()
@@ -60,17 +71,28 @@ func _new_question() -> void:
 	
 	ui.visible = true
 	panel.visible = true
-	$AnimationPlayer.play_backwards("fade")
-	await $AnimationPlayer.animation_finished
+	anim_player.play_backwards("fade")
+	await anim_player.animation_finished
 	okay_button.disabled = false
+	ans_button1.disabled = false
 
-func _on_answer_button_pressed() -> void:
+func _on_answer_button_1_pressed() -> void:
+	ans_button1.disabled = true
+	ans_button1.texture_normal = ans_sprite[0]
+	ans_button2.texture_normal = ans_sprite[1]
+	anim_player.play("cards_change")
+	await get_tree().create_timer(0.2).timeout
 	answers.push_back(answers.pop_at(0))
 	ans_label.text = answers[0]
+	
+	await anim_player.animation_finished
+	ans_button1.disabled = false
+	ans_button1.texture_normal = ans_sprite[0]
+	ans_button2.texture_normal = ans_sprite[1]
+	ans_sprite.push_back(ans_sprite.pop_at(0))
 
 func _on_ok_button_pressed() -> void:
 	okay_button.disabled = true
-	
 	if ans_label.text == correct_answer:
 		encountered_questions[encountered_questions.size() + 1] = {
 		"Question_ID" : question_id, 
@@ -101,8 +123,9 @@ func _on_correct_answer():
 	if enemy_health <= 0:
 		_on_enemy_defeated()
 	else:
-		$AnimationPlayer.play("fade")
-		await $AnimationPlayer.animation_finished
+		await anim_player.animation_finished
+		anim_player.play("fade")
+		await anim_player.animation_finished
 		ui.visible = false
 		panel.visible = false
 		_new_question()
@@ -120,8 +143,11 @@ func _on_wrong_answer():
 	if player_health <= 0:
 		_on_player_defeated()
 	else:
-		$AnimationPlayer.play("fade")
-		await $AnimationPlayer.animation_finished
+		set_process_input(false)
+		anim_player.play("RESET")
+		await anim_player.animation_finished
+		anim_player.play("fade")
+		await anim_player.animation_finished
 		ui.visible = false
 		panel.visible = false
 		_new_question()
@@ -130,6 +156,11 @@ func shake(node: Node2D):
 	var origin = node.position
 	var elapsed = 0.0
 	var orig = node.modulate
+	
+	okay_button.disabled = true
+	ans_button1.disabled = true
+	anim_player.play("RESET")
+	await anim_player.animation_finished
 	
 	while elapsed < shake_duration:
 		var offset = Vector2(
@@ -214,8 +245,8 @@ func _battle_summary():
 	$Summary/Control.modulate = Color(255, 255, 255, 0)
 	$Summary.visible = true
 	
-	$AnimationPlayer.play("summary")
-	await $AnimationPlayer.animation_finished
+	anim_player.play("summary")
+	await anim_player.animation_finished
 	
 	_evaluate()
 
@@ -244,9 +275,9 @@ func _evaluate():
 	
 	await get_tree().create_timer(2).timeout
 	
-	$AnimationPlayer.play("confirm_fade")
+	anim_player.play("confirm_fade")
 
 func _on_texture_button_pressed() -> void:
-	$AnimationPlayer.play("summary_confirm")
-	await $AnimationPlayer.animation_finished
+	anim_player.play("summary_confirm")
+	await anim_player.animation_finished
 	SceneLoader.load_scene("uid://x8j1q0cr8ykf")
