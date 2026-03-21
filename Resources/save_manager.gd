@@ -5,6 +5,7 @@ var SAVE_PATH: String #= "user://save_game.json"
 var default_game_data: Dictionary = {
 	"player_name": "Quinn",
 	"difficulty": "Elementary",
+	"chosen": "Male",
 	"player_level": 1,
 	"player_exp": 0,
 	"new_game": true,
@@ -20,6 +21,7 @@ var default_game_data: Dictionary = {
 var game_data: Dictionary = {
 	"player_name": "Quinn",
 	"difficulty": "Elementary",
+	"chosen": "Male",
 	"player_level": 1,
 	"player_exp": 0,
 	"new_game": true,
