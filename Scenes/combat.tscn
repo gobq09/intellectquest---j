@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dxhaxrctujkex"]
+[gd_scene load_steps=34 format=3 uid="uid://dxhaxrctujkex"]
 
 [ext_resource type="Script" uid="uid://c0dbktvohlh5" path="res://Scenes/Scripts/combat.gd" id="1_8xcd4"]
 [ext_resource type="Texture2D" uid="uid://cocirnqmaocmm" path="res://ui/combat/interface-combat-bg1.png" id="1_xisnc"]
@@ -384,9 +384,6 @@ font_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kjvk"]
 bg_color = Color(0, 0, 0, 0.752941)
 
-[sub_resource type="LabelSettings" id="LabelSettings_jcm61"]
-font_color = Color(0, 0, 0, 1)
-
 [node name="Combat" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -665,7 +662,6 @@ texture_normal = ExtResource("13_y8jr2")
 stretch_mode = 3
 
 [node name="Summary" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -752,9 +748,18 @@ horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 script = ExtResource("18_jcm61")
 
-[node name="SummaryLabel" type="Label" parent="Summary/Control/ScrollContainer"]
+[node name="SummaryLabel" type="RichTextLabel" parent="Summary/Control/ScrollContainer"]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_jcm61")
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/bold_italics_font_size = 20
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+scroll_following = true
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Control/Control2/AnswerButton1" to="." method="_on_answer_button_1_pressed"]
 [connection signal="pressed" from="Control/OkButton" to="." method="_on_ok_button_pressed"]

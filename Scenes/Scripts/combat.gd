@@ -8,6 +8,11 @@ extends Control
 @onready var fil_questions = SaveManager.load_game("player_questions")["fil_questions"]
 @onready var game_data = SaveManager.load_game("save_file")
 
+@onready var eng_topics = Questions.english_topic
+@onready var sci_topics = Questions.science_topic
+@onready var math_topics = Questions.math_topic
+@onready var fil_topics = Questions.fil_topic
+
 @onready var last_scene = SaveManager.load_game("save_file")["last_scene"]
 @onready var last_position = SaveManager.load_game("save_file")["global_position"]
 
@@ -44,8 +49,8 @@ extends Control
 # Player Stats
 @onready var player_health : int = player_hp
 @onready var player_max_health : int = 100 + (player_end * 2)
-@onready var player_max_damage : int = 10 + (player_int * 2) + 100
-@onready var player_min_damage : int = player_max_damage - 5 + 100
+@onready var player_max_damage : int = 10 + (player_int * 2)
+@onready var player_min_damage : int = player_max_damage - 5
 @onready var player_damage: int
 @onready var player_critchance: float = player_wis * 0.25
 @onready var player_critdamage: float = 150 + (player_str * 1.5)
@@ -79,6 +84,7 @@ var correct_answer: String
 var encountered_questions: Dictionary
 
 var question_type
+var topic_type
 var question_id: int
 #endregion
 
@@ -107,12 +113,16 @@ func _load_enemy() -> void:
 	enemy_health_bar.max_value = enemy_health
 	
 	if question_subject == "English":
+		topic_type = "eng_topics"
 		question_type = english_questions
 	elif question_subject == "Science":
+		topic_type = "sci_topics"
 		question_type = science_questions
 	elif question_subject == "Math":
+		topic_type = "math_topics"
 		question_type = math_questions
 	elif question_subject == "Filipino":
+		topic_type = "fil_topics"
 		question_type = fil_questions
 #endregion
 
@@ -127,8 +137,6 @@ func _new_question() -> void:
 	answers.append(question_type[str(question_id)]["Ans2"])
 	answers.append(question_type[str(question_id)]["Ans3"])
 	answers.append(question_type[str(question_id)]["Ans4"])
-	
-	print(question_type[str(question_id)]["TopicID"])
 	
 	question = question_type[str(question_id)]["Question"]
 	correct_answer = question_type[str(question_id)]["Correct"]
@@ -160,22 +168,32 @@ func _on_answer_button_1_pressed() -> void:
 
 func _on_ok_button_pressed() -> void:
 	okay_button.disabled = true
-	if ans_label.text == correct_answer:
-		encountered_questions[encountered_questions.size() + 1] = {
+	
+	encountered_questions[encountered_questions.size() + 1] = {
 		"Question_ID" : question_id, 
 		"Question": ques_label.text,
 		"Answer" : ans_label.text,
-		"Correct": true
-		}
+		"Correct": true,
+		"TopicID": question_type[str(question_id)]["TopicID"]
+	}
+	
+	_save_question(topic_type)
+	
+	if ans_label.text == correct_answer:
+		encountered_questions[encountered_questions.size()]["Correct"] = true
+		question_type.erase(str(question_id))
 		_on_correct_answer()
 	else:
-		encountered_questions[encountered_questions.size() + 1] = {
-		"Question_ID" : question_id, 
-		"Question": ques_label.text,
-		"Answer" : ans_label.text,
-		"Correct": false
-		}
+		encountered_questions[encountered_questions.size()]["Correct"] = false
 		_on_wrong_answer()
+
+func _save_question(topic_type: String):
+	print(int(question_type[str(question_id)]["TopicID"]))
+	if game_data[topic_type].values().has(int(question_type[str(question_id)]["TopicID"])):
+		print("not saved")
+		return
+	print("saved")
+	game_data[topic_type][game_data[topic_type].size() + 1] = int(question_type[str(question_id)]["TopicID"])
 
 func _on_correct_answer():
 	var tween = create_tween()
@@ -324,6 +342,7 @@ func _battle_summary():
 	$HP.visible = false
 	$Summary/Control.modulate = Color(255, 255, 255, 0)
 	$Summary.visible = true
+	$Summary/Control/TextureButton.disabled = true
 	
 	anim_player.play("summary")
 	await anim_player.animation_finished
@@ -346,16 +365,17 @@ func _evaluate():
 		else:
 			summary_cor = "  ❌"
 		
-		summary_text.text += summary_ques + "\n" + summary_ans + summary_cor + "\n\n"
+		summary_text.text += "[b]" + summary_ques + "[/b]" + "\n" + summary_ans + summary_cor + "\n\n"
 		count += 1
 		exp_gain += randi_range(1, 10)
-		await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(1).timeout
 	
 	summary_text.text += "Experience Gained: " + str(exp_gain) + "\n\n"
 	
 	await get_tree().create_timer(2).timeout
 	
 	anim_player.play("confirm_fade")
+	$Summary/Control/TextureButton.disabled = false
 
 func _on_texture_button_pressed() -> void:
 	anim_player.play("summary_confirm")

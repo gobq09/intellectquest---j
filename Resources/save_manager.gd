@@ -13,6 +13,10 @@ var default_game_data: Dictionary = {
 	"global_position": Vector2(-473.0, 17.0),
 	"last_scene": "uid://dt532wlk4w78h",
 	"defeated_enemies": {},
+	"eng_topics": {},
+	"sci_topics": {},
+	"math_topics": {},
+	"fil_topics": {},
 }
 
 var default_player_data: Dictionary = {
@@ -42,6 +46,10 @@ var game_data: Dictionary = {
 	"global_position": Vector2(-473.0, 17.0),
 	"last_scene": "uid://dt532wlk4w78h",
 	"defeated_enemies": {},
+	"eng_topics": {},
+	"sci_topics": {},
+	"math_topics": {},
+	"fil_topics": {},
 }
 
 var player_data: Dictionary = {

@@ -38,8 +38,6 @@ func _on_load_pressed() -> void:
 
 
 func _on_reset_pressed() -> void:
-	# reset player questions
-	#SaveManager.load_game("res://player_questions.json")
 	SaveManager.save_game(clear, "res://player_questions.json")
 	pass # Replace with function body.
 
