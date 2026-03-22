@@ -2,8 +2,9 @@ extends CanvasLayer
 
 @export var animation_player: AnimationPlayer
 
+
 func _ready() -> void:
-	if SaveManager.load_game()["new_game"] == true:
+	if SaveManager.load_game("save_file")["new_game"] == true:
 		$HUD.visible = false
 		animation_player.play("cutscene")
 		await animation_player.animation_finished

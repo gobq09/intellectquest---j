@@ -1,9 +1,16 @@
 extends CharacterBody2D
 
+@export var enemy_id: String
 @export_enum("small", "med", "large") var enemy_type: String
+@export_enum("English", "Science", "Math", "Filipino") var enemy_subject: String
 
 @export var speed = 30
 @export var battle_scene = "res://Scenes/combat.tscn"
+
+@onready var game_data = SaveManager.load_game("save_file")
+@onready var enemy_data = SaveManager.load_game("enemy_file")
+@onready var defeated_enemies: Array = game_data["defeated_enemies"].values()
+
 
 var enemy_small = "res://Sprites/npc/sprite-enemy-small.png"
 var enemy_med = "res://Sprites/npc/sprite-enemy-med.png"
@@ -19,6 +26,11 @@ func _ready() -> void:
 		$Sprite2D.texture = load(path)
 	else:
 		$Sprite2D.texture = load("res://Sprites/npc/sprite-enemy-med.png")
+	
+	print(defeated_enemies)
+	if defeated_enemies.has(enemy_id):
+		print("freed " + str(enemy_id))
+		queue_free()
 
 # DetectionArea triggers chasing
 func _on_DetectionArea_body_entered(body: CharacterBody2D) -> void:
@@ -57,6 +69,11 @@ func start_battle() -> void:
 	if player != null:
 		player.velocity = Vector2.ZERO
 	print("Starting battle!")
+	
+	enemy_data["enemy_id"] = enemy_id
+	enemy_data["enemy_size"] = enemy_type
+	enemy_data["enemy_subject"] = enemy_subject
+	SaveManager.save_game(enemy_data, "enemy_file")
 	SceneLoader.load_scene(battle_scene)
 
 func _on_detection_area_area_entered(_area: Area2D) -> void:

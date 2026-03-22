@@ -1,10 +1,5 @@
 extends Node2D
 
 func _ready():
-	#if Transition.next_spawn != "":
-		#var spawn_point = $SpawnPoints.get_node_or_null(Transition.next_spawn)
-		#if spawn_point:
-	#$Player.global_position = spawn_point.global_position
-		# reset next_spawn so future entries can work
-		#Transition.next_spawn = ""
-	pass
+	SaveManager.game_data["last_scene"] = "uid://x8j1q0cr8ykf"
+	SaveManager.save_game(SaveManager.game_data, "save_file")

@@ -20,11 +20,15 @@ extends Control
 @onready var female_sprite: Sprite2D = $Control/Control/Female/Sprite2D2
 @onready var anim_player: AnimationPlayer = $Control/AnimationPlayer
 @onready var confirm_button: Button = $Control/Button
-@onready var diff_next: Button = $Name/Control/Next
-@onready var diff_prev: Button = $Name/Control/Previous
+@onready var male_texture: Texture2D = preload("res://Sprites/player/sprite-playermale.png")
+@onready var female_texture: Texture2D = preload("res://Sprites/player/sprite-playerfemale.png")
+
+@onready var diff_next: TextureButton = $Name/Control/Next
+@onready var diff_prev: TextureButton = $Name/Control/Previous
 @onready var diff_label: RichTextLabel = $Name/Control/Diff
-@onready var name_input: TextEdit = $"Name/Name Input"
+@onready var name_input: LineEdit = $"Name/Name Input"
 @onready var confirm1_button: Button = $Name/Confirm
+@onready var player_sprite: Sprite2D = $Name/TextureRect/Sprite2D
 
 #endregion
 
@@ -95,6 +99,11 @@ func _on_female_pressed() -> void:
 	confirm_button.visible = true
 
 func _on_button_pressed() -> void:
+	if chosen == "Male":
+		player_sprite.texture = male_texture
+	elif chosen == "Female":
+		player_sprite.texture = female_texture
+	
 	confirm_button.visible = false
 	transition.visible = true
 	transition_anim.play("transition")
@@ -137,12 +146,17 @@ func _on_confirm_pressed() -> void:
 	diff_prev.disabled = true
 	player_name = name_input.text
 	
+	PlayerQuestions.copy_questions(diff_label.text)
 	SaveManager.game_data = SaveManager.default_game_data
-	SaveManager.game_data["chosen"] = chosen
-	SaveManager.game_data["player_name"] = player_name
-	SaveManager.game_data["difficulty"] = diff_label.text
+	SaveManager.player_data = SaveManager.default_player_data
+	SaveManager.enemy_data = SaveManager.default_enemy_data
+	SaveManager.player_data["chosen"] = chosen
+	SaveManager.player_data["player_name"] = player_name
+	SaveManager.player_data["difficulty"] = diff_label.text
 	
-	SaveManager.save_game(SaveManager.game_data)
+	SaveManager.save_game(SaveManager.game_data, "save_file")
+	SaveManager.save_game(SaveManager.player_data, "player_file")
+	SaveManager.save_game(SaveManager.enemy_data, "enemy_file")
 	await get_tree().create_timer(2).timeout
 	
 	SceneLoader.load_scene("uid://dt532wlk4w78h")

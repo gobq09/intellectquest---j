@@ -482,7 +482,7 @@ scale = Vector2(4, 4)
 
 [node name="$PlayerHealthBar" type="ProgressBar" parent="HP/PlayerHP"]
 layout_mode = 0
-offset_left = 36.0
+offset_left = 40.0
 offset_top = 18.0
 offset_right = 108.0
 offset_bottom = 33.0
@@ -516,9 +516,9 @@ scale = Vector2(4, 4)
 
 [node name="$EnemyHealthBar" type="ProgressBar" parent="HP/EnemyHP"]
 layout_mode = 0
-offset_left = 253.0
+offset_left = 248.0
 offset_top = 31.0
-offset_right = 325.0
+offset_right = 315.0
 offset_bottom = 46.0
 rotation = 3.14159
 theme_override_styles/background = SubResource("StyleBoxFlat_jcm61")
@@ -540,6 +540,7 @@ position = Vector2(264, 24)
 texture = ExtResource("11_3cqtn")
 
 [node name="Control" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -664,6 +665,7 @@ texture_normal = ExtResource("13_y8jr2")
 stretch_mode = 3
 
 [node name="Summary" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

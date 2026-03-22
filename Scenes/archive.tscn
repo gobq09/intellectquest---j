@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cfvteqvw7wwp"]
+[gd_scene load_steps=19 format=3 uid="uid://cfvteqvw7wwp"]
 
 [ext_resource type="Script" uid="uid://m8s68lxdxkf0" path="res://Scenes/Scripts/archive.gd" id="1_mrhtk"]
 [ext_resource type="Texture2D" uid="uid://dgw5gi1dwvy3w" path="res://ui/archive/interface-archive-book.png" id="1_ycmab"]
@@ -17,6 +17,8 @@ colors = PackedColorArray(0, 0, 0, 0.588235, 0, 0, 0, 0.588235)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_25x8g"]
 gradient = SubResource("Gradient_hdjji")
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_mrhtk"]
+
 [sub_resource type="Animation" id="Animation_k0voi"]
 length = 0.001
 tracks/0/type = "value"
@@ -31,10 +33,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Topics:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_08hgs"]
 resource_name = "archive-next"
-step = 0.1
+length = 0.5
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -42,15 +57,28 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Topics:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_oa377"]
 resource_name = "archive-previous"
-step = 0.1
+length = 0.5
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -58,10 +86,22 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../Topics:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0521755, 0.451284, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_oa377"]
@@ -71,6 +111,21 @@ _data = {
 &"archive-previous": SubResource("Animation_oa377")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mrhtk"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0, 0, 0, 0.129412)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
 [node name="Archive" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -78,102 +133,342 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(4, 4)
 script = ExtResource("1_mrhtk")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.25, 0.25)
 texture = SubResource("GradientTexture2D_25x8g")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 30.0
-offset_right = 252.0
-offset_bottom = 158.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.0
+offset_top = -228.0
+offset_right = -216.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
 texture = ExtResource("1_ycmab")
 
 [node name="Close" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 256.0
-offset_right = 288.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_right = -96.0
 offset_bottom = 32.0
+grow_horizontal = 0
+scale = Vector2(4, 4)
 texture_normal = ExtResource("2_xlv38")
 stretch_mode = 3
 
 [node name="Next" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 230.0
-offset_top = 108.0
-offset_right = 278.0
-offset_bottom = 140.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 344.0
+offset_top = 84.0
+offset_right = 392.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
 texture_normal = ExtResource("3_m6k2q")
 stretch_mode = 3
 
 [node name="Previous" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 108.0
-offset_right = 58.0
-offset_bottom = 140.0
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -536.0
+offset_top = 84.0
+offset_right = -488.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
 texture_normal = ExtResource("4_2r2lc")
 stretch_mode = 3
 
 [node name="Control" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
 
 [node name="English" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_top = 44.0
-offset_right = 64.0
-offset_bottom = 76.0
+offset_left = -139.0
+offset_top = -38.0
+offset_right = -75.0
+offset_bottom = -6.0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_mrhtk")
 texture_normal = ExtResource("5_2r2lc")
+texture_pressed = ExtResource("5_2r2lc")
 stretch_mode = 3
 
 [node name="Science" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_top = 68.0
-offset_right = 64.0
-offset_bottom = 100.0
+offset_left = -139.0
+offset_top = -12.0
+offset_right = -75.0
+offset_bottom = 20.0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_mrhtk")
 texture_normal = ExtResource("6_0ulwn")
 stretch_mode = 3
 
 [node name="Math" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = 224.0
-offset_top = 44.0
-offset_right = 288.0
-offset_bottom = 76.0
+offset_left = 85.0
+offset_top = -38.0
+offset_right = 149.0
+offset_bottom = -6.0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_mrhtk")
 texture_normal = ExtResource("6_oa377")
 stretch_mode = 3
 
 [node name="Filipino" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = 224.0
-offset_top = 68.0
-offset_right = 288.0
-offset_bottom = 100.0
+offset_left = 85.0
+offset_top = -12.0
+offset_right = 149.0
+offset_bottom = 20.0
+toggle_mode = true
+button_group = SubResource("ButtonGroup_mrhtk")
 texture_normal = ExtResource("7_0ulwn")
 stretch_mode = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(144, 62)
+[node name="Control2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="Control2"]
+position = Vector2(5, -20)
 texture = ExtResource("6_08hgs")
 vframes = 11
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control2/Sprite2D"]
 libraries = {
 &"": SubResource("AnimationLibrary_oa377")
 }
+
+[node name="Topics" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left" type="Control" parent="Topics"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel4" type="Panel" parent="Topics/Left"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -344.0
+offset_top = -180.0
+offset_right = -56.0
+offset_bottom = -132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mrhtk")
+
+[node name="TopicName" type="RichTextLabel" parent="Topics/Left/Panel4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -24.0
+offset_right = 144.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="Topics/Left"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -344.0
+offset_top = -108.0
+offset_right = -56.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mrhtk")
+
+[node name="TopicDesc" type="RichTextLabel" parent="Topics/Left/Panel3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -124.0
+offset_right = 144.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+
+[node name="Right" type="Control" parent="Topics"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel4" type="Panel" parent="Topics/Right"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 56.0
+offset_top = -180.0
+offset_right = 344.0
+offset_bottom = -132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mrhtk")
+
+[node name="TopicName" type="RichTextLabel" parent="Topics/Right/Panel4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -24.0
+offset_right = 144.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel3" type="Panel" parent="Topics/Right"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 56.0
+offset_top = -108.0
+offset_right = 344.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mrhtk")
+
+[node name="TopicDesc" type="RichTextLabel" parent="Topics/Right/Panel3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -124.0
+offset_right = 144.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
 
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="Next" to="." method="_on_next_pressed"]

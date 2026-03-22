@@ -1,47 +1,94 @@
 extends Node
 
-var SAVE_PATH: String #= "user://save_game.json"
+var save_file: String 
+var player: String 
+var player_questions: String 
+var enemy: String
 
+
+
+#region default
 var default_game_data: Dictionary = {
-	"player_name": "Quinn",
-	"difficulty": "Elementary",
-	"chosen": "Male",
-	"player_level": 1,
-	"player_exp": 0,
 	"new_game": true,
-	"player_int": 1,
-	"player_end": 1,
-	"player_wis": 1,
-	"player_str": 1,
-	"unused_stats": 0,
-	"global_position": Vector2(0,0),
-	"last_scene": "uid://dt532wlk4w78h"
+	"global_position": Vector2(-473.0, 17.0),
+	"last_scene": "uid://dt532wlk4w78h",
+	"defeated_enemies": {},
 }
 
-var game_data: Dictionary = {
+var default_player_data: Dictionary = {
 	"player_name": "Quinn",
 	"difficulty": "Elementary",
 	"chosen": "Male",
 	"player_level": 1,
 	"player_exp": 0,
-	"new_game": true,
+	"player_hp": 100,
 	"player_int": 1,
 	"player_end": 1,
 	"player_wis": 1,
 	"player_str": 1,
 	"unused_stats": 0,
-	"global_position": Vector2(0,0),
-	"last_scene": "uid://dt532wlk4w78h"
 }
+
+var default_enemy_data: Dictionary = {
+	"enemy_id": "eng_0",
+	"enemy_size": "Small",
+	"enemy_subject": "English",
+}
+#endregion
+
+#region data
+var game_data: Dictionary = {
+	"new_game": true,
+	"global_position": Vector2(-473.0, 17.0),
+	"last_scene": "uid://dt532wlk4w78h",
+	"defeated_enemies": {},
+}
+
+var player_data: Dictionary = {
+	"player_name": "Quinn",
+	"difficulty": "Elementary",
+	"chosen": "Male",
+	"player_level": 1,
+	"player_exp": 0,
+	"player_hp": 100,
+	"player_int": 1,
+	"player_end": 1,
+	"player_wis": 1,
+	"player_str": 1,
+	"unused_stats": 0,
+}
+
+var enemy_data: Dictionary = {
+	"enemy_id": "eng_0",
+	"enemy_size": "Small",
+	"enemy_subject": "English",
+}
+#endregion
 
 func _ready():
 	if OS.has_feature("editor"):
-		SAVE_PATH = "res://save_game.json"
+		save_file = "res://save_game.json"
+		player = "res://player.json"
+		player_questions= "res://player_questions.json"
+		enemy= "res://enemy_data.json"
 	else:
-		SAVE_PATH = OS.get_executable_path().get_base_dir() + "/save_game.json"
-	print("Save path: ", SAVE_PATH)
+		save_file = OS.get_executable_path().get_base_dir() +  "/save_game.json"
+		player = OS.get_executable_path().get_base_dir() + "/player.json"
+		player_questions= OS.get_executable_path().get_base_dir() + "/player_questions.json"
+		enemy= OS.get_executable_path().get_base_dir() + "/enemy_data.json"
 
-func save_game(data: Dictionary, savePath: String = SAVE_PATH) -> void:
+
+func save_game(data: Dictionary, savePath: String) -> void:
+	if savePath == "save_file":
+		savePath = save_file
+	elif savePath == "player_file":
+		savePath = player
+	elif savePath == "player_questions":
+		savePath = player_questions
+	elif savePath == "enemy_file":
+		savePath = enemy
+	
+	
 	var file = FileAccess.open(savePath, FileAccess.WRITE)
 	
 	if file:
@@ -51,11 +98,20 @@ func save_game(data: Dictionary, savePath: String = SAVE_PATH) -> void:
 	else:
 		print("Failed to save! Error: ", FileAccess.get_open_error())
 
-func load_game(savePath: String = SAVE_PATH) -> Dictionary:
-	print(savePath)
+func load_game(savePath: String) -> Dictionary:
+	if savePath == "save_file":
+		savePath = save_file
+	elif savePath == "player_file":
+		savePath = player
+	elif savePath == "player_questions":
+		savePath = player_questions
+	elif savePath == "enemy_file":
+		savePath = enemy
+	
 	if not FileAccess.file_exists(savePath):
 		print("No save file found!")
 		return {}
+	
 	var file = FileAccess.open(savePath, FileAccess.READ)
 	if file:
 		var content = file.get_as_text()

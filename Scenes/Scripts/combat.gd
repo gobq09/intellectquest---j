@@ -2,7 +2,15 @@ extends Control
 
 #region variables
 
-@onready var english_questions = SaveManager.load_game("res://player_questions.json")["english_questions"]
+@onready var english_questions = SaveManager.load_game("player_questions")["english_questions"]
+@onready var science_questions = SaveManager.load_game("player_questions")["science_questions"]
+@onready var math_questions = SaveManager.load_game("player_questions")["math_questions"]
+@onready var fil_questions = SaveManager.load_game("player_questions")["fil_questions"]
+@onready var game_data = SaveManager.load_game("save_file")
+
+@onready var last_scene = SaveManager.load_game("save_file")["last_scene"]
+@onready var last_position = SaveManager.load_game("save_file")["global_position"]
+
 @onready var ques_label: Label = $Control/Control/QuestionBg/QuestionLabel
 @onready var ans_button1: TextureButton = $Control/Control2/AnswerButton1
 @onready var ans_button2: TextureButton = $Control/Control2/AnswerButton2
@@ -25,14 +33,34 @@ extends Control
 
 #region more variables
 
-# Health values
-var player_health = 100
-var player_max_health = 100
-var enemy_health = 100
-var enemy_max_health = 100
+@onready var player_hp = SaveManager.load_game("res://player.json")["player_hp"]
+@onready var player_int = SaveManager.load_game("res://player.json")["player_int"]
+@onready var player_end = SaveManager.load_game("res://player.json")["player_end"]
+@onready var player_wis = SaveManager.load_game("res://player.json")["player_wis"]
+@onready var player_str = SaveManager.load_game("res://player.json")["player_str"]
+@onready var player_level = SaveManager.load_game("res://player.json")["player_level"]
+@onready var player_exp = SaveManager.load_game("res://player.json")["player_exp"]
 
-# Damage amounts
-var player_damage = 25
+# Player Stats
+@onready var player_health : int = player_hp
+@onready var player_max_health : int = 100 + (player_end * 2)
+@onready var player_max_damage : int = 10 + (player_int * 2) + 100
+@onready var player_min_damage : int = player_max_damage - 5 + 100
+@onready var player_damage: int
+@onready var player_critchance: float = player_wis * 0.25
+@onready var player_critdamage: float = 150 + (player_str * 1.5)
+
+@onready var enemy_small : Texture2D = preload("res://ui/combat/combat_sprites/combat-thresher.png")
+@onready var enemy_med : Texture2D = preload("res://ui/combat/combat_sprites/combat-squidbit.png")
+@onready var enemy_large : Texture2D = preload("res://ui/combat/combat_sprites/combat-driftwood.png")
+
+@onready var enemy_id = SaveManager.load_game("res://enemy_data.json")["enemy_id"]
+@onready var enemy_size = SaveManager.load_game("res://enemy_data.json")["enemy_size"]
+@onready var question_subject = SaveManager.load_game("res://enemy_data.json")["enemy_subject"]
+
+
+# Enemy Stats
+var enemy_health: int
 var enemy_damage = 25
 
 # Shake settings
@@ -50,18 +78,43 @@ var correct_answer: String
 
 var encountered_questions: Dictionary
 
-@export var question_subject: String = "English"
 var question_type
 var question_id: int
 #endregion
 
+#region combat load
 func _ready() -> void:
 	$Summary.visible = false
 	
-	if question_subject == "English":
-		question_type = english_questions
+	_load_enemy()
 	
 	_new_question()
+
+func _load_enemy() -> void:
+	if enemy_size == "small":
+		enemy_sprite.texture = enemy_small
+		enemy_damage = randi_range(5, 10)
+		enemy_health = randi_range(15, 30)
+	elif enemy_size == "med":
+		enemy_sprite.texture = enemy_med
+		enemy_damage = randi_range(10, 20)
+		enemy_health = randi_range(30, 50)
+	elif enemy_size == "large":
+		enemy_sprite.texture = enemy_large
+		enemy_damage = randi_range(20, 30)
+		enemy_health = randi_range(50, 100)
+	
+	enemy_health_bar.max_value = enemy_health
+	
+	if question_subject == "English":
+		question_type = english_questions
+	elif question_subject == "Science":
+		question_type = science_questions
+	elif question_subject == "Math":
+		question_type = math_questions
+	elif question_subject == "Filipino":
+		question_type = fil_questions
+#endregion
 
 #region combat ui
 func _new_question() -> void:
@@ -126,19 +179,24 @@ func _on_ok_button_pressed() -> void:
 
 func _on_correct_answer():
 	var tween = create_tween()
+	player_damage = randi_range(player_min_damage, player_max_damage)
 	
-	enemy_health -= enemy_damage
-	enemy_health = max(enemy_health, 0)
+	enemy_health -= player_damage
+	#enemy_health = max(enemy_health, 0)
 	tween.tween_property(enemy_health_bar, "value", enemy_health, 0.25)\
 	.set_ease(Tween.EASE_OUT)\
 	.set_trans(Tween.TRANS_SINE)
+	
 	anim_player.play("RESET")
 	await anim_player.animation_finished
 	shake(enemy_sprite)
 	print("Correct! Enemy HP: ", enemy_health)
 	if enemy_health <= 0:
+		print("on if")
 		_on_enemy_defeated()
 	else:
+		set_process_input(false)
+		anim_player.play("RESET")
 		await anim_player.animation_finished
 		anim_player.play("fade")
 		await anim_player.animation_finished
@@ -149,8 +207,8 @@ func _on_correct_answer():
 func _on_wrong_answer():
 	var tween = create_tween()
 	
-	player_health -= player_damage
-	player_health = max(player_health, 0)
+	player_health -= enemy_damage
+	#player_health = max(player_health, 0)
 	tween.tween_property(player_health_bar, "value", player_health, 0.25)\
 	.set_ease(Tween.EASE_OUT)\
 	.set_trans(Tween.TRANS_SINE)
@@ -220,6 +278,8 @@ func _on_enemy_defeated():
 	
 	await get_tree().create_timer(1).timeout
 	
+	game_data["defeated_enemies"][game_data["defeated_enemies"].size()] = enemy_id
+	SaveManager.save_game(game_data, "save_file")
 	_battle_summary()
 	#textbox1_was_open = true
 	#$"textbox".visible = true
@@ -300,5 +360,5 @@ func _evaluate():
 func _on_texture_button_pressed() -> void:
 	anim_player.play("summary_confirm")
 	await anim_player.animation_finished
-	SceneLoader.load_scene("uid://x8j1q0cr8ykf")
+	SceneLoader.load_scene(last_scene)
 #endregion

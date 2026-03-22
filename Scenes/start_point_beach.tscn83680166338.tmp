@@ -93,10 +93,10 @@ position_smoothing_speed = 10.0
 [node name="enemy" parent="Node2D" instance=ExtResource("10_8s118")]
 position = Vector2(-216, -26)
 enemy_id = "eng_1"
-enemy_type = "small"
+enemy_type = "med"
 enemy_subject = "English"
 
-[node name="enemy2" parent="Node2D" groups=["Persist"] instance=ExtResource("10_8s118")]
+[node name="enemy2" parent="Node2D" instance=ExtResource("10_8s118")]
 position = Vector2(-302, -26)
 enemy_id = "sci_0"
 enemy_type = "small"
