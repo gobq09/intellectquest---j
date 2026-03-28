@@ -6,6 +6,7 @@ signal enemy_collected
 
 var locked = false
 @onready var game_data = SaveManager.load_game("save_file")
+@onready var timer = $Timer
 
 @export var speed = 80
 @export var friction = 0.3
@@ -28,7 +29,7 @@ func _ready() -> void:
 		await ani_tree.animation_finished
 
 func _convert(string):
-	var new_string: String = string
+	var new_string: String = str(string)
 	new_string = new_string.erase(0, 1)
 	new_string = new_string.erase(new_string.length() - 1, 1)
 	var array: Array = new_string.split(", ")
@@ -58,18 +59,17 @@ func _cutscene(animation: String = "null") -> void:
 func _physics_process(_delta):
 	var direction = get_input()
 	
-	# joystick override (for mobile)
-	if joystick and joystick.direction != Vector2.ZERO:
-		direction = joystick.direction
+	var angle = direction.angle()
+	var snapped_angle = snapped(angle, TAU / 8.0)
+	var snapped_direction = Vector2.from_angle(snapped_angle)
+	
 	if direction.length() > 0:
-		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
-		print(position)
-		game_data["global_position"] = position
-		SaveManager.save_game(game_data, "save_file")
+		velocity = velocity.lerp(snapped_direction.normalized() * speed, acceleration)
+		#print(position)
 		ani_tree.get("parameters/playback").travel("Walk")
 		ani_tree.set("parameters/Walk/blend_position", velocity)
 		ani_tree.set("parameters/Idle/blend_position", velocity)
-
+		timer.start()
 	else:
 		velocity = velocity.lerp(Vector2.ZERO, friction)
 		ani_tree.get("parameters/playback").travel("Idle")
@@ -77,3 +77,8 @@ func _physics_process(_delta):
 
 func collect(item):
 	print(item)
+
+
+func _on_timer_timeout() -> void:
+	game_data["global_position"] = position
+	SaveManager.save_game(game_data, "save_file")

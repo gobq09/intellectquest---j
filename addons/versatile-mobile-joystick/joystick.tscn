@@ -1,19 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://btf0iccai10qr"]
+[gd_scene load_steps=3 format=3 uid="uid://btf0iccai10qr"]
 
 [ext_resource type="Script" uid="uid://lcsb24etxvyb" path="res://addons/versatile-mobile-joystick/joystick.gd" id="1_ofv6b"]
-
-[sub_resource type="MeshTexture" id="MeshTexture_ytdir"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_46m5w"]
 radius = 4.0
 
 [node name="JoystickController" type="Node2D"]
 script = ExtResource("1_ofv6b")
-base_texture = SubResource("MeshTexture_ytdir")
-left_movement = "left"
-right_movement = "right"
-up_movement = "up"
-down_movement = "down"
 
 [node name="Joystick" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -23,7 +16,6 @@ unique_name_in_owner = true
 
 [node name="Base" type="Sprite2D" parent="Joystick"]
 unique_name_in_owner = true
-texture = SubResource("MeshTexture_ytdir")
 
 [node name="TouchDetectorIndicator" type="Area2D" parent="."]
 collision_layer = 0

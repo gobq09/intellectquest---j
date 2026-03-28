@@ -26,7 +26,7 @@ PlayerQuestions="*res://Scenes/Scripts/player_questions.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/versatile-mobile-joystick/plugin.cfg")
 
 [input]
 

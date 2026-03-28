@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dflg8r076r3qe"]
+[gd_scene load_steps=28 format=3 uid="uid://dflg8r076r3qe"]
 
 [ext_resource type="Script" uid="uid://cj0426geyvlas" path="res://Scenes/Scripts/hud.gd" id="1_17k45"]
 [ext_resource type="Texture2D" uid="uid://gaxtq7vrwunw" path="res://ui/hud/interface-hud-hpbar4.png" id="2_7n2a2"]
@@ -12,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://dvciqueies7yf" path="res://ui/hud/interface-hud-mapbutton.png" id="9_7bydo"]
 [ext_resource type="Texture2D" uid="uid://vgcrkf3sxh1o" path="res://ui/hud/interface-hud-settingsbutton.png" id="10_dpbjw"]
 [ext_resource type="Texture2D" uid="uid://oqc5jik5j7hs" path="res://ui/hud/interface-hud-archivebutton.png" id="11_7n2a2"]
+[ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="13_farlp"]
+[ext_resource type="Texture2D" uid="uid://drsd8ovbsojux" path="res://ui/hud/interface-joystick-base.png" id="14_bdvyw"]
+[ext_resource type="Texture2D" uid="uid://cnhcx0xvmmitb" path="res://ui/hud/interface-joystick-stick.png" id="15_wruxn"]
 
 [sub_resource type="Gradient" id="Gradient_hx0r7"]
 offsets = PackedFloat32Array(0, 0.197183, 0.457746, 1)
@@ -21,6 +24,20 @@ colors = PackedColorArray(0, 0, 0, 1, 0.408611, 0.408611, 0.408611, 1, 0.78169, 
 gradient = SubResource("Gradient_hx0r7")
 width = 56
 height = 9
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b3mme"]
+radius = 0.01
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7bydo"]
+radius = 56.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpbjw"]
+size = Vector2(360, 360)
+
+[sub_resource type="Curve" id="Curve_bdvyw"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+metadata/_snap_enabled = true
 
 [sub_resource type="Theme" id="Theme_7n2a2"]
 
@@ -266,7 +283,29 @@ offset_right = 10.0
 offset_bottom = 32.0
 texture_normal = ExtResource("10_dpbjw")
 
+[node name="Joystick" type="Control" parent="HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+
+[node name="JoystickController" parent="HUD/Joystick" instance=ExtResource("13_farlp")]
+position = Vector2(224, -168)
+scale = Vector2(4, 4)
+base_texture = ExtResource("14_bdvyw")
+tip_texture = ExtResource("15_wruxn")
+deadzone_circle = SubResource("CircleShape2D_b3mme")
+tip_limit_circle = SubResource("CircleShape2D_7bydo")
+touch_detection_region = SubResource("RectangleShape2D_dpbjw")
+strength_curve = SubResource("Curve_bdvyw")
+left_movement = "left"
+right_movement = "right"
+up_movement = "up"
+down_movement = "down"
+
 [node name="Panels" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
