@@ -144,7 +144,11 @@ func _on_confirm_pressed() -> void:
 	name_input.editable = false
 	diff_next.disabled = true
 	diff_prev.disabled = true
-	player_name = name_input.text
+	
+	if name_input.text == "":
+		player_name = "Quinn"
+	else:
+		player_name = name_input.text
 	
 	PlayerQuestions.copy_questions(diff_label.text)
 	SaveManager.game_data = SaveManager.default_game_data
@@ -157,7 +161,7 @@ func _on_confirm_pressed() -> void:
 	SaveManager.save_game(SaveManager.game_data, "save_file")
 	SaveManager.save_game(SaveManager.player_data, "player_file")
 	SaveManager.save_game(SaveManager.enemy_data, "enemy_file")
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1.5).timeout
 	
 	SceneLoader.load_scene("uid://dt532wlk4w78h")
 #endregion

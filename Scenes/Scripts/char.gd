@@ -7,6 +7,11 @@ signal enemy_collected
 var locked = false
 @onready var game_data = SaveManager.load_game("save_file")
 @onready var timer = $Timer
+@onready var player_data = SaveManager.load_game("player_file")
+@onready var sprite : Sprite2D = $Sprite2D
+@onready var male_sprite: CompressedTexture2D = preload("res://Sprites/player/sprite-playermale.png")
+@onready var female_sprite: CompressedTexture2D = preload("res://Sprites/player/sprite-playerfemale.png")
+
 
 @export var speed = 80
 @export var friction = 0.3
@@ -18,9 +23,11 @@ var locked = false
 @onready var last_position : String = game_data["global_position"]
 
 func _ready() -> void:
-	print(_convert(last_position))
+	if player_data["chosen"] == "Female":
+		sprite.texture = female_sprite
+	else:
+		sprite.texture = male_sprite
 	position = _convert(last_position)
-	print(position)
 	ani_tree.set("parameters/Idle/blend_position", Vector2(0,1))
 	self.set_process_input(false) 
 	if  SaveManager.load_game("save_file")["new_game"] == true:

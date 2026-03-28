@@ -30,6 +30,7 @@ extends Control
 @onready var str_button_add = $Control/Stats/Control/Str_Buttons/add
 @onready var str_button_sub = $Control/Stats/Control/Str_Buttons/sub
 @onready var str_button_label = $Control/Stats/Control/Str_Buttons/counter
+@onready var sprite = $Control/Sprite2D
 
 @onready var player_data = SaveManager.load_game("player_file")
 @onready var player_int : int = player_data["player_int"]
@@ -42,6 +43,9 @@ extends Control
 @onready var unused_stat : int = player_data["unused_stats"]
 @onready var last_scene = SaveManager.load_game("save_file")["last_scene"]
 
+@onready var male_texture: Texture2D = preload("res://Sprites/player/sprite-playermale.png")
+@onready var female_texture: Texture2D = preload("res://Sprites/player/sprite-playerfemale.png")
+
 #@export var unused_stat: int = 10
 
 var int_counter: int
@@ -52,6 +56,11 @@ var str_counter: int
 #endregion
 
 func _ready() -> void:
+	if player_data["chosen"] == "Female":
+		sprite.texture = female_texture
+	else:
+		sprite.texture = male_texture
+	
 	name_label.text = "[b]Name:[/b] " + player_data["player_name"]
 	level_counter.text = "[b]Level:[/b] " + str(level)
 	

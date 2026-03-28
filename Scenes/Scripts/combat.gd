@@ -36,8 +36,14 @@ extends Control
 @onready var anim_player = $AnimationPlayer
 @onready var player_hplabel: RichTextLabel = $HP/PlayerHP/Player_Label
 @onready var enemy_hplabel: RichTextLabel = $HP/EnemyHP/Enemy_Label
+@onready var portrait : Sprite2D = $"HP/PlayerHP/Interface-combat-playerportait1-male"
 
 @onready var ans_sprite: Array = [ans1, ans2, ans3, ans4]
+@onready var male_sprite: CompressedTexture2D = preload("res://ui/combat/combat_sprites/combat-player1.png")
+@onready var female_sprite: CompressedTexture2D = preload("res://ui/combat/combat_sprites/combat-player2.png")
+@onready var male_portrait: CompressedTexture2D = preload("res://ui/combat/interface-combat-playerportait1-male.png")
+@onready var female_portrait: CompressedTexture2D = preload("res://ui/combat/interface-combat-playerportait1-female.png")
+
 #endregion
 
 #region more variables
@@ -98,10 +104,18 @@ var question_id: int
 func _ready() -> void:
 	$Summary.visible = false
 	
+	if player_data["chosen"] == "Female":
+		player_sprite.texture = female_sprite
+		portrait.texture = female_portrait
+	else:
+		player_sprite.texture = male_sprite
+		portrait.texture = male_portrait
+	
 	_load_enemy()
 	
 	player_hplabel.text = "[b]" + str(player_health) + " / " + str(player_max_health) +"[/b]"
 	enemy_hplabel.text = "[b]" + str(enemy_health) + " / " + str(enemy_max_health) +"[/b]"
+	
 	_new_question()
 
 func _load_enemy() -> void:

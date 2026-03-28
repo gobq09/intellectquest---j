@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c0dbktvohlh5" path="res://Scenes/Scripts/combat.gd" id="1_8xcd4"]
 [ext_resource type="Texture2D" uid="uid://cocirnqmaocmm" path="res://ui/combat/interface-combat-bg1.png" id="1_xisnc"]
-[ext_resource type="Texture2D" uid="uid://oihepmv71k2w" path="res://ui/combat/combat_sprites/combat-player.png" id="3_8xcd4"]
+[ext_resource type="Texture2D" uid="uid://c6rth4a1006wf" path="res://ui/combat/combat_sprites/combat-player1.png" id="4_ley77"]
 [ext_resource type="Texture2D" uid="uid://b2kk7xo4wwt83" path="res://ui/combat/interface-combat-hpbar1.png" id="5_50454"]
 [ext_resource type="Texture2D" uid="uid://jsiqpuvw66oh" path="res://ui/combat/combat_sprites/combat-driftwood.png" id="5_ley77"]
 [ext_resource type="Texture2D" uid="uid://churc6kbe1e4c" path="res://ui/combat/interface-combat-playerportait2.png" id="6_ceo1n"]
@@ -367,6 +367,21 @@ _data = {
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8ge6"]
 bg_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_tmuf1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_ley77"]
 resource_name = "show"
 length = 0.5
@@ -382,21 +397,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_tmuf1"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5kjvk"]
@@ -491,7 +491,7 @@ grow_vertical = 2
 [node name="Player" type="Sprite2D" parent="Back/Control2"]
 position = Vector2(256, 208)
 scale = Vector2(4, 4)
-texture = ExtResource("3_8xcd4")
+texture = ExtResource("4_ley77")
 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color(1, 1, 1, 0.360784)
@@ -624,6 +624,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("11_3cqtn")
 
 [node name="Enemy_Label" type="RichTextLabel" parent="HP/EnemyHP"]
+layout_mode = 0
 offset_left = 768.0
 offset_top = 82.0
 offset_right = 962.0

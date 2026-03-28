@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oihepmv71k2w"
-path="res://.godot/imported/combat-player.png-c7ff43764eeffe181e455a1d6ee153a0.ctex"
+uid="uid://c3eat7bobtm2d"
+path="res://.godot/imported/interface-combat-playerportait1-male.png-1b1df13a507f11b0d018d37f3744c0ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/combat/combat_sprites/combat-player.png"
-dest_files=["res://.godot/imported/combat-player.png-c7ff43764eeffe181e455a1d6ee153a0.ctex"]
+source_file="res://ui/interface-combat-playerportait1-male.png"
+dest_files=["res://.godot/imported/interface-combat-playerportait1-male.png-1b1df13a507f11b0d018d37f3744c0ac.ctex"]
 
 [params]
 

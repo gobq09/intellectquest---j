@@ -12,8 +12,9 @@ extends Control
 
 func _ready() -> void:
 	level.text = str(int(player_data["player_level"]))
-	hp_bar.value = (player_data["player_hp"] / (100 + player_data ["player_end"])) * 100
-	bar.position.x = (hp_bar.value / 2) + 32
+	var max_hp = (player_data["player_end"] * 2) + 50
+	hp_bar.value = (player_data["player_hp"] / max_hp) * 100
+	#bar.position.x = (hp_bar.value / 2) + 32
 
 func _on_interfacehudtodo_pressed() -> void:
 	print("Pressed")
