@@ -2,6 +2,8 @@
 @icon("res://addons/versatile-mobile-joystick/JoystickNodeIcon.png")
 extends Node2D
 
+@onready var zone: float = 0.15
+
 # Joystick modes
 enum JoystickMode {
 	FIXED,      # Joystick doesn't move
@@ -235,10 +237,10 @@ func _move_and_calculate(event: InputEvent) -> void:
 # Update input actions based on movement
 func _update_input_actions(output: Vector2) -> void:
 	var actions = [
-		{"action": left_movement, "condition":  output.x < 0 && output.x < -0.15, "strength": -output.x},
-		{"action": right_movement, "condition": output.x > 0 && output.x > 0.15, "strength": output.x},
-		{"action": up_movement, "condition": output.y < 0 && output.y < -0.15, "strength": -output.y},
-		{"action": down_movement, "condition": output.y > 0 && output.y > 0.15, "strength": output.y}
+		{"action": left_movement, "condition":  output.x < 0 && output.x < -zone, "strength": -output.x},
+		{"action": right_movement, "condition": output.x > 0 && output.x > zone, "strength": output.x},
+		{"action": up_movement, "condition": output.y < 0 && output.y < -zone, "strength": -output.y},
+		{"action": down_movement, "condition": output.y > 0 && output.y > zone, "strength": output.y}
 	]
 	
 	# Trigger or release actions based on movement
