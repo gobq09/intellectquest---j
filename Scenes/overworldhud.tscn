@@ -32,10 +32,10 @@ radius = 0.01
 radius = 56.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpbjw"]
-size = Vector2(360, 360)
+size = Vector2(400, 400)
 
 [sub_resource type="Curve" id="Curve_bdvyw"]
-_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 1, Vector2(1, 0.5), 0.0, 0.0, 1, 0]
 point_count = 2
 metadata/_snap_enabled = true
 
@@ -299,6 +299,8 @@ deadzone_circle = SubResource("CircleShape2D_b3mme")
 tip_limit_circle = SubResource("CircleShape2D_7bydo")
 touch_detection_region = SubResource("RectangleShape2D_dpbjw")
 strength_curve = SubResource("Curve_bdvyw")
+joystick_mode = 0
+visibility_mode = 1
 left_movement = "left"
 right_movement = "right"
 up_movement = "up"

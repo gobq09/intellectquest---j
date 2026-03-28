@@ -115,9 +115,16 @@ var being_touched: bool = false:
 		# Control visibility based on mode
 		if being_touched:
 			if visibility_mode == VisibilityMode.WHEN_TOUCHED:
+				#%Joystick.modulate.a = 1
 				%Joystick.show()
 		else:
 			if visibility_mode == VisibilityMode.WHEN_TOUCHED:
+				#var tween = create_tween()
+				#
+				#tween.tween_property(%Joystick, "modulate:a", 0, 0.25)\
+				#.set_ease(Tween.EASE_OUT)\
+				#.set_trans(Tween.TRANS_SINE)
+				
 				%Joystick.hide()
 
 # Initial setup
@@ -228,10 +235,10 @@ func _move_and_calculate(event: InputEvent) -> void:
 # Update input actions based on movement
 func _update_input_actions(output: Vector2) -> void:
 	var actions = [
-		{"action": left_movement, "condition": output.x < 0, "strength": -output.x},
-		{"action": right_movement, "condition": output.x > 0, "strength": output.x},
-		{"action": up_movement, "condition": output.y < 0, "strength": -output.y},
-		{"action": down_movement, "condition": output.y > 0, "strength": output.y}
+		{"action": left_movement, "condition":  output.x < 0 && output.x < -0.15, "strength": -output.x},
+		{"action": right_movement, "condition": output.x > 0 && output.x > 0.15, "strength": output.x},
+		{"action": up_movement, "condition": output.y < 0 && output.y < -0.15, "strength": -output.y},
+		{"action": down_movement, "condition": output.y > 0 && output.y > 0.15, "strength": output.y}
 	]
 	
 	# Trigger or release actions based on movement

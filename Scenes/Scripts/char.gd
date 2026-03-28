@@ -45,7 +45,7 @@ func get_input():
 		input.y += 1
 	if Input.is_action_pressed("up"):
 		input.y -= 1
-
+	
 	return input
 
 func _cutscene(animation: String = "null") -> void:
@@ -58,13 +58,13 @@ func _cutscene(animation: String = "null") -> void:
 
 func _physics_process(_delta):
 	var direction = get_input()
-	
-	var angle = direction.angle()
-	var snapped_angle = snapped(angle, TAU / 8.0)
-	var snapped_direction = Vector2.from_angle(snapped_angle)
+	#print(direction)
+
 	
 	if direction.length() > 0:
-		velocity = velocity.lerp(snapped_direction.normalized() * speed, acceleration)
+		#direction = direction.snapped(Vector2(0.5, 0.5))
+		
+		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
 		#print(position)
 		ani_tree.get("parameters/playback").travel("Walk")
 		ani_tree.set("parameters/Walk/blend_position", velocity)
