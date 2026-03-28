@@ -5,11 +5,13 @@ extends Control
 @onready var hp_bar: TextureProgressBar = $"HP/HP Bar"
 @onready var player_data = SaveManager.load_game("player_file")
 @onready var bar: Sprite2D = $"HP/Interface-hud-hpbar1"
+@onready var level: Label = $"HP/Interface-hud-level/RichTextLabel"
 
 # 100 = 82, 19
 # 0 = 32, 19
 
 func _ready() -> void:
+	level.text = str(int(player_data["player_level"]))
 	hp_bar.value = (player_data["player_hp"] / (100 + player_data ["player_end"])) * 100
 	bar.position.x = (hp_bar.value / 2) + 32
 
@@ -42,3 +44,7 @@ func _on_map_button_pressed() -> void:
 
 func _on_archive_button_pressed() -> void:
 	SceneLoader.load_scene("uid://cfvteqvw7wwp")
+
+
+func _on_interfacehudlevel_pressed() -> void:
+	SceneLoader.load_scene("uid://0q5mlknq6fk0")

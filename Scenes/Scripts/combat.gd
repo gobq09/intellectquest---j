@@ -7,6 +7,7 @@ extends Control
 @onready var math_questions = SaveManager.load_game("player_questions")["math_questions"]
 @onready var fil_questions = SaveManager.load_game("player_questions")["fil_questions"]
 @onready var game_data = SaveManager.load_game("save_file")
+@onready var player_data = SaveManager.load_game("player_file")
 
 @onready var eng_topics = Questions.english_topic
 @onready var sci_topics = Questions.science_topic
@@ -16,6 +17,7 @@ extends Control
 @onready var last_scene = SaveManager.load_game("save_file")["last_scene"]
 @onready var last_position = SaveManager.load_game("save_file")["global_position"]
 
+@onready var critical: RichTextLabel = $HP/Critical
 @onready var ques_label: Label = $Control/Control/QuestionBg/QuestionLabel
 @onready var ans_button1: TextureButton = $Control/Control2/AnswerButton1
 @onready var ans_button2: TextureButton = $Control/Control2/AnswerButton2
@@ -32,28 +34,31 @@ extends Control
 @onready var ui = $Control
 @onready var panel = $Panel
 @onready var anim_player = $AnimationPlayer
+@onready var player_hplabel: RichTextLabel = $HP/PlayerHP/Player_Label
+@onready var enemy_hplabel: RichTextLabel = $HP/EnemyHP/Enemy_Label
 
 @onready var ans_sprite: Array = [ans1, ans2, ans3, ans4]
 #endregion
 
 #region more variables
 
-@onready var player_hp = SaveManager.load_game("res://player.json")["player_hp"]
-@onready var player_int = SaveManager.load_game("res://player.json")["player_int"]
-@onready var player_end = SaveManager.load_game("res://player.json")["player_end"]
-@onready var player_wis = SaveManager.load_game("res://player.json")["player_wis"]
-@onready var player_str = SaveManager.load_game("res://player.json")["player_str"]
-@onready var player_level = SaveManager.load_game("res://player.json")["player_level"]
-@onready var player_exp = SaveManager.load_game("res://player.json")["player_exp"]
+@onready var player_hp = player_data["player_hp"]
+@onready var player_int = player_data["player_int"]
+@onready var player_end = player_data["player_end"]
+@onready var player_wis = player_data["player_wis"]
+@onready var player_str = player_data["player_str"]
+@onready var player_level = player_data["player_level"]
+@onready var player_exp = player_data["player_exp"]
+@onready var unused_stats = player_data["unused_stats"]
 
 # Player Stats
 @onready var player_health : int = player_hp
-@onready var player_max_health : int = 100 + (player_end * 2)
+@onready var player_max_health : int = 50 + (player_end * 2)
 @onready var player_max_damage : int = 10 + (player_int * 2)
 @onready var player_min_damage : int = player_max_damage - 5
 @onready var player_damage: int
-@onready var player_critchance: float = player_wis * 0.25
-@onready var player_critdamage: float = 150 + (player_str * 1.5)
+@onready var player_critchance: float = player_wis * 0.25 + 100
+@onready var player_critdamage: float = 1.5 + (player_str * 0.15)
 
 @onready var enemy_small : Texture2D = preload("res://ui/combat/combat_sprites/combat-thresher.png")
 @onready var enemy_med : Texture2D = preload("res://ui/combat/combat_sprites/combat-squidbit.png")
@@ -62,10 +67,11 @@ extends Control
 @onready var enemy_id = SaveManager.load_game("res://enemy_data.json")["enemy_id"]
 @onready var enemy_size = SaveManager.load_game("res://enemy_data.json")["enemy_size"]
 @onready var question_subject = SaveManager.load_game("res://enemy_data.json")["enemy_subject"]
-
+@onready var perfect : bool = true
 
 # Enemy Stats
 var enemy_health: int
+var enemy_max_health: int
 var enemy_damage = 25
 
 # Shake settings
@@ -94,6 +100,8 @@ func _ready() -> void:
 	
 	_load_enemy()
 	
+	player_hplabel.text = "[b]" + str(player_health) + " / " + str(player_max_health) +"[/b]"
+	enemy_hplabel.text = "[b]" + str(enemy_health) + " / " + str(enemy_max_health) +"[/b]"
 	_new_question()
 
 func _load_enemy() -> void:
@@ -110,6 +118,7 @@ func _load_enemy() -> void:
 		enemy_damage = randi_range(20, 30)
 		enemy_health = randi_range(50, 100)
 	
+	enemy_max_health = enemy_health
 	enemy_health_bar.max_value = enemy_health
 	
 	if question_subject == "English":
@@ -133,6 +142,9 @@ func _new_question() -> void:
 	question_id = randi_range(0, question_type.size() - 1)
 	
 	answers.clear()
+	while not question_type.has(str(question_id)):
+		question_id = randi_range(0, question_type.size() - 1)
+	
 	answers.append(question_type[str(question_id)]["Ans1"])
 	answers.append(question_type[str(question_id)]["Ans2"])
 	answers.append(question_type[str(question_id)]["Ans3"])
@@ -196,59 +208,74 @@ func _save_question(topic_type: String):
 	game_data[topic_type][game_data[topic_type].size() + 1] = int(question_type[str(question_id)]["TopicID"])
 
 func _on_correct_answer():
-	var tween = create_tween()
 	player_damage = randi_range(player_min_damage, player_max_damage)
 	
+	anim_player.play("RESET")
+	await anim_player.animation_finished
+	print("Correct! Enemy HP: ", enemy_health)
+	
+	set_process_input(false)
+	anim_player.play("RESET")
+	await anim_player.animation_finished
+
+	anim_player.play("fade")
+	await anim_player.animation_finished
+	ui.visible = false
+	panel.visible = false
+	
+	if randf_range(0, 1) <= (player_critchance / 100):
+		critical.visible = true
+		
+		$HP/Critical/AnimationPlayer.play("show")
+		shake(critical)
+		await get_tree().create_timer(0.6).timeout
+		
+		player_damage = round(player_damage * player_critdamage)
+		critical.visible = false
+	
 	enemy_health -= player_damage
-	#enemy_health = max(enemy_health, 0)
+	var tween = create_tween()
 	tween.tween_property(enemy_health_bar, "value", enemy_health, 0.25)\
 	.set_ease(Tween.EASE_OUT)\
 	.set_trans(Tween.TRANS_SINE)
-	
-	anim_player.play("RESET")
-	await anim_player.animation_finished
 	shake(enemy_sprite)
-	print("Correct! Enemy HP: ", enemy_health)
+	
 	if enemy_health <= 0:
-		print("on if")
 		_on_enemy_defeated()
 	else:
-		set_process_input(false)
-		anim_player.play("RESET")
-		await anim_player.animation_finished
-		anim_player.play("fade")
-		await anim_player.animation_finished
-		ui.visible = false
-		panel.visible = false
 		_new_question()
 
 func _on_wrong_answer():
-	var tween = create_tween()
+	perfect = false
+	player_health = round(player_health - enemy_damage)
 	
-	player_health -= enemy_damage
-	#player_health = max(player_health, 0)
+	anim_player.play("RESET")
+	await anim_player.animation_finished
+
+	print("Wrong! Player HP: ", player_health)
+	
+	set_process_input(false)
+	anim_player.play("RESET")
+	await anim_player.animation_finished
+	anim_player.play("fade")
+	await anim_player.animation_finished
+	ui.visible = false
+	panel.visible = false
+	
+	var tween = create_tween()
 	tween.tween_property(player_health_bar, "value", player_health, 0.25)\
 	.set_ease(Tween.EASE_OUT)\
 	.set_trans(Tween.TRANS_SINE)
-	anim_player.play("RESET")
-	await anim_player.animation_finished
 	shake(player_sprite)
-	print("Wrong! Player HP: ", player_health)
+	
 	if player_health <= 0:
 		_on_player_defeated()
 	else:
-		set_process_input(false)
-		anim_player.play("RESET")
-		await anim_player.animation_finished
-		anim_player.play("fade")
-		await anim_player.animation_finished
-		ui.visible = false
-		panel.visible = false
 		_new_question()
 #endregion
 
 #region combat logic
-func shake(node: Node2D):
+func shake(node):
 	var origin = node.position
 	var elapsed = 0.0
 	var orig = node.modulate
@@ -362,15 +389,43 @@ func _evaluate():
 		summary_ans = encountered_questions[count]["Answer"]
 		if encountered_questions[count]["Correct"] == true:
 			summary_cor = "  ✔"
+			exp_gain += randi_range(5, 10)
 		else:
 			summary_cor = "  ❌"
+			exp_gain += randi_range(1, 5)
 		
 		summary_text.text += "[b]" + summary_ques + "[/b]" + "\n" + summary_ans + summary_cor + "\n\n"
 		count += 1
-		exp_gain += randi_range(1, 10)
+		
 		await get_tree().create_timer(1).timeout
 	
+	if perfect == true:
+		summary_text.text += "[b]PERFECT![/b] Bonus Exp Added.\n\n"
+		exp_gain += (exp_gain * 0.1) + (player_level * 0.5)
+	
 	summary_text.text += "Experience Gained: " + str(exp_gain) + "\n\n"
+	
+	var total_exp : float = player_exp + exp_gain
+	var exp_require : float = player_level * 15.5
+	
+	while total_exp >= exp_require:
+		await get_tree().create_timer(0.5).timeout
+		if total_exp < exp_require:
+			break
+		else:
+			total_exp -= exp_require
+		summary_text.text += "[b]Leveled up![/b]\n"
+		
+		player_health = player_max_health
+		player_data["player_level"] = player_level + 1
+		player_data["unused_stats"] = unused_stats + 3
+		
+		await get_tree().create_timer(0.5).timeout
+	
+	summary_text.text += "\n\n\n"
+	player_data["player_hp"] = player_health
+	player_data["player_exp"] = total_exp
+	SaveManager.save_game(player_data, "player_file")
 	
 	await get_tree().create_timer(2).timeout
 	
@@ -382,3 +437,11 @@ func _on_texture_button_pressed() -> void:
 	await anim_player.animation_finished
 	SceneLoader.load_scene(last_scene)
 #endregion
+
+
+func _on_enemy_health_bar_value_changed(value: float) -> void:
+	enemy_hplabel.text = "[b]" + str(enemy_health) + " / " + str(enemy_max_health) +"[/b]"
+
+
+func _on_player_health_bar_value_changed(value: float) -> void:
+	player_hplabel.text = "[b]" + str(player_health) + " / " + str(player_max_health) +"[/b]"

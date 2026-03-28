@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dxhaxrctujkex"]
+[gd_scene load_steps=37 format=3 uid="uid://dxhaxrctujkex"]
 
 [ext_resource type="Script" uid="uid://c0dbktvohlh5" path="res://Scenes/Scripts/combat.gd" id="1_8xcd4"]
 [ext_resource type="Texture2D" uid="uid://cocirnqmaocmm" path="res://ui/combat/interface-combat-bg1.png" id="1_xisnc"]
@@ -273,6 +273,8 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_8xcd4"]
 resource_name = "fade"
+length = 0.4
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -280,7 +282,7 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -292,7 +294,7 @@ tracks/1/path = NodePath("../Panel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.8),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.360784), Color(1, 1, 1, 0)]
@@ -364,6 +366,44 @@ _data = {
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8ge6"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_ley77"]
+resource_name = "show"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tmuf1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5kjvk"]
+_data = {
+&"RESET": SubResource("Animation_tmuf1"),
+&"show": SubResource("Animation_ley77")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50454"]
 bg_color = Color(0.121569, 0.0627451, 0.164706, 1)
@@ -472,17 +512,46 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Critical" type="RichTextLabel" parent="HP"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -76.0
+offset_right = 232.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.121569, 0.0627451, 0.164706, 1)
+theme_override_constants/outline_size = 32
+theme_override_font_sizes/bold_font_size = 64
+bbcode_enabled = true
+text = "[b]CRITICAL HIT![/b]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HP/Critical"]
+libraries = {
+&"": SubResource("AnimationLibrary_5kjvk")
+}
+
 [node name="PlayerHP" type="Control" parent="HP"]
 layout_mode = 1
 anchors_preset = 0
-scale = Vector2(4, 4)
 
 [node name="$PlayerHealthBar" type="ProgressBar" parent="HP/PlayerHP"]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 18.0
-offset_right = 108.0
-offset_bottom = 33.0
+offset_left = 160.0
+offset_top = 80.0
+offset_right = 428.0
+offset_bottom = 108.0
+theme_override_font_sizes/font_size = 18
 theme_override_styles/background = SubResource("StyleBoxFlat_50454")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ceo1n")
 step = 1.0
@@ -490,16 +559,32 @@ value = 100.0
 show_percentage = false
 
 [node name="Interface-combat-hpbar1" type="Sprite2D" parent="HP/PlayerHP"]
-position = Vector2(80, 24)
+position = Vector2(320, 88)
+scale = Vector2(4, 4)
 texture = ExtResource("5_50454")
 
 [node name="Interface-combat-playerportait2" type="Sprite2D" parent="HP/PlayerHP"]
-position = Vector2(24, 24)
+position = Vector2(96, 96)
+scale = Vector2(4, 4)
 texture = ExtResource("6_ceo1n")
 
 [node name="Interface-combat-playerportait1-male" type="Sprite2D" parent="HP/PlayerHP"]
-position = Vector2(24, 24)
+position = Vector2(96, 96)
+scale = Vector2(4, 4)
 texture = ExtResource("7_jcm61")
+
+[node name="Player_Label" type="RichTextLabel" parent="HP/PlayerHP"]
+layout_mode = 0
+offset_left = 194.0
+offset_top = 82.0
+offset_right = 384.0
+offset_bottom = 105.0
+bbcode_enabled = true
+text = "[b]100/100"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="EnemyHP" type="Control" parent="HP"]
 layout_mode = 1
@@ -509,14 +594,13 @@ anchor_right = 1.0
 offset_left = -1152.0
 offset_right = -1152.0
 grow_horizontal = 0
-scale = Vector2(4, 4)
 
 [node name="$EnemyHealthBar" type="ProgressBar" parent="HP/EnemyHP"]
 layout_mode = 0
-offset_left = 248.0
-offset_top = 31.0
-offset_right = 315.0
-offset_bottom = 46.0
+offset_left = 992.0
+offset_top = 108.0
+offset_right = 1256.0
+offset_bottom = 136.0
 rotation = 3.14159
 theme_override_styles/background = SubResource("StyleBoxFlat_jcm61")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ley77")
@@ -525,16 +609,31 @@ value = 100.0
 show_percentage = false
 
 [node name="Interface-combat-enemyhpbar1" type="Sprite2D" parent="HP/EnemyHP"]
-position = Vector2(208, 24)
+position = Vector2(832, 96)
+scale = Vector2(4, 4)
 texture = ExtResource("9_tmuf1")
 
 [node name="Interface-combat-enemyportait2" type="Sprite2D" parent="HP/EnemyHP"]
-position = Vector2(264, 24)
+position = Vector2(1056, 96)
+scale = Vector2(4, 4)
 texture = ExtResource("10_5kjvk")
 
 [node name="Interface-combat-enemyportait1" type="Sprite2D" parent="HP/EnemyHP"]
-position = Vector2(264, 24)
+position = Vector2(1056, 96)
+scale = Vector2(4, 4)
 texture = ExtResource("11_3cqtn")
+
+[node name="Enemy_Label" type="RichTextLabel" parent="HP/EnemyHP"]
+offset_left = 768.0
+offset_top = 82.0
+offset_right = 962.0
+offset_bottom = 105.0
+bbcode_enabled = true
+text = "[b]100/100"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Control" type="Control" parent="."]
 visible = false
@@ -662,6 +761,7 @@ texture_normal = ExtResource("13_y8jr2")
 stretch_mode = 3
 
 [node name="Summary" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -761,6 +861,8 @@ scroll_active = false
 scroll_following = true
 horizontal_alignment = 1
 
+[connection signal="value_changed" from="HP/PlayerHP/$PlayerHealthBar" to="." method="_on_player_health_bar_value_changed"]
+[connection signal="value_changed" from="HP/EnemyHP/$EnemyHealthBar" to="." method="_on_enemy_health_bar_value_changed"]
 [connection signal="pressed" from="Control/Control2/AnswerButton1" to="." method="_on_answer_button_1_pressed"]
 [connection signal="pressed" from="Control/OkButton" to="." method="_on_ok_button_pressed"]
 [connection signal="pressed" from="Summary/Control/TextureButton" to="." method="_on_texture_button_pressed"]

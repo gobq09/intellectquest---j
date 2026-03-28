@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bv2jvo7wjipfe"]
 
-[ext_resource type="Texture2D" uid="uid://bpqbrb6ti5bk" path="res://icon.svg" id="1_i8nxx"]
+[ext_resource type="Texture2D" uid="uid://dxy57adxvblwv" path="res://icon.svg" id="1_i8nxx"]
 [ext_resource type="Script" uid="uid://dnpq76l1yntjc" path="res://Scenes/Scripts/splash.gd" id="1_t3al1"]
 
 [sub_resource type="Theme" id="Theme_t3al1"]
@@ -8,40 +8,12 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xstc"]
 bg_color = Color(0, 0, 0, 1)
 
-[sub_resource type="Animation" id="Animation_qvm2y"]
-resource_name = "zoom"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.0176075, 1.56667, 3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_tmmas"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Icon:scale")
+tracks/0/path = NodePath("Control/Icon:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -53,7 +25,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Icon:modulate")
+tracks/1/path = NodePath("Control/Icon:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -63,18 +35,53 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_qvm2y"]
+resource_name = "zoom"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Icon:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Icon:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0176075, 1.56667, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hvtgh"]
 _data = {
 &"RESET": SubResource("Animation_tmmas"),
 &"zoom": SubResource("Animation_qvm2y")
 }
 
-[node name="Splash" type="CanvasLayer" node_paths=PackedStringArray("animation_player")]
+[node name="Splash" type="Control" node_paths=PackedStringArray("animation_player")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_t3al1")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="Panel" type="Panel" parent="."]
 modulate = Color(0, 0, 0, 1)
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -83,8 +90,21 @@ grow_vertical = 2
 theme = SubResource("Theme_t3al1")
 theme_override_styles/panel = SubResource("StyleBoxFlat_7xstc")
 
-[node name="Icon" type="Sprite2D" parent="."]
-position = Vector2(576, 320)
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" type="Sprite2D" parent="Control"]
 texture = ExtResource("1_i8nxx")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

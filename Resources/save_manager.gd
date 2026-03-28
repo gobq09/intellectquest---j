@@ -26,10 +26,10 @@ var default_player_data: Dictionary = {
 	"player_level": 1,
 	"player_exp": 0,
 	"player_hp": 100,
-	"player_int": 1,
-	"player_end": 1,
-	"player_wis": 1,
-	"player_str": 1,
+	"player_int": 0,
+	"player_end": 0,
+	"player_wis": 0,
+	"player_str": 0,
 	"unused_stats": 0,
 }
 
@@ -59,10 +59,10 @@ var player_data: Dictionary = {
 	"player_level": 1,
 	"player_exp": 0,
 	"player_hp": 100,
-	"player_int": 1,
-	"player_end": 1,
-	"player_wis": 1,
-	"player_str": 1,
+	"player_int": 0,
+	"player_end": 0,
+	"player_wis": 0,
+	"player_str": 0,
 	"unused_stats": 0,
 }
 

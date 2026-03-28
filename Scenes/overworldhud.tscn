@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dflg8r076r3qe"]
+[gd_scene load_steps=30 format=3 uid="uid://dflg8r076r3qe"]
 
 [ext_resource type="Script" uid="uid://cj0426geyvlas" path="res://Scenes/Scripts/hud.gd" id="1_17k45"]
 [ext_resource type="Texture2D" uid="uid://gaxtq7vrwunw" path="res://ui/hud/interface-hud-hpbar4.png" id="2_7n2a2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ceu81ju5a1voq" path="res://ui/hud/interface-hud-hpbar1.png" id="4_farlp"]
 [ext_resource type="Texture2D" uid="uid://c6lkpumxvacb2" path="res://ui/hud/interface-hud-level.png" id="5_flbuw"]
 [ext_resource type="Texture2D" uid="uid://bbyvf385jbh2v" path="res://ui/hud/interface-hud-topright2.png" id="6_bdvyw"]
+[ext_resource type="FontFile" uid="uid://bcd8phvnsnqfx" path="res://addons/fonts/Test-Regular.ttf" id="7_b3mme"]
 [ext_resource type="Texture2D" uid="uid://bw3331mxk3fd3" path="res://ui/hud/interface-hud-todo.png" id="7_wruxn"]
 [ext_resource type="Texture2D" uid="uid://btk3gygpn2ao1" path="res://ui/hud/interface-hud-topright1.png" id="8_b3mme"]
 [ext_resource type="Texture2D" uid="uid://dvciqueies7yf" path="res://ui/hud/interface-hud-mapbutton.png" id="9_7bydo"]
@@ -24,6 +25,10 @@ colors = PackedColorArray(0, 0, 0, 1, 0.408611, 0.408611, 0.408611, 1, 0.78169, 
 gradient = SubResource("Gradient_hx0r7")
 width = 56
 height = 9
+
+[sub_resource type="FontVariation" id="FontVariation_wruxn"]
+base_font = ExtResource("7_b3mme")
+spacing_glyph = -4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b3mme"]
 radius = 0.01
@@ -203,43 +208,65 @@ layout_mode = 1
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(4, 4)
 
 [node name="Interface-hud-hpbar4" type="Sprite2D" parent="HUD/HP"]
-position = Vector2(69, 20)
+position = Vector2(256, 72)
+scale = Vector2(4, 4)
 texture = ExtResource("2_7n2a2")
 
 [node name="HP Bar" type="TextureProgressBar" parent="HUD/HP"]
 layout_mode = 0
-offset_left = 29.0
-offset_top = 14.0
-offset_right = 85.0
-offset_bottom = 23.0
+offset_left = 88.0
+offset_top = 48.0
+offset_right = 144.0
+offset_bottom = 57.0
+scale = Vector2(4, 4)
 value = 50.0
 texture_progress = SubResource("GradientTexture2D_t4iiy")
 tint_progress = Color(0.99, 0.29502, 0.1881, 1)
 
 [node name="Interface-hud-hpbar3" type="Sprite2D" parent="HUD/HP"]
-position = Vector2(69, 20)
+position = Vector2(256, 72)
+scale = Vector2(4, 4)
 texture = ExtResource("3_17k45")
 
 [node name="Interface-hud-hpbar1" type="Sprite2D" parent="HUD/HP"]
-position = Vector2(82, 19)
+position = Vector2(200, 64)
+scale = Vector2(4, 4)
 texture = ExtResource("4_farlp")
 
-[node name="Interface-hud-level" type="Sprite2D" parent="HUD/HP"]
-position = Vector2(18, 18)
-texture = ExtResource("5_flbuw")
+[node name="Interface-hud-level" type="TextureButton" parent="HUD/HP"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+scale = Vector2(4, 4)
+texture_normal = ExtResource("5_flbuw")
+
+[node name="RichTextLabel" type="Label" parent="HUD/HP/Interface-hud-level"]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 80.0
+offset_bottom = 79.0
+scale = Vector2(0.25, 0.25)
+theme_type_variation = &"FontVariation"
+theme_override_colors/font_color = Color(0.670588, 0.239216, 0.0666667, 1)
+theme_override_fonts/font = SubResource("FontVariation_wruxn")
+theme_override_font_sizes/font_size = 48
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Archive Button" type="TextureButton" parent="HUD/HP"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = 12.0
+offset_top = 108.0
 offset_right = 32.0
-offset_bottom = 44.0
+offset_bottom = 140.0
 grow_vertical = 2
+scale = Vector2(4, 4)
 texture_normal = ExtResource("11_7n2a2")
 
 [node name="Control" type="Control" parent="HUD"]
@@ -343,6 +370,7 @@ libraries = {
 &"": SubResource("AnimationLibrary_farlp")
 }
 
+[connection signal="pressed" from="HUD/HP/Interface-hud-level" to="HUD" method="_on_interfacehudlevel_pressed"]
 [connection signal="pressed" from="HUD/HP/Archive Button" to="HUD" method="_on_archive_button_pressed"]
 [connection signal="pressed" from="HUD/Control/Task" to="HUD" method="_on_interfacehudtodo_pressed"]
 [connection signal="pressed" from="HUD/Control/Map Button" to="HUD" method="_on_map_button_pressed"]

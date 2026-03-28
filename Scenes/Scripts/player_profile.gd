@@ -31,14 +31,16 @@ extends Control
 @onready var str_button_sub = $Control/Stats/Control/Str_Buttons/sub
 @onready var str_button_label = $Control/Stats/Control/Str_Buttons/counter
 
-@onready var player_int : int = SaveManager.load_game()["player_int"]
-@onready var player_end : int = SaveManager.load_game()["player_end"]
-@onready var player_wis : int = SaveManager.load_game()["player_wis"]
-@onready var player_str : int = SaveManager.load_game()["player_str"]
-@onready var level : int = SaveManager.load_game()["player_level"]
-@onready var exp = SaveManager.load_game()["player_exp"]
+@onready var player_data = SaveManager.load_game("player_file")
+@onready var player_int : int = player_data["player_int"]
+@onready var player_end : int = player_data["player_end"]
+@onready var player_wis : int = player_data["player_wis"]
+@onready var player_str : int = player_data["player_str"]
+@onready var level : int = player_data["player_level"]
+@onready var exp = player_data["player_exp"]
 @onready var exp_require: float
-@onready var unused_stat : int = SaveManager.load_game()["unused_stats"]
+@onready var unused_stat : int = player_data["unused_stats"]
+@onready var last_scene = SaveManager.load_game("save_file")["last_scene"]
 
 #@export var unused_stat: int = 10
 
@@ -50,8 +52,11 @@ var str_counter: int
 #endregion
 
 func _ready() -> void:
-	name_label.text = "[b]Name:[/b] " + SaveManager.load_game()["player_name"]
+	name_label.text = "[b]Name:[/b] " + player_data["player_name"]
 	level_counter.text = "[b]Level:[/b] " + str(level)
+	
+	exp_require = round(level * 15.5)
+	
 	exp_counter.text = "[b]Exp:[/b] " + str(exp) + "/" + str(exp_require)
 	exp_bar.value = (exp / exp_require) * 100
 	
@@ -79,7 +84,7 @@ func _on_button_pressed() -> void:
 #endregion
 
 func _on_close_pressed() -> void:
-	pass # Replace with function body.
+	SceneLoader.load_scene(last_scene)
 
 #region stat
 func _on_reset_pressed() -> void:
@@ -148,13 +153,13 @@ func _on_confirm_pressed() -> void:
 		wis_button_add.disabled = false
 		str_button_add.disabled = false
 	
-	SaveManager.game_data["unused_stats"] = unused_stat
-	SaveManager.game_data["player_int"] = player_int
-	SaveManager.game_data["player_end"] = player_end
-	SaveManager.game_data["player_wis"] = player_wis
-	SaveManager.game_data["player_str"] = player_str
+	player_data["unused_stats"] = unused_stat
+	player_data["player_int"] = player_int
+	player_data["player_end"] = player_end
+	player_data["player_wis"] = player_wis
+	player_data["player_str"] = player_str
 	
-	SaveManager.save_game(SaveManager.game_data)
+	SaveManager.save_game(player_data, "player_file")
 	
 #endregion
 
