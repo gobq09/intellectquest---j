@@ -116,7 +116,7 @@ tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-22, -52)]
+"values": [Vector2(-32, -162)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -152,7 +152,7 @@ tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-20, -54)]
+"values": [Vector2(-23, -171)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -193,7 +193,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0.1, 0.3, 0.35, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-22, -52), Vector2(-76, -72), Vector2(-80, -76), Vector2(-76, -72), Vector2(-20, -54)]
+"values": [Vector2(-32, -162), Vector2(-144, -156), Vector2(-160, -180), Vector2(-144, -156), Vector2(-23, -171)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -229,7 +229,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.35, 0.45),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-20, -54), Vector2(-22, -52), Vector2(-22, -34), Vector2(-22, -52)]
+"values": [Vector2(-23, -171), Vector2(-22, -52), Vector2(-22, -34), Vector2(-32, -162)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -457,7 +457,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_xisnc")
-expand_mode = 5
+expand_mode = 3
 stretch_mode = 6
 
 [node name="Control" type="Control" parent="Back"]
@@ -547,10 +547,10 @@ anchors_preset = 0
 
 [node name="$PlayerHealthBar" type="ProgressBar" parent="HP/PlayerHP"]
 layout_mode = 0
-offset_left = 160.0
-offset_top = 80.0
-offset_right = 428.0
-offset_bottom = 108.0
+offset_left = 128.0
+offset_top = 64.0
+offset_right = 332.0
+offset_bottom = 92.0
 theme_override_font_sizes/font_size = 18
 theme_override_styles/background = SubResource("StyleBoxFlat_50454")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ceo1n")
@@ -559,26 +559,27 @@ value = 100.0
 show_percentage = false
 
 [node name="Interface-combat-hpbar1" type="Sprite2D" parent="HP/PlayerHP"]
-position = Vector2(320, 88)
-scale = Vector2(4, 4)
+position = Vector2(248, 72)
+scale = Vector2(3, 3)
 texture = ExtResource("5_50454")
 
 [node name="Interface-combat-playerportait2" type="Sprite2D" parent="HP/PlayerHP"]
-position = Vector2(96, 96)
-scale = Vector2(4, 4)
+position = Vector2(80, 80)
+scale = Vector2(3, 3)
 texture = ExtResource("6_ceo1n")
 
 [node name="Interface-combat-playerportait1-male" type="Sprite2D" parent="HP/PlayerHP"]
-position = Vector2(96, 96)
-scale = Vector2(4, 4)
+position = Vector2(80, 80)
+scale = Vector2(3, 3)
 texture = ExtResource("7_jcm61")
 
 [node name="Player_Label" type="RichTextLabel" parent="HP/PlayerHP"]
 layout_mode = 0
-offset_left = 194.0
-offset_top = 82.0
-offset_right = 384.0
-offset_bottom = 105.0
+offset_left = 128.0
+offset_top = 66.0
+offset_right = 318.0
+offset_bottom = 89.0
+theme_override_font_sizes/bold_font_size = 14
 bbcode_enabled = true
 text = "[b]100/100"
 fit_content = true
@@ -597,10 +598,10 @@ grow_horizontal = 0
 
 [node name="$EnemyHealthBar" type="ProgressBar" parent="HP/EnemyHP"]
 layout_mode = 0
-offset_left = 992.0
-offset_top = 108.0
-offset_right = 1256.0
-offset_bottom = 136.0
+offset_left = 1024.0
+offset_top = 92.0
+offset_right = 1225.0
+offset_bottom = 120.0
 rotation = 3.14159
 theme_override_styles/background = SubResource("StyleBoxFlat_jcm61")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ley77")
@@ -609,26 +610,27 @@ value = 100.0
 show_percentage = false
 
 [node name="Interface-combat-enemyhpbar1" type="Sprite2D" parent="HP/EnemyHP"]
-position = Vector2(832, 96)
-scale = Vector2(4, 4)
+position = Vector2(901, 80)
+scale = Vector2(3, 3)
 texture = ExtResource("9_tmuf1")
 
 [node name="Interface-combat-enemyportait2" type="Sprite2D" parent="HP/EnemyHP"]
-position = Vector2(1056, 96)
-scale = Vector2(4, 4)
+position = Vector2(1072, 80)
+scale = Vector2(3, 3)
 texture = ExtResource("10_5kjvk")
 
 [node name="Interface-combat-enemyportait1" type="Sprite2D" parent="HP/EnemyHP"]
-position = Vector2(1056, 96)
-scale = Vector2(4, 4)
+position = Vector2(1072, 80)
+scale = Vector2(3, 3)
 texture = ExtResource("11_3cqtn")
 
 [node name="Enemy_Label" type="RichTextLabel" parent="HP/EnemyHP"]
 layout_mode = 0
-offset_left = 768.0
-offset_top = 82.0
-offset_right = 962.0
-offset_bottom = 105.0
+offset_left = 826.0
+offset_top = 68.0
+offset_right = 1020.0
+offset_bottom = 91.0
+theme_override_font_sizes/bold_font_size = 14
 bbcode_enabled = true
 text = "[b]100/100"
 fit_content = true
@@ -637,7 +639,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Control" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -653,7 +654,6 @@ anchor_bottom = 1.0
 offset_top = -40.0
 offset_right = 40.0
 grow_vertical = 0
-scale = Vector2(4, 4)
 
 [node name="AnswerButton2" type="TextureButton" parent="Control/Control2"]
 layout_mode = 1
@@ -662,12 +662,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -74.0
-offset_right = 104.0
-offset_bottom = 6.0
+offset_left = -52.0
+offset_top = -182.0
+offset_right = 92.0
+offset_bottom = -102.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(3, 3)
 disabled = true
 texture_normal = ExtResource("12_3cqtn")
 
@@ -679,12 +680,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -42.0
-offset_top = -72.0
-offset_right = 102.0
-offset_bottom = 8.0
+offset_left = -43.0
+offset_top = -191.0
+offset_right = 101.0
+offset_bottom = -111.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(3, 3)
 texture_normal = ExtResource("11_ley77")
 
 [node name="AnswerLabel" type="Label" parent="Control/Control2"]
@@ -693,13 +695,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 8.0
-offset_top = -34.0
-offset_right = 296.0
-offset_bottom = 62.0
+offset_left = 24.0
+offset_top = -116.0
+offset_right = 312.0
+offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.25, 0.25)
+theme_override_font_sizes/font_size = 12
 text = "test"
 label_settings = SubResource("LabelSettings_tmuf1")
 horizontal_alignment = 1
@@ -751,13 +753,13 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -256.0
-offset_top = -256.0
-offset_right = -192.0
-offset_bottom = -192.0
+offset_left = -214.0
+offset_top = -212.0
+offset_right = -150.0
+offset_bottom = -148.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(4, 4)
+scale = Vector2(3, 3)
 texture_normal = ExtResource("13_y8jr2")
 stretch_mode = 3
 

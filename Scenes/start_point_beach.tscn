@@ -507,6 +507,12 @@ limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
 
+[node name="enemy5" parent="Node2D" instance=ExtResource("10_8s118")]
+position = Vector2(-44, -23)
+enemy_id = "eng_4"
+enemy_type = "med"
+enemy_subject = "English"
+
 [node name="enemy" parent="Node2D" instance=ExtResource("10_8s118")]
 position = Vector2(-216, -26)
 enemy_id = "eng_1"
@@ -543,11 +549,5 @@ shape = SubResource("RectangleShape2D_gophc")
 [node name="start_point_beach" type="Marker2D" parent="SpawnPoints"]
 
 [node name="game" type="Marker2D" parent="SpawnPoints"]
-
-[node name="enemy" parent="." instance=ExtResource("10_8s118")]
-position = Vector2(-44, -23)
-enemy_id = "eng_4"
-enemy_type = "med"
-enemy_subject = "English"
 
 [connection signal="body_entered" from="start_point_beach" to="start_point_beach" method="_on_body_entered"]

@@ -107,63 +107,70 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(4, 4)
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 0
-offset_left = -91.0
-offset_top = -74.0
-offset_right = 101.0
-offset_bottom = 86.0
+offset_left = -275.0
+offset_top = -218.0
+offset_right = -83.0
+offset_bottom = -58.0
+scale = Vector2(3, 3)
 texture = ExtResource("1_3u2c1")
 
-[node name="Name" type="RichTextLabel" parent="Control/TextureRect"]
+[node name="Control" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Name" type="RichTextLabel" parent="Control/Control"]
 layout_mode = 0
-offset_left = 56.25
-offset_top = 25.75
-offset_right = 388.25
-offset_bottom = 48.75
-scale = Vector2(0.25, 0.25)
+offset_left = -108.0
+offset_top = -141.0
+offset_right = 156.0
+offset_bottom = -118.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
 bbcode_enabled = true
 text = "Name: Name here"
 fit_content = true
 scroll_active = false
 
-[node name="Level" type="RichTextLabel" parent="Control/TextureRect"]
+[node name="Level" type="RichTextLabel" parent="Control/Control"]
 layout_mode = 0
-offset_left = 57.5
-offset_top = 34.5
-offset_right = 169.5
-offset_bottom = 57.5
-scale = Vector2(0.25, 0.25)
+offset_left = -115.0
+offset_top = -115.0
+offset_right = -3.0
+offset_bottom = -92.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
 bbcode_enabled = true
 text = "Level: 1"
 fit_content = true
 scroll_active = false
 
-[node name="Exp" type="RichTextLabel" parent="Control/TextureRect"]
+[node name="Exp" type="RichTextLabel" parent="Control/Control"]
 layout_mode = 0
-offset_left = 78.0
-offset_top = 34.0
-offset_right = 216.0
-offset_bottom = 57.0
-scale = Vector2(0.25, 0.25)
+offset_left = -57.75
+offset_top = -116.25
+offset_right = 80.25
+offset_bottom = -93.25
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 14
 bbcode_enabled = true
 text = "Exp: 12/23"
 fit_content = true
 scroll_active = false
 horizontal_alignment = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="Control/TextureRect"]
+[node name="ProgressBar" type="ProgressBar" parent="Control/Control"]
 layout_mode = 0
-offset_left = 114.0
-offset_top = 35.0
-offset_right = 228.0
-offset_bottom = 48.0
-scale = Vector2(0.25, 0.25)
+offset_left = 85.0
+offset_top = -113.0
+offset_right = 164.0
+offset_bottom = -98.0
 theme_override_styles/background = SubResource("StyleBoxFlat_csj3o")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4x0ni")
 rounded = true
@@ -171,42 +178,47 @@ show_percentage = false
 
 [node name="Reset" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = -37.0
-offset_top = 56.0
-offset_right = -5.0
-offset_bottom = 72.0
+offset_left = -107.0
+offset_top = 169.0
+offset_right = -75.0
+offset_bottom = 185.0
+scale = Vector2(3, 3)
 texture_normal = ExtResource("3_hep3m")
 stretch_mode = 3
 
 [node name="Confirm" type="TextureButton" parent="Control"]
 layout_mode = 0
-offset_left = 15.0
-offset_top = 54.0
-offset_right = 47.0
-offset_bottom = 70.0
+offset_left = 58.0
+offset_top = 166.0
+offset_right = 90.0
+offset_bottom = 182.0
+scale = Vector2(3, 3)
 texture_normal = ExtResource("4_q38xl")
 stretch_mode = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
-position = Vector2(-65, -42)
+position = Vector2(-195, -122)
+scale = Vector2(3, 3)
 texture = ExtResource("5_wl0qr")
 hframes = 8
 vframes = 8
 
 [node name="Stats" type="Control" parent="Control"]
 anchors_preset = 0
-offset_top = 4.0
-offset_right = 40.0
-offset_bottom = 44.0
+offset_left = -3.0
+offset_top = 22.0
+offset_right = 37.0
+offset_bottom = 62.0
 
 [node name="UnusedStat" type="RichTextLabel" parent="Control/Stats"]
 layout_mode = 0
-offset_left = -1.5
-offset_top = -12.0
-offset_right = 210.5
-offset_bottom = 11.0
-scale = Vector2(0.25, 0.25)
+offset_left = -80.0
+offset_top = -40.0
+offset_right = 160.0
+offset_bottom = -17.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 12
 bbcode_enabled = true
 text = "Unused Stat Points: 0"
 fit_content = true
@@ -215,12 +227,13 @@ horizontal_alignment = 2
 
 [node name="Intelligence" type="RichTextLabel" parent="Control/Stats"]
 layout_mode = 0
-offset_left = -34.5
-offset_top = -2.0
-offset_right = 191.5
-offset_bottom = 21.0
-scale = Vector2(0.25, 0.25)
+offset_left = -128.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 7.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
 text = "[b]Intelligence: [/b] 1"
 fit_content = true
@@ -228,12 +241,13 @@ scroll_active = false
 
 [node name="Endurance" type="RichTextLabel" parent="Control/Stats"]
 layout_mode = 0
-offset_left = -34.5
-offset_top = 10.0
-offset_right = 191.5
-offset_bottom = 33.0
-scale = Vector2(0.25, 0.25)
+offset_left = -128.0
+offset_top = 24.0
+offset_right = 48.0
+offset_bottom = 47.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
 text = "[b]Endurance: [/b] 1"
 fit_content = true
@@ -241,12 +255,13 @@ scroll_active = false
 
 [node name="Wisdom" type="RichTextLabel" parent="Control/Stats"]
 layout_mode = 0
-offset_left = -34.5
-offset_top = 22.0
-offset_right = 191.5
-offset_bottom = 45.0
-scale = Vector2(0.25, 0.25)
+offset_left = -128.0
+offset_top = 64.0
+offset_right = 48.0
+offset_bottom = 87.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
 text = "[b]Wisdom: [/b] 1"
 fit_content = true
@@ -254,12 +269,13 @@ scroll_active = false
 
 [node name="Strength" type="RichTextLabel" parent="Control/Stats"]
 layout_mode = 0
-offset_left = -34.5
-offset_top = 35.0
-offset_right = 191.5
-offset_bottom = 58.0
-scale = Vector2(0.25, 0.25)
+offset_left = -128.0
+offset_top = 104.0
+offset_right = 48.0
+offset_bottom = 127.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
 text = "[b]Strength: [/b] 1"
 fit_content = true
@@ -280,27 +296,31 @@ offset_bottom = 40.0
 
 [node name="add" type="Button" parent="Control/Stats/Control/Int_Buttons"]
 layout_mode = 0
-offset_left = 188.0
-offset_right = 212.0
-offset_bottom = 25.0
-theme_override_font_sizes/font_size = 12
+offset_left = 543.0
+offset_top = -43.0
+offset_right = 639.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 64
 text = "+"
 
 [node name="sub" type="Button" parent="Control/Stats/Control/Int_Buttons"]
 layout_mode = 0
-offset_left = 124.0
-offset_right = 148.0
-offset_bottom = 25.0
-theme_override_font_sizes/font_size = 12
+offset_left = 351.0
+offset_top = -43.0
+offset_right = 447.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 64
 disabled = true
 text = "-"
 
 [node name="counter" type="RichTextLabel" parent="Control/Stats/Control/Int_Buttons"]
 layout_mode = 0
-offset_left = 153.0
-offset_right = 185.0
-offset_bottom = 25.0
+offset_left = 479.0
+offset_top = -35.0
+offset_right = 511.0
+offset_bottom = 42.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 56
 text = "0
 "
 fit_content = true
@@ -315,27 +335,31 @@ offset_bottom = 88.0
 
 [node name="add" type="Button" parent="Control/Stats/Control/End_Buttons"]
 layout_mode = 0
-offset_left = 188.0
-offset_right = 212.0
-offset_bottom = 25.0
-theme_override_font_sizes/font_size = 12
+offset_left = 543.0
+offset_top = 61.0
+offset_right = 639.0
+offset_bottom = 157.0
+theme_override_font_sizes/font_size = 64
 text = "+"
 
 [node name="sub" type="Button" parent="Control/Stats/Control/End_Buttons"]
 layout_mode = 0
-offset_left = 124.0
-offset_right = 148.0
-offset_bottom = 25.0
-theme_override_font_sizes/font_size = 12
+offset_left = 351.0
+offset_top = 61.0
+offset_right = 447.0
+offset_bottom = 157.0
+theme_override_font_sizes/font_size = 64
 disabled = true
 text = "-"
 
 [node name="counter" type="RichTextLabel" parent="Control/Stats/Control/End_Buttons"]
 layout_mode = 0
-offset_left = 153.0
-offset_right = 185.0
-offset_bottom = 25.0
+offset_left = 479.0
+offset_top = 69.0
+offset_right = 511.0
+offset_bottom = 146.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 56
 text = "0
 "
 fit_content = true
@@ -350,27 +374,31 @@ offset_bottom = 136.0
 
 [node name="add" type="Button" parent="Control/Stats/Control/Wis_Buttons"]
 layout_mode = 0
-offset_left = 188.0
-offset_right = 212.0
-offset_bottom = 25.0
-theme_override_font_sizes/font_size = 12
+offset_left = 543.0
+offset_top = 173.0
+offset_right = 639.0
+offset_bottom = 269.0
+theme_override_font_sizes/font_size = 64
 text = "+"
 
 [node name="sub" type="Button" parent="Control/Stats/Control/Wis_Buttons"]
 layout_mode = 0
-offset_left = 124.0
-offset_right = 148.0
-offset_bottom = 25.0
-theme_override_font_sizes/font_size = 12
+offset_left = 351.0
+offset_top = 173.0
+offset_right = 447.0
+offset_bottom = 269.0
+theme_override_font_sizes/font_size = 64
 disabled = true
 text = "-"
 
 [node name="counter" type="RichTextLabel" parent="Control/Stats/Control/Wis_Buttons"]
 layout_mode = 0
-offset_left = 153.0
-offset_right = 185.0
-offset_bottom = 25.0
+offset_left = 479.0
+offset_top = 181.0
+offset_right = 511.0
+offset_bottom = 258.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 56
 text = "0
 "
 fit_content = true
@@ -385,27 +413,31 @@ offset_bottom = 188.0
 
 [node name="add" type="Button" parent="Control/Stats/Control/Str_Buttons"]
 layout_mode = 0
-offset_left = 188.0
-offset_right = 212.0
-offset_bottom = 25.0
-theme_override_font_sizes/font_size = 12
+offset_left = 543.0
+offset_top = 281.0
+offset_right = 639.0
+offset_bottom = 377.0
+theme_override_font_sizes/font_size = 64
 text = "+"
 
 [node name="sub" type="Button" parent="Control/Stats/Control/Str_Buttons"]
 layout_mode = 0
-offset_left = 124.0
-offset_right = 148.0
-offset_bottom = 25.0
-theme_override_font_sizes/font_size = 12
+offset_left = 351.0
+offset_top = 281.0
+offset_right = 447.0
+offset_bottom = 377.0
+theme_override_font_sizes/font_size = 64
 disabled = true
 text = "-"
 
 [node name="counter" type="RichTextLabel" parent="Control/Stats/Control/Str_Buttons"]
 layout_mode = 0
-offset_left = 153.0
-offset_right = 185.0
-offset_bottom = 25.0
+offset_left = 479.0
+offset_top = 289.0
+offset_right = 511.0
+offset_bottom = 366.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 56
 text = "0
 "
 fit_content = true

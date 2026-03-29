@@ -1,12 +1,10 @@
 extends Node
 
-var save_file: String 
-var player: String 
-var player_questions: String 
-var enemy: String
-
-
-
+@onready var save_file : String = "user://save_game.json"
+@onready var player : String = "user://player.json"
+@onready var player_questions : String = "user://player_questions.json"
+@onready var enemy : String = "user://enemy_data.json"
+# OS.get_executable_path().get_base_dir()
 #region default
 var default_game_data: Dictionary = {
 	"new_game": true,
@@ -74,16 +72,14 @@ var enemy_data: Dictionary = {
 #endregion
 
 func _ready():
-	if OS.has_feature("editor"):
-		save_file = "res://save_game.json"
-		player = "res://player.json"
-		player_questions= "res://player_questions.json"
-		enemy= "res://enemy_data.json"
-	else:
-		save_file = OS.get_executable_path().get_base_dir() +  "/save_game.json"
-		player = OS.get_executable_path().get_base_dir() + "/player.json"
-		player_questions= OS.get_executable_path().get_base_dir() + "/player_questions.json"
-		enemy= OS.get_executable_path().get_base_dir() + "/enemy_data.json"
+	#if OS.has_feature("editor"):
+	#save_file = "user://save_game.json"
+	#player = "user://player.json"
+	#player_questions = "user://player_questions.json"
+	#enemy = "user://enemy_data.json"
+	#else:
+	pass
+
 
 
 func save_game(data: Dictionary, savePath: String) -> void:
@@ -96,7 +92,6 @@ func save_game(data: Dictionary, savePath: String) -> void:
 	elif savePath == "enemy_file":
 		savePath = enemy
 	
-	
 	var file = FileAccess.open(savePath, FileAccess.WRITE)
 	
 	if file:
@@ -107,6 +102,7 @@ func save_game(data: Dictionary, savePath: String) -> void:
 		print("Failed to save! Error: ", FileAccess.get_open_error())
 
 func load_game(savePath: String) -> Dictionary:
+	print(savePath)
 	if savePath == "save_file":
 		savePath = save_file
 	elif savePath == "player_file":

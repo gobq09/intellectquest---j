@@ -6,10 +6,10 @@ extends Control
 @onready var help_button = $Help
 @onready var help_panel = $Button
 @onready var close_button = $Close
-@onready var name_label = $Control/TextureRect/Name
-@onready var level_counter = $Control/TextureRect/Level
-@onready var exp_counter = $Control/TextureRect/Exp
-@onready var exp_bar = $Control/TextureRect/ProgressBar
+@onready var name_label = $Control/Control/Name
+@onready var level_counter = $Control/Control/Level
+@onready var exp_counter = $Control/Control/Exp
+@onready var exp_bar = $Control/Control/ProgressBar
 @onready var player_sprite = $Control/Sprite2D
 @onready var reset = $Control/Reset
 @onready var confirm = $Control/Confirm

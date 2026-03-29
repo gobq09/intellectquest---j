@@ -41,11 +41,20 @@ var current_subject: Dictionary
 var current_source: Dictionary
 
 func _ready() -> void:
-	_on_english_pressed()
+	if english_size <= 0:
+		eng_button.disabled = true
+		
+	if science_size <= 0:
+		sci_button.disabled = true
 	
-	#get topicid
-	#get matching id from source
-	#
+	if math_size <= 0:
+		math_button.disabled = true
+	
+	if fil_size <= 0:
+		fil_button.disabled = true
+	
+	_on_english_pressed()
+
 
 func _on_close_pressed() -> void:
 	SceneLoader.load_scene(last_scene["last_scene"])

@@ -74,6 +74,7 @@ func start_battle() -> void:
 	enemy_data["enemy_size"] = enemy_type
 	enemy_data["enemy_subject"] = enemy_subject
 	SaveManager.save_game(enemy_data, "enemy_file")
+	
 	SceneLoader.load_scene(battle_scene)
 
 func _on_detection_area_area_entered(_area: Area2D) -> void:

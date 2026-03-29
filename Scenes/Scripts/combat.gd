@@ -70,9 +70,10 @@ extends Control
 @onready var enemy_med : Texture2D = preload("res://ui/combat/combat_sprites/combat-squidbit.png")
 @onready var enemy_large : Texture2D = preload("res://ui/combat/combat_sprites/combat-driftwood.png")
 
-@onready var enemy_id = SaveManager.load_game("res://enemy_data.json")["enemy_id"]
-@onready var enemy_size = SaveManager.load_game("res://enemy_data.json")["enemy_size"]
-@onready var question_subject = SaveManager.load_game("res://enemy_data.json")["enemy_subject"]
+@onready var enemy_data = SaveManager.load_game("enemy_file")
+@onready var enemy_id = enemy_data["enemy_id"]
+@onready var enemy_size = enemy_data["enemy_size"]
+@onready var question_subject = enemy_data["enemy_subject"]
 @onready var perfect : bool = true
 
 # Enemy Stats
@@ -112,7 +113,8 @@ func _ready() -> void:
 		portrait.texture = male_portrait
 	
 	_load_enemy()
-	
+	player_health_bar.max_value = player_max_health
+	enemy_health_bar.max_value = enemy_max_health
 	player_hplabel.text = "[b]" + str(player_health) + " / " + str(player_max_health) +"[/b]"
 	enemy_hplabel.text = "[b]" + str(enemy_health) + " / " + str(enemy_max_health) +"[/b]"
 	
@@ -215,12 +217,11 @@ func _on_ok_button_pressed() -> void:
 
 func _save_question(topic_type: String):
 	print(int(question_type[str(question_id)]["TopicID"]))
-	if game_data[topic_type].values().has(int(question_type[str(question_id)]["TopicID"])):
-		print("not saved")
-		return
-	print("saved")
-	game_data[topic_type][game_data[topic_type].size() + 1] = int(question_type[str(question_id)]["TopicID"])
-
+	print(game_data[topic_type].values().has(int(question_type[str(question_id)]["TopicID"])))
+	
+	if not game_data[topic_type].values().has(int(question_type[str(question_id)]["TopicID"])):
+		game_data[topic_type][game_data[topic_type].size() + 1] = int(question_type[str(question_id)]["TopicID"])
+	
 func _on_correct_answer():
 	player_damage = randi_range(player_min_damage, player_max_damage)
 	
@@ -421,6 +422,8 @@ func _evaluate():
 	
 	var total_exp : float = player_exp + exp_gain
 	var exp_require : float = player_level * 15.5
+	var level_up: int = player_level
+	var stats_add: int = unused_stats
 	
 	while total_exp >= exp_require:
 		await get_tree().create_timer(0.5).timeout
@@ -431,12 +434,14 @@ func _evaluate():
 		summary_text.text += "[b]Leveled up![/b]\n"
 		
 		player_health = player_max_health
-		player_data["player_level"] = player_level + 1
-		player_data["unused_stats"] = unused_stats + 3
+		level_up += 1
+		stats_add += 3
 		
 		await get_tree().create_timer(0.5).timeout
 	
 	summary_text.text += "\n\n\n"
+	player_data["player_level"] = level_up
+	player_data["unused_stats"] = stats_add
 	player_data["player_hp"] = player_health
 	player_data["player_exp"] = total_exp
 	SaveManager.save_game(player_data, "player_file")
