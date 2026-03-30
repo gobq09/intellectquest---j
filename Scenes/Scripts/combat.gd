@@ -63,7 +63,7 @@ extends Control
 @onready var player_max_damage : int = 10 + (player_int * 2)
 @onready var player_min_damage : int = player_max_damage - 5
 @onready var player_damage: int
-@onready var player_critchance: float = player_wis * 0.25 + 100
+@onready var player_critchance: float = player_wis * 0.25
 @onready var player_critdamage: float = 1.5 + (player_str * 0.15)
 
 @onready var enemy_small : Texture2D = preload("res://ui/combat/combat_sprites/combat-thresher.png")
@@ -75,6 +75,8 @@ extends Control
 @onready var enemy_size = enemy_data["enemy_size"]
 @onready var question_subject = enemy_data["enemy_subject"]
 @onready var perfect : bool = true
+
+var respawn_duration = 30
 
 # Enemy Stats
 var enemy_health: int
@@ -338,7 +340,8 @@ func _on_enemy_defeated():
 	
 	await get_tree().create_timer(1).timeout
 	
-	game_data["defeated_enemies"][game_data["defeated_enemies"].size()] = enemy_id
+	game_data["defeated_enemies"][enemy_id] = Time.get_unix_time_from_system() + respawn_duration
+	game_data["player_lost"] = false
 	SaveManager.save_game(game_data, "save_file")
 	_battle_summary()
 	#textbox1_was_open = true
@@ -372,6 +375,12 @@ func _on_player_defeated():
 	.set_trans(Tween.TRANS_SINE)
 	
 	await get_tree().create_timer(1).timeout
+	
+	player_data["player_hp"] = player_max_health
+	game_data["global_position"] = game_data["respawn_point"]
+	game_data["player_lost"] = true
+	SaveManager.save_game(game_data, "save_file")
+	SaveManager.save_game(player_data, "player_file")
 	
 	_battle_summary()
 	#$"textbox".visible = true
@@ -418,6 +427,14 @@ func _evaluate():
 		summary_text.text += "[b]PERFECT![/b] Bonus Exp Added.\n\n"
 		exp_gain += (exp_gain * 0.1) + (player_level * 0.5)
 	
+	if player_won == false:
+		await get_tree().create_timer(0.5).timeout
+		
+		summary_text.text += "[b]You'll get them next time![/b] \n-50% Exp Gained in this battle.\n\n"
+		
+		exp_gain = exp_gain / 2
+		await get_tree().create_timer(0.5).timeout
+	
 	summary_text.text += "Experience Gained: " + str(exp_gain) + "\n\n"
 	
 	var total_exp : float = player_exp + exp_gain
@@ -425,6 +442,8 @@ func _evaluate():
 	var level_up: int = player_level
 	var stats_add: int = unused_stats
 	
+
+		
 	while total_exp >= exp_require:
 		await get_tree().create_timer(0.5).timeout
 		if total_exp < exp_require:
@@ -440,9 +459,10 @@ func _evaluate():
 		await get_tree().create_timer(0.5).timeout
 	
 	summary_text.text += "\n\n\n"
+	
 	player_data["player_level"] = level_up
-	player_data["unused_stats"] = stats_add
 	player_data["player_hp"] = player_health
+	player_data["unused_stats"] = stats_add
 	player_data["player_exp"] = total_exp
 	SaveManager.save_game(player_data, "player_file")
 	

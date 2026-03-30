@@ -1,13 +1,283 @@
-[gd_scene load_steps=9 format=3 uid="uid://dkefgsuwak2hj"]
+[gd_scene load_steps=28 format=3 uid="uid://dkefgsuwak2hj"]
 
 [ext_resource type="Script" uid="uid://dfqow415vx5vr" path="res://Scenes/Scripts/main_menu.gd" id="1_48xlc"]
-[ext_resource type="Texture2D" uid="uid://db1sk3s5weov1" path="res://ui/title/interface-title-bg.png" id="3_1ehe0"]
+[ext_resource type="Texture2D" uid="uid://b3m83wyb23gjs" path="res://ui/title/interface-background-background.png" id="2_yhxw7"]
+[ext_resource type="Texture2D" uid="uid://brbki7bvq53it" path="res://ui/title/interface-background-bird.png" id="3_trj04"]
 [ext_resource type="Texture2D" uid="uid://b1ihfnea5ko6l" path="res://ui/title/interface-title-title.png" id="4_ce3w2"]
 [ext_resource type="Texture2D" uid="uid://dca1ucx42xnok" path="res://ui/title/interface-title-menu.png" id="5_n45e2"]
+[ext_resource type="Texture2D" uid="uid://p4lchky5yjr3" path="res://ui/title/interface-background-grass1.png" id="5_vr1f0"]
+[ext_resource type="Texture2D" uid="uid://b6gbik6i4hmjt" path="res://ui/title/interface-background-cloud1.png" id="6_5egv6"]
 [ext_resource type="Texture2D" uid="uid://b0vv5wx3cci8a" path="res://ui/title/interface-title-menu4.png" id="7_16hvj"]
 [ext_resource type="Texture2D" uid="uid://fns52kwiw2ai" path="res://ui/title/interface-title-menu1.png" id="7_cp0ys"]
+[ext_resource type="Texture2D" uid="uid://bmgnlxcbosnlv" path="res://ui/title/interface-background-cloud2.png" id="7_vtepg"]
 [ext_resource type="Texture2D" uid="uid://caqb16vsk8ymr" path="res://ui/title/interface-title-menu3.png" id="8_vr1f0"]
 [ext_resource type="Texture2D" uid="uid://bbj1w02uk6ub0" path="res://ui/title/interface-title-menu2.png" id="9_t1dhk"]
+[ext_resource type="Texture2D" uid="uid://du6umn3lo1hfw" path="res://ui/title/interface-background-book.png" id="10_16hvj"]
+
+[sub_resource type="Animation" id="Animation_5egv6"]
+resource_name = "fly"
+length = 5.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.7, 0.9, 1, 1.2, 1.4, 1.6, 1.8, 2.2, 2.7, 3.2, 3.7, 4.2, 4.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 0, 1, 0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_vtepg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ujyyl"]
+resource_name = "fly_2"
+length = 4.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.7, 0.9, 1, 1.2, 1.4, 1.6, 1.8, 2.2, 2.7, 3.2, 3.7, 4.2, 4.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0, 1, 0, 1, 0, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8dnnj"]
+_data = {
+&"RESET": SubResource("Animation_vtepg"),
+&"fly": SubResource("Animation_5egv6"),
+&"fly_2": SubResource("Animation_ujyyl")
+}
+
+[sub_resource type="Animation" id="Animation_m3bi6"]
+resource_name = "move"
+length = 60.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 0.267943),
+"update": 0,
+"values": [Vector2(1312, 32), Vector2(-72, 184)]
+}
+
+[sub_resource type="Animation" id="Animation_wyh8j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1104, -48)]
+}
+
+[sub_resource type="Animation" id="Animation_8dnnj"]
+resource_name = "move_2"
+length = 60.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 0.267943),
+"update": 0,
+"values": [Vector2(1264, 0), Vector2(-72, 160)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ujyyl"]
+_data = {
+&"RESET": SubResource("Animation_wyh8j"),
+&"move": SubResource("Animation_m3bi6"),
+&"move_2": SubResource("Animation_8dnnj")
+}
+
+[sub_resource type="Animation" id="Animation_vr1f0"]
+resource_name = "loop"
+length = 0.6
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_t1dhk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5egv6"]
+_data = {
+&"RESET": SubResource("Animation_t1dhk"),
+&"loop": SubResource("Animation_vr1f0")
+}
+
+[sub_resource type="Animation" id="Animation_mkpwh"]
+resource_name = "fade_in"
+length = 1.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Interface-title-title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(368, -154), Vector2(368, -90)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 70), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Interface-title-title:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4nkqq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Interface-title-title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(368, -90)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Interface-title-title:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ehtkc"]
+_data = {
+&"RESET": SubResource("Animation_4nkqq"),
+&"fade_in": SubResource("Animation_mkpwh")
+}
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -18,16 +288,133 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_48xlc")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="Background" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_1ehe0")
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -72.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_yhxw7")
 expand_mode = 5
 stretch_mode = 6
+
+[node name="Control3" type="Control" parent="Background"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="Interface-background-cloud1" type="Sprite2D" parent="Background/Control3"]
+position = Vector2(-62, 56)
+scale = Vector2(3, 3)
+texture = ExtResource("6_5egv6")
+
+[node name="Control4" type="Control" parent="Background"]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Interface-background-cloud2" type="Sprite2D" parent="Background/Control4"]
+position = Vector2(112, 40)
+scale = Vector2(3, 3)
+texture = ExtResource("7_vtepg")
+
+[node name="Bird1" type="Sprite2D" parent="Background"]
+position = Vector2(1104, -48)
+scale = Vector2(3, 3)
+texture = ExtResource("3_trj04")
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Bird1"]
+libraries = {
+&"": SubResource("AnimationLibrary_8dnnj")
+}
+autoplay = "fly"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Background/Bird1"]
+libraries = {
+&"": SubResource("AnimationLibrary_ujyyl")
+}
+autoplay = "move"
+
+[node name="Bird2" type="Sprite2D" parent="Background"]
+position = Vector2(1104, -48)
+scale = Vector2(3, 3)
+texture = ExtResource("3_trj04")
+vframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Bird2"]
+libraries = {
+&"": SubResource("AnimationLibrary_8dnnj")
+}
+autoplay = "fly_2"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Background/Bird2"]
+libraries = {
+&"": SubResource("AnimationLibrary_ujyyl")
+}
+autoplay = "move_2"
+
+[node name="Control2" type="Control" parent="Background"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Interface-background-book" type="Sprite2D" parent="Background/Control2"]
+position = Vector2(-326, -204)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("10_16hvj")
+
+[node name="Control" type="Control" parent="Background"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Interface-background-grass1" type="Sprite2D" parent="Background/Control"]
+position = Vector2(-510, -204)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("5_vr1f0")
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/Control/Interface-background-grass1"]
+libraries = {
+&"": SubResource("AnimationLibrary_5egv6")
+}
+autoplay = "loop"
+
+[node name="Control5" type="Control" parent="Background"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -40,6 +427,7 @@ offset_bottom = 20.0
 grow_vertical = 2
 
 [node name="Interface-title-title" type="Sprite2D" parent="Control"]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(368, -90)
 scale = Vector2(3, 3)
 texture = ExtResource("4_ce3w2")
@@ -50,7 +438,13 @@ position = Vector2(82, 104)
 scale = Vector2(3, 3)
 texture = ExtResource("5_n45e2")
 
-[node name="Quit Game" type="TextureButton" parent="Control"]
+[node name="Control" type="Control" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Quit Game" type="TextureButton" parent="Control/Control"]
 layout_mode = 0
 offset_left = 261.0
 offset_top = 148.0
@@ -61,7 +455,7 @@ texture_normal = ExtResource("7_16hvj")
 ignore_texture_size = true
 stretch_mode = 3
 
-[node name="Settings" type="TextureButton" parent="Control"]
+[node name="Settings" type="TextureButton" parent="Control/Control"]
 layout_mode = 0
 offset_left = 261.0
 offset_top = 82.0
@@ -72,7 +466,7 @@ texture_normal = ExtResource("8_vr1f0")
 ignore_texture_size = true
 stretch_mode = 3
 
-[node name="Continue" type="TextureButton" parent="Control"]
+[node name="Continue" type="TextureButton" parent="Control/Control"]
 layout_mode = 0
 offset_left = 264.0
 offset_top = 16.0
@@ -83,7 +477,7 @@ texture_normal = ExtResource("9_t1dhk")
 ignore_texture_size = true
 stretch_mode = 3
 
-[node name="New Game" type="TextureButton" parent="Control"]
+[node name="New Game" type="TextureButton" parent="Control/Control"]
 layout_mode = 0
 offset_left = 264.0
 offset_top = -44.0
@@ -94,7 +488,13 @@ texture_normal = ExtResource("7_cp0ys")
 ignore_texture_size = true
 stretch_mode = 3
 
-[connection signal="pressed" from="Control/Quit Game" to="." method="_on_quit_game_pressed"]
-[connection signal="pressed" from="Control/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="Control/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="Control/New Game" to="." method="_on_new_game_pressed"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+libraries = {
+&"": SubResource("AnimationLibrary_ehtkc")
+}
+autoplay = "fade_in"
+
+[connection signal="pressed" from="Control/Control/Quit Game" to="." method="_on_quit_game_pressed"]
+[connection signal="pressed" from="Control/Control/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Control/Control/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Control/Control/New Game" to="." method="_on_new_game_pressed"]

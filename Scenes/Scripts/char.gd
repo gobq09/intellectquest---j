@@ -30,7 +30,7 @@ func _ready() -> void:
 	position = _convert(last_position)
 	ani_tree.set("parameters/Idle/blend_position", Vector2(0,1))
 	self.set_process_input(false) 
-	if  SaveManager.load_game("save_file")["new_game"] == true:
+	if  game_data["new_game"] ||  game_data["player_lost"] == true:
 		set_physics_process(false)
 		_cutscene("wakeup")
 		await ani_tree.animation_finished
@@ -87,5 +87,7 @@ func collect(item):
 
 
 func _on_timer_timeout() -> void:
+	print(game_data["global_position"])
+	print(position)
 	game_data["global_position"] = position
 	SaveManager.save_game(game_data, "save_file")

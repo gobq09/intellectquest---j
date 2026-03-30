@@ -1,14 +1,22 @@
 extends Node
 
+#@onready var save_file : String = str(OS.get_executable_path().get_base_dir()) + "/save_game.json"
+#@onready var player : String = str(OS.get_executable_path().get_base_dir()) + "/player.json"
+#@onready var player_questions : String = str(OS.get_executable_path().get_base_dir()) + "/player_questions.json"
+#@onready var enemy : String = str(OS.get_executable_path().get_base_dir()) + "/enemy_data.json"
+
 @onready var save_file : String = "user://save_game.json"
 @onready var player : String = "user://player.json"
 @onready var player_questions : String = "user://player_questions.json"
 @onready var enemy : String = "user://enemy_data.json"
-# OS.get_executable_path().get_base_dir()
+# str(OS.get_executable_path().get_base_dir())
 #region default
 var default_game_data: Dictionary = {
 	"new_game": true,
+	"player_lost": false,
+	"in_game": true,
 	"global_position": Vector2(-473.0, 17.0),
+	"respawn_point": Vector2(-473.0, 17.0),
 	"last_scene": "uid://dt532wlk4w78h",
 	"defeated_enemies": {},
 	"eng_topics": {},
@@ -41,7 +49,10 @@ var default_enemy_data: Dictionary = {
 #region data
 var game_data: Dictionary = {
 	"new_game": true,
+	"player_lost": false,
+	"in_game": true,
 	"global_position": Vector2(-473.0, 17.0),
+	"respawn_point": Vector2(-473.0, 17.0),
 	"last_scene": "uid://dt532wlk4w78h",
 	"defeated_enemies": {},
 	"eng_topics": {},
@@ -102,7 +113,7 @@ func save_game(data: Dictionary, savePath: String) -> void:
 		print("Failed to save! Error: ", FileAccess.get_open_error())
 
 func load_game(savePath: String) -> Dictionary:
-	print(savePath)
+	#print(savePath)
 	if savePath == "save_file":
 		savePath = save_file
 	elif savePath == "player_file":

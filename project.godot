@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="IntellectQuest"
+config/name="IntelliQuest"
 run/main_scene="uid://bv2jvo7wjipfe"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
@@ -29,6 +29,7 @@ PlayerQuestions="*res://Scenes/Scripts/player_questions.gd"
 window/size/viewport_width=1230
 window/size/viewport_height=540
 window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 

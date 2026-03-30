@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://db73joc77l030"]
+
+[ext_resource type="Script" uid="uid://cdi41njyp3r50" path="res://node_2d.gd" id="1_0e48y"]
+[ext_resource type="Texture2D" uid="uid://dxy57adxvblwv" path="res://icon.svg" id="2_epypp"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_0e48y")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Die" type="Button" parent="."]
+offset_left = 745.0
+offset_top = 257.0
+offset_right = 919.0
+offset_bottom = 335.0
+text = "Die"
+
+[node name="Start" type="Button" parent="."]
+offset_left = 244.0
+offset_top = 255.0
+offset_right = 418.0
+offset_bottom = 333.0
+text = "Scene Start"
+
+[node name="Time" type="Button" parent="."]
+offset_left = 498.0
+offset_top = 359.0
+offset_right = 672.0
+offset_bottom = 437.0
+text = "Check Time"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(580, 172)
+texture = ExtResource("2_epypp")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Die" to="." method="_on_die_pressed"]
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Time" to="." method="_on_time_pressed"]

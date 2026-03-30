@@ -7,10 +7,14 @@ extends CharacterBody2D
 @export var speed = 30
 @export var battle_scene = "res://Scenes/combat.tscn"
 
+@onready var detect_area = $detection_area
+@onready var battle_area = $BattleTrigger
+
 @onready var game_data = SaveManager.load_game("save_file")
 @onready var enemy_data = SaveManager.load_game("enemy_file")
-@onready var defeated_enemies: Array = game_data["defeated_enemies"].values()
-
+@onready var defeated_enemies: Dictionary = game_data["defeated_enemies"]
+@onready var respawn_point = position
+@onready var timer = $Timer
 
 var enemy_small = "res://Sprites/npc/sprite-enemy-small.png"
 var enemy_med = "res://Sprites/npc/sprite-enemy-med.png"
@@ -19,6 +23,7 @@ var enemy_large = "res://Sprites/npc/sprite-enemy-large.png"
 var player = null
 var chasing = false
 var battle_started = false  # prevent multiple triggers
+var remaining_time
 
 func _ready() -> void:
 	var path = "res://Sprites/npc/sprite-enemy-" + enemy_type +".png"
@@ -27,10 +32,35 @@ func _ready() -> void:
 	else:
 		$Sprite2D.texture = load("res://Sprites/npc/sprite-enemy-med.png")
 	
+	
 	print(defeated_enemies)
 	if defeated_enemies.has(enemy_id):
-		print("freed " + str(enemy_id))
-		queue_free()
+		#print("freed " + str(enemy_id))
+		print(str(defeated_enemies[str(enemy_id)]))
+		if defeated_enemies[str(enemy_id)] <= Time.get_unix_time_from_system():
+			#print("initially respawned")
+			self.visible = true
+			detect_area.process_mode = Node.PROCESS_MODE_INHERIT
+			battle_area.process_mode = Node.PROCESS_MODE_INHERIT
+			defeated_enemies.erase(str(enemy_id))
+		else:
+			#print("not respawned")
+			remaining_time = defeated_enemies[str(enemy_id)] - Time.get_unix_time_from_system()
+			#print("remaining time: ", remaining_time)
+			timer.start(remaining_time)
+			self.visible = false
+			detect_area.process_mode = Node.PROCESS_MODE_DISABLED
+			battle_area.process_mode = Node.PROCESS_MODE_DISABLED
+		
+		#queue_free()
+
+func _on_timer_timeout() -> void:
+	#print("timeout respawned")
+	self.visible = true
+	
+	detect_area.process_mode = Node.PROCESS_MODE_INHERIT
+	battle_area.process_mode = Node.PROCESS_MODE_INHERIT
+	defeated_enemies.erase(str(enemy_id))
 
 # DetectionArea triggers chasing
 func _on_DetectionArea_body_entered(body: CharacterBody2D) -> void:
