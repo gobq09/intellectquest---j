@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://x8j1q0cr8ykf"]
+[gd_scene load_steps=17 format=4 uid="uid://x8j1q0cr8ykf"]
 
 [ext_resource type="TileSet" uid="uid://dop58t8w0lmjn" path="res://Tileset/grass.tres" id="1_hodpy"]
 [ext_resource type="Script" uid="uid://b2htjdjny3oww" path="res://Scenes/Scripts/game.gd" id="1_rku1e"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dfhccnj4vvm1r" path="res://Scenes/npc.tscn" id="10_25hrm"]
 [ext_resource type="PackedScene" uid="uid://dt0reecx2hip5" path="res://Scenes/enemy.tscn" id="12_1phco"]
 [ext_resource type="Script" uid="uid://cmchlgg0nagyh" path="res://Scenes/Scripts/change_scene2.gd" id="12_rku1e"]
+[ext_resource type="PackedScene" uid="uid://bkchteg2njvve" path="res://animal.tscn" id="15_nb51f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rfjv2"]
 size = Vector2(130, 340)
@@ -178,6 +179,34 @@ face = 1
 [node name="Lantern17" parent="Node2D/Lanterns" instance=ExtResource("9_s67or")]
 position = Vector2(-42, 430)
 face = 1
+
+[node name="Animals" type="Node2D" parent="Node2D"]
+y_sort_enabled = true
+
+[node name="Animal" parent="Node2D/Animals" instance=ExtResource("15_nb51f")]
+position = Vector2(-189, 411)
+type = "Chick"
+
+[node name="Animal2" parent="Node2D/Animals" instance=ExtResource("15_nb51f")]
+position = Vector2(-61, 365)
+
+[node name="Animal3" parent="Node2D/Animals" instance=ExtResource("15_nb51f")]
+position = Vector2(-135, 377)
+
+[node name="Animal4" parent="Node2D/Animals" instance=ExtResource("15_nb51f")]
+position = Vector2(32, 409)
+type = "Chick"
+
+[node name="Animal5" parent="Node2D/Animals" instance=ExtResource("15_nb51f")]
+position = Vector2(-31, 349)
+
+[node name="Animal6" parent="Node2D/Animals" instance=ExtResource("15_nb51f")]
+position = Vector2(-84, 400)
+type = "Chick"
+
+[node name="Animal7" parent="Node2D/Animals" instance=ExtResource("15_nb51f")]
+position = Vector2(1, 381)
+type = "Chick"
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 color = Color(0.212305, 0.212305, 0.212304, 1)
