@@ -1,11 +1,9 @@
-[gd_scene load_steps=37 format=3 uid="uid://b4qaqebdse2qj"]
+[gd_scene load_steps=35 format=3 uid="uid://b4qaqebdse2qj"]
 
 [ext_resource type="Script" uid="uid://dkhdkf103j2ms" path="res://Scenes/Scripts/char.gd" id="1_gv012"]
 [ext_resource type="Animation" uid="uid://5lii1tmmfvju" path="res://Sprites/player/animation/player-wakeup.res" id="2_ljijv"]
 [ext_resource type="Texture2D" uid="uid://cp84ckp6bwp2i" path="res://Sprites/misc/shadow.png" id="3_8gq2e"]
 [ext_resource type="Texture2D" uid="uid://06xk3bsequyh" path="res://Sprites/player/sprite-playermale.png" id="3_uydtg"]
-[ext_resource type="PackedScene" uid="uid://dua2kiks0dnt7" path="res://Scenes/hud.tscn" id="5_1iy3q"]
-[ext_resource type="PackedScene" uid="uid://b3gipqtumgqb5" path="res://Scenes/joystick.tscn" id="6_uydtg"]
 [ext_resource type="PackedScene" uid="uid://dflg8r076r3qe" path="res://Scenes/overworldhud.tscn" id="7_ljijv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v3mp5"]
@@ -304,13 +302,7 @@ texture = ExtResource("3_uydtg")
 hframes = 8
 vframes = 8
 
-[node name="hud" parent="." instance=ExtResource("5_1iy3q")]
-visible = false
-
-[node name="joystick" parent="." instance=ExtResource("6_uydtg")]
-visible = false
-
-[node name="CanvasLayer" parent="." instance=ExtResource("7_ljijv")]
+[node name="HUD" parent="." instance=ExtResource("7_ljijv")]
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
