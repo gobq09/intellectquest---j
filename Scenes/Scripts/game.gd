@@ -5,4 +5,9 @@ extends Node2D
 func _ready():
 	game_data["in_game"] = true
 	game_data["last_scene"] = "uid://x8j1q0cr8ykf"
+	
+	if game_data["tutorial"] == true:
+		$Node2D/Player.position = Vector2(-637.0, 376.0)
+		game_data["tutorial"] = false
+		
 	SaveManager.save_game(game_data, "save_file")
