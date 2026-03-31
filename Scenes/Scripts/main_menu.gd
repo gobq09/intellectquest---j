@@ -34,7 +34,10 @@ func _ready() -> void:
 func _on_new_game_pressed() -> void:
 	print("New Game Pressed")
 	
-	_load_prompt("New")
+	if $Control/Control/Continue.disabled == true:
+			SceneLoader.load_scene("uid://dvf5porvudl4f")
+	else:
+		_load_prompt("New")
 
 func _on_continue_pressed() -> void:
 	print("Continue Pressed")
@@ -60,8 +63,6 @@ func _load_prompt(press):
 	prompt_cancel.disabled = false
 	
 	if press == "New":
-		if $Control/Control/Continue.disabled == true:
-			SceneLoader.load_scene("uid://dvf5porvudl4f")
 		prompt_sprite = new_sprite
 		prompt_label.text = "Are you sure you want to start a new game?\n\n[b]This will overwrite your progress.[/b]"
 	elif press == "Quit":

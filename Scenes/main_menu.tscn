@@ -564,9 +564,9 @@ stretch_mode = 3
 [node name="Label" type="RichTextLabel" parent="Prompt/Control"]
 layout_mode = 0
 offset_left = -167.0
-offset_top = -38.0
+offset_top = -46.0
 offset_right = 217.0
-offset_bottom = 53.0
+offset_bottom = 45.0
 theme = SubResource("Theme_ehtkc")
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 14
@@ -576,6 +576,7 @@ text = "Are you sure you want to start a new game?
 
 [b]This will overwrite your current save.[/b]"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Control/Control/Quit Game" to="." method="_on_quit_game_pressed"]
 [connection signal="pressed" from="Control/Control/Settings" to="." method="_on_settings_pressed"]

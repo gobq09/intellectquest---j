@@ -10,6 +10,7 @@ extends Node
 @onready var player_questions : String = "user://player_questions.json"
 @onready var enemy : String = "user://enemy_data.json"
 # str(OS.get_executable_path().get_base_dir())
+
 #region default
 var default_game_data: Dictionary = {
 	"new_game": true,

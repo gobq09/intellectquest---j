@@ -167,6 +167,7 @@ func _on_confirm_pressed() -> void:
 	player_data["player_end"] = player_end
 	player_data["player_wis"] = player_wis
 	player_data["player_str"] = player_str
+	player_data["player_hp"] += int(end_button_label.text) * 2
 	
 	SaveManager.save_game(player_data, "player_file")
 	

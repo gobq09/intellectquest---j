@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dflg8r076r3qe"]
+[gd_scene load_steps=31 format=3 uid="uid://dflg8r076r3qe"]
 
 [ext_resource type="Script" uid="uid://cj0426geyvlas" path="res://Scenes/Scripts/hud.gd" id="1_17k45"]
 [ext_resource type="Texture2D" uid="uid://gaxtq7vrwunw" path="res://ui/hud/interface-hud-hpbar4.png" id="2_7n2a2"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="13_farlp"]
 [ext_resource type="Texture2D" uid="uid://drsd8ovbsojux" path="res://ui/hud/interface-joystick-base.png" id="14_bdvyw"]
 [ext_resource type="Texture2D" uid="uid://cnhcx0xvmmitb" path="res://ui/hud/interface-joystick-stick.png" id="15_wruxn"]
+[ext_resource type="Texture2D" uid="uid://bpgpym5w7drhb" path="res://ui/hud/interface-joystick-interact.png" id="17_b3mme"]
 
 [sub_resource type="Gradient" id="Gradient_wruxn"]
 colors = PackedColorArray(0.701961, 0.498039, 0.890196, 1, 0.701961, 0.498039, 0.890196, 1)
@@ -188,7 +189,6 @@ script = ExtResource("1_17k45")
 animation_player = NodePath("Panels/AnimationPlayer")
 
 [node name="HUD" type="Control" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 15
@@ -336,6 +336,29 @@ left_movement = "left"
 right_movement = "right"
 up_movement = "up"
 down_movement = "down"
+
+[node name="Interact" type="Control" parent="HUD"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="TextureButton" type="TextureButton" parent="HUD/Interact"]
+modulate = Color(1, 1, 1, 0.180392)
+layout_mode = 0
+offset_left = -226.0
+offset_top = -188.0
+offset_right = -186.0
+offset_bottom = -148.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("17_b3mme")
+stretch_mode = 5
 
 [node name="Panels" type="Control" parent="."]
 layout_mode = 3

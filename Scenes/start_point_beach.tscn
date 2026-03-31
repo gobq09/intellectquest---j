@@ -408,22 +408,22 @@ size = Vector2(235, 590)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_n86sy"]
 noise_type = 3
-seed = 230
-frequency = 0.0121
+seed = 535
+frequency = 0.0062
 fractal_octaves = 10
 fractal_lacunarity = 2.01
-fractal_gain = 0.475
+fractal_gain = 0.54
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ljijv"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_n86sy"]
 generate_mipmaps = false
 seamless = true
 noise = SubResource("FastNoiseLite_n86sy")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iy2pv"]
 shader = ExtResource("20_n86sy")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_ljijv")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_n86sy")
 shader_parameter/speed = Vector2(0.003, 0.001)
-shader_parameter/density = 0.51
+shader_parameter/density = 0.629
 shader_parameter/shadow_color = Color(0.0907033, 0.0326106, 0.111201, 0.3)
 
 [node name="start" type="Node2D"]
@@ -571,7 +571,7 @@ shape = SubResource("RectangleShape2D_gophc")
 
 [node name="game" type="Marker2D" parent="SpawnPoints"]
 
-[node name="Sprite2D2" type="ColorRect" parent="."]
+[node name="Clouds" type="ColorRect" parent="."]
 z_index = 4
 material = SubResource("ShaderMaterial_iy2pv")
 anchors_preset = 8
@@ -579,10 +579,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1133.0
-offset_top = -457.0
-offset_right = 1746.0
-offset_bottom = 1286.0
+offset_left = -1606.0
+offset_top = -646.0
+offset_right = 1273.0
+offset_bottom = 1097.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 0.918)

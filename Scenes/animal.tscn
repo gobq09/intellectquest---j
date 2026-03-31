@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bkchteg2njvve"]
 
-[ext_resource type="Script" uid="uid://cwkljfgkra7pp" path="res://animal.gd" id="1_23vr7"]
+[ext_resource type="Script" uid="uid://cwkljfgkra7pp" path="res://Scenes/Scripts/animal.gd" id="1_23vr7"]
 [ext_resource type="Texture2D" uid="uid://b6368uxxoodi4" path="res://Sprites/npc/animals/animal-chicken.png" id="2_23vr7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_stvu6"]
@@ -67,12 +67,12 @@ _data = {
 [node name="Animal" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 4
-collision_mask = 6
+collision_mask = 2
 script = ExtResource("1_23vr7")
 swim_speed = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_stvu6")
 
 [node name="changestatetimer" type="Timer" parent="."]
@@ -80,7 +80,7 @@ shape = SubResource("CapsuleShape2D_stvu6")
 [node name="swimmingtimer" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(0, -3)
 texture = ExtResource("2_23vr7")
 hframes = 2
 vframes = 2
