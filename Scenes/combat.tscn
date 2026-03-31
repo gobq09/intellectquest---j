@@ -442,7 +442,6 @@ libraries = {
 }
 
 [node name="Back" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -495,7 +494,6 @@ scale = Vector2(4, 4)
 texture = ExtResource("4_ley77")
 
 [node name="Panel" type="Panel" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.360784)
 layout_mode = 1
 anchors_preset = 15
@@ -507,7 +505,6 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_f8ge6")
 
 [node name="HP" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -642,7 +639,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Control" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -768,6 +764,7 @@ texture_normal = ExtResource("13_y8jr2")
 stretch_mode = 3
 
 [node name="Summary" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
