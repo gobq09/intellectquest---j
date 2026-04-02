@@ -114,22 +114,22 @@ func _enter_float_state() -> void:
 	# Do NOT stop animation — let it keep playing
 	change_state_timer.wait_time = randf_range(min_idle_time, max_idle_time)
 	change_state_timer.start()
-	print(">> FLOATING for ", change_state_timer.wait_time, "s")
+	#print(">> FLOATING for ", change_state_timer.wait_time, "s")
 
 func _enter_swim_state() -> void:
 	current_state = DuckState.SWIMMING
 	swim_direction = _pick_random_direction()
 	swimming_timer.wait_time = randf_range(min_swim_time, max_swim_time)
 	swimming_timer.start()
-	print(">> SWIMMING dir:", swim_direction, " for ", swimming_timer.wait_time, "s")
+	#print(">> SWIMMING dir:", swim_direction, " for ", swimming_timer.wait_time, "s")
 
 func _on_change_state_timer_timeout() -> void:
-	print(">> change_state_timer fired!")
+	#print(">> change_state_timer fired!")
 	if randi() % 2 == 0:
 		_enter_swim_state()
 	else:
 		_enter_float_state()
 
 func _on_swimming_timer_timeout() -> void:
-	print(">> swimming_timer fired!")
+	#print(">> swimming_timer fired!")
 	_enter_float_state()

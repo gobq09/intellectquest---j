@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dxhaxrctujkex"]
+[gd_scene load_steps=51 format=3 uid="uid://dxhaxrctujkex"]
 
 [ext_resource type="Script" uid="uid://c0dbktvohlh5" path="res://Scenes/Scripts/combat.gd" id="1_8xcd4"]
 [ext_resource type="Texture2D" uid="uid://cocirnqmaocmm" path="res://ui/combat/interface-combat-bg1.png" id="1_xisnc"]
@@ -18,7 +18,19 @@
 [ext_resource type="Texture2D" uid="uid://c706dluw8hn1t" path="res://ui/combat/interface-combat-summary1.png" id="15_f8ge6"]
 [ext_resource type="Texture2D" uid="uid://4ydit3mps4hi" path="res://ui/combat/interface-combat-summary-confirm.png" id="16_50454"]
 [ext_resource type="Texture2D" uid="uid://c4478gu8bk1l6" path="res://ui/combat/interface-combat-summary-confirm1.png" id="17_ceo1n"]
-[ext_resource type="Script" uid="uid://bugv77tf4duj" path="res://Scenes/scroll_container.gd" id="18_jcm61"]
+[ext_resource type="Script" uid="uid://bugv77tf4duj" path="res://Scenes/Scripts/scroll_container.gd" id="18_jcm61"]
+[ext_resource type="PackedScene" uid="uid://gbgxli02186y" path="res://Scenes/inv.tscn" id="20_tmuf1"]
+[ext_resource type="Texture2D" uid="uid://75tjr6hppmie" path="res://ui/combat/combat-actions-attack1.png" id="20_umvpd"]
+[ext_resource type="Texture2D" uid="uid://gfo4nfxodp7d" path="res://ui/archive/interface-archive-closebutton.png" id="21_5kjvk"]
+[ext_resource type="Texture2D" uid="uid://c5bikh0vmk5bk" path="res://ui/combat/combat-actions-attack2.png" id="21_e8ln5"]
+[ext_resource type="PackedScene" uid="uid://cfvteqvw7wwp" path="res://Scenes/archive.tscn" id="22_3cqtn"]
+[ext_resource type="Script" uid="uid://curmmihk3jhvb" path="res://Scenes/action.gd" id="22_qwuba"]
+[ext_resource type="Texture2D" uid="uid://bs6u5b61fe3d2" path="res://ui/combat/combat-actions-inv1.png" id="22_r5ubg"]
+[ext_resource type="Texture2D" uid="uid://d1ip0qx01ry0j" path="res://ui/combat/combat-actions-inv2.png" id="23_ycqky"]
+[ext_resource type="Texture2D" uid="uid://dtnxkxe5utcuh" path="res://ui/combat/combat-actions-archive1.png" id="24_8fshu"]
+[ext_resource type="Texture2D" uid="uid://blgv7e3tplymu" path="res://ui/combat/combat-actions-archive2.png" id="25_qwuba"]
+[ext_resource type="Texture2D" uid="uid://dwqn12yq1ga0l" path="res://ui/combat/combat-actions-run1.png" id="26_8fshu"]
+[ext_resource type="Texture2D" uid="uid://cckx7q70syxki" path="res://ui/combat/combat-actions-run2.png" id="27_qwuba"]
 
 [sub_resource type="Animation" id="Animation_f8ge6"]
 length = 0.001
@@ -29,10 +41,10 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -178,6 +190,18 @@ tracks/12/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../Action:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_e8ln5"]
 resource_name = "cards_change"
@@ -300,6 +324,23 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0.360784), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_qwuba"]
+resource_name = "show_action"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Action:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_y8jr2"]
 resource_name = "summary"
 tracks/0/type = "value"
@@ -360,6 +401,7 @@ _data = {
 &"cards_change": SubResource("Animation_e8ln5"),
 &"confirm_fade": SubResource("Animation_jcm61"),
 &"fade": SubResource("Animation_8xcd4"),
+&"show_action": SubResource("Animation_qwuba"),
 &"summary": SubResource("Animation_y8jr2"),
 &"summary_confirm": SubResource("Animation_ceo1n")
 }
@@ -423,6 +465,9 @@ font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kjvk"]
 bg_color = Color(0, 0, 0, 0.752941)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cqtn"]
+bg_color = Color(0, 0, 0, 0.898039)
 
 [node name="Combat" type="Control"]
 layout_mode = 3
@@ -489,11 +534,12 @@ offset_bottom = 20.0
 grow_vertical = 2
 
 [node name="Player" type="Sprite2D" parent="Back/Control2"]
-position = Vector2(256, 208)
+position = Vector2(256, 166)
 scale = Vector2(4, 4)
 texture = ExtResource("4_ley77")
 
 [node name="Panel" type="Panel" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.360784)
 layout_mode = 1
 anchors_preset = 15
@@ -587,6 +633,15 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Buffs" type="VBoxContainer" parent="HP/PlayerHP"]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 144.0
+offset_right = 96.0
+offset_bottom = 267.0
+scale = Vector2(3, 3)
+mouse_filter = 0
+
 [node name="EnemyHP" type="Control" parent="HP"]
 layout_mode = 1
 anchors_preset = 1
@@ -639,6 +694,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Control" type="Control" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -886,8 +943,147 @@ scroll_active = false
 scroll_following = true
 horizontal_alignment = 1
 
+[node name="Action" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Attack" type="TextureButton" parent="Action"]
+layout_mode = 0
+offset_left = -134.0
+offset_top = -148.0
+offset_right = -118.0
+offset_bottom = -132.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("20_umvpd")
+texture_pressed = ExtResource("21_e8ln5")
+ignore_texture_size = true
+stretch_mode = 3
+script = ExtResource("22_qwuba")
+
+[node name="Inventory" type="TextureButton" parent="Action"]
+layout_mode = 0
+offset_left = -182.0
+offset_top = -97.0
+offset_right = -166.0
+offset_bottom = -81.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("22_r5ubg")
+texture_pressed = ExtResource("23_ycqky")
+ignore_texture_size = true
+stretch_mode = 3
+script = ExtResource("22_qwuba")
+
+[node name="Archive" type="TextureButton" parent="Action"]
+layout_mode = 0
+offset_left = -86.0
+offset_top = -97.0
+offset_right = -70.0
+offset_bottom = -81.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("24_8fshu")
+texture_pressed = ExtResource("25_qwuba")
+ignore_texture_size = true
+stretch_mode = 3
+script = ExtResource("22_qwuba")
+
+[node name="Run" type="TextureButton" parent="Action"]
+layout_mode = 0
+offset_left = -134.0
+offset_top = -46.0
+offset_right = -118.0
+offset_bottom = -30.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("26_8fshu")
+texture_pressed = ExtResource("27_qwuba")
+ignore_texture_size = true
+stretch_mode = 3
+script = ExtResource("22_qwuba")
+
+[node name="Action_Inv" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Action_Inv"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3cqtn")
+
+[node name="Inventory" parent="Action_Inv" instance=ExtResource("20_tmuf1")]
+layout_mode = 1
+
+[node name="Inv_Close" type="TextureButton" parent="Action_Inv"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -94.0
+offset_right = -62.0
+offset_bottom = 32.0
+grow_horizontal = 0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("21_5kjvk")
+stretch_mode = 3
+
+[node name="Action_Archive" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Action_Archive"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3cqtn")
+
+[node name="Archive" parent="Action_Archive" instance=ExtResource("22_3cqtn")]
+layout_mode = 1
+
+[node name="Arch_Close" type="TextureButton" parent="Action_Archive"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -94.0
+offset_right = -62.0
+offset_bottom = 32.0
+grow_horizontal = 0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("21_5kjvk")
+stretch_mode = 3
+
 [connection signal="value_changed" from="HP/PlayerHP/$PlayerHealthBar" to="." method="_on_player_health_bar_value_changed"]
 [connection signal="value_changed" from="HP/EnemyHP/$EnemyHealthBar" to="." method="_on_enemy_health_bar_value_changed"]
 [connection signal="pressed" from="Control/Control2/AnswerButton1" to="." method="_on_answer_button_1_pressed"]
 [connection signal="pressed" from="Control/OkButton" to="." method="_on_ok_button_pressed"]
 [connection signal="pressed" from="Summary/Control/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Action/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="Action/Inventory" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="Action/Archive" to="." method="_on_archive_pressed"]
+[connection signal="pressed" from="Action/Run" to="." method="_on_run_pressed"]
+[connection signal="pressed" from="Action_Inv/Inv_Close" to="." method="_on_inv_close_pressed"]
+[connection signal="pressed" from="Action_Archive/Arch_Close" to="." method="_on_arch_close_pressed"]

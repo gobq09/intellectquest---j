@@ -41,7 +41,8 @@ extends Control
 @onready var exp = player_data["player_exp"]
 @onready var exp_require: float
 @onready var unused_stat : int = player_data["unused_stats"]
-@onready var last_scene = SaveManager.load_game("save_file")["last_scene"]
+@onready var game_data =SaveManager.load_game("save_file")
+@onready var last_scene = game_data["last_scene"]
 
 @onready var male_texture: Texture2D = preload("res://Sprites/player/sprite-playermale.png")
 @onready var female_texture: Texture2D = preload("res://Sprites/player/sprite-playerfemale.png")
@@ -56,6 +57,9 @@ var str_counter: int
 #endregion
 
 func _ready() -> void:
+	game_data["in_combat"] = false
+	SaveManager.save_game(game_data, "save_file")
+	
 	if player_data["chosen"] == "Female":
 		sprite.texture = female_texture
 	else:
@@ -167,7 +171,7 @@ func _on_confirm_pressed() -> void:
 	player_data["player_end"] = player_end
 	player_data["player_wis"] = player_wis
 	player_data["player_str"] = player_str
-	player_data["player_hp"] += int(end_button_label.text) * 2
+	player_data["player_hp"] += player_end * 2
 	
 	SaveManager.save_game(player_data, "player_file")
 	
@@ -286,3 +290,7 @@ func _on_str_sub_pressed() -> void:
 	
 	str_button_add.disabled = false
 #endregion
+
+
+func _on_inventory_pressed() -> void:
+	SceneLoader.load_scene("uid://gbgxli02186y")

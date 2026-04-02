@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://0q5mlknq6fk0"]
+[gd_scene load_steps=17 format=3 uid="uid://0q5mlknq6fk0"]
 
 [ext_resource type="Texture2D" uid="uid://o342v3n4w6uf" path="res://ui/profile/interface-profile.png" id="1_3u2c1"]
 [ext_resource type="Script" uid="uid://dx7c1wnqfm8e4" path="res://Scenes/Scripts/player_profile.gd" id="1_qnuou"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://blwsadja7kaou" path="res://ui/profile/interface-profile-prompt.png" id="4_jwamr"]
 [ext_resource type="Texture2D" uid="uid://brx3lcr31qduk" path="res://ui/profile/interface-profile-confirm.png" id="4_q38xl"]
 [ext_resource type="Texture2D" uid="uid://06xk3bsequyh" path="res://Sprites/player/sprite-playermale.png" id="5_wl0qr"]
+[ext_resource type="Texture2D" uid="uid://btetvnx21xfkc" path="res://ui/inventory/interface-inventory-icon.png" id="9_csj3o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vtj1"]
 bg_color = Color(0, 0, 0, 0.439216)
@@ -449,11 +450,11 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -128.0
-offset_right = -96.0
+offset_left = -94.0
+offset_right = -62.0
 offset_bottom = 32.0
 grow_horizontal = 0
-scale = Vector2(4, 4)
+scale = Vector2(3, 3)
 texture_normal = ExtResource("2_8c4xn")
 stretch_mode = 3
 
@@ -461,7 +462,7 @@ stretch_mode = 3
 layout_mode = 1
 offset_right = 32.0
 offset_bottom = 32.0
-scale = Vector2(4, 4)
+scale = Vector2(3, 3)
 texture_normal = ExtResource("3_2hgu0")
 stretch_mode = 3
 
@@ -597,6 +598,16 @@ text = "[b]Strength[/b] determines the amount of bonus damage you deal in a crit
 fit_content = true
 scroll_active = false
 
+[node name="Inventory" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 98.0
+offset_right = 35.0
+offset_bottom = 117.0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("9_csj3o")
+stretch_mode = 3
+
 [connection signal="pressed" from="Control/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="Control/Confirm" to="." method="_on_confirm_pressed"]
 [connection signal="pressed" from="Control/Stats/Control/Int_Buttons/add" to="." method="_on_int_add_pressed"]
@@ -610,3 +621,4 @@ scroll_active = false
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="Help" to="." method="_on_help_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Inventory" to="." method="_on_inventory_pressed"]

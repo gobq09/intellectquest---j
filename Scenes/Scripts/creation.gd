@@ -151,9 +151,6 @@ func _on_confirm_pressed() -> void:
 		player_name = name_input.text
 	
 	PlayerQuestions.copy_questions(diff_label.text)
-	SaveManager.game_data = SaveManager.default_game_data
-	SaveManager.player_data = SaveManager.default_player_data
-	SaveManager.enemy_data = SaveManager.default_enemy_data
 	SaveManager.player_data["chosen"] = chosen
 	SaveManager.player_data["player_name"] = player_name
 	SaveManager.player_data["difficulty"] = diff_label.text
@@ -161,6 +158,7 @@ func _on_confirm_pressed() -> void:
 	SaveManager.save_game(SaveManager.game_data, "save_file")
 	SaveManager.save_game(SaveManager.player_data, "player_file")
 	SaveManager.save_game(SaveManager.enemy_data, "enemy_file")
+	SaveManager.save_game(SaveManager.inv_data, "inv_file")
 	await get_tree().create_timer(1.5).timeout
 	
 	SceneLoader.load_scene("uid://dt532wlk4w78h")

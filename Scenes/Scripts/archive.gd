@@ -5,11 +5,12 @@ extends Control
 @onready var math_source = Questions.math_topic
 @onready var fil_source = Questions.fil_topic
 
+@onready var game_data = SaveManager.load_game("save_file")
 
-@onready var english_topics = SaveManager.load_game("save_file")["eng_topics"]
-@onready var science_topics = SaveManager.load_game("save_file")["sci_topics"]
-@onready var math_topics = SaveManager.load_game("save_file")["math_topics"]
-@onready var fil_topics = SaveManager.load_game("save_file")["fil_topics"]
+@onready var english_topics = game_data["eng_topics"]
+@onready var science_topics = game_data["sci_topics"]
+@onready var math_topics = game_data["math_topics"]
+@onready var fil_topics = game_data["fil_topics"]
 
 @onready var last_scene = SaveManager.load_game("save_file")
 @onready var anim_player= $Control2/Sprite2D/AnimationPlayer
@@ -26,6 +27,7 @@ extends Control
 @onready var page_right: Control = $Topics/Right
 @onready var right_topic_name: RichTextLabel = $Topics/Right/Panel4/TopicName
 @onready var right_topic_desc: RichTextLabel = $Topics/Right/Panel3/TopicDesc
+@onready var close_button : TextureButton = $Close
 
 var darker = Color(0.5, 0.5, 0.5, 1.0)
 var normal = Color(1.0, 1.0, 1.0, 1.0)
@@ -52,6 +54,13 @@ func _ready() -> void:
 	
 	if fil_size <= 0:
 		fil_button.disabled = true
+	
+	if game_data["in_combat"] == true:
+		close_button.visible = false
+		close_button.disabled = true
+	else: 
+		close_button.visible = true
+		close_button.disabled = false
 	
 	_on_english_pressed()
 

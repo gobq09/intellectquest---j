@@ -87,7 +87,7 @@ func collect(item):
 
 
 func _on_timer_timeout() -> void:
-	print(game_data["global_position"])
-	print(position)
+	#print(game_data["global_position"])
+	#print(position)
 	game_data["global_position"] = position
 	SaveManager.save_game(game_data, "save_file")

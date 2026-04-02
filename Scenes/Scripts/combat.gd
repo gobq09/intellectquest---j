@@ -16,6 +16,7 @@ extends Control
 
 @onready var last_scene = SaveManager.load_game("save_file")["last_scene"]
 @onready var last_position = SaveManager.load_game("save_file")["global_position"]
+@onready var buff : PackedScene = preload("uid://cp7gt4xiy6vve")
 
 @onready var critical: RichTextLabel = $HP/Critical
 @onready var ques_label: Label = $Control/Control/QuestionBg/QuestionLabel
@@ -37,6 +38,10 @@ extends Control
 @onready var player_hplabel: RichTextLabel = $HP/PlayerHP/Player_Label
 @onready var enemy_hplabel: RichTextLabel = $HP/EnemyHP/Enemy_Label
 @onready var portrait : Sprite2D = $"HP/PlayerHP/Interface-combat-playerportait1-male"
+
+@onready var action: Control = $Action
+@onready var inventory: Control = $Action_Inv
+@onready var archive: Control = $Action_Archive
 
 @onready var ans_sprite: Array = [ans1, ans2, ans3, ans4]
 @onready var male_sprite: CompressedTexture2D = preload("res://ui/combat/combat_sprites/combat-player1.png")
@@ -65,6 +70,7 @@ extends Control
 @onready var player_damage: int
 @onready var player_critchance: float = player_wis * 0.25
 @onready var player_critdamage: float = 1.5 + (player_str * 0.15)
+@onready var default_maxhp : int = 50 + (player_end * 2)
 
 @onready var enemy_small : Texture2D = preload("res://ui/combat/combat_sprites/combat-thresher.png")
 @onready var enemy_med : Texture2D = preload("res://ui/combat/combat_sprites/combat-squidbit.png")
@@ -76,7 +82,13 @@ extends Control
 @onready var question_subject = enemy_data["enemy_subject"]
 @onready var perfect : bool = true
 
-var respawn_duration = 30
+var temp_dmg = 0
+var temp_reduce = 0
+var temp_maxhp = 0
+var temp_critch = 0
+var temp_critdmg = 0
+
+var respawn_duration = 180
 
 # Enemy Stats
 var enemy_health: int
@@ -101,11 +113,25 @@ var encountered_questions: Dictionary
 var question_type
 var topic_type
 var question_id: int
+
+var buffs = {
+		"Damage": 0,
+		"Damage_Reduction": 0,
+		"Crit_Chance": 0,
+		"Crit_Damage": 0,
+		"Max_Health": 0,
+	}
+
 #endregion
 
 #region combat load
 func _ready() -> void:
+	SignalManager.buff.connect(_update_buffs)
+	SignalManager.item_used.connect(_used_item)
+	
 	$Summary.visible = false
+	game_data["in_combat"] = true
+	SaveManager.save_game(game_data, "in_combat")
 	
 	if player_data["chosen"] == "Female":
 		player_sprite.texture = female_sprite
@@ -120,7 +146,8 @@ func _ready() -> void:
 	player_hplabel.text = "[b]" + str(player_health) + " / " + str(player_max_health) +"[/b]"
 	enemy_hplabel.text = "[b]" + str(enemy_health) + " / " + str(enemy_max_health) +"[/b]"
 	
-	_new_question()
+	_show_actions()
+	#_new_question()
 
 func _load_enemy() -> void:
 	if enemy_size == "small":
@@ -217,6 +244,30 @@ func _on_ok_button_pressed() -> void:
 		encountered_questions[encountered_questions.size()]["Correct"] = false
 		_on_wrong_answer()
 
+func shake(node):
+	var origin = node.position
+	var elapsed = 0.0
+	var orig = node.modulate
+	
+	okay_button.disabled = true
+	ans_button1.disabled = true
+	
+	while elapsed < shake_duration:
+		var offset = Vector2(
+			randf_range(-shake_amount, shake_amount),
+			randf_range(-shake_amount, shake_amount)
+		)
+		node.position = origin + offset
+		node.modulate = Color(255, 255, 255)
+		await get_tree().process_frame
+		elapsed += get_process_delta_time()
+	node.modulate = orig
+	node.position = origin
+	
+#endregion
+
+#region combat logic
+
 func _save_question(topic_type: String):
 	print(int(question_type[str(question_id)]["TopicID"]))
 	print(game_data[topic_type].values().has(int(question_type[str(question_id)]["TopicID"])))
@@ -226,6 +277,7 @@ func _save_question(topic_type: String):
 	
 func _on_correct_answer():
 	player_damage = randi_range(player_min_damage, player_max_damage)
+	player_damage += player_damage * temp_dmg
 	
 	anim_player.play("RESET")
 	await anim_player.animation_finished
@@ -240,14 +292,14 @@ func _on_correct_answer():
 	ui.visible = false
 	panel.visible = false
 	
-	if randf_range(0, 1) <= (player_critchance / 100):
+	if randf_range(0, 1) <= ((player_critchance / 100) + temp_critch):
 		critical.visible = true
 		
 		$HP/Critical/AnimationPlayer.play("show")
 		shake(critical)
 		await get_tree().create_timer(0.6).timeout
 		
-		player_damage = round(player_damage * player_critdamage)
+		player_damage = round(player_damage * (player_critdamage + temp_critdmg))
 		critical.visible = false
 	
 	enemy_health -= player_damage
@@ -260,11 +312,12 @@ func _on_correct_answer():
 	if enemy_health <= 0:
 		_on_enemy_defeated()
 	else:
-		_new_question()
+		SignalManager.item_used.emit("opened")
+		_show_actions()
 
 func _on_wrong_answer():
 	perfect = false
-	player_health = round(player_health - enemy_damage)
+	player_health = round(player_health - (enemy_damage - (enemy_damage * temp_reduce)))
 	
 	anim_player.play("RESET")
 	await anim_player.animation_finished
@@ -288,30 +341,9 @@ func _on_wrong_answer():
 	if player_health <= 0:
 		_on_player_defeated()
 	else:
-		_new_question()
-#endregion
+		SignalManager.item_used.emit("opened")
+		_show_actions()
 
-#region combat logic
-func shake(node):
-	var origin = node.position
-	var elapsed = 0.0
-	var orig = node.modulate
-	
-	okay_button.disabled = true
-	ans_button1.disabled = true
-	
-	while elapsed < shake_duration:
-		var offset = Vector2(
-			randf_range(-shake_amount, shake_amount),
-			randf_range(-shake_amount, shake_amount)
-		)
-		node.position = origin + offset
-		node.modulate = Color(255, 255, 255)
-		await get_tree().process_frame
-		elapsed += get_process_delta_time()
-	node.modulate = orig
-	node.position = origin
-	
 func _on_enemy_defeated():
 	print("Enemy defeated! You win!")
 	player_won = true
@@ -342,6 +374,7 @@ func _on_enemy_defeated():
 	
 	game_data["defeated_enemies"][enemy_id] = Time.get_unix_time_from_system() + respawn_duration
 	game_data["player_lost"] = false
+	game_data["in_combat"] = false
 	SaveManager.save_game(game_data, "save_file")
 	_battle_summary()
 	#textbox1_was_open = true
@@ -379,6 +412,8 @@ func _on_player_defeated():
 	player_data["player_hp"] = player_max_health
 	game_data["global_position"] = game_data["respawn_point"]
 	game_data["player_lost"] = true
+	game_data["in_combat"] = false
+	
 	SaveManager.save_game(game_data, "save_file")
 	SaveManager.save_game(player_data, "player_file")
 	
@@ -477,10 +512,147 @@ func _on_texture_button_pressed() -> void:
 	SceneLoader.load_scene(last_scene)
 #endregion
 
+#region Action
+
+func _show_actions() -> void:
+	okay_button.disabled = true
+	ans_button1.disabled = true
+	
+	action.visible = true
+	anim_player.play("show_action")
+
+func _on_inv_close_pressed() -> void:
+	inventory.visible = false
+	_show_actions()
+	
+
+func _on_arch_close_pressed() -> void:
+	archive.visible = false
+	_show_actions()
+
+
+func _on_attack_pressed() -> void:
+	print("attack pressed")
+	
+	action.visible = false
+	await get_tree().create_timer(0.2).timeout
+	
+	_new_question()
+
+
+func _on_inventory_pressed() -> void:
+	print("inv pressed")
+	
+	action.visible = false
+	await get_tree().create_timer(0.2).timeout
+	
+	inventory.visible = true
+	#SignalManager.buff.connect(_update_buffs)
+
+func _used_item(state):
+	if state == "used":
+		$Action/Inventory.disabled = true
+		$Action/Inventory.modulate = Color(0.5, 0.5, 0.5, 1.0)
+		inventory.visible = false
+		action.visible = true
+	else:
+		$Action/Inventory.disabled = false
+		$Action/Inventory.modulate = Color(1.0, 1.0, 1.0, 1.0)
+
+func _on_archive_pressed() -> void:
+	print("arch pressed")
+	
+	action.visible = false
+	await get_tree().create_timer(0.2).timeout
+	
+	archive.visible = true
+
+
+func _on_run_pressed() -> void:
+	print("run pressed")
+	
+	#action.visible = false
+	#await get_tree().create_timer(1).timeout
+	#
+	#_new_question()
+#endregion
 
 func _on_enemy_health_bar_value_changed(value: float) -> void:
 	enemy_hplabel.text = "[b]" + str(enemy_health) + " / " + str(enemy_max_health) +"[/b]"
 
-
 func _on_player_health_bar_value_changed(value: float) -> void:
 	player_hplabel.text = "[b]" + str(player_health) + " / " + str(player_max_health) +"[/b]"
+
+#region Buff
+
+func _update_buffs(effect):
+	var max_hp = player_health_bar.max_value
+	if effect is Dictionary:
+		var heal_amount = effect["Heal"]
+		if player_health >= max_hp:
+			pass
+		else:
+			player_health += (player_max_health * heal_amount)
+		
+		if player_health > max_hp:
+			player_health = max_hp
+		player_health_bar.value = player_health
+		print(str(player_health) + " / " + str(player_max_health))
+	else:
+		buffs[effect] = 5
+		
+	_apply_buffs()
+
+func _apply_buffs():
+	print(buffs)
+	for child in $HP/PlayerHP/Buffs.get_children(): 
+		child.queue_free()
+	
+	if buffs["Damage_Reduction"] > 0:
+		temp_reduce = 0.75
+		
+	else:
+		temp_reduce = 0
+	
+	if buffs["Max_Health"] > 0:
+		player_max_health = default_maxhp + round(default_maxhp * 0.25)
+		player_health += round(default_maxhp * 0.25)
+		if player_health > player_max_health:
+			player_health = player_max_health
+		player_health_bar.max_value = player_max_health
+		player_health_bar.value = player_health
+		player_hplabel.text = "[b]" + str(player_health) + " / " + str(player_max_health) +"[/b]"
+	else:
+		player_max_health = default_maxhp
+		player_hplabel.text = "[b]" + str(player_health) + " / " + str(player_max_health) +"[/b]"
+	
+	if buffs["Damage"] > 0:
+		temp_dmg = 0.5
+	else:
+		temp_dmg = 0
+	
+	if buffs["Crit_Chance"] > 0:
+		temp_critch = 0.25
+	else:
+		temp_critch = 0
+	
+	if buffs["Crit_Damage"] > 0:
+		temp_critdmg = 1.0
+	else:
+		temp_critdmg = 0
+	
+	# display buffs
+	
+	for type in buffs:
+		if buffs[type] > 0:
+			_show_buff(type, buffs[type])
+			buffs[type] -= 1
+
+func _show_buff(type: String, turns: int):
+	var instance = buff.instantiate()
+	
+	instance.type = type
+	instance.turns = turns
+	
+	$HP/PlayerHP/Buffs.add_child(instance)
+#endregion

@@ -7,8 +7,12 @@ extends Control
 @onready var bar: Sprite2D = $"HP/Interface-hud-hpbar1"
 @onready var level: Label = $"HP/Interface-hud-level/RichTextLabel"
 
+
+
 # 100 = 82, 19
 # 0 = 32, 19
+
+signal interacted
 
 func _ready() -> void:
 	level.text = str(int(player_data["player_level"]))
@@ -49,3 +53,8 @@ func _on_archive_button_pressed() -> void:
 
 func _on_interfacehudlevel_pressed() -> void:
 	SceneLoader.load_scene("uid://0q5mlknq6fk0")
+
+
+func _on_interact_button_pressed() -> void:
+	Input.action_press("interact")
+	Input.action_release("interact")

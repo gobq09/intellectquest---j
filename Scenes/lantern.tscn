@@ -63,3 +63,7 @@ shadow_item_cull_mask = 2
 texture = SubResource("GradientTexture2D_weaya")
 texture_scale = 0.15
 height = 500.0
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(0, -20)
+scale = Vector2(1.7, 3)

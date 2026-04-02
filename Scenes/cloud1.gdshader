@@ -9,10 +9,10 @@ void fragment() {
     // Scroll the noise over time
     vec2 uv_offset = TIME * speed;
     float noise_val = texture(noise_texture, UV + uv_offset).r;
-    
+
     // Apply threshold to create distinct "cloud" shapes
     float shadow_mask = smoothstep(density, density + 0.1, noise_val);
-    
+
     // Output the shadow color multiplied by the mask
     COLOR = vec4(shadow_color.rgb, shadow_mask * shadow_color.a);
 }

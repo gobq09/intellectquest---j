@@ -6,4 +6,5 @@ func _ready() -> void:
 	game_data["in_game"] = true
 	game_data["last_scene"] = "uid://dt532wlk4w78h"
 	game_data["tutorial"] = true
+	game_data["in_combat"] = false
 	SaveManager.save_game(game_data, "save_file")

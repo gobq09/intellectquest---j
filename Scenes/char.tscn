@@ -261,9 +261,10 @@ polygon = PackedVector2Array(-5, 7, -4, 1, -5, -3, -3, -7, 3, -7, 5, -3, 4, 1, 5
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_uj54u"]
 polygon = PackedVector2Array(-3, 0, -3, 0, -3, 8, 3, 8, 3, 0)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ani_tree")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ani_tree") groups=["Player"]]
+z_index = 1
 y_sort_enabled = true
-collision_mask = 3
+collision_mask = 11
 script = ExtResource("1_gv012")
 ani_tree = NodePath("Player_AnimTree")
 

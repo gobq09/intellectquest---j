@@ -90,3 +90,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_suy7h")
 }
 autoplay = "idle"
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
