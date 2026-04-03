@@ -129,6 +129,6 @@ func _on_battle_trigger_body_entered(body: Node2D) -> void:
 		start_battle()
 
 
-func _on_detection_area_body_exited(body: Node2D) -> void:
+func _on_detection_area_body_exited(_body: Node2D) -> void:
 	$AnimationTree.get("parameters/playback").travel("Idle")
 	chasing = false

@@ -14,6 +14,9 @@ var turns: int = 5
 func _ready() -> void:
 	self.texture_normal = load(sprite[type])
 	$RichTextLabel.text  = "[b]" + str(turns)
+	
+	if turns <= 0:
+		queue_free()
 
 
 func _on_button_down() -> void:
@@ -22,3 +25,7 @@ func _on_button_down() -> void:
 
 func _on_button_up() -> void:
 	$RichTextLabel2.visible = false
+
+
+func _on_button_pressed() -> void:
+	print("pressed")

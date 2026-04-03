@@ -6,7 +6,7 @@ var quest1_active = false
 var quest1_completed = false
 var stick = 0
 
-func _process(delta):
+func _process(_delta):
 	if quest1_active:
 		if stick == 3:
 			print("quest 1 completed")

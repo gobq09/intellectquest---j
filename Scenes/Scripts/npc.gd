@@ -16,7 +16,7 @@ var player_in_chat_zone = false
 @export var Sprite = "male1"
 @export_enum("Down", "Left", "Right", "Up") var face
 @onready var texture_load: Texture2D = load("res://Sprites/npc/npc-" + Sprite + ".png")
-@onready var sprite_2d = $Sprite2D
+#@onready var sprite_2d = $Sprite2D
 
 enum {
 	IDLE,

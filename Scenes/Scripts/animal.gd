@@ -16,7 +16,7 @@ var swim_direction = Vector2.ZERO
 @export var top_limit: float = 50.0
 @export var bottom_limit: float = 600.0
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+#@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var change_state_timer: Timer = $changestatetimer
 @onready var swimming_timer: Timer = $swimmingtimer
 @onready var sprite = $Sprite2D
@@ -47,7 +47,7 @@ func _ready() -> void:
 	anim_player.play("idle")
 	_enter_float_state()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if current_state == DuckState.SWIMMING:
 		velocity = lerp(velocity, swim_speed * swim_direction, 0.15)  # snappier acceleration
 	else:

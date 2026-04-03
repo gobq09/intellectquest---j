@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://x8j1q0cr8ykf"]
+[gd_scene load_steps=17 format=4 uid="uid://x8j1q0cr8ykf"]
 
 [ext_resource type="TileSet" uid="uid://dop58t8w0lmjn" path="res://Tileset/grass.tres" id="1_hodpy"]
 [ext_resource type="Script" uid="uid://b2htjdjny3oww" path="res://Scenes/Scripts/game.gd" id="1_rku1e"]
@@ -15,30 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://dt0reecx2hip5" path="res://Scenes/enemy.tscn" id="12_1phco"]
 [ext_resource type="Script" uid="uid://cmchlgg0nagyh" path="res://Scenes/Scripts/change_scene2.gd" id="12_rku1e"]
 [ext_resource type="PackedScene" uid="uid://bkchteg2njvve" path="res://Scenes/animal.tscn" id="15_nb51f"]
-[ext_resource type="Shader" uid="uid://bdw6ayaiexuau" path="res://Scenes/cloud1.gdshader" id="16_nnt18"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rfjv2"]
 size = Vector2(130, 340)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_ewbju"]
-noise_type = 3
-seed = 535
-frequency = 0.0062
-fractal_octaves = 10
-fractal_lacunarity = 2.01
-fractal_gain = 0.54
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ljijv"]
-generate_mipmaps = false
-seamless = true
-noise = SubResource("FastNoiseLite_ewbju")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_85qyi"]
-shader = ExtResource("16_nnt18")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_ljijv")
-shader_parameter/speed = Vector2(0.003, 0.001)
-shader_parameter/density = 0.629
-shader_parameter/shadow_color = Color(0.0907033, 0.0326106, 0.111201, 0.3)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_rku1e")
@@ -241,21 +220,7 @@ script = ExtResource("12_rku1e")
 position = Vector2(-719, 417)
 shape = SubResource("RectangleShape2D_rfjv2")
 
-[node name="Clouds" type="ColorRect" parent="."]
-z_index = 4
-material = SubResource("ShaderMaterial_85qyi")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1337.0
-offset_top = -1132.0
-offset_right = 1542.0
-offset_bottom = 1074.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1, 0.918)
-color = Color(0, 0, 0, 0)
+[node name="Cloud" type="Node2D" parent="."]
+visible = false
 
 [connection signal="body_entered" from="change_scene" to="change_scene" method="_on_body_entered"]

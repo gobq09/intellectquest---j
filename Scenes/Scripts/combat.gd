@@ -126,6 +126,7 @@ var buffs = {
 
 #region combat load
 func _ready() -> void:
+	#ui.visible = false
 	SignalManager.buff.connect(_update_buffs)
 	SignalManager.item_used.connect(_used_item)
 	
@@ -201,10 +202,12 @@ func _new_question() -> void:
 	ans_label.text = answers[0]
 	ques_label.text = question
 	
+	ui.modulate.a = 0
 	ui.visible = true
 	panel.visible = true
 	anim_player.play_backwards("fade")
 	await anim_player.animation_finished
+	ui.modulate.a = 1
 	okay_button.disabled = false
 	ans_button1.disabled = false
 
@@ -313,6 +316,10 @@ func _on_correct_answer():
 		_on_enemy_defeated()
 	else:
 		SignalManager.item_used.emit("opened")
+		for type in buffs:
+			if buffs[type] > 0:
+				buffs[type] -= 1
+		_apply_buffs()
 		_show_actions()
 
 func _on_wrong_answer():
@@ -342,6 +349,11 @@ func _on_wrong_answer():
 		_on_player_defeated()
 	else:
 		SignalManager.item_used.emit("opened")
+		
+		for type in buffs:
+			if buffs[type] > 0:
+				buffs[type] -= 1
+		_apply_buffs()
 		_show_actions()
 
 func _on_enemy_defeated():
@@ -409,7 +421,7 @@ func _on_player_defeated():
 	
 	await get_tree().create_timer(1).timeout
 	
-	player_data["player_hp"] = player_max_health
+	player_data["player_hp"] = default_maxhp
 	game_data["global_position"] = game_data["respawn_point"]
 	game_data["player_lost"] = true
 	game_data["in_combat"] = false
@@ -435,6 +447,8 @@ func _battle_summary():
 	
 	_evaluate()
 
+var timer = 1
+
 func _evaluate():
 	var summary_text = $Summary/Control/ScrollContainer/SummaryLabel
 	var summary_ques: String
@@ -442,6 +456,7 @@ func _evaluate():
 	var summary_cor: String
 	var count: int = 1
 	var exp_gain: int
+
 	#show question
 	for ques in encountered_questions:
 		summary_ques = encountered_questions[count]["Question"]
@@ -456,19 +471,19 @@ func _evaluate():
 		summary_text.text += "[b]" + summary_ques + "[/b]" + "\n" + summary_ans + summary_cor + "\n\n"
 		count += 1
 		
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(timer).timeout
 	
 	if perfect == true:
 		summary_text.text += "[b]PERFECT![/b] Bonus Exp Added.\n\n"
 		exp_gain += (exp_gain * 0.1) + (player_level * 0.5)
 	
 	if player_won == false:
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(timer).timeout
 		
 		summary_text.text += "[b]You'll get them next time![/b] \n-50% Exp Gained in this battle.\n\n"
 		
 		exp_gain = exp_gain / 2
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(timer).timeout
 	
 	summary_text.text += "Experience Gained: " + str(exp_gain) + "\n\n"
 	
@@ -480,7 +495,7 @@ func _evaluate():
 
 		
 	while total_exp >= exp_require:
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(timer).timeout
 		if total_exp < exp_require:
 			break
 		else:
@@ -491,7 +506,7 @@ func _evaluate():
 		level_up += 1
 		stats_add += 3
 		
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(timer).timeout
 	
 	summary_text.text += "\n\n\n"
 	
@@ -505,6 +520,10 @@ func _evaluate():
 	
 	anim_player.play("confirm_fade")
 	$Summary/Control/TextureButton.disabled = false
+
+func _on_skip_pressed() -> void:
+	timer = 0
+	$Summary/Control/Skip.mouse_filter = MouseFilter.MOUSE_FILTER_IGNORE
 
 func _on_texture_button_pressed() -> void:
 	anim_player.play("summary_confirm")
@@ -604,10 +623,9 @@ func _update_buffs(effect):
 	_apply_buffs()
 
 func _apply_buffs():
-	print(buffs)
 	for child in $HP/PlayerHP/Buffs.get_children(): 
 		child.queue_free()
-	
+
 	if buffs["Damage_Reduction"] > 0:
 		temp_reduce = 0.75
 		
@@ -642,17 +660,17 @@ func _apply_buffs():
 		temp_critdmg = 0
 	
 	# display buffs
-	
 	for type in buffs:
-		if buffs[type] > 0:
-			_show_buff(type, buffs[type])
-			buffs[type] -= 1
+		_show_buff(type, buffs[type])
 
 func _show_buff(type: String, turns: int):
-	var instance = buff.instantiate()
-	
-	instance.type = type
-	instance.turns = turns
-	
-	$HP/PlayerHP/Buffs.add_child(instance)
+	if turns > 0:
+		var instance = buff.instantiate()
+		
+		instance.type = type
+		instance.turns = turns
+		
+		$HP/PlayerHP/Buffs.add_child(instance)
+	else:
+		return
 #endregion
