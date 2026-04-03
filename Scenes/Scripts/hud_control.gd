@@ -7,11 +7,6 @@ extends Control
 @onready var bar: Sprite2D = $"HP/Interface-hud-hpbar1"
 @onready var level: Label = $"HP/Interface-hud-level/RichTextLabel"
 
-
-
-# 100 = 82, 19
-# 0 = 32, 19
-
 signal interacted
 
 func _ready() -> void:

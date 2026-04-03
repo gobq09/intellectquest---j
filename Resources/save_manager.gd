@@ -10,6 +10,7 @@ extends Node
 @onready var player_questions : String = "user://player_questions.json"
 @onready var enemy : String = "user://enemy_data.json"
 @onready var inventory : String = "user://player_inv.json"
+@onready var settings : String = "user://config.json"
 
 # str(OS.get_executable_path().get_base_dir())
 
@@ -171,6 +172,16 @@ var inv_data: Dictionary = {
 	},
 }
 
+var config_data: Dictionary = {
+	"Joystick_Mode": "Dynamic",
+	"Graphics_Mode": "Low",
+	"VSync": false,
+	"Master_Vol": 1.0,
+	"Music_Vol": 1.0,
+	"SFX_Vol": 1.0,
+	"Ambience_Vol": 1.0,
+}
+
 #endregion
 
 func _ready():
@@ -195,6 +206,8 @@ func save_game(data: Dictionary, savePath: String) -> void:
 		savePath = enemy
 	elif savePath == "inv_file":
 		savePath = inventory
+	elif savePath == "config_file":
+		savePath = settings
 	
 	var file = FileAccess.open(savePath, FileAccess.WRITE)
 	
@@ -206,21 +219,33 @@ func save_game(data: Dictionary, savePath: String) -> void:
 		print("Failed to save! Error: ", FileAccess.get_open_error())
 
 func load_game(savePath: String) -> Dictionary:
-	#print(savePath)
+	var data
 	if savePath == "save_file":
 		savePath = save_file
+		data = game_data
 	elif savePath == "player_file":
 		savePath = player
+		data = player_data
 	elif savePath == "player_questions":
 		savePath = player_questions
 	elif savePath == "enemy_file":
 		savePath = enemy
+		data = enemy_data
 	elif savePath == "inv_file":
 		savePath = inventory
+		data = inv_data
+	elif savePath == "config_file":
+		savePath = settings
+		data = config_data
 	
 	if not FileAccess.file_exists(savePath):
 		print("No save file found!")
-		return {}
+		var create_file = FileAccess.open(savePath, FileAccess.WRITE)
+	
+		if  create_file:
+			create_file.store_string(JSON.stringify(data))
+			create_file.close()
+			print("Game saved at: ", savePath)
 	
 	var file = FileAccess.open(savePath, FileAccess.READ)
 	if file:

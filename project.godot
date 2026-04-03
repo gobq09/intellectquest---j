@@ -18,13 +18,13 @@ config/icon="res://icon.svg"
 [autoload]
 
 SceneLoader="*res://Scenes/Scripts/scene_loader.gd"
-HUD="*res://hud.gd"
 Questions="*res://Resources/questions.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SaveManager="*res://Resources/save_manager.gd"
 PlayerQuestions="*res://Scenes/Scripts/player_questions.gd"
 InventoryManager="*res://Resources/inventory_manager.gd"
 SignalManager="*res://Resources/SignalManager.gd"
+Settings="*res://Resources/settings.gd"
 
 [display]
 

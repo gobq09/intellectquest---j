@@ -38,7 +38,7 @@ extends Control
 @onready var player_wis : int = player_data["player_wis"]
 @onready var player_str : int = player_data["player_str"]
 @onready var level : int = player_data["player_level"]
-@onready var exp = player_data["player_exp"]
+@onready var player_exp = player_data["player_exp"]
 @onready var exp_require: float
 @onready var unused_stat : int = player_data["unused_stats"]
 @onready var game_data =SaveManager.load_game("save_file")
@@ -70,8 +70,8 @@ func _ready() -> void:
 	
 	exp_require = round(level * 15.5)
 	
-	exp_counter.text = "[b]Exp:[/b] " + str(exp) + "/" + str(exp_require)
-	exp_bar.value = (exp / exp_require) * 100
+	exp_counter.text = "[b]Exp:[/b] " + str(player_exp) + "/" + str(exp_require)
+	exp_bar.value = (player_exp / exp_require) * 100
 	
 	unused_stat_counter.text = "[b]Unused Stat Points:[/b] " + str(unused_stat)
 	int_label.text = "[b]Intelligence:[/b] " + str(player_int)
@@ -134,6 +134,9 @@ func _on_confirm_pressed() -> void:
 	player_end += int(end_button_label.text)
 	player_wis += int(wis_button_label.text)
 	player_str += int(str_button_label.text)
+	player_data["player_hp"] += int(end_button_label.text) * 2
+	if player_data["player_hp"] > 50 + (player_end * 2):
+		player_data["player_hp"] = 50 + (player_end * 2)
 	
 	int_label.text = "[b]Intelligence:[/b] " + str(player_int)
 	end_label.text = "[b]Endurance:[/b] " + str(player_end)
@@ -171,7 +174,6 @@ func _on_confirm_pressed() -> void:
 	player_data["player_end"] = player_end
 	player_data["player_wis"] = player_wis
 	player_data["player_str"] = player_str
-	player_data["player_hp"] += player_end * 2
 	
 	SaveManager.save_game(player_data, "player_file")
 	
