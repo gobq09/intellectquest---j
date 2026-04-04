@@ -1,82 +1,119 @@
-extends Control
+extends Node
 
-@onready var game_data = SaveManager.load_game("save_file")
-@onready var general: TextureButton = $Control/General
-@onready var video: TextureButton = $Control/Video
-@onready var audio: TextureButton = $Control/Audio
-@onready var menu: TextureButton = $Control/Menu
-@onready var quit: TextureButton = $Control/Quit
-@onready var close: TextureButton = $Close
-@onready var confirm: TextureButton = $Prompt/Control/Confirm
-@onready var cancel: TextureButton = $Prompt/Control/Cancel
-@onready var prompt: Control = $Prompt
-@onready var label: RichTextLabel = $"Prompt/Control/Prompt Label"
+@onready var config_data = SaveManager.load_game("config_file")
+@onready var graphics_mode = config_data["Graphics_Mode"]
+@onready var joystick_mode = config_data["Joystick_Mode"]
+@onready var vsync = config_data["VSync"]
+@onready var master_volume = config_data["Master_Vol"]
+@onready var music_volume = config_data["Joystick_Mode"]
+@onready var sfx_volume = config_data["SFX_Vol"]
+@onready var ambience_volume = config_data["Ambience_Vol"]
 
-@onready var menu_uid: String = "uid://dkefgsuwak2hj"
-@onready var last_scene: String
+@onready var new_config = config_data.duplicate()
+@onready var default_config = SaveManager.config_data
 
-var pressed: String
+@onready var graphics_low = $Settings/Graphics/Mode/Low
+@onready var graphics_high = $Settings/Graphics/Mode/High
+@onready var fps_30 = $"Settings/Graphics/FPS/30"
+@onready var fps_60 = $"Settings/Graphics/FPS/60"
+@onready var vsync_check = $Settings/Graphics/VSync/CheckBox
+@onready var joystick_fixed = $Settings/General/Joystick/Fixed
+@onready var joystick_dynamic = $Settings/General/Joystick/Dynamic
+@onready var master_slider = $Settings/Audio/Master/MasterSlider
+@onready var music_slider = $Settings/Audio/Music/MusicSlider
+@onready var sfx_slider = $Settings/Audio/SFX/SfxSlider
+@onready var ambience_slider = $Settings/Audio/Ambience/AmbienceSlider
 
 func _ready() -> void:
-	if game_data["in_game"] == true:
-		menu.visible = true
-		menu.disabled = false
-		quit.visible = true
-		quit.disabled = false
-		
-		last_scene = game_data["last_scene"]
+	_load_config(config_data)
+
+func _load_config(data):
+	if data["Graphics_Mode"] == "Low":
+		graphics_low.button_pressed = true
 	else:
-		menu.visible = false
-		menu.disabled = true
-		quit.visible = false
-		quit.disabled = true
-		
-		last_scene = menu_uid
-
-func _on_general_pressed() -> void:
-	pass # Replace with function body.
-
-func _on_audio_pressed() -> void:
-	pass # Replace with function body.
-
-func _on_video_pressed() -> void:
-	pass # Replace with function body.
-
-func _on_menu_pressed() -> void:
-	_load_prompt("Menu")
-
-func _on_quit_pressed() -> void:
-	_load_prompt("Quit")
-
-
-func _load_prompt(press):
-	pressed = press
-	prompt.visible = true
-	confirm.disabled = false
-	cancel.disabled = false
+		graphics_high.button_pressed = true
 	
-	if press == "Menu":
-		label.text = "Are you sure you want to return to the [b]Main Menu[/b]?"
-	elif press == "Quit":
-		label.text = "Are you sure you want to [b]Quit the Game[/b]?"
-
-func _on_close_pressed() -> void:
-	SceneLoader.load_scene(last_scene)
-
-
-func _on_confirm_pressed() -> void:
-	confirm.disabled = true
-	cancel.disabled = true
-	
-	if pressed == "Menu":
-		SceneLoader.load_scene(menu_uid)
-	elif pressed == "Quit":
-		get_tree().quit()
+	if data["Frame_Rate"] == 30:
+		fps_30.button_pressed = true
 	else:
-		return
+		fps_60.button_pressed = true
+	
+	if data["VSync"] == true:
+		vsync_check.button_pressed = true
+	else:
+		vsync_check.button_pressed = false
+	
+	if data["Joystick_Mode"] == "Fixed":
+		joystick_fixed.button_pressed = true
+	else:
+		joystick_dynamic.button_pressed = true
+	
+	master_slider.value = data["Master_Vol"]
+	music_slider.value = data["Music_Vol"]
+	sfx_slider.value = data["SFX_Vol"]
+	ambience_slider.value = data["Ambience_Vol"]
+
+func _on_reset_pressed() -> void:
+	new_config = default_config
+	_load_config(new_config)
+
+func _on_revert_pressed() -> void:
+	new_config = config_data.duplicate()
+	_load_config(new_config)
+
+func _on_save_pressed() -> void:
+	SaveManager.save_game(new_config, "config_file")
+
+#region Volume
+func _on_master_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(0, linear_to_db(value))
+	new_config["Master_Vol"] = value
+
+func _on_music_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(1, linear_to_db(value))
+	new_config["Music_Vol"] = value
+
+func _on_sfx_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(2, linear_to_db(value))
+	new_config["SFX_Vol"] = value
+
+func _on_ambience_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(3, linear_to_db(value))
+	new_config["Ambience_Vol"] = value
+
+#endregion
+
+#region Graphics
+
+func _on_low_pressed() -> void:
+	new_config["Graphics_Mode"] = "Low"
 
 
-func _on_cancel_pressed() -> void:
-	confirm.disabled = true
-	cancel.disabled = true
-	prompt.visible = false
+func _on_high_pressed() -> void:
+	new_config["Graphics_Mode"] = "High"
+
+
+func _on_check_box_pressed() -> void:
+	if vsync_check.button_pressed == true:
+		new_config["VSync"] = true
+	else:
+		new_config["VSync"] = false
+
+
+func _on_30_pressed() -> void:
+	new_config["Frame_Rate"] = 30
+
+
+func _on_60_pressed() -> void:
+	new_config["Frame_Rate"] = 60
+#endregion
+
+#region Joystick
+
+func _on_fixed_pressed() -> void:
+	new_config["Joystick_Mode"] = "Fixed"
+
+
+func _on_dynamic_pressed() -> void:
+	new_config["Joystick_Mode"] = "Dynamic"
+#endregion

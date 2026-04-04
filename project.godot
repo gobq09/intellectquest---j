@@ -24,7 +24,7 @@ SaveManager="*res://Resources/save_manager.gd"
 PlayerQuestions="*res://Scenes/Scripts/player_questions.gd"
 InventoryManager="*res://Resources/inventory_manager.gd"
 SignalManager="*res://Resources/SignalManager.gd"
-Settings="*res://Resources/settings.gd"
+SettingsManager="*res://Resources/settings_manager.gd"
 
 [display]
 

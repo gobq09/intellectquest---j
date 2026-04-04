@@ -131,6 +131,11 @@ var being_touched: bool = false:
 
 # Initial setup
 func _ready() -> void:
+	if SettingsManager.joystick_mode == "Fixed":
+		joystick_mode = JoystickMode.FIXED
+	else: 
+		joystick_mode = JoystickMode.DYNAMIC
+	
 	if not Engine.is_editor_hint():
 		
 		if OS.get_name() not in mobile_operating_systems and is_mobile_only:

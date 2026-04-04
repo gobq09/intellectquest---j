@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://tj4vo1mmxfyt"]
+[gd_scene load_steps=22 format=3 uid="uid://tj4vo1mmxfyt"]
 
-[ext_resource type="Script" uid="uid://stfwy03w1s4n" path="res://Scenes/Scripts/settings.gd" id="1_6vr2p"]
+[ext_resource type="Script" uid="uid://stfwy03w1s4n" path="res://Scenes/Scripts/settings_ui.gd" id="1_6vr2p"]
+[ext_resource type="Script" uid="uid://cxuwwdgaujbm1" path="res://Scenes/Scripts/settings.gd" id="2_1c72s"]
 [ext_resource type="Texture2D" uid="uid://dxcpdwuu3aryg" path="res://ui/settings/interface-settings-top.png" id="2_i44u3"]
 [ext_resource type="Texture2D" uid="uid://c0aurjg4m3hgn" path="res://ui/settings/interface-settings-general.png" id="2_lhmql"]
 [ext_resource type="Texture2D" uid="uid://bb4d6hsoc6ya" path="res://ui/settings/interface-settings-video.png" id="3_6kysc"]
@@ -14,11 +15,20 @@
 [ext_resource type="Texture2D" uid="uid://d0ycw54b0kcxd" path="res://ui/title/interface-prompt-confirm.png" id="12_1c72s"]
 [ext_resource type="Texture2D" uid="uid://csc0os8ayadj1" path="res://ui/title/interface-prompt-cancel.png" id="13_vmqi3"]
 
-[sub_resource type="Gradient" id="Gradient_84ke3"]
-colors = PackedColorArray(0, 0, 0, 0.588235, 0, 0, 0, 0.588235)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1c72s"]
+bg_color = Color(0.383286, 0.20256, 0.155086, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6kysc"]
-gradient = SubResource("Gradient_84ke3")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1c72s"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_ieo4m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vmqi3"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_vmqi3"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_1c72s"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_g8dc3"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -29,41 +39,356 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6vr2p")
 
-[node name="TextureRect3" type="TextureRect" parent="."]
+[node name="TextureRect3" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_6kysc")
+theme_override_styles/panel = SubResource("StyleBoxFlat_1c72s")
+
+[node name="Control2" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -327.0
+offset_top = -270.0
+offset_right = 433.0
+offset_bottom = 274.0
+grow_horizontal = 2
+grow_vertical = 2
+vertical_scroll_mode = 3
+script = ExtResource("2_1c72s")
+
+[node name="Settings" type="VBoxContainer" parent="Control2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Divider5" type="Panel" parent="Control2/Settings"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1c72s")
+
+[node name="Buttons" type="VBoxContainer" parent="Control2/Settings"]
+layout_mode = 2
+
+[node name="Mode" type="HBoxContainer" parent="Control2/Settings/Buttons"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Reset" type="Button" parent="Control2/Settings/Buttons/Mode"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_ieo4m")
+text = "Default"
+
+[node name="Revert" type="Button" parent="Control2/Settings/Buttons/Mode"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_ieo4m")
+text = "Revert"
+
+[node name="Save" type="Button" parent="Control2/Settings/Buttons/Mode"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_ieo4m")
+text = "Save"
+
+[node name="Panel" type="Panel" parent="Control2/Settings/Buttons/Mode"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vmqi3")
+
+[node name="Divider" type="Panel" parent="Control2/Settings"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1c72s")
+
+[node name="Graphics" type="VBoxContainer" parent="Control2/Settings"]
+layout_mode = 2
+
+[node name="Mode" type="HBoxContainer" parent="Control2/Settings/Graphics"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Graphics/Mode"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Graphics Mode"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Low" type="Button" parent="Control2/Settings/Graphics/Mode"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vmqi3")
+text = "Low"
+
+[node name="High" type="Button" parent="Control2/Settings/Graphics/Mode"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vmqi3")
+text = "High"
+
+[node name="FPS" type="HBoxContainer" parent="Control2/Settings/Graphics"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Graphics/FPS"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Frame Rate"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="30" type="Button" parent="Control2/Settings/Graphics/FPS"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1c72s")
+text = "30 FPS"
+
+[node name="60" type="Button" parent="Control2/Settings/Graphics/FPS"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1c72s")
+text = "60 FPS"
+
+[node name="VSync" type="HBoxContainer" parent="Control2/Settings/Graphics"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control2/Settings/Graphics/VSync"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Enable VSync"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Control2/Settings/Graphics/VSync"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Divider3" type="Panel" parent="Control2/Settings"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1c72s")
+
+[node name="Audio" type="VBoxContainer" parent="Control2/Settings"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Master" type="HBoxContainer" parent="Control2/Settings/Audio"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Audio/Master"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = "Master Volume
+"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="Control2/Settings/Audio/Master"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="Music" type="HBoxContainer" parent="Control2/Settings/Audio"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Audio/Music"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = "Music
+"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="Control2/Settings/Audio/Music"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="SFX" type="HBoxContainer" parent="Control2/Settings/Audio"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Audio/SFX"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = "Sound Effects
+"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="SfxSlider" type="HSlider" parent="Control2/Settings/Audio/SFX"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="Ambience" type="HBoxContainer" parent="Control2/Settings/Audio"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Audio/Ambience"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = "Ambience
+"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="AmbienceSlider" type="HSlider" parent="Control2/Settings/Audio/Ambience"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="Divider2" type="Panel" parent="Control2/Settings"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1c72s")
+
+[node name="General" type="VBoxContainer" parent="Control2/Settings"]
+layout_mode = 2
+
+[node name="Joystick" type="HBoxContainer" parent="Control2/Settings/General"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/General/Joystick"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Joystick Mode"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fixed" type="Button" parent="Control2/Settings/General/Joystick"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_g8dc3")
+text = "Fixed"
+
+[node name="Dynamic" type="Button" parent="Control2/Settings/General/Joystick"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_g8dc3")
+text = "Dynamic"
+
+[node name="Divider4" type="Panel" parent="Control2/Settings"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1c72s")
+
+[node name="Bug Report" type="HBoxContainer" parent="Control2/Settings"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Bug Report"]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Found a Bug? "
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LinkButton" type="LinkButton" parent="Control2/Settings/Bug Report"]
+custom_minimum_size = Vector2(48, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "Report to us"
+
+[node name="Divider6" type="Panel" parent="Control2/Settings"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1c72s")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -270.0
-offset_right = 112.0
-offset_bottom = -90.0
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 107.0
+offset_bottom = -359.0
 grow_vertical = 2
 scale = Vector2(3, 3)
 texture = ExtResource("3_f60ng")
-stretch_mode = 5
+expand_mode = 5
 
 [node name="TextureRect4" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 1134.0
-offset_top = -270.0
-offset_right = 1166.0
-offset_bottom = -90.0
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -141.0
+offset_right = -94.0
+offset_bottom = -359.0
+grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(3, 3)
 texture = ExtResource("3_bismi")
-stretch_mode = 5
+expand_mode = 1
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -76,6 +401,7 @@ offset_bottom = 20.0
 grow_vertical = 2
 
 [node name="General" type="TextureButton" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 48.0
 offset_top = -218.0
@@ -85,6 +411,7 @@ scale = Vector2(3, 3)
 texture_normal = ExtResource("2_lhmql")
 
 [node name="Video" type="TextureButton" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 48.0
 offset_top = -130.0
@@ -94,6 +421,7 @@ scale = Vector2(3, 3)
 texture_normal = ExtResource("3_6kysc")
 
 [node name="Audio" type="TextureButton" parent="Control"]
+visible = false
 layout_mode = 0
 offset_left = 48.0
 offset_top = -34.0
@@ -124,15 +452,14 @@ texture_normal = ExtResource("8_rgw85")
 
 [node name="Interface-settings-top" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -270.0
+anchors_preset = 9
+anchor_bottom = 1.0
 offset_right = 32.0
-offset_bottom = -90.0
+offset_bottom = -359.0
 grow_vertical = 2
 scale = Vector2(3, 3)
 texture = ExtResource("2_i44u3")
+expand_mode = 5
 
 [node name="Close" type="TextureButton" parent="."]
 layout_mode = 1
@@ -240,6 +567,20 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="pressed" from="Control2/Settings/Buttons/Mode/Reset" to="Control2" method="_on_reset_pressed"]
+[connection signal="pressed" from="Control2/Settings/Buttons/Mode/Revert" to="Control2" method="_on_revert_pressed"]
+[connection signal="pressed" from="Control2/Settings/Buttons/Mode/Save" to="Control2" method="_on_save_pressed"]
+[connection signal="pressed" from="Control2/Settings/Graphics/Mode/Low" to="Control2" method="_on_low_pressed"]
+[connection signal="pressed" from="Control2/Settings/Graphics/Mode/High" to="Control2" method="_on_high_pressed"]
+[connection signal="pressed" from="Control2/Settings/Graphics/FPS/30" to="Control2" method="_on_30_pressed"]
+[connection signal="pressed" from="Control2/Settings/Graphics/FPS/60" to="Control2" method="_on_60_pressed"]
+[connection signal="pressed" from="Control2/Settings/Graphics/VSync/CheckBox" to="Control2" method="_on_check_box_pressed"]
+[connection signal="value_changed" from="Control2/Settings/Audio/Master/MasterSlider" to="Control2" method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="Control2/Settings/Audio/Music/MusicSlider" to="Control2" method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Control2/Settings/Audio/SFX/SfxSlider" to="Control2" method="_on_sfx_slider_value_changed"]
+[connection signal="value_changed" from="Control2/Settings/Audio/Ambience/AmbienceSlider" to="Control2" method="_on_ambience_slider_value_changed"]
+[connection signal="pressed" from="Control2/Settings/General/Joystick/Fixed" to="Control2" method="_on_fixed_pressed"]
+[connection signal="pressed" from="Control2/Settings/General/Joystick/Dynamic" to="Control2" method="_on_dynamic_pressed"]
 [connection signal="pressed" from="Control/General" to="." method="_on_general_pressed"]
 [connection signal="pressed" from="Control/Video" to="." method="_on_video_pressed"]
 [connection signal="pressed" from="Control/Audio" to="." method="_on_audio_pressed"]

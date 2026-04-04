@@ -175,6 +175,7 @@ var inv_data: Dictionary = {
 var config_data: Dictionary = {
 	"Joystick_Mode": "Dynamic",
 	"Graphics_Mode": "Low",
+	"Frame_Rate": 30,
 	"VSync": false,
 	"Master_Vol": 1.0,
 	"Music_Vol": 1.0,
@@ -242,10 +243,7 @@ func load_game(savePath: String) -> Dictionary:
 		print("No save file found!")
 		var create_file = FileAccess.open(savePath, FileAccess.WRITE)
 	
-		if  create_file:
-			create_file.store_string(JSON.stringify(data))
-			create_file.close()
-			print("Game saved at: ", savePath)
+		save_game(data, savePath) # create dictionary with default data
 	
 	var file = FileAccess.open(savePath, FileAccess.READ)
 	if file:
@@ -253,5 +251,23 @@ func load_game(savePath: String) -> Dictionary:
 		file.close()
 		var result = JSON.parse_string(content)
 		if result is Dictionary:
+			var added : bool = false
+			for key in data: # check if all data exist
+				if not result.has(key):
+					var value = data[key]
+					
+					result[key] = value # add key with default data
+					
+					added = true
+			
+			if added == true:
+				save_game(result, savePath)
+				file = FileAccess.open(savePath, FileAccess.READ)
+				if file:
+					content = file.get_as_text()
+					file.close()
+					result = JSON.parse_string(content)
+			
 			return result
+		
 	return {}
