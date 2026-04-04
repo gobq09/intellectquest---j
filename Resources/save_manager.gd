@@ -11,6 +11,7 @@ extends Node
 @onready var enemy : String = "user://enemy_data.json"
 @onready var inventory : String = "user://player_inv.json"
 @onready var settings : String = "user://config.json"
+@onready var quest: String = "user://player_quests.json"
 
 # str(OS.get_executable_path().get_base_dir())
 
@@ -209,6 +210,8 @@ func save_game(data: Dictionary, savePath: String) -> void:
 		savePath = inventory
 	elif savePath == "config_file":
 		savePath = settings
+	elif savePath == "quest_file":
+		savePath = quest
 	
 	var file = FileAccess.open(savePath, FileAccess.WRITE)
 	
@@ -238,6 +241,8 @@ func load_game(savePath: String) -> Dictionary:
 	elif savePath == "config_file":
 		savePath = settings
 		data = config_data
+	elif savePath == "quest_file":
+		savePath = quest
 	
 	if not FileAccess.file_exists(savePath):
 		print("No save file found!")
@@ -253,7 +258,7 @@ func load_game(savePath: String) -> Dictionary:
 		if result is Dictionary:
 			var added : bool = false
 			
-			if not savePath == player_questions:
+			if not savePath == player_questions && not savePath == quest:
 				for key in data: # check if all data exist
 					if not result.has(key):
 						var value = data[key]

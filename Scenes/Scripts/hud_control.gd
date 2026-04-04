@@ -20,7 +20,7 @@ func _on_interfacehudtodo_pressed() -> void:
 	var tween = create_tween()
 	
 	if Task_Expanded == false:
-		tween.tween_property($Control/Task, "position", Vector2(-44.0, -0), 0.25)\
+		tween.tween_property($Control/Task, "position", Vector2(-44.0, 16.0), 0.25)\
 		.set_ease(Tween.EASE_OUT)\
 		.set_trans(Tween.TRANS_SINE)
 		#$Task.position += Vector2(0, -1)
@@ -53,3 +53,7 @@ func _on_interfacehudlevel_pressed() -> void:
 func _on_interact_button_pressed() -> void:
 	Input.action_press("interact")
 	Input.action_release("interact")
+
+
+func _on_task_button_down() -> void:
+	SceneLoader.load_scene("uid://bn8572f758heh")

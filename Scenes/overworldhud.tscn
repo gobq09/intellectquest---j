@@ -290,9 +290,10 @@ texture = ExtResource("6_bdvyw")
 [node name="Task" type="TextureButton" parent="HUD/Control"]
 layout_mode = 0
 offset_left = -44.0
-offset_top = -30.0
+offset_top = 16.0
 offset_right = 4.0
-offset_bottom = 50.0
+offset_bottom = 96.0
+button_mask = 3
 texture_normal = ExtResource("7_wruxn")
 stretch_mode = 3
 
@@ -402,6 +403,7 @@ libraries = {
 
 [connection signal="pressed" from="HUD/HP/Interface-hud-level" to="HUD" method="_on_interfacehudlevel_pressed"]
 [connection signal="pressed" from="HUD/HP/Archive Button" to="HUD" method="_on_archive_button_pressed"]
+[connection signal="button_down" from="HUD/Control/Task" to="HUD" method="_on_task_button_down"]
 [connection signal="pressed" from="HUD/Control/Task" to="HUD" method="_on_interfacehudtodo_pressed"]
 [connection signal="pressed" from="HUD/Control/Map Button" to="HUD" method="_on_map_button_pressed"]
 [connection signal="pressed" from="HUD/Control/Settings Button" to="HUD" method="_on_settings_button_pressed"]

@@ -151,6 +151,7 @@ func _on_confirm_pressed() -> void:
 		player_name = name_input.text
 	
 	PlayerQuestions.copy_questions(diff_label.text)
+	QuestManager._clear_quests()
 	SaveManager.player_data["chosen"] = chosen
 	SaveManager.player_data["player_name"] = player_name
 	SaveManager.player_data["difficulty"] = diff_label.text

@@ -58,30 +58,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 
-[node name="Task" type="HBoxContainer" parent="Control/ScrollContainer/Tasks_Container"]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="Name" type="RichTextLabel" parent="Control/ScrollContainer/Tasks_Container/Task"]
-layout_mode = 2
-size_flags_horizontal = 3
-bbcode_enabled = true
-text = "Requirement"
-fit_content = true
-scroll_active = false
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Progress" type="RichTextLabel" parent="Control/ScrollContainer/Tasks_Container/Task"]
-custom_minimum_size = Vector2(64, 0)
-layout_mode = 2
-bbcode_enabled = true
-text = "1/1"
-fit_content = true
-scroll_active = false
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Panel" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2

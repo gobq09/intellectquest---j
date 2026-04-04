@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://bn8572f758heh"]
 
+[ext_resource type="Script" uid="uid://cp3f3osgm101a" path="res://Scenes/Scripts/quest_ui.gd" id="1_2revy"]
 [ext_resource type="Texture2D" uid="uid://jjk6ucgaxn7k" path="res://ui/quest/interface-quest-bottom.png" id="1_7b37a"]
 [ext_resource type="Texture2D" uid="uid://ddifwtko16qmn" path="res://ui/quest/interface-quest-main.png" id="2_cbd34"]
 [ext_resource type="Texture2D" uid="uid://chihnta1t6jt7" path="res://ui/quest/interface-quest-top.png" id="2_essri"]
 [ext_resource type="Texture2D" uid="uid://p5uw7ccw1p78" path="res://ui/quest/interface-quest-side.png" id="3_2revy"]
 [ext_resource type="Texture2D" uid="uid://gfo4nfxodp7d" path="res://ui/archive/interface-archive-closebutton.png" id="3_essri"]
-[ext_resource type="PackedScene" uid="uid://by4chugqsyn4d" path="res://Scenes/quest_display.tscn" id="5_2revy"]
 
 [node name="Quest" type="Control"]
 layout_mode = 3
@@ -14,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2revy")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -81,19 +82,10 @@ offset_bottom = 40.0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/ScrollContainer"]
+[node name="Quests_Container" type="VBoxContainer" parent="Control/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Quest_Display" parent="Control/ScrollContainer/VBoxContainer" instance=ExtResource("5_2revy")]
-layout_mode = 2
-
-[node name="Quest_Display2" parent="Control/ScrollContainer/VBoxContainer" instance=ExtResource("5_2revy")]
-layout_mode = 2
-
-[node name="Quest_Display3" parent="Control/ScrollContainer/VBoxContainer" instance=ExtResource("5_2revy")]
-layout_mode = 2
 
 [node name="Close" type="TextureButton" parent="."]
 layout_mode = 1
