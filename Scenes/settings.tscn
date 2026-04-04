@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://csc0os8ayadj1" path="res://ui/title/interface-prompt-cancel.png" id="13_vmqi3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1c72s"]
-bg_color = Color(0.383286, 0.20256, 0.155086, 1)
+bg_color = Color(0.404586, 0.180298, 0.184072, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1c72s"]
 
