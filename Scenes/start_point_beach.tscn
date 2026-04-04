@@ -573,6 +573,7 @@ shape = SubResource("RectangleShape2D_gophc")
 [node name="game" type="Marker2D" parent="SpawnPoints"]
 
 [node name="Clouds" type="ColorRect" parent="."]
+visible = false
 z_index = 4
 material = SubResource("ShaderMaterial_iy2pv")
 anchors_preset = 8

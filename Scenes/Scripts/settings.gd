@@ -2,6 +2,7 @@ extends Node
 
 @onready var config_data = SaveManager.load_game("config_file")
 @onready var graphics_mode = config_data["Graphics_Mode"]
+@onready var frame_rate = config_data["Frame_Rate"]
 @onready var joystick_mode = config_data["Joystick_Mode"]
 @onready var vsync = config_data["VSync"]
 @onready var master_volume = config_data["Master_Vol"]
@@ -63,6 +64,8 @@ func _on_revert_pressed() -> void:
 
 func _on_save_pressed() -> void:
 	SaveManager.save_game(new_config, "config_file")
+	SignalManager.settings_updated.emit()
+	SettingsManager._load_settings()
 
 #region Volume
 func _on_master_slider_value_changed(value: float) -> void:

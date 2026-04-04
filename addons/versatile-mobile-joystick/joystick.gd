@@ -131,6 +131,8 @@ var being_touched: bool = false:
 
 # Initial setup
 func _ready() -> void:
+	#SignalManager.settings_updated.connect(_settings_updated)
+	
 	if SettingsManager.joystick_mode == "Fixed":
 		joystick_mode = JoystickMode.FIXED
 	else: 
@@ -144,6 +146,13 @@ func _ready() -> void:
 			%Joystick.hide()
 		else:
 			%Joystick.show()
+
+func _settings_updated():
+	print("connected")
+	if SettingsManager.joystick_mode == "Fixed":
+		joystick_mode = JoystickMode.FIXED
+	else: 
+		joystick_mode = JoystickMode.DYNAMIC
 
 func _update_tip_texture(texture : Texture2D) -> void:
 	tip_texture = texture

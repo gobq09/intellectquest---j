@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b4qaqebdse2qj"]
+[gd_scene load_steps=40 format=3 uid="uid://b4qaqebdse2qj"]
 
 [ext_resource type="Script" uid="uid://dkhdkf103j2ms" path="res://Scenes/Scripts/char.gd" id="1_gv012"]
 [ext_resource type="Animation" uid="uid://5lii1tmmfvju" path="res://Sprites/player/animation/player-wakeup.res" id="2_ljijv"]
@@ -33,10 +33,10 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_nedj3")
 blend_point_3/pos = Vector2(0.9, 0)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1iy3q"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uydtg"]
 animation = &"player-standup"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ljijv"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1iy3q"]
 animation = &"player-wakeup"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7e6py"]
@@ -62,29 +62,35 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_brfrq")
 blend_point_3/pos = Vector2(0.9, 0)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yijx6"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tr5dq"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6w5cu"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1iy3q"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sf4kk"]
+switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uydtg"]
 switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2upaq"]
-states/End/position = Vector2(670, 72)
+states/End/position = Vector2(673, 72)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_ayvha")
 states/Idle/position = Vector2(479, 72)
-"states/Stand Up/node" = SubResource("AnimationNodeAnimation_1iy3q")
-"states/Stand Up/position" = Vector2(479, -16)
+"states/Stand Up/node" = SubResource("AnimationNodeAnimation_uydtg")
+"states/Stand Up/position" = Vector2(479, -14)
 states/Start/position = Vector2(325, 72)
-"states/Wake Up/node" = SubResource("AnimationNodeAnimation_ljijv")
-"states/Wake Up/position" = Vector2(244, -58)
+"states/Wake Up/node" = SubResource("AnimationNodeAnimation_1iy3q")
+"states/Wake Up/position" = Vector2(313, -14)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_231on")
 states/Walk/position = Vector2(479, 159)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_yijx6"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_tr5dq"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_6w5cu"), "Stand Up", "Idle", SubResource("AnimationNodeStateMachineTransition_uydtg")]
-graph_offset = Vector2(-143, -103)
+transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_tr5dq"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_6w5cu"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1iy3q"), "Stand Up", "Idle", SubResource("AnimationNodeStateMachineTransition_sf4kk"), "Wake Up", "Stand Up", SubResource("AnimationNodeStateMachineTransition_uydtg")]
+graph_offset = Vector2(-125, -48)
 
 [sub_resource type="Animation" id="Animation_ap31j"]
 length = 0.001
@@ -369,12 +375,14 @@ position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_v3mp5")
 
 [node name="Player_AnimTree" type="AnimationTree" parent="."]
+deterministic = false
 tree_root = SubResource("AnimationNodeStateMachine_2upaq")
 anim_player = NodePath("AnimationPlayer")
-parameters/Idle/blend_position = Vector2(0.586645, 0.117021)
+parameters/Idle/blend_position = Vector2(-0.000841022, 0.846154)
 parameters/Walk/blend_position = Vector2(0.00476944, -0.117021)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player_AnimTree"]
+active = false
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_ljijv")

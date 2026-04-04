@@ -13,6 +13,12 @@ var sfx_vol
 var ambience_vol
 
 func _ready() -> void:
+	SignalManager.settings_updated.connect(_load_settings)
+	_load_settings()
+
+func _load_settings():
+	config_data = SaveManager.load_game("config_file")
+	
 	joystick_mode = config_data["Joystick_Mode"]
 	graphics_mode = config_data["Graphics_Mode"]
 	frame_rate = config_data["Frame_Rate"]
@@ -22,9 +28,6 @@ func _ready() -> void:
 	sfx_vol = config_data["SFX_Vol"]
 	ambience_vol = config_data["Ambience_Vol"]
 	
-	_load_settings()
-
-func _load_settings():
 	if graphics_mode == "Low":
 		pass
 	else:

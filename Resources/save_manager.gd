@@ -252,13 +252,15 @@ func load_game(savePath: String) -> Dictionary:
 		var result = JSON.parse_string(content)
 		if result is Dictionary:
 			var added : bool = false
-			for key in data: # check if all data exist
-				if not result.has(key):
-					var value = data[key]
-					
-					result[key] = value # add key with default data
-					
-					added = true
+			
+			if not savePath == player_questions:
+				for key in data: # check if all data exist
+					if not result.has(key):
+						var value = data[key]
+						
+						result[key] = value # add key with default data
+						
+						added = true
 			
 			if added == true:
 				save_game(result, savePath)

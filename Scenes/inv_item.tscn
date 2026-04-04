@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ci4k72w886ct3"]
 
 [ext_resource type="Texture2D" uid="uid://blvufegm4la2f" path="res://ui/inventory/interface-inventory-itembox.png" id="1_q71hx"]
-[ext_resource type="Script" uid="uid://rmta853hr2wm" path="res://Scenes/Scripts/button.gd" id="2_gsptq"]
+[ext_resource type="Script" uid="uid://rmta853hr2wm" path="res://Scenes/Scripts/inv_item.gd" id="2_gsptq"]
 
 [node name="Button" type="TextureButton"]
 offset_right = 96.0
