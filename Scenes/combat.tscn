@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cocirnqmaocmm" path="res://ui/combat/interface-combat-bg1.png" id="1_xisnc"]
 [ext_resource type="Texture2D" uid="uid://c6rth4a1006wf" path="res://ui/combat/combat_sprites/combat-player1.png" id="4_ley77"]
 [ext_resource type="Texture2D" uid="uid://b2kk7xo4wwt83" path="res://ui/combat/interface-combat-hpbar1.png" id="5_50454"]
-[ext_resource type="Texture2D" uid="uid://jsiqpuvw66oh" path="res://ui/combat/combat_sprites/combat-driftwood.png" id="5_ley77"]
+[ext_resource type="Texture2D" uid="uid://jsiqpuvw66oh" path="res://ui/combat/combat_sprites/enemy_large/combat-driftwood.png" id="5_ley77"]
 [ext_resource type="Texture2D" uid="uid://churc6kbe1e4c" path="res://ui/combat/interface-combat-playerportait2.png" id="6_ceo1n"]
 [ext_resource type="Texture2D" uid="uid://bpltk3o4cxcrg" path="res://ui/combat/interface-combat-playerportait1-male.png" id="7_jcm61"]
 [ext_resource type="Texture2D" uid="uid://tbos3kc0l44d" path="res://ui/combat/interface-combat-enemyhpbar1.png" id="9_tmuf1"]
@@ -520,7 +520,7 @@ grow_vertical = 2
 
 [node name="Enemy" type="Sprite2D" parent="Back/Control"]
 position = Vector2(-256, 0)
-scale = Vector2(4, 4)
+scale = Vector2(3, 3)
 texture = ExtResource("5_ley77")
 
 [node name="Control2" type="Control" parent="Back"]

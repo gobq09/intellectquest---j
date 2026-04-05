@@ -30,6 +30,7 @@ var game_data: Dictionary = {
 	"sci_topics": {},
 	"math_topics": {},
 	"fil_topics": {},
+	"active_quest": "none",
 }
 
 var player_data: Dictionary = {
@@ -247,8 +248,14 @@ func load_game(savePath: String) -> Dictionary:
 	if not FileAccess.file_exists(savePath):
 		print("No save file found!")
 		var create_file = FileAccess.open(savePath, FileAccess.WRITE)
-	
-		save_game(data, savePath) # create dictionary with default data
+		
+		if savePath == player_questions:
+			var diff = load_game("player_file")["difficulty"]
+			PlayerQuestions.copy_questions(diff)
+		elif savePath == quest:
+			QuestManager._clear_quests()
+		else:
+			save_game(data, savePath) # create dictionary with default data
 	
 	var file = FileAccess.open(savePath, FileAccess.READ)
 	if file:
@@ -266,6 +273,11 @@ func load_game(savePath: String) -> Dictionary:
 						result[key] = value # add key with default data
 						
 						added = true
+			
+			if savePath == quest:
+				if result.size() == 0:
+					print("result size is 0")
+					QuestManager._clear_quests()
 			
 			if added == true:
 				save_game(result, savePath)

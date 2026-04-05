@@ -1,6 +1,18 @@
 extends Node
 
 var quests = {
+	"none": {
+		"name": "",
+		"tasks": {
+				"0": {
+					"task_name": "",
+					"progress": "",
+					"goal": ""
+				},
+			},
+		"completed": false,
+		"type": "main"
+		},
 	"0": {
 		"name": "Sample Quest 1",
 		"tasks": {
@@ -15,7 +27,8 @@ var quests = {
 					"goal": 1
 				}
 			},
-		"completed": false
+		"completed": false,
+		"type": "main"
 		},
 	"1": {
 		"name": "Sample Quest 2",
@@ -31,7 +44,8 @@ var quests = {
 					"goal": 1
 				}
 			},
-		"completed": false
+		"completed": false,
+		"type": "main"
 		},
 	"2": {
 		"name": "Sample Quest 3",
@@ -47,6 +61,7 @@ var quests = {
 					"goal": 1
 				}
 			},
-		"completed": false
+		"completed": false,
+		"type": "side"
 		},
 }

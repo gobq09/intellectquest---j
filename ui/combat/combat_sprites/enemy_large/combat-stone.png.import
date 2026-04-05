@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0ucxefbgrc6k"
-path="res://.godot/imported/combat-conch.png-34b1fd750b448994539dc8787acc0706.ctex"
+uid="uid://bvg5syuxf8sc3"
+path="res://.godot/imported/combat-stone.png-ebb4ba8ce6d6e1114d6d2032a6530932.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/combat/combat_sprites/combat-conch.png"
-dest_files=["res://.godot/imported/combat-conch.png-34b1fd750b448994539dc8787acc0706.ctex"]
+source_file="res://ui/combat/combat_sprites/enemy_large/combat-stone.png"
+dest_files=["res://.godot/imported/combat-stone.png-ebb4ba8ce6d6e1114d6d2032a6530932.ctex"]
 
 [params]
 

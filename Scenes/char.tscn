@@ -131,6 +131,23 @@ tracks/2/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_ljijv"]
+resource_name = "player-standup"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2.38419e-07, 0.600001, 1, 1.4, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [37, 45, 53, 61, 0]
+}
+
 [sub_resource type="Animation" id="Animation_rddh6"]
 resource_name = "player_idle"
 length = 0.8
@@ -203,6 +220,53 @@ tracks/0/keys = {
 "values": [3, 15, 23, 31]
 }
 
+[sub_resource type="Animation" id="Animation_1iy3q"]
+resource_name = "player_look_around"
+length = 1.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(7, 7), Vector2i(5, 4), Vector2i(7, 6), Vector2i(5, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_uydtg"]
+resource_name = "player_pinch"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.6, 0.9, 1.25, 1.35, 1.65, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(6, 4), Vector2i(6, 5), Vector2i(6, 6), Vector2i(6, 6), Vector2i(6, 6), Vector2i(6, 7), Vector2i(7, 4), Vector2i(7, 5), Vector2i(5, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.3, 0.6, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.25, 1.35, 1.45, 1.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, 0), Vector2(-2, 0), Vector2(0, 0), Vector2(-1, 0), Vector2(-2, 0), Vector2(-1, 0), Vector2(-2, 0), Vector2(-1, 0), Vector2(-2, 0), Vector2(-1, 0), Vector2(-2, 0), Vector2(0, 0), Vector2(0, 0), Vector2(1, 0), Vector2(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_lxsfl"]
 resource_name = "player_walk-down"
 length = 0.8
@@ -273,70 +337,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [11, 19, 27, 35, 43, 51, 59, 3]
-}
-
-[sub_resource type="Animation" id="Animation_1iy3q"]
-resource_name = "player_look_around"
-length = 1.6
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.7, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(7, 7), Vector2i(5, 4), Vector2i(7, 6), Vector2i(5, 4)]
-}
-
-[sub_resource type="Animation" id="Animation_uydtg"]
-resource_name = "player_pinch"
-length = 2.0
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.6, 0.9, 1.25, 1.35, 1.65, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(6, 4), Vector2i(6, 5), Vector2i(6, 6), Vector2i(6, 6), Vector2i(6, 6), Vector2i(6, 7), Vector2i(7, 4), Vector2i(7, 5), Vector2i(5, 4)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.3, 0.6, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.25, 1.35, 1.45, 1.65),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-1, 0), Vector2(-2, 0), Vector2(0, 0), Vector2(-1, 0), Vector2(-2, 0), Vector2(-1, 0), Vector2(-2, 0), Vector2(-1, 0), Vector2(-2, 0), Vector2(-1, 0), Vector2(-2, 0), Vector2(0, 0), Vector2(0, 0), Vector2(1, 0), Vector2(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_ljijv"]
-resource_name = "player-standup"
-length = 2.0
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(2.38419e-07, 0.600001, 1, 1.4, 1.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [37, 45, 53, 61, 0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ljijv"]

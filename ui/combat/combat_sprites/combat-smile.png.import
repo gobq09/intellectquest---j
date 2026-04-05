@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ru5xvbb0a361"
-path="res://.godot/imported/combat-crab.png-e6d1190ea31926a8166333442cd1a18c.ctex"
+uid="uid://7ldhfxe0i7wo"
+path="res://.godot/imported/combat-smile.png-a94a9170fa2c7e354fa18b9f40254b23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/combat/combat_sprites/combat-crab.png"
-dest_files=["res://.godot/imported/combat-crab.png-e6d1190ea31926a8166333442cd1a18c.ctex"]
+source_file="res://ui/combat/combat_sprites/combat-smile.png"
+dest_files=["res://.godot/imported/combat-smile.png-a94a9170fa2c7e354fa18b9f40254b23.ctex"]
 
 [params]
 

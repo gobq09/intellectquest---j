@@ -12,6 +12,7 @@ script = ExtResource("1_ct16l")
 [node name="Name" type="RichTextLabel" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 bbcode_enabled = true
 text = "Requirement"
 fit_content = true
@@ -22,6 +23,7 @@ vertical_alignment = 1
 [node name="Progress" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
+mouse_filter = 2
 bbcode_enabled = true
 text = "1/1"
 fit_content = true

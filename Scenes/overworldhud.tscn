@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dflg8r076r3qe"]
+[gd_scene load_steps=32 format=3 uid="uid://dflg8r076r3qe"]
 
 [ext_resource type="Script" uid="uid://cj0426geyvlas" path="res://Scenes/Scripts/hud.gd" id="1_17k45"]
 [ext_resource type="Texture2D" uid="uid://gaxtq7vrwunw" path="res://ui/hud/interface-hud-hpbar4.png" id="2_7n2a2"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://btk3gygpn2ao1" path="res://ui/hud/interface-hud-topright1.png" id="8_b3mme"]
 [ext_resource type="Texture2D" uid="uid://dvciqueies7yf" path="res://ui/hud/interface-hud-mapbutton.png" id="9_7bydo"]
 [ext_resource type="Texture2D" uid="uid://vgcrkf3sxh1o" path="res://ui/hud/interface-hud-settingsbutton.png" id="10_dpbjw"]
+[ext_resource type="Script" uid="uid://cedfe03hbrrp2" path="res://Scenes/Scripts/task_hud.gd" id="11_7bydo"]
 [ext_resource type="Texture2D" uid="uid://oqc5jik5j7hs" path="res://ui/hud/interface-hud-archivebutton.png" id="11_7n2a2"]
 [ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="13_farlp"]
 [ext_resource type="Texture2D" uid="uid://drsd8ovbsojux" path="res://ui/hud/interface-joystick-base.png" id="14_bdvyw"]
@@ -290,12 +291,31 @@ texture = ExtResource("6_bdvyw")
 [node name="Task" type="TextureButton" parent="HUD/Control"]
 layout_mode = 0
 offset_left = -44.0
-offset_top = 16.0
+offset_top = -30.0
 offset_right = 4.0
-offset_bottom = 96.0
+offset_bottom = 50.0
 button_mask = 3
 texture_normal = ExtResource("7_wruxn")
 stretch_mode = 3
+script = ExtResource("11_7bydo")
+
+[node name="Timer" type="Timer" parent="HUD/Control/Task"]
+one_shot = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HUD/Control/Task"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 19.0
+offset_right = 154.0
+offset_bottom = 190.0
+scale = Vector2(0.25, 0.25)
+mouse_filter = 2
+
+[node name="Task_Container" type="VBoxContainer" parent="HUD/Control/Task/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
 
 [node name="Interface-hud-topright1" type="Sprite2D" parent="HUD/Control"]
 position = Vector2(-26, 24)
@@ -404,7 +424,9 @@ libraries = {
 [connection signal="pressed" from="HUD/HP/Interface-hud-level" to="HUD" method="_on_interfacehudlevel_pressed"]
 [connection signal="pressed" from="HUD/HP/Archive Button" to="HUD" method="_on_archive_button_pressed"]
 [connection signal="button_down" from="HUD/Control/Task" to="HUD" method="_on_task_button_down"]
+[connection signal="button_up" from="HUD/Control/Task" to="HUD" method="_on_task_button_up"]
 [connection signal="pressed" from="HUD/Control/Task" to="HUD" method="_on_interfacehudtodo_pressed"]
+[connection signal="timeout" from="HUD/Control/Task/Timer" to="HUD" method="_on_timer_timeout"]
 [connection signal="pressed" from="HUD/Control/Map Button" to="HUD" method="_on_map_button_pressed"]
 [connection signal="pressed" from="HUD/Control/Settings Button" to="HUD" method="_on_settings_button_pressed"]
 [connection signal="pressed" from="HUD/Interact/TextureButton" to="HUD" method="_on_interact_button_pressed"]

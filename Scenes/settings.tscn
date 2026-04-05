@@ -81,6 +81,13 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 size_flags_horizontal = 8
 
+[node name="Unstick" type="Button" parent="Control2/Settings/Buttons/Mode"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_ieo4m")
+text = "Unstick"
+
 [node name="Reset" type="Button" parent="Control2/Settings/Buttons/Mode"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -567,6 +574,7 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="pressed" from="Control2/Settings/Buttons/Mode/Unstick" to="Control2" method="_on_unstick_pressed"]
 [connection signal="pressed" from="Control2/Settings/Buttons/Mode/Reset" to="Control2" method="_on_reset_pressed"]
 [connection signal="pressed" from="Control2/Settings/Buttons/Mode/Revert" to="Control2" method="_on_revert_pressed"]
 [connection signal="pressed" from="Control2/Settings/Buttons/Mode/Save" to="Control2" method="_on_save_pressed"]

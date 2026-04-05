@@ -20,10 +20,13 @@ func _ready() -> void:
 		$StaticBody2D/Sprite2D.frame = 0
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	if $VisibleOnScreenEnabler2D.is_on_screen():
-		print("on screen")
-	else:
-		print("not on screen")
-	pass
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	$StaticBody2D.visible = true
+	$StaticBody2D.process_mode = Node.PROCESS_MODE_INHERIT
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	$StaticBody2D.visible = false
+	$StaticBody2D.process_mode = Node.PROCESS_MODE_DISABLED

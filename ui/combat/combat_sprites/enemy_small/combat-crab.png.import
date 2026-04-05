@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fhr10ndgwdev"
-path="res://.godot/imported/combat-tidecaller.png-c01b1dd7c8ffa601adcd145fc01443f2.ctex"
+uid="uid://ru5xvbb0a361"
+path="res://.godot/imported/combat-crab.png-e7d2452ff200ff5023cce21265f7d51b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/combat/combat_sprites/combat-tidecaller.png"
-dest_files=["res://.godot/imported/combat-tidecaller.png-c01b1dd7c8ffa601adcd145fc01443f2.ctex"]
+source_file="res://ui/combat/combat_sprites/enemy_small/combat-crab.png"
+dest_files=["res://.godot/imported/combat-crab.png-e7d2452ff200ff5023cce21265f7d51b.ctex"]
 
 [params]
 

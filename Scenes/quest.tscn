@@ -99,3 +99,7 @@ grow_horizontal = 0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("3_essri")
 stretch_mode = 5
+
+[connection signal="pressed" from="Control/Main" to="." method="_on_main_pressed"]
+[connection signal="pressed" from="Control/Side" to="." method="_on_side_pressed"]
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

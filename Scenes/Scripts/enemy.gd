@@ -132,3 +132,11 @@ func _on_battle_trigger_body_entered(body: Node2D) -> void:
 func _on_detection_area_body_exited(_body: Node2D) -> void:
 	$AnimationTree.get("parameters/playback").travel("Idle")
 	chasing = false
+
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	self.visible = false
+
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
+	self.visible = true

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://by4chugqsyn4d"]
+[gd_scene load_steps=5 format=3 uid="uid://by4chugqsyn4d"]
 
 [ext_resource type="Texture2D" uid="uid://cjnmf543iuwoh" path="res://ui/quest/interface-quest-quest1.png" id="1_03hs2"]
 [ext_resource type="Script" uid="uid://bfx2iiiqk6xhr" path="res://Scenes/Scripts/quest_display.gd" id="1_4qadc"]
+[ext_resource type="ButtonGroup" uid="uid://dj07cs06mod46" path="res://quest_select.tres" id="2_kgjs8"]
 [ext_resource type="Texture2D" uid="uid://colr4xorvxgc7" path="res://ui/quest/interface-quest-border.png" id="2_yw2kk"]
 
 [node name="Quest_Display" type="VBoxContainer"]
@@ -10,10 +11,12 @@ offset_right = 510.0
 offset_bottom = 40.0
 script = ExtResource("1_4qadc")
 
-[node name="Control" type="TextureRect" parent="."]
+[node name="Control" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(510, 128)
 layout_mode = 2
-texture = ExtResource("1_03hs2")
+toggle_mode = true
+button_group = ExtResource("2_kgjs8")
+texture_normal = ExtResource("1_03hs2")
 stretch_mode = 5
 
 [node name="Quest_Name" type="RichTextLabel" parent="Control"]
@@ -25,16 +28,19 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -191.0
 offset_top = -48.0
-offset_right = 193.0
+offset_right = 105.0
 offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
 theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
 text = "[b]Quest Name"
 fit_content = true
 scroll_active = false
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Control"]
@@ -58,8 +64,20 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 6
 
+[node name="Button" type="Button" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 384.0
+offset_top = 12.0
+offset_right = 458.0
+offset_bottom = 43.0
+text = "Track"
+
 [node name="Panel" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 texture = ExtResource("2_yw2kk")
 stretch_mode = 5
+
+[connection signal="pressed" from="Control" to="." method="_on_control_pressed"]
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

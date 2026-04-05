@@ -18,20 +18,8 @@ extends Control
 var pressed: String
 
 func _ready() -> void:
-	if game_data["in_game"] == true:
-		menu.visible = true
-		menu.disabled = false
-		quit.visible = true
-		quit.disabled = false
-		
-		last_scene = game_data["last_scene"]
-	else:
-		menu.visible = false
-		menu.disabled = true
-		quit.visible = false
-		quit.disabled = true
-		
-		last_scene = menu_uid
+	pass
+
 
 func _on_general_pressed() -> void:
 	pass # Replace with function body.
@@ -61,6 +49,22 @@ func _load_prompt(press):
 		label.text = "Are you sure you want to [b]Quit the Game[/b]?"
 
 func _on_close_pressed() -> void:
+	game_data = SaveManager.load_game("save_file")
+	if game_data["in_game"] == true:
+		menu.visible = true
+		menu.disabled = false
+		quit.visible = true
+		quit.disabled = false
+		
+		last_scene = game_data["last_scene"]
+	else:
+		menu.visible = false
+		menu.disabled = true
+		quit.visible = false
+		quit.disabled = true
+		
+		last_scene = menu_uid
+	print(last_scene)
 	SceneLoader.load_scene(last_scene)
 
 

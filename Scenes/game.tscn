@@ -223,4 +223,6 @@ shape = SubResource("RectangleShape2D_rfjv2")
 [node name="Cloud" type="Node2D" parent="."]
 visible = false
 
+[node name="MultiMeshInstance2D" type="MultiMeshInstance2D" parent="."]
+
 [connection signal="body_entered" from="change_scene" to="change_scene" method="_on_body_entered"]

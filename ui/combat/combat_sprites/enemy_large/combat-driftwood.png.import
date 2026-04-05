@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blyn7fisxmv3j"
-path="res://.godot/imported/combat-squidbit.png-08a33d186711e6c0f691c9eda6bb544c.ctex"
+uid="uid://jsiqpuvw66oh"
+path="res://.godot/imported/combat-driftwood.png-7bf3635a4af729879091b149c193e550.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/combat/combat_sprites/combat-squidbit.png"
-dest_files=["res://.godot/imported/combat-squidbit.png-08a33d186711e6c0f691c9eda6bb544c.ctex"]
+source_file="res://ui/combat/combat_sprites/enemy_large/combat-driftwood.png"
+dest_files=["res://.godot/imported/combat-driftwood.png-7bf3635a4af729879091b149c193e550.ctex"]
 
 [params]
 

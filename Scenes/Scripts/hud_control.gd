@@ -54,6 +54,15 @@ func _on_interact_button_pressed() -> void:
 	Input.action_press("interact")
 	Input.action_release("interact")
 
+@onready var task_timer = $Control/Task/Timer
 
 func _on_task_button_down() -> void:
+	task_timer.start(1)
+
+
+func _on_task_button_up() -> void:
+	task_timer.stop()
+
+
+func _on_timer_timeout() -> void:
 	SceneLoader.load_scene("uid://bn8572f758heh")

@@ -7,3 +7,7 @@ signal buff(effect)
 signal item_used(state)
 
 signal settings_updated
+
+signal quest_selected(id)
+
+signal quest_updated

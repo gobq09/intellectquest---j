@@ -72,9 +72,13 @@ extends Control
 @onready var player_critdamage: float = 1.5 + (player_str * 0.15)
 @onready var default_maxhp : int = 50 + (player_end * 2)
 
-@onready var enemy_small : Texture2D = preload("res://ui/combat/combat_sprites/combat-thresher.png")
-@onready var enemy_med : Texture2D = preload("res://ui/combat/combat_sprites/combat-squidbit.png")
-@onready var enemy_large : Texture2D = preload("res://ui/combat/combat_sprites/combat-driftwood.png")
+#@onready var enemy_small : Array = ["uid://0ucxefbgrc6k", "uid://ru5xvbb0a361", "uid://m4i1wivj2ipr", "uid://bf15bsf0jltyv", "uid://c7e178xq656dn"]
+#@onready var enemy_med : Array = ["uid://pncvdy7b8gkp", "uid://fhr10ndgwdev", "uid://c5dy25laifsp5", "uid://bsjwi1ke36jh8"]
+#@onready var enemy_large : Array = ["uid://jsiqpuvw66oh", "uid://blyn7fisxmv3j", "uid://bvg5syuxf8sc3"]
+
+var small_dir = "res://ui/combat/combat_sprites/enemy_small/"
+var med_dir = "res://ui/combat/combat_sprites/enemy_med/"
+var large_dir = "res://ui/combat/combat_sprites/enemy_large/"
 
 @onready var enemy_data = SaveManager.load_game("enemy_file")
 @onready var enemy_id = enemy_data["enemy_id"]
@@ -152,15 +156,15 @@ func _ready() -> void:
 
 func _load_enemy() -> void:
 	if enemy_size == "small":
-		enemy_sprite.texture = enemy_small
+		enemy_sprite.texture = _load_sprites(small_dir)
 		enemy_damage = randi_range(5, 10)
 		enemy_health = randi_range(15, 30)
 	elif enemy_size == "med":
-		enemy_sprite.texture = enemy_med
+		enemy_sprite.texture = _load_sprites(med_dir)
 		enemy_damage = randi_range(10, 20)
 		enemy_health = randi_range(30, 50)
 	elif enemy_size == "large":
-		enemy_sprite.texture = enemy_large
+		enemy_sprite.texture = _load_sprites(large_dir)
 		enemy_damage = randi_range(20, 30)
 		enemy_health = randi_range(50, 100)
 	
@@ -179,6 +183,13 @@ func _load_enemy() -> void:
 	elif question_subject == "Filipino":
 		topic_type = "fil_topics"
 		question_type = fil_questions
+
+func _load_sprites(path):
+	var files : Array = DirAccess.get_files_at(path)
+	var png_files = Array(files).filter(func(f): return f.ends_with(".png"))
+	
+	var loaded = load(str(path) + str(png_files[randi_range(0, png_files.size() - 1)]))
+	return loaded
 #endregion
 
 #region combat ui
