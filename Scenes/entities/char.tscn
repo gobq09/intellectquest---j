@@ -4,7 +4,7 @@
 [ext_resource type="Animation" uid="uid://5lii1tmmfvju" path="res://Sprites/player/animation/player-wakeup.res" id="2_ljijv"]
 [ext_resource type="Texture2D" uid="uid://cp84ckp6bwp2i" path="res://Sprites/misc/shadow.png" id="3_8gq2e"]
 [ext_resource type="Texture2D" uid="uid://06xk3bsequyh" path="res://Sprites/player/sprite-playermale.png" id="3_uydtg"]
-[ext_resource type="PackedScene" uid="uid://dflg8r076r3qe" path="res://Scenes/overworldhud.tscn" id="7_ljijv"]
+[ext_resource type="PackedScene" uid="uid://dflg8r076r3qe" path="res://Scenes/ui/overworldhud.tscn" id="7_ljijv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v3mp5"]
 radius = 6.0

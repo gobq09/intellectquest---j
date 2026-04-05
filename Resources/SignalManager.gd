@@ -11,3 +11,7 @@ signal settings_updated
 signal quest_selected(id)
 
 signal quest_updated
+
+signal map_changed(scene)
+
+signal tutorial_ended

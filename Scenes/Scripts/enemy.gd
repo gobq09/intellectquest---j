@@ -5,7 +5,8 @@ extends CharacterBody2D
 @export_enum("English", "Science", "Math", "Filipino") var enemy_subject: String
 
 @export var speed = 30
-@export var battle_scene = "res://Scenes/combat.tscn"
+
+@onready var battle_scene = "uid://dxhaxrctujkex"
 
 @onready var detect_area = $detection_area
 @onready var battle_area = $BattleTrigger
@@ -16,21 +17,27 @@ extends CharacterBody2D
 @onready var respawn_point = position
 @onready var timer = $Timer
 
-var enemy_small = "res://Sprites/npc/sprite-enemy-small.png"
-var enemy_med = "res://Sprites/npc/sprite-enemy-med.png"
-var enemy_large = "res://Sprites/npc/sprite-enemy-large.png"
+var enemy_small = "uid://bedmimhkuo0uq"
+var enemy_med = "uid://dwpj8v76nn1cp"
+var enemy_large = "uid://cdpku6rv11qed"
 
 var player = null
 var chasing = false
 var battle_started = false  # prevent multiple triggers
 var remaining_time
+var sprite
 
 func _ready() -> void:
-	var path = "res://Sprites/npc/sprite-enemy-" + enemy_type +".png"
-	if enemy_type != null:
-		$Sprite2D.texture = load(path)
+	if enemy_type == "small":
+		sprite = enemy_small
+	elif enemy_type == "med":
+		sprite = enemy_med
+	elif enemy_type == "large":
+		sprite = enemy_large
 	else:
-		$Sprite2D.texture = load("res://Sprites/npc/sprite-enemy-med.png")
+		sprite = enemy_med
+	
+	$Sprite2D.texture = load(sprite)
 	
 	
 	print(defeated_enemies)
@@ -134,9 +141,9 @@ func _on_detection_area_body_exited(_body: Node2D) -> void:
 	chasing = false
 
 
-func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
-	self.visible = false
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	self.process_mode =Node.PROCESS_MODE_INHERIT
 
 
-func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
-	self.visible = true
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	self.process_mode =Node.PROCESS_MODE_DISABLED

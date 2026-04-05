@@ -26,15 +26,16 @@ fill_to = Vector2(0.876147, 0.188073)
 [node name="Lantern" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_5r8xx")
+face = 0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 y_sort_enabled = true
 position = Vector2(0, -23)
 collision_layer = 2
 collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+unique_name_in_owner = true
 position = Vector2(0, 17)
 shape = SubResource("CapsuleShape2D_hew7k")
 
@@ -44,6 +45,7 @@ position = Vector2(0, -21)
 occluder = SubResource("OccluderPolygon2D_th10i")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+unique_name_in_owner = true
 y_sort_enabled = true
 texture = ExtResource("1_hmmny")
 hframes = 4

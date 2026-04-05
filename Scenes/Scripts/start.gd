@@ -8,4 +8,8 @@ func _ready() -> void:
 	game_data["tutorial"] = true
 	game_data["in_combat"] = false
 	game_data["global_position"] = Vector2(-473, 17)
+	game_data["respawn_point"] = Vector2(-473, 17)
+	
 	SaveManager.save_game(game_data, "save_file")
+	
+	SignalManager.map_changed.emit("uid://dt532wlk4w78h")

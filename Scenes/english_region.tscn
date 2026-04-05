@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=4 uid="uid://duy4uehroghd5"]
 
-[ext_resource type="PackedScene" uid="uid://b4qaqebdse2qj" path="res://Scenes/char.tscn" id="1_lftsk"]
+[ext_resource type="PackedScene" uid="uid://b4qaqebdse2qj" path="res://Scenes/entities/char.tscn" id="1_lftsk"]
 [ext_resource type="TileSet" uid="uid://l4po1qi1o868" path="res://Tileset/ground.tres" id="2_m6fir"]
 [ext_resource type="TileSet" uid="uid://dpnm40hjw8fhx" path="res://Tileset/cliff.tres" id="3_b73jm"]
 [ext_resource type="TileSet" uid="uid://fprd4vovuovo" path="res://Tileset/water.tres" id="3_qcbsu"]

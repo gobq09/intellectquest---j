@@ -1,19 +1,19 @@
 [gd_scene load_steps=22 format=3 uid="uid://tj4vo1mmxfyt"]
 
-[ext_resource type="Script" uid="uid://stfwy03w1s4n" path="res://Scenes/Scripts/settings_ui.gd" id="1_6vr2p"]
-[ext_resource type="Script" uid="uid://cxuwwdgaujbm1" path="res://Scenes/Scripts/settings.gd" id="2_1c72s"]
-[ext_resource type="Texture2D" uid="uid://dxcpdwuu3aryg" path="res://ui/settings/interface-settings-top.png" id="2_i44u3"]
-[ext_resource type="Texture2D" uid="uid://c0aurjg4m3hgn" path="res://ui/settings/interface-settings-general.png" id="2_lhmql"]
-[ext_resource type="Texture2D" uid="uid://bb4d6hsoc6ya" path="res://ui/settings/interface-settings-video.png" id="3_6kysc"]
-[ext_resource type="Texture2D" uid="uid://cnkrjp4ba148w" path="res://ui/settings/interface-settings-bottom2.png" id="3_bismi"]
-[ext_resource type="Texture2D" uid="uid://sg0cthct1bni" path="res://ui/settings/interface-settings-bottom1.png" id="3_f60ng"]
-[ext_resource type="Texture2D" uid="uid://xosfel3ncwdv" path="res://ui/settings/interface-settings-audio.png" id="4_6vr2p"]
-[ext_resource type="Texture2D" uid="uid://c4j3bwl5trrqn" path="res://ui/settings/interface-settings-menu.png" id="8_bismi"]
-[ext_resource type="Texture2D" uid="uid://w7oo784vaqqn" path="res://ui/settings/interface-settings-quit.png" id="8_rgw85"]
-[ext_resource type="Texture2D" uid="uid://gfo4nfxodp7d" path="res://ui/archive/interface-archive-closebutton.png" id="9_bismi"]
-[ext_resource type="Texture2D" uid="uid://chafut360r0tq" path="res://ui/title/interface-prompt.png" id="11_ieo4m"]
-[ext_resource type="Texture2D" uid="uid://d0ycw54b0kcxd" path="res://ui/title/interface-prompt-confirm.png" id="12_1c72s"]
-[ext_resource type="Texture2D" uid="uid://csc0os8ayadj1" path="res://ui/title/interface-prompt-cancel.png" id="13_vmqi3"]
+[ext_resource type="Script" uid="uid://stfwy03w1s4n" path="res://Scenes/Scripts/settings_ui.gd" id="1_ayugb"]
+[ext_resource type="Script" uid="uid://cxuwwdgaujbm1" path="res://Scenes/Scripts/settings.gd" id="2_x08li"]
+[ext_resource type="Texture2D" uid="uid://sg0cthct1bni" path="res://ui/settings/interface-settings-bottom1.png" id="3_x2yey"]
+[ext_resource type="Texture2D" uid="uid://cnkrjp4ba148w" path="res://ui/settings/interface-settings-bottom2.png" id="4_xyr1t"]
+[ext_resource type="Texture2D" uid="uid://c0aurjg4m3hgn" path="res://ui/settings/interface-settings-general.png" id="5_55xft"]
+[ext_resource type="Texture2D" uid="uid://bb4d6hsoc6ya" path="res://ui/settings/interface-settings-video.png" id="6_xuapl"]
+[ext_resource type="Texture2D" uid="uid://xosfel3ncwdv" path="res://ui/settings/interface-settings-audio.png" id="7_7lcou"]
+[ext_resource type="Texture2D" uid="uid://c4j3bwl5trrqn" path="res://ui/settings/interface-settings-menu.png" id="8_ivr33"]
+[ext_resource type="Texture2D" uid="uid://w7oo784vaqqn" path="res://ui/settings/interface-settings-quit.png" id="9_na0dm"]
+[ext_resource type="Texture2D" uid="uid://dxcpdwuu3aryg" path="res://ui/settings/interface-settings-top.png" id="10_iecy6"]
+[ext_resource type="Texture2D" uid="uid://gfo4nfxodp7d" path="res://ui/archive/interface-archive-closebutton.png" id="11_om38m"]
+[ext_resource type="Texture2D" uid="uid://chafut360r0tq" path="res://ui/title/interface-prompt.png" id="12_pgemu"]
+[ext_resource type="Texture2D" uid="uid://d0ycw54b0kcxd" path="res://ui/title/interface-prompt-confirm.png" id="13_mdlvm"]
+[ext_resource type="Texture2D" uid="uid://csc0os8ayadj1" path="res://ui/title/interface-prompt-cancel.png" id="14_owh40"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1c72s"]
 bg_color = Color(0.404586, 0.180298, 0.184072, 1)
@@ -37,7 +37,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_6vr2p")
+script = ExtResource("1_ayugb")
 
 [node name="TextureRect3" type="Panel" parent="."]
 layout_mode = 1
@@ -62,7 +62,7 @@ offset_bottom = 274.0
 grow_horizontal = 2
 grow_vertical = 2
 vertical_scroll_mode = 3
-script = ExtResource("2_1c72s")
+script = ExtResource("2_x08li")
 
 [node name="Settings" type="VBoxContainer" parent="Control2"]
 layout_mode = 2
@@ -379,7 +379,7 @@ offset_right = 107.0
 offset_bottom = -359.0
 grow_vertical = 2
 scale = Vector2(3, 3)
-texture = ExtResource("3_f60ng")
+texture = ExtResource("3_x2yey")
 expand_mode = 5
 
 [node name="TextureRect4" type="TextureRect" parent="."]
@@ -394,7 +394,7 @@ offset_bottom = -359.0
 grow_horizontal = 0
 grow_vertical = 2
 scale = Vector2(3, 3)
-texture = ExtResource("3_bismi")
+texture = ExtResource("4_xyr1t")
 expand_mode = 1
 
 [node name="Control" type="Control" parent="."]
@@ -415,7 +415,7 @@ offset_top = -218.0
 offset_right = 128.0
 offset_bottom = -178.0
 scale = Vector2(3, 3)
-texture_normal = ExtResource("2_lhmql")
+texture_normal = ExtResource("5_55xft")
 
 [node name="Video" type="TextureButton" parent="Control"]
 visible = false
@@ -425,7 +425,7 @@ offset_top = -130.0
 offset_right = 128.0
 offset_bottom = -90.0
 scale = Vector2(3, 3)
-texture_normal = ExtResource("3_6kysc")
+texture_normal = ExtResource("6_xuapl")
 
 [node name="Audio" type="TextureButton" parent="Control"]
 visible = false
@@ -435,7 +435,7 @@ offset_top = -34.0
 offset_right = 128.0
 offset_bottom = 6.0
 scale = Vector2(3, 3)
-texture_normal = ExtResource("4_6vr2p")
+texture_normal = ExtResource("7_7lcou")
 
 [node name="Menu" type="TextureButton" parent="Control"]
 visible = false
@@ -445,7 +445,7 @@ offset_top = 62.0
 offset_right = 128.0
 offset_bottom = 102.0
 scale = Vector2(3, 3)
-texture_normal = ExtResource("8_bismi")
+texture_normal = ExtResource("8_ivr33")
 
 [node name="Quit" type="TextureButton" parent="Control"]
 visible = false
@@ -455,7 +455,7 @@ offset_top = 158.0
 offset_right = 128.0
 offset_bottom = 198.0
 scale = Vector2(3, 3)
-texture_normal = ExtResource("8_rgw85")
+texture_normal = ExtResource("9_na0dm")
 
 [node name="Interface-settings-top" type="TextureRect" parent="."]
 layout_mode = 1
@@ -465,7 +465,7 @@ offset_right = 32.0
 offset_bottom = -359.0
 grow_vertical = 2
 scale = Vector2(3, 3)
-texture = ExtResource("2_i44u3")
+texture = ExtResource("10_iecy6")
 expand_mode = 5
 
 [node name="Close" type="TextureButton" parent="."]
@@ -478,7 +478,7 @@ offset_right = -78.0
 offset_bottom = 40.0
 grow_horizontal = 0
 scale = Vector2(3, 3)
-texture_normal = ExtResource("9_bismi")
+texture_normal = ExtResource("11_om38m")
 stretch_mode = 5
 
 [node name="Prompt" type="Control" parent="."]
@@ -526,7 +526,7 @@ offset_bottom = -94.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
-texture = ExtResource("11_ieo4m")
+texture = ExtResource("12_pgemu")
 
 [node name="Confirm" type="TextureButton" parent="Prompt/Control"]
 layout_mode = 1
@@ -542,7 +542,7 @@ offset_bottom = 74.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
-texture_normal = ExtResource("12_1c72s")
+texture_normal = ExtResource("13_mdlvm")
 
 [node name="Cancel" type="TextureButton" parent="Prompt/Control"]
 layout_mode = 1
@@ -558,7 +558,7 @@ offset_bottom = 74.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
-texture_normal = ExtResource("13_vmqi3")
+texture_normal = ExtResource("14_owh40")
 
 [node name="Prompt Label" type="RichTextLabel" parent="Prompt/Control"]
 layout_mode = 0

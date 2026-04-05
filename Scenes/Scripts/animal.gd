@@ -5,16 +5,16 @@ enum DuckState { FLOATING, SWIMMING }
 var current_state = DuckState.FLOATING
 var swim_direction = Vector2.ZERO
 
-@export var type: String = "Chicken"
-@export var swim_speed: float = 80.0        # increased speed
-@export var min_idle_time: float = 1.0
-@export var max_idle_time: float = 3.0
-@export var min_swim_time: float = 2.0
-@export var max_swim_time: float = 5.0
-@export var left_limit: float = 50.0
-@export var right_limit: float = 1100.0
-@export var top_limit: float = 50.0
-@export var bottom_limit: float = 600.0
+var type: String = "Chicken"
+var swim_speed: float = 80.0
+var min_idle_time: float = 1.0
+var max_idle_time: float = 3.0
+var min_swim_time: float = 2.0
+var max_swim_time: float = 5.0
+var left_limit: float = 50.0
+var right_limit: float = 1100.0
+var top_limit: float = 50.0
+var bottom_limit: float = 600.0
 
 #@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var change_state_timer: Timer = $changestatetimer
@@ -46,6 +46,20 @@ func _ready() -> void:
 	# Start animating immediately on spawn
 	anim_player.play("idle")
 	_enter_float_state()
+
+func _set_animal(animal, speed, min_idle, max_idle, min_swim, max_swim, left, right, top, bottom):
+	type = animal
+	swim_speed = speed
+	min_idle_time = min_idle
+	max_idle_time = max_idle
+	min_swim_time = min_swim
+	max_swim_time = max_swim
+	left_limit = left
+	right_limit = right
+	top_limit = top
+	bottom_limit = bottom
+	
+	_ready()
 
 func _physics_process(_delta: float) -> void:
 	if current_state == DuckState.SWIMMING:

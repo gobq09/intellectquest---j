@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkchteg2njvve"]
+[gd_scene load_steps=9 format=3 uid="uid://bkchteg2njvve"]
 
+[ext_resource type="Script" uid="uid://ctcrsu7crgjgb" path="res://Scenes/Scripts/animal_handler.gd" id="1_6eq1m"]
 [ext_resource type="Script" uid="uid://cwkljfgkra7pp" path="res://Scenes/Scripts/animal.gd" id="1_23vr7"]
 [ext_resource type="Texture2D" uid="uid://b6368uxxoodi4" path="res://Sprites/npc/animals/animal-chicken.png" id="2_23vr7"]
 
@@ -12,7 +13,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("Animal/Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -29,7 +30,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("Animal/Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -47,7 +48,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("Animal/Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -64,29 +65,39 @@ _data = {
 &"walk": SubResource("Animation_ifcgm")
 }
 
-[node name="Animal" type="CharacterBody2D"]
+[node name="Animal_Handler" type="Node2D"]
 y_sort_enabled = true
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("1_23vr7")
+script = ExtResource("1_6eq1m")
 swim_speed = 20.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Animal" type="CharacterBody2D" parent="."]
+y_sort_enabled = true
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_23vr7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animal"]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_stvu6")
 
-[node name="changestatetimer" type="Timer" parent="."]
+[node name="changestatetimer" type="Timer" parent="Animal"]
 
-[node name="swimmingtimer" type="Timer" parent="."]
+[node name="swimmingtimer" type="Timer" parent="Animal"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="Animal"]
 position = Vector2(0, -3)
 texture = ExtResource("2_23vr7")
 hframes = 2
 vframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animal"]
+root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_suy7h")
 }
 autoplay = "idle"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Animal"]
+
+[connection signal="screen_entered" from="Animal/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="Animal/VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

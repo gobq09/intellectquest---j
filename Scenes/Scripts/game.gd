@@ -7,10 +7,12 @@ func _ready():
 	game_data["last_scene"] = "uid://x8j1q0cr8ykf"
 	
 	if game_data["tutorial"] == true:
-		$Node2D/Player.position = Vector2(-637.0, 376.0)
+		%Player.position = Vector2(-637.0, 376.0)
 		game_data["global_position"] = Vector2(-637.0, 376.0)
 		game_data["tutorial"] = false
 	
 	game_data["respawn_point"] = Vector2(-637.0, 376.0)
 	print(game_data["last_scene"])
 	SaveManager.save_game(game_data, "save_file")
+	
+	SignalManager.map_changed.emit("uid://x8j1q0cr8ykf")
