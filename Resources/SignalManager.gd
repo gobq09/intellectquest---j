@@ -19,3 +19,7 @@ signal tutorial_ended
 signal player_defeated
 
 signal interface_changed
+
+signal ui_tutorial(type)
+
+signal trigger_ui

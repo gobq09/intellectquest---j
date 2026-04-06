@@ -21,6 +21,7 @@ var game_data: Dictionary = {
 	"player_lost": false,
 	"in_game": true,
 	"tutorial": true,
+	"ui_tutorial": false,
 	"in_combat": false,
 	"player_ran": false,
 	"global_position": Vector2(-473.0, 17.0),

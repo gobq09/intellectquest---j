@@ -2,9 +2,9 @@ extends Control
 
 @export var Task_Expanded:bool = true
 @onready var game_data = SaveManager.load_game("save_file")
-@onready var hp_bar: TextureProgressBar = $"HP/HP Bar"
+@onready var hp_bar: TextureProgressBar = $"HP/Bar/HP Bar"
 @onready var player_data = SaveManager.load_game("player_file")
-@onready var bar: Sprite2D = $"HP/Interface-hud-hpbar1"
+@onready var bar: Sprite2D = $"HP/Bar/Interface-hud-hpbar1"
 @onready var level: Label = $"HP/Interface-hud-level/RichTextLabel"
 
 var last_scene

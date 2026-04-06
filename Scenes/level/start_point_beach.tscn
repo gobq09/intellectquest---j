@@ -639,3 +639,4 @@ position = Vector2(-400, 43)
 shape = SubResource("RectangleShape2D_qr1oh")
 
 [connection signal="body_entered" from="start_point_beach" to="start_point_beach" method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
