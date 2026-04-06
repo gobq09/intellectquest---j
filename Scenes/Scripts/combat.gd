@@ -8,6 +8,7 @@ extends Control
 @onready var fil_questions = SaveManager.load_game("player_questions")["fil_questions"]
 @onready var game_data = SaveManager.load_game("save_file")
 @onready var player_data = SaveManager.load_game("player_file")
+@onready var damage_scene = preload("uid://jedq6o8gy80k")
 
 @onready var eng_topics = Questions.english_topic
 @onready var sci_topics = Questions.science_topic
@@ -43,6 +44,9 @@ extends Control
 @onready var run: Control = $Run
 @onready var run_attempt: RichTextLabel = $Run/Attempt
 @onready var run_result: RichTextLabel = $Run/Result
+@onready var timer_node = $Control/Time
+@onready var countdown = $Control/Time/Timer
+@onready var timer_label = $Control/Time/RichTextLabel
 
 @onready var action: Control = $Action
 @onready var inventory: Control = $Action_Inv
@@ -77,6 +81,7 @@ extends Control
 @onready var player_critdamage: float = 1.5 + (player_str * 0.15)
 @onready var default_maxhp : int = 50 + (player_end * 2)
 @onready var run_chance : float = 0.2
+@onready var time_duration: int = 99
 
 @onready var enemy_small : Array = ["uid://0ucxefbgrc6k", "uid://ru5xvbb0a361", "uid://m4i1wivj2ipr", "uid://bf15bsf0jltyv", "uid://c7e178xq656dn"]
 @onready var enemy_med : Array = ["uid://pncvdy7b8gkp", "uid://fhr10ndgwdev", "uid://c5dy25laifsp5", "uid://bsjwi1ke36jh8"]
@@ -204,6 +209,9 @@ func _load_sprites(type):
 
 #region combat ui
 func _new_question() -> void:
+	ans_sprite = [ans1, ans2, ans3, ans4]
+	ans_button1.texture_normal = ans_sprite[0]
+	ans_button2.texture_normal = ans_sprite[1]
 	okay_button.disabled = true
 	ans_button1.disabled = true
 	question_id = randi_range(0, question_type.size() - 1)
@@ -231,6 +239,17 @@ func _new_question() -> void:
 	ui.modulate.a = 1
 	okay_button.disabled = false
 	ans_button1.disabled = false
+	await get_tree().create_timer(1).timeout
+	
+	countdown.start(time_duration)
+	timer_node.visible = true
+	
+
+func _process(delta: float) -> void:
+	timer_label.set_text(str(countdown.get_time_left()).pad_decimals(0))
+
+func _on_timer_timeout() -> void:
+	_on_wrong_answer()
 
 func _on_answer_button_1_pressed() -> void:
 	ans_button1.disabled = true
@@ -249,6 +268,7 @@ func _on_answer_button_1_pressed() -> void:
 
 func _on_ok_button_pressed() -> void:
 	okay_button.disabled = true
+
 	
 	encountered_questions[encountered_questions.size() + 1] = {
 		"Question_ID" : question_id, 
@@ -303,6 +323,9 @@ func _on_correct_answer():
 	player_damage = randi_range(player_min_damage, player_max_damage)
 	player_damage += player_damage * temp_dmg
 	
+	timer_node.visible = false
+	countdown.stop()
+	
 	anim_player.play("RESET")
 	await anim_player.animation_finished
 	print("Correct! Enemy HP: ", enemy_health)
@@ -332,7 +355,7 @@ func _on_correct_answer():
 	.set_ease(Tween.EASE_OUT)\
 	.set_trans(Tween.TRANS_SINE)
 	shake(enemy_sprite)
-	
+	take_damage(player_damage, enemy_hplabel)
 	if enemy_health <= 0:
 		_on_enemy_defeated()
 	else:
@@ -346,6 +369,9 @@ func _on_correct_answer():
 func _on_wrong_answer():
 	perfect = false
 	player_health = round(player_health - (enemy_damage - (enemy_damage * temp_reduce)))
+	
+	timer_node.visible = false
+	countdown.stop()
 	
 	anim_player.play("RESET")
 	await anim_player.animation_finished
@@ -365,7 +391,7 @@ func _on_wrong_answer():
 	.set_ease(Tween.EASE_OUT)\
 	.set_trans(Tween.TRANS_SINE)
 	shake(player_sprite)
-	
+	take_damage(enemy_damage, player_hplabel)
 	if player_health <= 0:
 		_on_player_defeated()
 	else:
@@ -694,11 +720,36 @@ func run_success():
 
 #endregion
 
+#region HP Logic
+
 func _on_enemy_health_bar_value_changed(value: float) -> void:
+	var percent : float = float(enemy_health) / float(enemy_max_health)
 	enemy_hplabel.text = "[b]" + str(enemy_health) + " / " + str(enemy_max_health) +"[/b]"
+	
+	if percent <= 0.35:
+		$HP/EnemyHP/AnimationPlayer.play("danger")
+	else:
+		$HP/EnemyHP/AnimationPlayer.play("RESET")
+
+func take_damage(amount, node):
+	var dmg_node = damage_scene.instantiate()
+	dmg_node.top_level = true
+	node.add_child(dmg_node)
+	
+	dmg_node.global_position.x = node.global_position.x + (node.size.x / 2)
+	dmg_node.global_position.y = node.global_position.y# + (node.size.y / 2)
+
+	dmg_node.show_damage(str(amount))
 
 func _on_player_health_bar_value_changed(value: float) -> void:
+	var percent : float = float(player_health) / float(player_max_health)
 	player_hplabel.text = "[b]" + str(player_health) + " / " + str(player_max_health) +"[/b]"
+	
+	if percent <= 0.35:
+		$HP/PlayerHP/AnimationPlayer.play("danger")
+	else:
+		$HP/PlayerHP/AnimationPlayer.play("RESET")
+#endregion
 
 #region Buff
 
