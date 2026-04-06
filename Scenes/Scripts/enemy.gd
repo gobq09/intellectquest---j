@@ -39,6 +39,8 @@ func _ready() -> void:
 	
 	$Sprite2D.texture = load(sprite)
 	
+	if game_data["player_ran"] == true:
+		_on_player_ran()
 	
 	print(defeated_enemies)
 	if defeated_enemies.has(enemy_id):
@@ -60,6 +62,24 @@ func _ready() -> void:
 			battle_area.process_mode = Node.PROCESS_MODE_DISABLED
 		
 		#queue_free()
+
+func _on_player_ran():
+	game_data = SaveManager.load_game("save_file")
+	if enemy_id == enemy_data["enemy_id"]:
+		game_data["player_ran"] = false
+		SaveManager.save_game(game_data, "save_file")
+		
+		self.visible = false
+		detect_area.process_mode = Node.PROCESS_MODE_DISABLED
+		battle_area.process_mode = Node.PROCESS_MODE_DISABLED
+		
+		await get_tree().create_timer(30).timeout
+		
+		self.visible = true
+		detect_area.process_mode = Node.PROCESS_MODE_INHERIT
+		battle_area.process_mode = Node.PROCESS_MODE_INHERIT
+	else:
+		return
 
 func _on_timer_timeout() -> void:
 	#print("timeout respawned")
@@ -142,8 +162,8 @@ func _on_detection_area_body_exited(_body: Node2D) -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
-	self.process_mode =Node.PROCESS_MODE_INHERIT
+	self.process_mode = Node.PROCESS_MODE_INHERIT
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	self.process_mode =Node.PROCESS_MODE_DISABLED
+	self.process_mode = Node.PROCESS_MODE_DISABLED

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://dt532wlk4w78h"]
+[gd_scene load_steps=37 format=4 uid="uid://dt532wlk4w78h"]
 
 [ext_resource type="Script" uid="uid://cgdk703yg75h" path="res://Scenes/Scripts/start.gd" id="1_njav7"]
 [ext_resource type="TileSet" uid="uid://dop58t8w0lmjn" path="res://Tileset/grass.tres" id="2_kvltp"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://b3pwebufi6pox" path="res://Scenes/Scripts/start_point_beach.gd" id="19_aetfx"]
 [ext_resource type="Shader" uid="uid://bdw6ayaiexuau" path="res://Scenes/cloud1.gdshader" id="20_vnhnk"]
 [ext_resource type="PackedScene" uid="uid://dvdiugbr15cvs" path="res://Scenes/ui/item.tscn" id="21_3ilpf"]
+[ext_resource type="Script" uid="uid://kudfge835vls" path="res://new folder/dialogue_trigger.gd" id="22_kvltp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fqf33"]
 texture = ExtResource("8_2s216")
@@ -427,6 +428,9 @@ shader_parameter/speed = Vector2(0.003, 0.001)
 shader_parameter/density = 0.629
 shader_parameter/shadow_color = Color(0.0907033, 0.0326106, 0.111201, 0.3)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qr1oh"]
+size = Vector2(32, 202)
+
 [node name="start" type="Node2D"]
 script = ExtResource("1_njav7")
 
@@ -626,5 +630,12 @@ item_id = "2"
 [node name="Item6" parent="." instance=ExtResource("21_3ilpf")]
 position = Vector2(-283, 47)
 item_id = "3"
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("22_kvltp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-400, 43)
+shape = SubResource("RectangleShape2D_qr1oh")
 
 [connection signal="body_entered" from="start_point_beach" to="start_point_beach" method="_on_body_entered"]

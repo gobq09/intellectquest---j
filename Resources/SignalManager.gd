@@ -15,3 +15,5 @@ signal quest_updated
 signal map_changed(scene)
 
 signal tutorial_ended
+
+signal player_defeated

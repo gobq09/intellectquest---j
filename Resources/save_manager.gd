@@ -22,6 +22,7 @@ var game_data: Dictionary = {
 	"in_game": true,
 	"tutorial": true,
 	"in_combat": false,
+	"player_ran": false,
 	"global_position": Vector2(-473.0, 17.0),
 	"respawn_point": Vector2(-473.0, 17.0),
 	"last_scene": "uid://dt532wlk4w78h",
@@ -31,6 +32,7 @@ var game_data: Dictionary = {
 	"math_topics": {},
 	"fil_topics": {},
 	"active_quest": "none",
+	"triggered_dialogues": {},
 }
 
 var player_data: Dictionary = {
@@ -290,3 +292,19 @@ func load_game(savePath: String) -> Dictionary:
 			return result
 		
 	return {}
+
+func has_seen_dialogue(id: String) -> bool:
+	return load_game("save_file")["triggered_dialogues"].has(id)
+
+func mark_dialogue_seen(id: String) -> void:
+	var game_data = load_game("save_file")
+	game_data["triggered_dialogues"][id] = true
+	
+	save_game(game_data, "save_file")
+
+func play_dialogue_once(id: String, dialogue_path: String):
+	if has_seen_dialogue(id):
+		return
+
+	mark_dialogue_seen(id)
+	DialogueManager.show_dialogue_balloon(load(dialogue_path))

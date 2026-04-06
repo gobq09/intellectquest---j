@@ -15,7 +15,7 @@ extends Control
 @onready var fil_topics = Questions.fil_topic
 
 @onready var last_scene = SaveManager.load_game("save_file")["last_scene"]
-@onready var last_position = SaveManager.load_game("save_file")["global_position"]
+#@onready var last_position = SaveManager.load_game("save_file")["global_position"]
 @onready var buff : PackedScene = preload("uid://cp7gt4xiy6vve")
 
 @onready var critical: RichTextLabel = $HP/Critical
@@ -38,6 +38,11 @@ extends Control
 @onready var player_hplabel: RichTextLabel = $HP/PlayerHP/Player_Label
 @onready var enemy_hplabel: RichTextLabel = $HP/EnemyHP/Enemy_Label
 @onready var portrait : Sprite2D = $"HP/PlayerHP/Interface-combat-playerportait1-male"
+@onready var prompt : Control = $Prompt
+@onready var panel2 : Panel = $Panel2
+@onready var run: Control = $Run
+@onready var run_attempt: RichTextLabel = $Run/Attempt
+@onready var run_result: RichTextLabel = $Run/Result
 
 @onready var action: Control = $Action
 @onready var inventory: Control = $Action_Inv
@@ -71,14 +76,15 @@ extends Control
 @onready var player_critchance: float = player_wis * 0.25
 @onready var player_critdamage: float = 1.5 + (player_str * 0.15)
 @onready var default_maxhp : int = 50 + (player_end * 2)
+@onready var run_chance : float = 0.2
 
-#@onready var enemy_small : Array = ["uid://0ucxefbgrc6k", "uid://ru5xvbb0a361", "uid://m4i1wivj2ipr", "uid://bf15bsf0jltyv", "uid://c7e178xq656dn"]
-#@onready var enemy_med : Array = ["uid://pncvdy7b8gkp", "uid://fhr10ndgwdev", "uid://c5dy25laifsp5", "uid://bsjwi1ke36jh8"]
-#@onready var enemy_large : Array = ["uid://jsiqpuvw66oh", "uid://blyn7fisxmv3j", "uid://bvg5syuxf8sc3"]
+@onready var enemy_small : Array = ["uid://0ucxefbgrc6k", "uid://ru5xvbb0a361", "uid://m4i1wivj2ipr", "uid://bf15bsf0jltyv", "uid://c7e178xq656dn"]
+@onready var enemy_med : Array = ["uid://pncvdy7b8gkp", "uid://fhr10ndgwdev", "uid://c5dy25laifsp5", "uid://bsjwi1ke36jh8"]
+@onready var enemy_large : Array = ["uid://jsiqpuvw66oh", "uid://blyn7fisxmv3j", "uid://bvg5syuxf8sc3"]
 
-var small_dir = "res://ui/combat/combat_sprites/enemy_small/"
-var med_dir = "res://ui/combat/combat_sprites/enemy_med/"
-var large_dir = "res://ui/combat/combat_sprites/enemy_large/"
+#@export_dir var small_dir = "res://ui/combat/combat_sprites/enemy_small/"
+#@export_dir var med_dir = "res://ui/combat/combat_sprites/enemy_med/"
+#@export_dir var large_dir = "res://ui/combat/combat_sprites/enemy_large/"
 
 @onready var enemy_data = SaveManager.load_game("enemy_file")
 @onready var enemy_id = enemy_data["enemy_id"]
@@ -156,15 +162,15 @@ func _ready() -> void:
 
 func _load_enemy() -> void:
 	if enemy_size == "small":
-		enemy_sprite.texture = _load_sprites(small_dir)
+		enemy_sprite.texture = load(enemy_small[randi_range(0, enemy_small.size() - 1)])
 		enemy_damage = randi_range(5, 10)
 		enemy_health = randi_range(15, 30)
 	elif enemy_size == "med":
-		enemy_sprite.texture = _load_sprites(med_dir)
+		enemy_sprite.texture = load(enemy_med[randi_range(0, enemy_med.size() - 1)])
 		enemy_damage = randi_range(10, 20)
 		enemy_health = randi_range(30, 50)
 	elif enemy_size == "large":
-		enemy_sprite.texture = _load_sprites(large_dir)
+		enemy_sprite.texture = load(enemy_large[randi_range(0, enemy_large.size() - 1)])
 		enemy_damage = randi_range(20, 30)
 		enemy_health = randi_range(50, 100)
 	
@@ -184,12 +190,16 @@ func _load_enemy() -> void:
 		topic_type = "fil_topics"
 		question_type = fil_questions
 
-func _load_sprites(path):
-	var files : Array = DirAccess.get_files_at(path)
-	var png_files = Array(files).filter(func(f): return f.ends_with(".png"))
-	
-	var loaded = load(str(path) + str(png_files[randi_range(0, png_files.size() - 1)]))
-	return loaded
+func _load_sprites(type):
+	#var files : Array = DirAccess.get_files_at(path)
+	#var png_files = Array(files).filter(func(f): return f.ends_with(".png"))
+	##var loaded = GD.load<Texture>(str(path) + str(png_files[randi_range(0, png_files.size() - 1)]))
+	#var loaded = load(str(path) + str(png_files[randi_range(0, png_files.size() - 1)]))
+	#
+	#var loaded = load(type[randi_range(0, png_files.size() - 1)])
+	#load(enemy_small[randi_range(0, (enemy_small.size() - 1)])
+	#return loaded
+	pass
 #endregion
 
 #region combat ui
@@ -569,7 +579,6 @@ func _on_attack_pressed() -> void:
 	
 	_new_question()
 
-
 func _on_inventory_pressed() -> void:
 	print("inv pressed")
 	
@@ -601,10 +610,89 @@ func _on_archive_pressed() -> void:
 func _on_run_pressed() -> void:
 	print("run pressed")
 	
-	#action.visible = false
-	#await get_tree().create_timer(1).timeout
-	#
-	#_new_question()
+	panel2.visible = true
+	prompt.visible = true
+
+
+func _on_run_cancel_pressed() -> void:
+	panel2.visible = false
+	prompt.visible = false
+
+
+func _on_run_confirm_pressed() -> void:
+	action.visible = false
+	prompt.visible = false
+	roll_run()
+	pass # Replace with function body.
+
+func roll_run():
+	var result: String
+	var count: int = 0
+	var loop: int = 0
+	
+	run.visible = true
+	run_attempt.visible = true
+	
+	anim_player.play("run_display")
+	await anim_player.animation_finished
+	# show attempt loop ...
+	while loop < 2:
+		count = 0
+		run_attempt.text = "[b]ATTEMPTING TO RUN"
+		while count < 3:
+			run_attempt.text += "."
+			count += 1
+			await get_tree().create_timer(0.2).timeout
+		loop += 1
+	run_attempt.visible = false
+	anim_player.play_backwards("run_display")
+	await anim_player.animation_finished
+	# show result...
+	loop = 0
+	count = 0
+	run_result.visible = true
+	
+	anim_player.play("run_result")
+	await anim_player.animation_finished
+	
+	while loop < 3:
+		run_result.text = "[b]RUN ATTEMPT\n> SUCCESS <"
+		await get_tree().create_timer(0.2).timeout
+		run_result.text = "[b]RUN ATTEMPT\n>SUCCESS<"
+		await get_tree().create_timer(0.2).timeout
+		run_result.text = "[b]RUN ATTEMPT\n> FAILED <"
+		await get_tree().create_timer(0.2).timeout
+		run_result.text = "[b]RUN ATTEMPT\n>FAILED<"
+		await get_tree().create_timer(0.2).timeout
+		loop += 1
+	
+	#roll
+	if randf_range(0, 1.0) <= run_chance:
+		result = "SUCCESS"
+	else:
+		result = "FAILED"
+	
+	#display result, with shake
+	run_result.text = "[b]RUN ATTEMPT\n> " + result +" <"
+	shake(run_result)
+	await get_tree().create_timer(0.5).timeout
+	
+	anim_player.play_backwards("run_result")
+	await anim_player.animation_finished
+	
+	if result == "SUCCESS":
+		run_success()
+	else:
+		run_result.visible = false
+		run.visible = false
+		panel2.visible = false
+		_on_wrong_answer()
+
+func run_success():
+	game_data["player_ran"] = true
+	SaveManager.save_game(game_data, "save_file")
+	SceneLoader.load_scene(last_scene)
+
 #endregion
 
 func _on_enemy_health_bar_value_changed(value: float) -> void:

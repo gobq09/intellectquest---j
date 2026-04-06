@@ -2,16 +2,16 @@ extends Control
 
 
 func _on_q_1_pressed() -> void:
-	QuestManager._add_quest("0")
+	SaveManager.mark_dialogue_seen("0")
 	pass # Replace with function body.
 
 
 func _on_q_2_pressed() -> void:
-	QuestManager._add_quest("1")
+	SaveManager.mark_dialogue_seen("1")
 
 
 func _on_q_3_pressed() -> void:
-	QuestManager._add_quest("2")
+	print(SaveManager.has_seen_dialogue("0"))
 
 
 func _on_reset_pressed() -> void:

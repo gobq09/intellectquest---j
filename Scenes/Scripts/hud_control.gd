@@ -17,6 +17,17 @@ func _ready() -> void:
 	#bar.position.x = (hp_bar.value / 2) + 32
 	
 	SignalManager.map_changed.connect(map_changed)
+	SignalManager.player_defeated.connect(player_defeated)
+
+func player_defeated():
+	print(player_data)
+	player_data = SaveManager.load_game("player_file")
+	player_data["player_hp"] = 50 + (player_data["player_end"] * 2)
+	SaveManager.save_game(player_data, "player_file")
+	print(player_data)
+	level.text = str(int(player_data["player_level"]))
+	var max_hp = (player_data["player_end"] * 2) + 50
+	hp_bar.value = (player_data["player_hp"] / max_hp) * 100
 
 func map_changed(scene):
 	game_data = SaveManager.load_game("save_file")

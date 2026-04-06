@@ -18,7 +18,20 @@ extends Control
 var pressed: String
 
 func _ready() -> void:
-	pass
+	if game_data["in_game"] == true:
+		menu.visible = true
+		menu.disabled = false
+		quit.visible = true
+		quit.disabled = false
+		
+		last_scene = "game"
+	else:
+		menu.visible = false
+		menu.disabled = true
+		quit.visible = false
+		quit.disabled = true
+		
+		last_scene = "menu"
 
 
 func _on_general_pressed() -> void:
@@ -50,20 +63,12 @@ func _load_prompt(press):
 
 func _on_close_pressed() -> void:
 	game_data = SaveManager.load_game("save_file")
-	if game_data["in_game"] == true:
-		menu.visible = true
-		menu.disabled = false
-		quit.visible = true
-		quit.disabled = false
-		
+	
+	if last_scene == "game":
 		last_scene = game_data["last_scene"]
-	else:
-		menu.visible = false
-		menu.disabled = true
-		quit.visible = false
-		quit.disabled = true
-		
+	elif last_scene == "menu":
 		last_scene = menu_uid
+	
 	print(last_scene)
 	SceneLoader.load_scene(last_scene)
 

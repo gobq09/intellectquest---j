@@ -27,11 +27,14 @@ func _ready() -> void:
 		sprite.texture = female_sprite
 	else:
 		sprite.texture = male_sprite
+	
 	position = _convert(last_position)
 	ani_tree.set("parameters/Idle/blend_position", Vector2(0,1))
 	self.set_process_input(false) 
+	
 	if  game_data["new_game"] ||  game_data["player_lost"] == true:
 		set_physics_process(false)
+		SignalManager.player_defeated.emit()
 		_cutscene("wakeup")
 		await ani_tree.animation_finished
 
@@ -59,7 +62,10 @@ func _cutscene(animation: String = "null") -> void:
 	if animation == "wakeup":
 		ani_tree.get("parameters/playback").travel("Wake Up")
 		await ani_tree.animation_finished
+		ani_tree.get("parameters/playback").travel("Stand Up")
+		await ani_tree.animation_finished
 		game_data["new_game"] = false
+		game_data["player_lost"] = false
 		SaveManager.save_game(game_data, "save_file")
 	set_physics_process(true)
 

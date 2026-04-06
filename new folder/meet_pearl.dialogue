@@ -1,0 +1,141 @@
+~ meet_pearl
+
+#Pearls honorifics determine by the player's gender pick!
+
+Quinn: Man... how did I even end up in a place like this...
+Quinn: ...
+#do GlobalAnim.close_eyes
+[next=3]
+Pearl: Hey there, you!
+Quinn: ...
+Quinn: Huh?
+Pearl: I'm talking to you, mister!
+#do GlobalAnim.player_idle-down
+Quinn: Is someone there?
+Pearl: I'm over here, mister!
+#do GlobalAnim.look_around
+Quinn: Where are you? I can't see you!
+Pearl: Look ahead!
+#do GlobalAnim.player_idle-right
+Quinn: ...
+Quinn: A book?
+Quinn: Is this yours?
+Pearl: It's *ME*!
+Quinn: ...
+Quinn: It's... *YOU*?
+Pearl: Yep! hehe~
+Quinn: A talking book...
+#do GlobalAnim.pearl_awake
+Pearl: That's me!
+Quinn: A *TALKING* book!
+Quinn: AAHHHH!
+Pearl: Hey! You're so loud!
+Pearl: It's like you've seen a ghost or something.
+Quinn: A talking freaking book!
+Quinn: ha..
+Quinn: HA!
+Quinn: HAHAHAHAHA!
+Quinn: I must've gone crazy!
+#do GlobalAnim.player_idle-up
+Quinn: So this is a dream! [wait=1]HAHAHAHA!
+Pearl: Mister, what are you talking about?
+Pearl: Are you alright?
+Quinn: I need to wake up,[wait=1] NOW!
+#Need scene animation that Quinn walking up and down
+Pearl: Hey mister, calm down!
+#Quinn stops and looks at Pearl
+Quinn: No way I'm calming down!
+Quinn: A strange beach... and a talking book!
+Quinn: Is this a punishment... for being a bum in class?
+Quinn: I'm so sorry!!! Please get me back home!
+Quinn: *sob*
+Pearl: There, there~
+Pearl: So you're not from here? In this world?
+Quinn: *sob* Yes...
+Quinn: Might've been the strange ad that I clicked last night. That ad brought me here...
+Pearl: "Ad"? What is that?
+Quinn: Doesn't matter now...
+Quinn: This is a punishment for me... for being bad in class... *sob*
+Pearl: ...
+Pearl: Mister, you mentioned that you're bad in class?
+Quinn: Yes...
+Pearl: ...
+Pearl: Hey mister, let me help you get back home!
+Quinn: What?
+Pearl: There must be a reason for you to be transported into this world.
+Quinn: Where are we anyway...
+Pearl: You're currently in the world of Intellectraxis.
+Quinn: Intelle-what?
+Pearl: Intellectraxis! The world where knowledge is power!
+Quinn: I think I've heard that line back in my world before...
+Pearl: You're currently in the nation of Linguara.
+Quinn: Ling-what now?
+Pearl: *Sigh* Linguara, mister. An ancient name that means Language! Therefore, you are currently in the Nation of Language!
+Quinn: Nation of Language...
+Quinn: That's ridiculous. The nation here is made up of different languages?
+Pearl: Yes and no!
+Quinn: What do you mean, yes and no?
+Pearl: The nation mainly governs all kinds of language branches!
+Pearl: Like the other nations!
+Quinn: Other nations?
+Pearl: Yes, Linguara—the nation where "Thoughts are given voice, and meaning flows like the sea." It focuses on expression, comprehension, articulation, and interpretation.
+Pearl: The other nations are Scienza: the Nation of Inquiry, and Numeria: the Nation of Order!
+Pearl: But... there was an ancient nation that existed before...
+Pearl: ...
+Pearl: Filipiñas... the Nation of Legacy...
+Quinn: (Huh, all these nations sound like regular subjects back in my world...)
+Quinn: (...)
+Quinn: (Pearl looks a bit sad when she says Filipiñas...)
+Quinn: (...)
+Quinn: (And Filipiñas... sounds familiar...)
+Quinn: Speaking of language, how am I talking to you if you're from another world?
+Pearl: ...!
+Pearl: I think it's because of me.
+Quinn: Huh? How's that?
+Pearl: I don't really know... I've lost my memories 2 months ago... so...
+Quinn: It's fine...
+Quinn: I should thank you.
+Pearl: Thank me? Why, mister?
+Quinn: Nothing... the feeling of being here still creeps me out.
+Quinn: But you helped me get back to my senses...
+Quinn: And even told me where the heck I am.
+Pearl: Mister...
+Quinn: You're like a walking archive!
+Quinn: So what should I call you?
+Pearl: I-I don't know, mister... I'm sorry.
+Pearl: I was just wandering everywhere after I lost my memories before I stumbled here, mister!
+Quinn: Oh, I see...
+Quinn: Hmmm...
+Quinn: Let's see...
+Quinn: Maybe I should call you... Pearl!
+Pearl: ...!
+Pearl: ...
+Pearl: W-why Pearl, mister, if I may ask?
+Quinn: Well... you have a goldish pearl-like gem in the middle of you!
+Quinn: And it sounds about right!
+Pearl: ...
+Pearl: Thank you, mister!
+Pearl: ...
+Pearl: So I'm... Pearl!
+Pearl: Oh hey, master!
+Quinn: Master? Why are you calling me that?
+Pearl: I've decided that I'm going to accompany you and guide you into this world and help you find your way back to your world, master!
+Quinn:
+Quinn: Stop that... just call me Quinn.
+#Triny ko yung {{SaveManager.player_name("player_name")}} something for changes sa name but sadly na corrupt nanaman last file ko. But it worked.
+Pearl: ...
+Pearl: Quinn...
+Pearl: I like it, master!
+Pearl: I'm still going to call you master, master! hmp!
+Quinn: *Sigh* this book...
+Quinn: Fine, whatever makes you happy.
+Pearl: Yay!
+Quinn: So Pearl, since you're my "guide" into this world, where do we go now?
+Pearl: Hmmm...
+Pearl: There is a small town nearby called "Greymoor Town."
+Pearl: It's the nearest town here.
+Quinn: Hmmm... okay!
+Quinn: Let's take a look, shall we?
+Pearl: Let's go, Master Quinn!
+
+=> END
