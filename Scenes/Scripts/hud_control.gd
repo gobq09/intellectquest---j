@@ -55,7 +55,7 @@ func _on_settings_button_pressed() -> void:
 func _on_map_button_pressed() -> void:
 	SignalManager.interface_changed.emit()
 	print("Map")
-	#get_tree().change_scene_to_file("res://Scenes/settings.tscn")
+	SceneLoader.load_scene("uid://dxogc44ghcvvr")
 
 
 func _on_archive_button_pressed() -> void:

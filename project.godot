@@ -13,7 +13,7 @@ config_version=5
 config/name="IntelliQuest"
 run/main_scene="uid://bv2jvo7wjipfe"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://biyjiiv3biyna"
 
 [autoload]
 

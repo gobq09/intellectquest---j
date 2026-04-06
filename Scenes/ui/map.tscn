@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxogc44ghcvvr"]
+[gd_scene load_steps=5 format=3 uid="uid://dxogc44ghcvvr"]
 
 [ext_resource type="Texture2D" uid="uid://infc5wxfxikm" path="res://ui/map/interface-map.png" id="1_hbtx7"]
+[ext_resource type="Script" uid="uid://bbg4jyro5nm0" path="res://Scenes/Scripts/map.gd" id="1_s6brh"]
 [ext_resource type="Texture2D" uid="uid://gfo4nfxodp7d" path="res://ui/archive/interface-archive-closebutton.png" id="2_qw1bd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbtx7"]
@@ -13,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_s6brh")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -53,7 +55,7 @@ grow_vertical = 2
 scale = Vector2(3, 3)
 texture = ExtResource("1_hbtx7")
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="Close" type="TextureButton" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -65,3 +67,5 @@ grow_horizontal = 0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("2_qw1bd")
 stretch_mode = 3
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
