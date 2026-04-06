@@ -33,6 +33,7 @@ var game_data: Dictionary = {
 	"fil_topics": {},
 	"active_quest": "none",
 	"triggered_dialogues": {},
+	"score": 0,
 }
 
 var player_data: Dictionary = {

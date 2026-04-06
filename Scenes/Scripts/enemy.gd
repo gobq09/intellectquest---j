@@ -16,6 +16,8 @@ extends CharacterBody2D
 @onready var defeated_enemies: Dictionary = game_data["defeated_enemies"]
 @onready var respawn_point = position
 @onready var timer = $Timer
+@onready var effects = $Effects
+@onready var effects_anim = $Effects/AnimationPlayer
 
 var enemy_small = "uid://bedmimhkuo0uq"
 var enemy_med = "uid://dwpj8v76nn1cp"
@@ -45,7 +47,7 @@ func _ready() -> void:
 	print(defeated_enemies)
 	if defeated_enemies.has(enemy_id):
 		#print("freed " + str(enemy_id))
-		print(str(defeated_enemies[str(enemy_id)]))
+		#print(str(defeated_enemies[str(enemy_id)]))
 		if defeated_enemies[str(enemy_id)] <= Time.get_unix_time_from_system():
 			#print("initially respawned")
 			self.visible = true
@@ -78,6 +80,11 @@ func _on_player_ran():
 		self.visible = true
 		detect_area.process_mode = Node.PROCESS_MODE_INHERIT
 		battle_area.process_mode = Node.PROCESS_MODE_INHERIT
+		
+		effects.visible = true
+		effects_anim.play("spawn")
+		await effects_anim.animation_finished
+		effects.visible = false
 	else:
 		return
 
@@ -88,6 +95,11 @@ func _on_timer_timeout() -> void:
 	detect_area.process_mode = Node.PROCESS_MODE_INHERIT
 	battle_area.process_mode = Node.PROCESS_MODE_INHERIT
 	defeated_enemies.erase(str(enemy_id))
+	
+	effects.visible = true
+	effects_anim.play("spawn")
+	await effects_anim.animation_finished
+	effects.visible = false
 
 # DetectionArea triggers chasing
 func _on_DetectionArea_body_entered(body: CharacterBody2D) -> void:

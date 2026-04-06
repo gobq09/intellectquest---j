@@ -16,7 +16,6 @@ func _ready() -> void:
 	hp_bar.value = (player_data["player_hp"] / max_hp) * 100
 	#bar.position.x = (hp_bar.value / 2) + 32
 	
-	SignalManager.map_changed.connect(map_changed)
 	SignalManager.player_defeated.connect(player_defeated)
 
 func player_defeated():
@@ -29,23 +28,8 @@ func player_defeated():
 	var max_hp = (player_data["player_end"] * 2) + 50
 	hp_bar.value = (player_data["player_hp"] / max_hp) * 100
 
-func map_changed(scene):
-	game_data = SaveManager.load_game("save_file")
-	game_data["last_scene"] = scene
-	game_data["in_game"] = true
-	
-	last_scene = scene
-	SaveManager.save_game(game_data, "save_file")
-
-func save_scene():
-	game_data = SaveManager.load_game("save_file")
-	game_data["last_scene"] = last_scene
-	game_data["in_game"] = true
-	
-	SaveManager.save_game(game_data, "save_file")
-
 func _on_interfacehudtodo_pressed() -> void:
-	save_scene()
+	SignalManager.interface_changed.emit()
 	print("Pressed")
 	var tween = create_tween()
 	
@@ -63,24 +47,24 @@ func _on_interfacehudtodo_pressed() -> void:
 		Task_Expanded = false
 
 func _on_settings_button_pressed() -> void:
-	save_scene()
+	SignalManager.interface_changed.emit()
 	
 	SceneLoader.load_scene("uid://tj4vo1mmxfyt")
 
 
 func _on_map_button_pressed() -> void:
-	save_scene()
+	SignalManager.interface_changed.emit()
 	print("Map")
 	#get_tree().change_scene_to_file("res://Scenes/settings.tscn")
 
 
 func _on_archive_button_pressed() -> void:
-	save_scene()
+	SignalManager.interface_changed.emit()
 	SceneLoader.load_scene("uid://cfvteqvw7wwp")
 
 
 func _on_interfacehudlevel_pressed() -> void:
-	save_scene()
+	SignalManager.interface_changed.emit()
 	SceneLoader.load_scene("uid://0q5mlknq6fk0")
 
 
@@ -91,7 +75,7 @@ func _on_interact_button_pressed() -> void:
 @onready var task_timer = $Control/Task/Timer
 
 func _on_task_button_down() -> void:
-	task_timer.start(1)
+	task_timer.start(0.5)
 
 
 func _on_task_button_up() -> void:
@@ -99,5 +83,5 @@ func _on_task_button_up() -> void:
 
 
 func _on_timer_timeout() -> void:
-	save_scene()
+	SignalManager.interface_changed.emit()
 	SceneLoader.load_scene("uid://bn8572f758heh")

@@ -23,6 +23,7 @@ var locked = false
 @onready var last_position : String = game_data["global_position"]
 
 func _ready() -> void:
+	SignalManager.map_changed.connect(map_changed)
 	if player_data["chosen"] == "Female":
 		sprite.texture = female_sprite
 	else:
@@ -37,6 +38,9 @@ func _ready() -> void:
 		SignalManager.player_defeated.emit()
 		_cutscene("wakeup")
 		await ani_tree.animation_finished
+	
+	game_data["global_position"] = position
+	SaveManager.save_game(game_data, "save_file")
 
 func _convert(string):
 	var new_string: String = str(string)
@@ -44,6 +48,9 @@ func _convert(string):
 	new_string = new_string.erase(new_string.length() - 1, 1)
 	var array: Array = new_string.split(", ")
 	return Vector2(int(array[0]), int(array[1]))
+
+func map_changed(scene):
+	Handler.map_changed(scene, position)
 
 func get_input():
 	var input = Vector2()
@@ -93,7 +100,6 @@ func collect(item):
 
 
 func _on_timer_timeout() -> void:
-	#print(game_data["global_position"])
-	#print(position)
+	game_data = SaveManager.load_game("save_file")
 	game_data["global_position"] = position
 	SaveManager.save_game(game_data, "save_file")

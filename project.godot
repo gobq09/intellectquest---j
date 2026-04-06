@@ -27,6 +27,7 @@ SignalManager="*res://Resources/SignalManager.gd"
 SettingsManager="*res://Resources/settings_manager.gd"
 QuestManager="*res://Resources/quest_manager.gd"
 Quests="*res://Resources/quests.gd"
+Handler="*res://Resources/handler.gd"
 
 [display]
 

@@ -17,3 +17,5 @@ signal map_changed(scene)
 signal tutorial_ended
 
 signal player_defeated
+
+signal interface_changed

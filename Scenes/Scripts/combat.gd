@@ -513,7 +513,6 @@ func _evaluate():
 	var level_up: int = player_level
 	var stats_add: int = unused_stats
 	
-
 		
 	while total_exp >= exp_require:
 		await get_tree().create_timer(timer).timeout
