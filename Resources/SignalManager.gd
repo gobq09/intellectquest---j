@@ -28,3 +28,4 @@ signal dialogue_enter
 signal dialogue_exit
 
 signal move_player(direction : String, duration : int)
+signal player_anim(animation: String)

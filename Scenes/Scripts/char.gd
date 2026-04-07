@@ -8,6 +8,7 @@ var locked = false
 @onready var game_data = SaveManager.load_game("save_file")
 @onready var config_data = SaveManager.load_game("config_file")
 @onready var timer = $SaveTimer
+@onready var anim_player = $Player_AnimTree/AnimationPlayer
 
 @onready var player_data = SaveManager.load_game("player_file")
 @onready var sprite : Sprite2D = $Sprite2D
@@ -30,6 +31,7 @@ func _ready() -> void:
 	SignalManager.trigger_ui.connect(disable_movement)
 	SignalManager.movement_disabled.connect(disable_movement)
 	SignalManager.move_player.connect(move_player)
+	SignalManager.player_anim.connect(player_anim)
 	
 	if player_data["chosen"] == "Female":
 		sprite.texture = female_sprite
@@ -108,6 +110,7 @@ func _cutscene(animation: String = "null") -> void:
 
 func disable_movement():
 	#joystick.process_mode = Node.PROCESS_MODE_DISABLED
+	await get_tree().create_timer(0.1).timeout
 	print("character movement disabled")
 	self.set_process_input(false) 
 	self.set_physics_process(false)
@@ -128,6 +131,12 @@ func move_player(direction: String, duration: int):
 	
 	await get_tree().create_timer(0.1).timeout
 	SignalManager.movement_disabled.emit()
+
+func player_anim(animation: String):
+	print("reached")
+	anim_player.play(animation)
+	await anim_player.animation_finished
+	ani_tree.get("parameters/playback").travel("Idle")
 
 func map_changed(scene):
 	Handler.map_changed(scene, position)

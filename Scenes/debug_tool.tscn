@@ -123,9 +123,25 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Move Up"
 
+[node name="Button6" type="Button" parent="Control/Panel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = 122.0
+offset_right = 101.0
+offset_bottom = 173.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Look Around"
+
 [connection signal="pressed" from="Control/Hide" to="Control" method="_on_hide_pressed"]
 [connection signal="pressed" from="Control/Panel/Control/Button" to="Control" method="_on_button_pressed"]
 [connection signal="pressed" from="Control/Panel/Control/Button2" to="Control" method="_on_button_2_pressed"]
 [connection signal="pressed" from="Control/Panel/Control/Button3" to="Control" method="_on_button_3_pressed"]
 [connection signal="pressed" from="Control/Panel/Control/Button4" to="Control" method="_on_button_4_pressed"]
 [connection signal="pressed" from="Control/Panel/Control/Button5" to="Control" method="_on_button_5_pressed"]
+[connection signal="pressed" from="Control/Panel/Control/Button6" to="Control" method="_on_button_6_pressed"]

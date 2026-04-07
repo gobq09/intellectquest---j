@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://b4qaqebdse2qj"]
+[gd_scene load_steps=49 format=3 uid="uid://b4qaqebdse2qj"]
 
 [ext_resource type="Script" uid="uid://dkhdkf103j2ms" path="res://Scenes/Scripts/char.gd" id="1_gv012"]
 [ext_resource type="Animation" uid="uid://5lii1tmmfvju" path="res://Sprites/player/animation/player-wakeup.res" id="2_ljijv"]
@@ -33,6 +33,12 @@ blend_point_2/pos = Vector2(0, -0.9)
 blend_point_3/node = SubResource("AnimationNodeAnimation_nedj3")
 blend_point_3/pos = Vector2(0.9, 0)
 blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dk8q8"]
+animation = &"player_look_around"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mq0tv"]
+animation = &"player_pinch"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uydtg"]
 animation = &"player-standup"
@@ -79,19 +85,34 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mivru"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fmonx"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lwdkv"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2upaq"]
-states/End/position = Vector2(673, 72)
+states/End/position = Vector2(894, 9)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_ayvha")
 states/Idle/position = Vector2(479, 72)
+"states/Look Around/node" = SubResource("AnimationNodeAnimation_dk8q8")
+"states/Look Around/position" = Vector2(340, -104)
+states/Pinch/node = SubResource("AnimationNodeAnimation_mq0tv")
+states/Pinch/position = Vector2(479, -104)
 "states/Stand Up/node" = SubResource("AnimationNodeAnimation_uydtg")
 "states/Stand Up/position" = Vector2(479, -14)
 states/Start/position = Vector2(325, 72)
 "states/Wake Up/node" = SubResource("AnimationNodeAnimation_1iy3q")
-"states/Wake Up/position" = Vector2(313, -14)
+"states/Wake Up/position" = Vector2(261, -14)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_231on")
 states/Walk/position = Vector2(479, 159)
-transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_tr5dq"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_6w5cu"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1iy3q"), "Stand Up", "Idle", SubResource("AnimationNodeStateMachineTransition_sf4kk"), "Wake Up", "Stand Up", SubResource("AnimationNodeStateMachineTransition_uydtg")]
-graph_offset = Vector2(-125, -48)
+transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_tr5dq"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_6w5cu"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1iy3q"), "Stand Up", "Idle", SubResource("AnimationNodeStateMachineTransition_sf4kk"), "Wake Up", "Stand Up", SubResource("AnimationNodeStateMachineTransition_uydtg"), "Wake Up", "Look Around", SubResource("AnimationNodeStateMachineTransition_mivru"), "Look Around", "Pinch", SubResource("AnimationNodeStateMachineTransition_fmonx"), "Pinch", "Stand Up", SubResource("AnimationNodeStateMachineTransition_lwdkv")]
+graph_offset = Vector2(-121, -162)
 
 [sub_resource type="Animation" id="Animation_ap31j"]
 length = 0.001

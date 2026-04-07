@@ -4,7 +4,8 @@ extends Node
 @onready var quest_source = Quests.quests
 
 func _clear_quests():
-	SaveManager.save_game({"none": quest_source["none"]}, "quest_file")
+	SaveManager.save_game(quest_source, "quest_file")
+	#SaveManager.save_game({"none": quest_source["none"]}, "quest_file")
 
 func _get_quests():
 	var quest_data = SaveManager.load_game("quest_file")
@@ -55,6 +56,7 @@ func _update_task(quest_id: String, task_id: String, progress: int):
 	quest["completed"] = completed
 	SaveManager.save_game(quest_data, "quest_file")
 
+#for overworld hud task tracker display
 func _active_quest():
 	game_data = SaveManager.load_game("save_file")
 	var quest_data = SaveManager.load_game("quest_file")

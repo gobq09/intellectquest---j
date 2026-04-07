@@ -13,3 +13,4 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		print("triggered")
 		SaveManager.play_dialogue_once("meet_pearl", "res://Dialogue/meet_pearl.dialogue")
+		#DialogueManager.show_dialogue_balloon(load("res://Dialogue/meet_pearl.dialogue"))

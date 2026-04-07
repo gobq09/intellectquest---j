@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxogc44ghcvvr"]
+[gd_scene load_steps=8 format=3 uid="uid://dxogc44ghcvvr"]
 
 [ext_resource type="Texture2D" uid="uid://infc5wxfxikm" path="res://ui/map/interface-map.png" id="1_hbtx7"]
 [ext_resource type="Script" uid="uid://bbg4jyro5nm0" path="res://Scenes/Scripts/map.gd" id="1_s6brh"]
+[ext_resource type="Texture2D" uid="uid://drvcxbau8sei4" path="res://ui/map/interface-map-location.png" id="2_ev6pi"]
 [ext_resource type="Texture2D" uid="uid://gfo4nfxodp7d" path="res://ui/archive/interface-archive-closebutton.png" id="2_qw1bd"]
+[ext_resource type="Texture2D" uid="uid://rbkjb78oga8c" path="res://ui/map/interface-map-landmark.png" id="5_40ojq"]
+[ext_resource type="Texture2D" uid="uid://p6r0vtb4vtv8" path="res://ui/map/interface-map-pointer.png" id="6_qx845"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbtx7"]
 bg_color = Color(0.121569, 0.0627451, 0.164706, 1)
@@ -39,6 +42,22 @@ offset_bottom = 266.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -471.0
+offset_top = -302.0
+offset_right = -151.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+texture = ExtResource("2_ev6pi")
+
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -67,5 +86,37 @@ grow_horizontal = 0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("2_qw1bd")
 stretch_mode = 3
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 41.0
+offset_top = -158.0
+offset_right = 81.0
+offset_bottom = -118.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+texture = ExtResource("5_40ojq")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -62.0
+offset_right = 20.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+texture = ExtResource("6_qx845")
 
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

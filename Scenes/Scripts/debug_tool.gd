@@ -38,3 +38,7 @@ func _on_hide_pressed() -> void:
 		hide.position.x = 936
 		panel.position.x = 960
 		panel_hidden = true
+
+
+func _on_button_6_pressed() -> void:
+	SignalManager.player_anim.emit("player_look_around")
