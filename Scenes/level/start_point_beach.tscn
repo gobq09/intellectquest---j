@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://dt532wlk4w78h"]
+[gd_scene load_steps=35 format=4 uid="uid://dt532wlk4w78h"]
 
 [ext_resource type="Script" uid="uid://cgdk703yg75h" path="res://Scenes/Scripts/start.gd" id="1_njav7"]
 [ext_resource type="TileSet" uid="uid://dop58t8w0lmjn" path="res://Tileset/grass.tres" id="2_kvltp"]
@@ -11,7 +11,7 @@
 [ext_resource type="TileSet" uid="uid://byyck7socg513" path="res://Tileset/rock-wall.tres" id="9_yer5x"]
 [ext_resource type="TileSet" uid="uid://dokuecav10rh5" path="res://Tileset/whitewall.tres" id="10_ogu4v"]
 [ext_resource type="TileSet" uid="uid://di7ocykekmaw2" path="res://Tileset/stone-border.tres" id="11_8r7ro"]
-[ext_resource type="Texture2D" uid="uid://sfo5bvp1ktfr" path="res://Tileset/tileset-door.png" id="12_8fany"]
+[ext_resource type="TileSet" uid="uid://dkygyeegsgi5y" path="res://Tileset/door.tres" id="12_qr1oh"]
 [ext_resource type="TileSet" uid="uid://cw2087whh866g" path="res://Tileset/pillars.tres" id="13_x38vd"]
 [ext_resource type="TileSet" uid="uid://cwwa3ega1srxf" path="res://Tileset/roof.tres" id="14_7vf01"]
 [ext_resource type="Texture2D" uid="uid://dq3oqw7mg23v6" path="res://Tileset/tileset-chimney.png" id="15_gmjoc"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://b4qaqebdse2qj" path="res://Scenes/entities/char.tscn" id="17_0skr4"]
 [ext_resource type="PackedScene" uid="uid://dt0reecx2hip5" path="res://Scenes/entities/enemy.tscn" id="18_78hur"]
 [ext_resource type="PackedScene" uid="uid://g3w75c5xrktm" path="res://Scenes/camera.tscn" id="18_qr1oh"]
-[ext_resource type="PackedScene" uid="uid://c6o2va711dt3s" path="res://Scenes/debug_tool.tscn" id="19_0j4ps"]
 [ext_resource type="Script" uid="uid://b3pwebufi6pox" path="res://Scenes/Scripts/start_point_beach.gd" id="19_aetfx"]
 [ext_resource type="Shader" uid="uid://bdw6ayaiexuau" path="res://Scenes/cloud1.gdshader" id="20_vnhnk"]
 [ext_resource type="PackedScene" uid="uid://dvdiugbr15cvs" path="res://Scenes/ui/item.tscn" id="21_3ilpf"]
@@ -317,25 +316,6 @@ terrain_set_0/terrain_1/name = "Terrain 1"
 terrain_set_0/terrain_1/color = Color(0.439671, 0.718114, 0.224143, 1)
 sources/0 = SubResource("TileSetAtlasSource_fqf33")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vgpgl"]
-texture = ExtResource("12_8fany")
-0:0/size_in_atlas = Vector2i(2, 3)
-0:0/next_alternative_id = 2
-0:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n86sy"]
-texture = ExtResource("12_8fany")
-0:0/0 = 0
-1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_iy2pv"]
-sources/0 = SubResource("TileSetAtlasSource_vgpgl")
-sources/1 = SubResource("TileSetAtlasSource_n86sy")
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aoxf1"]
 texture = ExtResource("15_gmjoc")
 0:0/0 = 0
@@ -490,7 +470,7 @@ tile_set = ExtResource("11_8r7ro")
 
 [node name="door" type="TileMapLayer" parent="Environment/WallBorder"]
 tile_map_data = PackedByteArray("AAAs//D/AAAAAAAAAAA8//P/AQAAAAAAAAA8//T/AQAAAAEAAAA8//X/AQAAAAIAAAA9//P/AQABAAAAAAA9//T/AQABAAEAAAA9//X/AQABAAIAAAA6/+X/AQAAAAAAAAA6/+b/AQAAAAEAAAA6/+f/AQAAAAIAAAA7/+X/AQABAAAAAAA7/+b/AQABAAEAAAA7/+f/AQABAAIAAAA=")
-tile_set = SubResource("TileSet_iy2pv")
+tile_set = ExtResource("12_qr1oh")
 
 [node name="woodbeams" type="TileMapLayer" parent="Environment/WallBorder"]
 y_sort_enabled = true
@@ -526,8 +506,6 @@ y_sort_enabled = false
 position = Vector2(-473, 17)
 
 [node name="Camera2D" parent="Node2D/Player" instance=ExtResource("18_qr1oh")]
-
-[node name="Debug Tool" parent="Node2D/Player" instance=ExtResource("19_0j4ps")]
 
 [node name="Enemies" type="Node2D" parent="Node2D"]
 y_sort_enabled = true

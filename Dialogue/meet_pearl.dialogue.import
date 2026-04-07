@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bgqhln5jp0k78"
+path="res://.godot/imported/meet_pearl.dialogue-03a4e7059afdff2c56cec1e4b70af818.tres"
+
+[deps]
+
+source_file="res://Dialogue/meet_pearl.dialogue"
+dest_files=["res://.godot/imported/meet_pearl.dialogue-03a4e7059afdff2c56cec1e4b70af818.tres"]
+
+[params]
+
+defaults=true

@@ -121,6 +121,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_1c72s")
 
 [node name="Graphics" type="VBoxContainer" parent="Control2/Settings"]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="Mode" type="HBoxContainer" parent="Control2/Settings/Graphics"]
 custom_minimum_size = Vector2(0, 32)
@@ -136,6 +137,14 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Custom" type="Button" parent="Control2/Settings/Graphics/Mode"]
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vmqi3")
+text = "Custom"
+
 [node name="Low" type="Button" parent="Control2/Settings/Graphics/Mode"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -149,6 +158,48 @@ layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_vmqi3")
 text = "High"
+
+[node name="Particles" type="HBoxContainer" parent="Control2/Settings/Graphics"]
+visible = false
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Graphics/Particles"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Particles"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Control2/Settings/Graphics/Particles"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Lights" type="HBoxContainer" parent="Control2/Settings/Graphics"]
+visible = false
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Graphics/Lights"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Lights and Shadows"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Control2/Settings/Graphics/Lights"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="FPS" type="HBoxContainer" parent="Control2/Settings/Graphics"]
 custom_minimum_size = Vector2(0, 32)
@@ -578,8 +629,11 @@ vertical_alignment = 1
 [connection signal="pressed" from="Control2/Settings/Buttons/Mode/Reset" to="Control2" method="_on_reset_pressed"]
 [connection signal="pressed" from="Control2/Settings/Buttons/Mode/Revert" to="Control2" method="_on_revert_pressed"]
 [connection signal="pressed" from="Control2/Settings/Buttons/Mode/Save" to="Control2" method="_on_save_pressed"]
+[connection signal="pressed" from="Control2/Settings/Graphics/Mode/Custom" to="Control2" method="_on_high_pressed"]
 [connection signal="pressed" from="Control2/Settings/Graphics/Mode/Low" to="Control2" method="_on_low_pressed"]
 [connection signal="pressed" from="Control2/Settings/Graphics/Mode/High" to="Control2" method="_on_high_pressed"]
+[connection signal="pressed" from="Control2/Settings/Graphics/Particles/CheckBox" to="Control2" method="_on_check_box_pressed"]
+[connection signal="pressed" from="Control2/Settings/Graphics/Lights/CheckBox" to="Control2" method="_on_check_box_pressed"]
 [connection signal="pressed" from="Control2/Settings/Graphics/FPS/30" to="Control2" method="_on_30_pressed"]
 [connection signal="pressed" from="Control2/Settings/Graphics/FPS/60" to="Control2" method="_on_60_pressed"]
 [connection signal="pressed" from="Control2/Settings/Graphics/VSync/CheckBox" to="Control2" method="_on_check_box_pressed"]

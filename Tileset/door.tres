@@ -1,0 +1,22 @@
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://dkygyeegsgi5y"]
+
+[ext_resource type="Texture2D" uid="uid://sfo5bvp1ktfr" path="res://Tileset/tileset-door.png" id="1_l7l2b"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vgpgl"]
+texture = ExtResource("1_l7l2b")
+0:0/size_in_atlas = Vector2i(2, 3)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n86sy"]
+texture = ExtResource("1_l7l2b")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+
+[resource]
+sources/0 = SubResource("TileSetAtlasSource_vgpgl")
+sources/1 = SubResource("TileSetAtlasSource_n86sy")

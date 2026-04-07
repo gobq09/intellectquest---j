@@ -316,15 +316,16 @@ text = "-"
 
 [node name="counter" type="RichTextLabel" parent="Control/Stats/Control/Int_Buttons"]
 layout_mode = 0
-offset_left = 479.0
+offset_left = 447.0
 offset_top = -35.0
-offset_right = 511.0
+offset_right = 543.0
 offset_bottom = 42.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 56
 text = "0
 "
 fit_content = true
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -355,15 +356,16 @@ text = "-"
 
 [node name="counter" type="RichTextLabel" parent="Control/Stats/Control/End_Buttons"]
 layout_mode = 0
-offset_left = 479.0
+offset_left = 447.0
 offset_top = 69.0
-offset_right = 511.0
+offset_right = 543.0
 offset_bottom = 146.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 56
 text = "0
 "
 fit_content = true
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -394,15 +396,15 @@ text = "-"
 
 [node name="counter" type="RichTextLabel" parent="Control/Stats/Control/Wis_Buttons"]
 layout_mode = 0
-offset_left = 479.0
+offset_left = 447.0
 offset_top = 181.0
-offset_right = 511.0
+offset_right = 543.0
 offset_bottom = 258.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 56
-text = "0
-"
+text = "0"
 fit_content = true
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -433,15 +435,16 @@ text = "-"
 
 [node name="counter" type="RichTextLabel" parent="Control/Stats/Control/Str_Buttons"]
 layout_mode = 0
-offset_left = 479.0
+offset_left = 447.0
 offset_top = 289.0
-offset_right = 511.0
+offset_right = 543.0
 offset_bottom = 366.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 56
 text = "0
 "
 fit_content = true
+scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 

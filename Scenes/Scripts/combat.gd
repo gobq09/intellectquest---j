@@ -179,6 +179,9 @@ func _load_enemy() -> void:
 		enemy_damage = randi_range(20, 30)
 		enemy_health = randi_range(50, 100)
 	
+	enemy_damage += int(player_level * 1.5)
+	enemy_health += int(player_level * 1.5)
+	
 	enemy_max_health = enemy_health
 	enemy_health_bar.max_value = enemy_health
 	
@@ -368,7 +371,7 @@ func _on_correct_answer():
 
 func _on_wrong_answer():
 	perfect = false
-	player_health = round(player_health - (enemy_damage - (enemy_damage * temp_reduce)))
+	player_health = round(player_health - (randi_range(enemy_damage - 5, enemy_damage) - (enemy_damage * temp_reduce)))
 	
 	timer_node.visible = false
 	countdown.stop()

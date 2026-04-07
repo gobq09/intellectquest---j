@@ -6,6 +6,7 @@ signal enemy_collected
 
 var locked = false
 @onready var game_data = SaveManager.load_game("save_file")
+@onready var config_data = SaveManager.load_game("config_file")
 @onready var timer = $SaveTimer
 
 @onready var player_data = SaveManager.load_game("player_file")
@@ -34,6 +35,11 @@ func _ready() -> void:
 		sprite.texture = female_sprite
 	else:
 		sprite.texture = male_sprite
+	
+	#if config_data["Graphics_Mode"] == "Low":
+		#particles.process_mode = Node.PROCESS_MODE_DISABLED
+	#else:
+		#particles.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	position = _convert(last_position)
 	ani_tree.set("parameters/Idle/blend_position", Vector2(0,1))

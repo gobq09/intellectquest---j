@@ -27,6 +27,10 @@ func _process(delta: float) -> void:
 
 func pickup_item():
 	InventoryManager.add_item(item_id)
+	$Sprite2D.visible = false
+	$Effects.visible = true
+	$Effects/AnimationPlayer.play("spawn")
+	await $Effects/AnimationPlayer.animation_finished
 	self.queue_free()
 
 func _on_area_2d_body_entered(body):
