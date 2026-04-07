@@ -29,9 +29,11 @@ func _load_settings():
 	ambience_vol = config_data["Ambience_Vol"]
 	
 	if graphics_mode == "Low":
-		pass
+		SignalManager.graphics_mode.emit("Low")
+		print("emitted low")
 	else:
-		pass
+		SignalManager.graphics_mode.emit("High")
+		print("emitted high")
 	
 	Engine.max_fps = frame_rate
 	

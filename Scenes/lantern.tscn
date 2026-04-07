@@ -24,6 +24,7 @@ fill_from = Vector2(0.5, 0.495413)
 fill_to = Vector2(0.876147, 0.188073)
 
 [node name="Lantern" type="Node2D"]
+z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_5r8xx")
 face = 0
@@ -51,6 +52,7 @@ texture = ExtResource("1_hmmny")
 hframes = 4
 
 [node name="PointLight2D" type="PointLight2D" parent="StaticBody2D"]
+z_index = 1
 color = Color(0.715347, 0.490352, 0.112881, 1)
 energy = 0.54
 shadow_enabled = true
