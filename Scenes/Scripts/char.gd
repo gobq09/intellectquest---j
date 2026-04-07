@@ -6,7 +6,8 @@ signal enemy_collected
 
 var locked = false
 @onready var game_data = SaveManager.load_game("save_file")
-@onready var timer = $Timer
+@onready var timer = $SaveTimer
+
 @onready var player_data = SaveManager.load_game("player_file")
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var male_sprite: CompressedTexture2D = preload("res://Sprites/player/sprite-playermale.png")
@@ -24,6 +25,10 @@ var locked = false
 
 func _ready() -> void:
 	SignalManager.map_changed.connect(map_changed)
+	SignalManager.trigger_ui.connect(disable_movement)
+	SignalManager.movement_disabled.connect(disable_movement)
+	SignalManager.move_player.connect(move_player)
+	
 	if player_data["chosen"] == "Female":
 		sprite.texture = female_sprite
 	else:
@@ -41,6 +46,27 @@ func _ready() -> void:
 	
 	game_data["global_position"] = position
 	SaveManager.save_game(game_data, "save_file")
+
+func disable_movement():
+	#joystick.process_mode = Node.PROCESS_MODE_DISABLED
+	print("character movement disabled")
+	self.set_process_input(false) 
+	self.set_physics_process(false)
+	velocity = Vector2(0, 0)
+	
+	await SignalManager.movement_enabled
+	print("character movement enabled")
+	self.set_process_input(true)
+	self.set_physics_process(true)
+	#joystick.process_mode = Node.PROCESS_MODE_INHERIT
+
+func move_player(direction: String, duration: int):
+	self.set_physics_process(true)
+	
+	Input.action_press(direction)
+	await get_tree().create_timer(duration).timeout
+	Input.action_release(direction)
+	SignalManager.movement_disabled.emit()
 
 func _convert(string):
 	var new_string: String = str(string)
@@ -75,15 +101,12 @@ func _cutscene(animation: String = "null") -> void:
 		game_data["player_lost"] = false
 		SaveManager.save_game(game_data, "save_file")
 	set_physics_process(true)
+	print("after cutscene: ", game_data["new_game"])
 
 func _physics_process(_delta):
 	var direction = get_input()
-	#print(direction)
-
 	
 	if direction.length() > 0:
-		#direction = direction.snapped(Vector2(0.5, 0.5))
-		
 		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
 		#print(position)
 		ani_tree.get("parameters/playback").travel("Walk")

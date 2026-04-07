@@ -131,7 +131,8 @@ var being_touched: bool = false:
 
 # Initial setup
 func _ready() -> void:
-	#SignalManager.settings_updated.connect(_settings_updated)
+	SignalManager.movement_disabled.connect(_on_movement_disabled)
+	SignalManager.movement_enabled.connect(_on_movement_enabled)
 	
 	if SettingsManager.joystick_mode == "Fixed":
 		joystick_mode = JoystickMode.FIXED
@@ -146,6 +147,14 @@ func _ready() -> void:
 			%Joystick.hide()
 		else:
 			%Joystick.show()
+
+func _on_movement_disabled():
+	process_mode = Node.PROCESS_MODE_DISABLED
+	%Tip.global_position = %Base.global_position
+	_update_input_actions(Vector2.ZERO)
+
+func _on_movement_enabled():
+	process_mode = Node.PROCESS_MODE_INHERIT
 
 func _settings_updated():
 	print("connected")

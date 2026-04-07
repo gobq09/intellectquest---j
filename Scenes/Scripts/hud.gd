@@ -34,6 +34,8 @@ var normal_index = 0
 func _ready() -> void:
 	SignalManager.ui_tutorial.connect(trigger_tutorial)
 	SignalManager.trigger_ui.connect(ui_tutorial)
+	SignalManager.dialogue_enter.connect(dialogue_enter)
+	SignalManager.dialogue_exit.connect(dialogue_exit)
 	
 	if game_data["new_game"] == true:
 		hud.visible = false
@@ -53,6 +55,7 @@ func _ready() -> void:
 	hud.modulate.a = 1.0
 
 func ui_tutorial():
+	
 	trigger_tutorial("hp")
 	await proceed_button.pressed
 	trigger_tutorial("level")
@@ -70,8 +73,20 @@ func ui_tutorial():
 	trigger_tutorial("interact")
 	await proceed_button.pressed
 	
+	SignalManager.ui_tutorial_end.emit()
+	SignalManager.movement_enabled.emit()
 	game_data["ui_tutorial"] = true
 	SaveManager.save_game(game_data, "save_file")
+
+func dialogue_enter():
+	hud.visible = false
+	hud.set_process_input(false)
+	SignalManager.movement_disabled.emit()
+
+func dialogue_exit():
+	hud.visible = true
+	hud.set_process_input(true)
+	SignalManager.movement_enabled.emit()
 
 #region Tutorial
 func trigger_tutorial(type) -> void:
@@ -170,7 +185,7 @@ func tutorial_settings():
 	topright_label.z_index = top_index
 
 func tutorial_joystick():
-	joystick.process_mode = Node.PROCESS_MODE_INHERIT
+	#joystick.process_mode = Node.PROCESS_MODE_INHERIT
 	joystick.z_index = top_index
 	
 	joystick_label.visible = true
@@ -208,4 +223,5 @@ func _on_continue_pressed() -> void:
 	topright_label.visible = false
 	
 	proceed_button.visible = false
+	joystick.process_mode = Node.PROCESS_MODE_INHERIT
 #endregion

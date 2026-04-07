@@ -470,6 +470,21 @@ _data = {
 &"summary_confirm": SubResource("Animation_ceo1n")
 }
 
+[sub_resource type="Animation" id="Animation_thf0w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 3)]
+}
+
 [sub_resource type="Animation" id="Animation_iuatm"]
 resource_name = "sprite_anim"
 loop_mode = 1
@@ -487,25 +502,25 @@ tracks/0/keys = {
 "values": [Vector2(3, 3), Vector2(3.125, 2.875)]
 }
 
-[sub_resource type="Animation" id="Animation_thf0w"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vyh06"]
+_data = {
+&"RESET": SubResource("Animation_thf0w"),
+&"sprite_anim": SubResource("Animation_iuatm")
+}
+
+[sub_resource type="Animation" id="Animation_w4qbd"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Enemy:scale")
+tracks/0/path = NodePath("Player:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(3, 3)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vyh06"]
-_data = {
-&"RESET": SubResource("Animation_thf0w"),
-&"sprite_anim": SubResource("Animation_iuatm")
+"values": [Vector2(4, 4)]
 }
 
 [sub_resource type="Animation" id="Animation_vyh06"]
@@ -523,21 +538,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(4, 4), Vector2(4.125, 3.85417)]
-}
-
-[sub_resource type="Animation" id="Animation_w4qbd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(4, 4)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w4qbd"]
@@ -593,6 +593,21 @@ bg_color = Color(0.121569, 0.0627451, 0.164706, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ceo1n"]
 bg_color = Color(0.701845, 0.497721, 0.889583, 1)
 
+[sub_resource type="Animation" id="Animation_bgnsy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("$PlayerHealthBar:theme_override_styles/fill:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.701845, 0.497721, 0.889583, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_0pgxt"]
 resource_name = "danger"
 loop_mode = 1
@@ -610,21 +625,6 @@ tracks/0/keys = {
 "values": [Color(0.701845, 0.497721, 0.889583, 1), Color(0.76171, 0.204632, 0.137651, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_bgnsy"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("$PlayerHealthBar:theme_override_styles/fill:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.701845, 0.497721, 0.889583, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mkr4q"]
 _data = {
 &"RESET": SubResource("Animation_bgnsy"),
@@ -636,6 +636,21 @@ bg_color = Color(0.121569, 0.0627451, 0.164706, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ley77"]
 bg_color = Color(1, 0.510256, 0.443869, 1)
+
+[sub_resource type="Animation" id="Animation_6gtvd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("$EnemyHealthBar:theme_override_styles/fill:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.510256, 0.443869, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_mkr4q"]
 resource_name = "danger"
@@ -651,21 +666,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 0.510256, 0.443869, 1), Color(0.760784, 0.203922, 0.137255, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_6gtvd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("$EnemyHealthBar:theme_override_styles/fill:bg_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0.510256, 0.443869, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ev2dg"]

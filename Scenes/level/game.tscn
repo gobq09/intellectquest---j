@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://x8j1q0cr8ykf"]
+[gd_scene load_steps=18 format=4 uid="uid://x8j1q0cr8ykf"]
 
 [ext_resource type="Script" uid="uid://b2htjdjny3oww" path="res://Scenes/Scripts/game.gd" id="1_hn5wb"]
 [ext_resource type="TileSet" uid="uid://dop58t8w0lmjn" path="res://Tileset/grass.tres" id="2_imk73"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dnaruyj6662x1" path="res://Scenes/entities/npc_2.tscn" id="10_aalo6"]
 [ext_resource type="PackedScene" uid="uid://b4qaqebdse2qj" path="res://Scenes/entities/char.tscn" id="11_d1rgr"]
 [ext_resource type="PackedScene" uid="uid://dd5k01cxmgxoh" path="res://Scenes/lantern.tscn" id="12_ika1a"]
+[ext_resource type="PackedScene" uid="uid://g3w75c5xrktm" path="res://Scenes/camera.tscn" id="12_imk73"]
 [ext_resource type="PackedScene" uid="uid://bkchteg2njvve" path="res://Scenes/entities/animal.tscn" id="13_guqi2"]
 [ext_resource type="PackedScene" uid="uid://dt0reecx2hip5" path="res://Scenes/entities/enemy.tscn" id="14_hn5wb"]
 [ext_resource type="Script" uid="uid://cmchlgg0nagyh" path="res://Scenes/Scripts/change_scene2.gd" id="15_6h3tk"]
@@ -98,15 +99,7 @@ Sprite = "male2"
 unique_name_in_owner = true
 position = Vector2(-637, 376)
 
-[node name="Camera2D" type="Camera2D" parent="Entities/Player"]
-zoom = Vector2(4, 4)
-limit_left = -100000
-limit_top = -100000
-limit_right = 100000
-limit_bottom = 100000
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
+[node name="Camera2D" parent="Entities/Player" instance=ExtResource("12_imk73")]
 
 [node name="Lanterns" type="Node2D" parent="Entities"]
 y_sort_enabled = true

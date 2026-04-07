@@ -1,0 +1,130 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6o2va711dt3s"]
+
+[ext_resource type="Script" uid="uid://cynsbwhpx3obe" path="res://Scenes/Scripts/debug_tool.gd" id="1_fqfpo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_om245"]
+bg_color = Color(0.26134, 0.235213, 0.223873, 1)
+
+[node name="Debug Tool" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fqfpo")
+
+[node name="Hide" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_right = 272.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_right = 272.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_om245")
+
+[node name="Control" type="Control" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control/Panel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -198.0
+offset_right = 47.0
+offset_bottom = -147.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Disable Movement"
+
+[node name="Button2" type="Button" parent="Control/Panel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -134.0
+offset_right = 47.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enable Movement"
+
+[node name="Button3" type="Button" parent="Control/Panel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -70.0
+offset_right = 47.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Move Camera to Position"
+
+[node name="Button4" type="Button" parent="Control/Panel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -6.0
+offset_right = 101.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Move Camera Back"
+
+[node name="Button5" type="Button" parent="Control/Panel/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = 58.0
+offset_right = 101.0
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Move Up"
+
+[connection signal="pressed" from="Control/Hide" to="Control" method="_on_hide_pressed"]
+[connection signal="pressed" from="Control/Panel/Control/Button" to="Control" method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Panel/Control/Button2" to="Control" method="_on_button_2_pressed"]
+[connection signal="pressed" from="Control/Panel/Control/Button3" to="Control" method="_on_button_3_pressed"]
+[connection signal="pressed" from="Control/Panel/Control/Button4" to="Control" method="_on_button_4_pressed"]
+[connection signal="pressed" from="Control/Panel/Control/Button5" to="Control" method="_on_button_5_pressed"]

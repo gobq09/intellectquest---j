@@ -407,8 +407,8 @@ vframes = 8
 
 [node name="HUD" parent="." instance=ExtResource("7_ljijv")]
 
-[node name="Timer" type="Timer" parent="."]
+[node name="SaveTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="SaveTimer" to="." method="_on_timer_timeout"]

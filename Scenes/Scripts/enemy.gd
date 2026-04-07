@@ -133,6 +133,7 @@ func _physics_process(_delta: float) -> void:
 			start_battle()
 
 func start_battle() -> void:
+	game_data = SaveManager.load_game("save_file")
 	chasing = false
 	velocity = Vector2.ZERO
 	if player != null:

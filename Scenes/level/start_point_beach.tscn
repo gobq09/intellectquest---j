@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://dt532wlk4w78h"]
+[gd_scene load_steps=39 format=4 uid="uid://dt532wlk4w78h"]
 
 [ext_resource type="Script" uid="uid://cgdk703yg75h" path="res://Scenes/Scripts/start.gd" id="1_njav7"]
 [ext_resource type="TileSet" uid="uid://dop58t8w0lmjn" path="res://Tileset/grass.tres" id="2_kvltp"]
@@ -18,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://c63ji8ldobs4i" path="res://Tileset/effects/chimneysmoke_04.png" id="16_qtxsg"]
 [ext_resource type="PackedScene" uid="uid://b4qaqebdse2qj" path="res://Scenes/entities/char.tscn" id="17_0skr4"]
 [ext_resource type="PackedScene" uid="uid://dt0reecx2hip5" path="res://Scenes/entities/enemy.tscn" id="18_78hur"]
+[ext_resource type="PackedScene" uid="uid://g3w75c5xrktm" path="res://Scenes/camera.tscn" id="18_qr1oh"]
+[ext_resource type="PackedScene" uid="uid://c6o2va711dt3s" path="res://Scenes/debug_tool.tscn" id="19_0j4ps"]
 [ext_resource type="Script" uid="uid://b3pwebufi6pox" path="res://Scenes/Scripts/start_point_beach.gd" id="19_aetfx"]
 [ext_resource type="Shader" uid="uid://bdw6ayaiexuau" path="res://Scenes/cloud1.gdshader" id="20_vnhnk"]
 [ext_resource type="PackedScene" uid="uid://dvdiugbr15cvs" path="res://Scenes/ui/item.tscn" id="21_3ilpf"]
@@ -523,15 +525,9 @@ y_sort_enabled = true
 y_sort_enabled = false
 position = Vector2(-473, 17)
 
-[node name="Camera2D" type="Camera2D" parent="Node2D/Player"]
-zoom = Vector2(4, 4)
-limit_left = -100000
-limit_top = -100000
-limit_right = 100000
-limit_bottom = 100000
-limit_smoothed = true
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
+[node name="Camera2D" parent="Node2D/Player" instance=ExtResource("18_qr1oh")]
+
+[node name="Debug Tool" parent="Node2D/Player" instance=ExtResource("19_0j4ps")]
 
 [node name="Enemies" type="Node2D" parent="Node2D"]
 y_sort_enabled = true
