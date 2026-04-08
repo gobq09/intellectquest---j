@@ -29,3 +29,6 @@ signal dialogue_exit
 
 signal move_player(direction : String, duration : int)
 signal player_anim(animation: String)
+
+signal move_to_marker(marker_name: String, duration: float)
+signal send_marker(global_position: Vector2, duration: float)

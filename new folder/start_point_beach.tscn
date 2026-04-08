@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://ff51jtud42m1"]
+[gd_scene load_steps=38 format=4 uid="uid://ff51jtud42m1"]
 
 [ext_resource type="Script" uid="uid://cgdk703yg75h" path="res://Scenes/Scripts/start.gd" id="1_njav7"]
 [ext_resource type="TileSet" uid="uid://dop58t8w0lmjn" path="res://Tileset/grass.tres" id="2_kvltp"]
@@ -20,10 +20,12 @@
 [ext_resource type="PackedScene" uid="uid://dt0reecx2hip5" path="res://Scenes/entities/enemy.tscn" id="18_78hur"]
 [ext_resource type="PackedScene" uid="uid://g3w75c5xrktm" path="res://Scenes/camera.tscn" id="18_qr1oh"]
 [ext_resource type="Script" uid="uid://b3pwebufi6pox" path="res://Scenes/Scripts/start_point_beach.gd" id="19_aetfx"]
+[ext_resource type="PackedScene" uid="uid://c6o2va711dt3s" path="res://Scenes/debug_tool.tscn" id="19_edkac"]
 [ext_resource type="Shader" uid="uid://bdw6ayaiexuau" path="res://Scenes/cloud1.gdshader" id="20_vnhnk"]
 [ext_resource type="PackedScene" uid="uid://dvdiugbr15cvs" path="res://Scenes/ui/item.tscn" id="21_3ilpf"]
 [ext_resource type="Script" uid="uid://kudfge835vls" path="res://new folder/dialogue_trigger.gd" id="22_kvltp"]
-[ext_resource type="PackedScene" path="res://new folder/pearl.tscn" id="24_0j4ps"]
+[ext_resource type="PackedScene" uid="uid://c36ter5y7qhks" path="res://new folder/pearl.tscn" id="24_0j4ps"]
+[ext_resource type="PackedScene" uid="uid://bjdr8y5w68q6l" path="res://move_marker.tscn" id="25_p2nk3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fqf33"]
 texture = ExtResource("8_2s216")
@@ -508,6 +510,8 @@ position = Vector2(-320, 280)
 
 [node name="Camera2D" parent="Node2D/Player" instance=ExtResource("18_qr1oh")]
 
+[node name="Debug Tool" parent="Node2D/Player" instance=ExtResource("19_edkac")]
+
 [node name="Enemies" type="Node2D" parent="Node2D"]
 y_sort_enabled = true
 
@@ -614,10 +618,24 @@ script = ExtResource("22_kvltp")
 position = Vector2(2, 54)
 shape = SubResource("RectangleShape2D_qr1oh")
 
+[node name="Move_Marker" parent="Area2D" instance=ExtResource("25_p2nk3")]
+position = Vector2(2, 9)
+marker_name = "test_1"
+
+[node name="Move_Marker2" parent="Area2D" instance=ExtResource("25_p2nk3")]
+position = Vector2(2, 51)
+marker_name = "test_2"
+
+[node name="Move_Marker3" parent="Area2D" instance=ExtResource("25_p2nk3")]
+position = Vector2(2, 31)
+marker_name = "test_3"
+
 [node name="StaticBody2D" parent="." instance=ExtResource("24_0j4ps")]
 position = Vector2(-211, 250)
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("24_0j4ps")]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [connection signal="body_entered" from="start_point_beach" to="start_point_beach" method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

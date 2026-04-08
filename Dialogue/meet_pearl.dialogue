@@ -2,21 +2,29 @@
 
 #Pearls honorifics determine by the player's gender pick!
 do SignalManager.dialogue_enter.emit()
+do SignalManager.camera_move_to.emit(Vector2(0, 20))
 Quinn: Man... how did I even end up in a place like this...
 Quinn: ...
-do SignalManager.movement_enabled.emit()
 [next=3]
 Pearl: Hey there, you!
 Quinn: ...
 Quinn: Huh?
 Pearl: I'm talking to you, mister!
-do  SignalManager.player_anim.emit("player_idle-down")
+#pag idle lang kailangan nung direction
+do SignalManager.player_anim.emit("Idle", "Left")
+[next=1]
+do SignalManager.player_anim.emit("Idle", "Right")
+[next=1]
 Quinn: Is someone there?
 Pearl: I'm over here, mister!
-do  SignalManager.player_anim.emit("player_look_around")
+#check mo yung animation tree ng player para dun sa names ng animations
+#di kasi gumagana pag animation player ginagamit
+do SignalManager.player_anim.emit("Look Around")
 Quinn: Where are you? I can't see you!
 Pearl: Look ahead!
-do  SignalManager.player_anim.emit("player_idle-right")
+[next=1]
+do SignalManager.move_to_marker.emit("test_3")
+[next=1]
 Quinn: ...
 Quinn: A book?
 Quinn: Is this yours?
@@ -36,18 +44,30 @@ Quinn: ha..
 Quinn: HA!
 Quinn: HAHAHAHAHA!
 Quinn: I must've gone crazy!
-do  SignalManager.player_anim.emit("player_idle-up")
+do SignalManager.player_anim.emit("Idle", "Up")
 Quinn: So this is a dream! [wait=1]HAHAHAHA!
 Pearl: Mister, what are you talking about?
 Pearl: Are you alright?
 Quinn: I need to wake up,[wait=1] NOW!
-do SignalManager.move_player.emit("up", 1)
-do SignalManager.move_player.emit("down", 1)
-do SignalManager.move_player.emit("up", 1)
-do SignalManager.move_player.emit("down", 1)
+#move_to_marker.emit("marker_name", duration = default 1.0),
+#then [next=duration] para mag-wait matapos mag-move
+[next=0.5]
+do SignalManager.move_to_marker.emit("test_1", 0.5)
+[next=0.5]
+do SignalManager.move_to_marker.emit("test_2", 0.5)
+[next=0.5]
+do SignalManager.move_to_marker.emit("test_1", 0.5)
+[next=0.5]
+do SignalManager.move_to_marker.emit("test_2", 0.5)
+[next=0.5]
+do SignalManager.move_to_marker.emit("test_3")
+[next=1]
+#pa-disable lang ulit nung movement after gumalaw,
+#though di rin naman makakagalaw yung player since di nagagalaw yung joystick
+do SignalManager.movement_disabled.emit()
 Pearl: Hey mister, calm down!
 #Quinn stops and looks at Pearl
-do  SignalManager.player_anim.emit("player_idle-down")
+do SignalManager.player_anim.emit("Idle", "Down")
 Quinn: No way I'm calming down!
 Quinn: A strange beach... and a talking book!
 Quinn: Is this a punishment... for being a bum in class?

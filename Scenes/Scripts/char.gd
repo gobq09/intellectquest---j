@@ -32,6 +32,7 @@ func _ready() -> void:
 	SignalManager.movement_disabled.connect(disable_movement)
 	SignalManager.move_player.connect(move_player)
 	SignalManager.player_anim.connect(player_anim)
+	SignalManager.send_marker.connect(move_player_to)
 	
 	if player_data["chosen"] == "Female":
 		sprite.texture = female_sprite
@@ -115,6 +116,7 @@ func disable_movement():
 	self.set_process_input(false) 
 	self.set_physics_process(false)
 	velocity = Vector2(0, 0)
+	ani_tree.get("parameters/playback").travel("Idle")
 	
 	await SignalManager.movement_enabled
 	print("character movement enabled")
@@ -132,11 +134,49 @@ func move_player(direction: String, duration: int):
 	await get_tree().create_timer(0.1).timeout
 	SignalManager.movement_disabled.emit()
 
-func player_anim(animation: String):
-	print("reached")
-	anim_player.play(animation)
-	await anim_player.animation_finished
-	ani_tree.get("parameters/playback").travel("Idle")
+func move_player_to(target_pos: Vector2, duration: float = 1.0):
+	self.set_physics_process(true)
+	var tween = create_tween()
+	tween.tween_property(self, "global_position", target_pos, duration)
+	var direction = self.global_position - target_pos
+	var face: String
+	
+	direction = direction.normalized()
+	
+	if abs(direction.x) > abs(direction.y):
+		if direction.x < 0:
+			face = "right"
+		elif direction.x > 0:
+			face =  "left"
+	else:
+		if direction.y < 0:
+			face = "down"
+		elif direction.y > 0:
+			face = "up"
+	
+	Input.action_press(face)
+	await get_tree().create_timer(duration).timeout
+	Input.action_release(face)
+
+func player_anim(animation: String, direction: String = ""):
+	var face: Vector2 = Vector2.ZERO
+	
+	if animation == "Idle":
+		if direction == "Right":
+			face = Vector2(1, 0)
+		elif direction == "Left":
+			face = Vector2(-1, 0)
+		elif direction == "Down":
+			face = Vector2(0, 1)
+		elif direction == "Up":
+			face = Vector2(0, -1)
+		
+		ani_tree.set("parameters/Idle/blend_position", face)
+	
+	ani_tree.get("parameters/playback").travel(animation)
+		#await ani_tree.animation_finished
+	#await anim_player.animation_finished
+	#ani_tree.get("parameters/playback").travel("Idle")
 
 func map_changed(scene):
 	Handler.map_changed(scene, position)

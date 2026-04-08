@@ -18,7 +18,7 @@ func _on_button_2_pressed() -> void:
 
 
 func _on_button_3_pressed() -> void:
-	SignalManager.camera_move_to.emit(Vector2(100, 100))
+	SignalManager.camera_move_to.emit(Vector2(0, 20))
 
 
 func _on_button_4_pressed() -> void:
@@ -26,8 +26,11 @@ func _on_button_4_pressed() -> void:
 
 
 func _on_button_5_pressed() -> void:
-	SignalManager.move_player.emit("right", 2)
+	SignalManager.move_to_marker.emit("test_2", 0.2)
 
+
+func _on_button_6_pressed() -> void:
+	SignalManager.move_to_marker.emit("test_1", 5)
 
 func _on_hide_pressed() -> void:
 	if panel_hidden:
@@ -38,7 +41,3 @@ func _on_hide_pressed() -> void:
 		hide.position.x = 936
 		panel.position.x = 960
 		panel_hidden = true
-
-
-func _on_button_6_pressed() -> void:
-	SignalManager.player_anim.emit("player_look_around")
