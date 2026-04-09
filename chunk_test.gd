@@ -9,8 +9,13 @@ func _ready() -> void:
 	SignalManager.show_chunk.connect(show_chunk)
 
 func _on_body_entered(body: Node2D) -> void:
-	SignalManager.entered_chunk.emit(name)
-	print("entered ", name)
+	if body.is_in_group("Player"):
+		var game_data = SaveManager.load_game("save_file")
+		game_data["last_chunk"] = name
+		SaveManager.save_game(game_data, "save_file")
+		
+		SignalManager.entered_chunk.emit(name)
+		print("entered ", name)
 
 func changed_chunk(chunk_name: String):
 	if chunk_name == name:

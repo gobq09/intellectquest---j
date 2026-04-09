@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8f2c7rsfe8h1"
-path="res://.godot/imported/tileset-greenery.png-5b5128ca1ae22e1cc1a182f8d2e2b31b.ctex"
+uid="uid://dca7qd6f6mjw0"
+path="res://.godot/imported/tileset-wallborder-stone.png-25fc3f2465b02d6e00c8cbf827c0c5a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tileset/tileset-greenery.png"
-dest_files=["res://.godot/imported/tileset-greenery.png-5b5128ca1ae22e1cc1a182f8d2e2b31b.ctex"]
+source_file="res://Sprites/tilesets/tileset-wallborder-stone.png"
+dest_files=["res://.godot/imported/tileset-wallborder-stone.png-25fc3f2465b02d6e00c8cbf827c0c5a3.ctex"]
 
 [params]
 

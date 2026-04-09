@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btpgck7x85h4v"
-path="res://.godot/imported/tileset-wallborder-wood.png-1162b775c129de074fe85c5f6a267544.ctex"
+uid="uid://tj13jhlgbv4c"
+path="res://.godot/imported/tileset-roof-tiles2.png-df2e2e004bb118f2270f921cfa9975f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tileset/tileset-wallborder-wood.png"
-dest_files=["res://.godot/imported/tileset-wallborder-wood.png-1162b775c129de074fe85c5f6a267544.ctex"]
+source_file="res://Sprites/tilesets/tileset-roof-tiles2.png"
+dest_files=["res://.godot/imported/tileset-roof-tiles2.png-df2e2e004bb118f2270f921cfa9975f1.ctex"]
 
 [params]
 

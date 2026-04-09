@@ -1,11 +1,9 @@
 [gd_resource type="TileSet" load_steps=7 format=3 uid="uid://bi1c8cfsu2rx8"]
 
-[ext_resource type="Texture2D" uid="uid://qa6ck2n8kwsx" path="res://Tileset/tileset-dirt.png" id="1_1nfn1"]
-[ext_resource type="Texture2D" uid="uid://bkreah3sq20wi" path="res://Tileset/tileset-path.png" id="2_kol43"]
-[ext_resource type="Texture2D" uid="uid://dcnlw3cni65hj" path="res://Tileset/tileset-grass.png" id="3_t34tp"]
+[ext_resource type="Texture2D" uid="uid://qa6ck2n8kwsx" path="res://Sprites/tilesets/tileset-dirt.png" id="1_0elo6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vpu5t"]
-texture = ExtResource("1_1nfn1")
+texture = ExtResource("1_0elo6")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -346,8 +344,11 @@ texture = ExtResource("1_1nfn1")
 8:4/0/terrains_peering_bit/top_left_corner = 0
 8:4/0/terrains_peering_bit/top_side = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lr61q"]
+load_path = "res://.godot/imported/tileset-path.png-f78918d225b667b7fa12e9e818962eee.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1g63x"]
-texture = ExtResource("2_kol43")
+texture = SubResource("CompressedTexture2D_lr61q")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 1
@@ -688,8 +689,11 @@ texture = ExtResource("2_kol43")
 8:4/0/terrains_peering_bit/top_left_corner = 1
 8:4/0/terrains_peering_bit/top_side = 1
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1nfn1"]
+load_path = "res://.godot/imported/tileset-grass.png-18d620db4f00b20bf91010de93e39c18.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r5j4j"]
-texture = ExtResource("3_t34tp")
+texture = SubResource("CompressedTexture2D_1nfn1")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 2

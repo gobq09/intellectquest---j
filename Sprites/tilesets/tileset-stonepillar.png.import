@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c2iouw6u66254"
-path="res://.godot/imported/tileset-roof-tiles3.png-5cc77628a4c3eea3a9fdaa4ce0191d8b.ctex"
+uid="uid://c8l0ghb7bsij7"
+path="res://.godot/imported/tileset-stonepillar.png-7b0e6b39cc8ca72c197f5677193d9f53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tileset/tileset-roof-tiles3.png"
-dest_files=["res://.godot/imported/tileset-roof-tiles3.png-5cc77628a4c3eea3a9fdaa4ce0191d8b.ctex"]
+source_file="res://Sprites/tilesets/tileset-stonepillar.png"
+dest_files=["res://.godot/imported/tileset-stonepillar.png-7b0e6b39cc8ca72c197f5677193d9f53.ctex"]
 
 [params]
 

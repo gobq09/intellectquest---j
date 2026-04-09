@@ -26,6 +26,7 @@ var game_data: Dictionary = {
 	"player_ran": false,
 	"global_position": Vector2(-320.0, 280.0),
 	"respawn_point": Vector2(-320.0, 280.0),
+	"last_chunk": "Chunk_B1",
 	"last_scene": "uid://ff51jtud42m1",
 	"defeated_enemies": {},
 	"eng_topics": {},

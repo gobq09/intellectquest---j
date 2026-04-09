@@ -9,7 +9,7 @@
 [ext_resource type="TileSet" uid="uid://dkygyeegsgi5y" path="res://Tileset/door.tres" id="7_1ufnk"]
 [ext_resource type="TileSet" uid="uid://cw2087whh866g" path="res://Tileset/pillars.tres" id="8_le0pi"]
 [ext_resource type="TileSet" uid="uid://cwwa3ega1srxf" path="res://Tileset/roof.tres" id="9_38s7l"]
-[ext_resource type="Texture2D" uid="uid://k14o7vfgkm58" path="res://Tileset/tileset-tree.png" id="10_igf5e"]
+[ext_resource type="Texture2D" uid="uid://k14o7vfgkm58" path="res://Sprites/tilesets/tileset-tree.png" id="10_igf5e"]
 [ext_resource type="PackedScene" uid="uid://b4qaqebdse2qj" path="res://Scenes/entities/char.tscn" id="10_k823c"]
 [ext_resource type="PackedScene" uid="uid://g3w75c5xrktm" path="res://Scenes/camera.tscn" id="11_kg2tg"]
 

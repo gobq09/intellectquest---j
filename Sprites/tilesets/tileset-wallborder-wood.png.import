@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dq3oqw7mg23v6"
-path="res://.godot/imported/tileset-chimney.png-9fbabf29b564e604cf1dd3762d2a3885.ctex"
+uid="uid://btpgck7x85h4v"
+path="res://.godot/imported/tileset-wallborder-wood.png-23af20da1caf4d7560d45581beb48a38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tileset/tileset-chimney.png"
-dest_files=["res://.godot/imported/tileset-chimney.png-9fbabf29b564e604cf1dd3762d2a3885.ctex"]
+source_file="res://Sprites/tilesets/tileset-wallborder-wood.png"
+dest_files=["res://.godot/imported/tileset-wallborder-wood.png-23af20da1caf4d7560d45581beb48a38.ctex"]
 
 [params]
 

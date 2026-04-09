@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dca7qd6f6mjw0"
-path="res://.godot/imported/tileset-wallborder-stone.png-667477218b0774a6cd108fe0338a67a4.ctex"
+uid="uid://sfo5bvp1ktfr"
+path="res://.godot/imported/tileset-door.png-bc2b06f9e0856557650f6d0d46ab77f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tileset/tileset-wallborder-stone.png"
-dest_files=["res://.godot/imported/tileset-wallborder-stone.png-667477218b0774a6cd108fe0338a67a4.ctex"]
+source_file="res://Sprites/tilesets/tileset-door.png"
+dest_files=["res://.godot/imported/tileset-door.png-bc2b06f9e0856557650f6d0d46ab77f6.ctex"]
 
 [params]
 

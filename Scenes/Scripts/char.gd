@@ -52,6 +52,8 @@ func _ready() -> void:
 	ani_tree.set("parameters/Idle/blend_position", Vector2(0,1))
 	self.set_process_input(false) 
 	
+	SignalManager.entered_chunk.emit(game_data["last_chunk"])
+	
 	if  game_data["new_game"] ||  game_data["player_lost"] == true:
 		set_physics_process(false)
 		SignalManager.player_defeated.emit()
