@@ -18,19 +18,19 @@ func _on_button_2_pressed() -> void:
 
 
 func _on_button_3_pressed() -> void:
-	SignalManager.camera_move_to.emit(Vector2(0, 20))
+	SignalManager.player_look_at.emit("Bob")
 
 
 func _on_button_4_pressed() -> void:
-	SignalManager.camera_move_to.emit(Vector2.ZERO)
+	SignalManager.player_look_at.emit("Jeff")
 
 
 func _on_button_5_pressed() -> void:
-	SignalManager.move_to_marker.emit("test_2", 0.2)
+	SignalManager.look_at_player.emit("Jeff")
 
 
 func _on_button_6_pressed() -> void:
-	SignalManager.move_to_marker.emit("test_1", 5)
+	SignalManager.move_to_marker.emit("Bob Marker")
 
 func _on_hide_pressed() -> void:
 	if panel_hidden:

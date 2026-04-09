@@ -26,6 +26,8 @@ var locked = false
 @onready var last_position : String = game_data["global_position"]
 @onready var particles: GPUParticles2D = $GPUParticles2D
 
+var getting_tracked : bool = false
+
 func _ready() -> void:
 	SignalManager.map_changed.connect(map_changed)
 	SignalManager.trigger_ui.connect(disable_movement)
@@ -33,6 +35,8 @@ func _ready() -> void:
 	SignalManager.move_player.connect(move_player)
 	SignalManager.player_anim.connect(player_anim)
 	SignalManager.send_marker.connect(move_player_to)
+	SignalManager.look_at_player.connect(send_player_pos)
+	SignalManager.send_node_position.connect(player_look_at)
 	
 	if player_data["chosen"] == "Female":
 		sprite.texture = female_sprite
@@ -177,6 +181,27 @@ func player_anim(animation: String, direction: String = ""):
 		#await ani_tree.animation_finished
 	#await anim_player.animation_finished
 	#ani_tree.get("parameters/playback").travel("Idle")
+
+func send_player_pos(target_name):
+	SignalManager.send_player_position.emit(target_name, self.global_position)
+
+func player_look_at(node_name: String, node_pos: Vector2):
+	var distance = (node_pos - self.position).normalized()
+	var face: Vector2
+	
+	if abs(distance.x) > abs(distance.y):
+		if distance.x < 0:
+			face = Vector2(-1, 0)
+		else:
+			face = Vector2(1, 0)
+	else:
+		if distance.y < 0:
+			face = Vector2(0, -1)
+		else:
+			face = Vector2(0, 1)
+		
+	ani_tree.set("parameters/Idle/blend_position", face)
+	ani_tree.get("parameters/playback").travel("Idle")
 
 func map_changed(scene):
 	Handler.map_changed(scene, position)

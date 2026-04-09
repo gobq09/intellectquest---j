@@ -1,0 +1,18 @@
+~ start
+do SignalManager.dialogue_enter.emit()
+do SignalManager.camera_move_to.emit(Vector2(0, 20))
+do wait(0.1)
+#sumusobra siya sa marker ng onti, tsaka ko na ayusin
+do SignalManager.move_to_marker.emit("Bob Marker", 0.5)
+do wait(1)
+do SignalManager.movement_disabled.emit()
+do SignalManager.look_at_player.emit("Bob")
+do SignalManager.player_look_at.emit("Bob")
+
+Bob: Hello, {{PlayerDataLoader.player_name}}!
+Bob: I am Bob.
+
+do SignalManager.camera_move_to.emit(Vector2.ZERO)
+do SignalManager.stop_looking_at_player.emit("Bob")
+do SignalManager.dialogue_exit.emit()
+=> END

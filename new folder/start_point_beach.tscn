@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://ff51jtud42m1"]
+[gd_scene load_steps=46 format=4 uid="uid://ff51jtud42m1"]
 
 [ext_resource type="Script" uid="uid://cgdk703yg75h" path="res://Scenes/Scripts/start.gd" id="1_njav7"]
 [ext_resource type="TileSet" uid="uid://dop58t8w0lmjn" path="res://Tileset/grass.tres" id="2_kvltp"]
@@ -23,9 +23,15 @@
 [ext_resource type="PackedScene" uid="uid://c6o2va711dt3s" path="res://Scenes/debug_tool.tscn" id="19_edkac"]
 [ext_resource type="Shader" uid="uid://bdw6ayaiexuau" path="res://Scenes/cloud1.gdshader" id="20_vnhnk"]
 [ext_resource type="PackedScene" uid="uid://dvdiugbr15cvs" path="res://Scenes/ui/item.tscn" id="21_3ilpf"]
+[ext_resource type="PackedScene" uid="uid://b7jsh0ig40pa2" path="res://pearl.tscn" id="21_v7a0i"]
 [ext_resource type="Script" uid="uid://kudfge835vls" path="res://new folder/dialogue_trigger.gd" id="22_kvltp"]
-[ext_resource type="PackedScene" uid="uid://c36ter5y7qhks" path="res://new folder/pearl.tscn" id="24_0j4ps"]
+[ext_resource type="PackedScene" uid="uid://bmalbfcbg5qhy" path="res://npc_interact.tscn" id="24_pwwvr"]
 [ext_resource type="PackedScene" uid="uid://bjdr8y5w68q6l" path="res://move_marker.tscn" id="25_p2nk3"]
+[ext_resource type="PackedScene" uid="uid://dqg8pwixr1xje" path="res://npc_test.tscn" id="27_xv1lf"]
+[ext_resource type="Texture2D" uid="uid://wk2mqol45s38" path="res://Sprites/npc/npc-male2.png" id="28_hdhpo"]
+[ext_resource type="Resource" uid="uid://comiieq441l0q" path="res://Dialogue/start.dialogue" id="29_dv1ch"]
+[ext_resource type="Texture2D" uid="uid://brnbb35chbb8t" path="res://Sprites/npc/npc-male4.png" id="29_hdhpo"]
+[ext_resource type="Resource" uid="uid://em1k7lmmrara" path="res://Dialogue/npc_test.dialogue" id="31_pwwvr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fqf33"]
 texture = ExtResource("8_2s216")
@@ -390,6 +396,12 @@ texture_region_size = Vector2i(32, 32)
 [sub_resource type="TileSet" id="TileSet_vgpgl"]
 sources/1 = SubResource("TileSetAtlasSource_3axkf")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dv1ch"]
+radius = 22.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k286r"]
+radius = 23.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gophc"]
 size = Vector2(235, 590)
 
@@ -505,7 +517,6 @@ tile_set = ExtResource("6_o5su0")
 y_sort_enabled = true
 
 [node name="Player" parent="Node2D" instance=ExtResource("17_0skr4")]
-y_sort_enabled = false
 position = Vector2(-320, 280)
 
 [node name="Camera2D" parent="Node2D/Player" instance=ExtResource("18_qr1oh")]
@@ -550,6 +561,42 @@ position = Vector2(40, -24)
 enemy_id = "sci_1"
 enemy_type = "small"
 enemy_subject = "Science"
+
+[node name="NPCs" type="Node2D" parent="Node2D"]
+z_index = 1
+y_sort_enabled = true
+
+[node name="Pearl" parent="Node2D/NPCs" instance=ExtResource("21_v7a0i")]
+position = Vector2(-208, 233)
+State = "Sleep"
+
+[node name="NPC" parent="Node2D/NPCs" instance=ExtResource("27_xv1lf")]
+position = Vector2(-444, 312)
+NPC_Name = "Jeff"
+Sprite = ExtResource("28_hdhpo")
+
+[node name="Interactable2" parent="Node2D/NPCs/NPC" instance=ExtResource("24_pwwvr")]
+Dialogue = ExtResource("29_dv1ch")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/NPCs/NPC/Interactable2"]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_dv1ch")
+
+[node name="NPC2" parent="Node2D/NPCs" instance=ExtResource("27_xv1lf")]
+position = Vector2(-400, 240)
+NPC_Name = "Bob"
+Sprite = ExtResource("29_hdhpo")
+
+[node name="Move_Marker" parent="Node2D/NPCs/NPC2" instance=ExtResource("25_p2nk3")]
+position = Vector2(0, 22)
+marker_name = "Bob Marker"
+
+[node name="Interactable2" parent="Node2D/NPCs/NPC2" instance=ExtResource("24_pwwvr")]
+Dialogue = ExtResource("31_pwwvr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/NPCs/NPC2/Interactable2"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_k286r")
 
 [node name="start_point_beach" type="Area2D" parent="."]
 script = ExtResource("19_aetfx")
@@ -630,12 +677,9 @@ marker_name = "test_2"
 position = Vector2(2, 31)
 marker_name = "test_3"
 
-[node name="StaticBody2D" parent="." instance=ExtResource("24_0j4ps")]
-position = Vector2(-211, 250)
-
-[node name="StaticBody2D2" parent="." instance=ExtResource("24_0j4ps")]
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+[node name="Pearl_Marker" parent="Area2D" instance=ExtResource("25_p2nk3")]
+position = Vector2(40, 31)
+marker_name = "pearl_marker"
 
 [connection signal="body_entered" from="start_point_beach" to="start_point_beach" method="_on_body_entered"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends Node2D
 
 @export var item_id : String = "0"

@@ -32,3 +32,15 @@ signal player_anim(animation: String)
 
 signal move_to_marker(marker_name: String, duration: float)
 signal send_marker(global_position: Vector2, duration: float)
+
+signal look_at_player(node_name: String)
+signal send_player_position(node_name: String, global_pos: Vector2)
+signal stop_looking_at_player(node_name: String)
+
+signal player_look_at(node_name: String)
+signal send_node_position(global_pos: Vector2)
+signal player_stop_looking
+
+signal pearl_anim(animation: String)
+signal move_pearl_to(marker_name: String, duration: float)
+signal pearl_marker(global_position: Vector2, duration: float)

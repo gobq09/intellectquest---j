@@ -1,11 +1,12 @@
 ~ start
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-- Second one
-	Nathan: You picked the second one.
-- Start again => start
-- End the conversation => END
-Nathan: For more information see the online documentation.
+do SignalManager.dialogue_enter.emit()
+do SignalManager.camera_move_to.emit(Vector2(0, 20))
+do SignalManager.look_at_player.emit("Jeff")
+do SignalManager.player_look_at.emit("Jeff")
+
+Jeff: My name's Nyeff.
+
+do SignalManager.camera_move_to.emit(Vector2.ZERO)
+do SignalManager.stop_looking_at_player.emit("Jeff")
+do SignalManager.dialogue_exit.emit()
 => END
