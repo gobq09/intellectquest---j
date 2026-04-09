@@ -170,5 +170,6 @@ Pearl: It's the nearest town here.
 {{PlayerDataLoader.player_name}}: Hmmm... okay!
 {{PlayerDataLoader.player_name}}: Let's take a look, shall we?
 Pearl: Let's go, Master {{PlayerDataLoader.player_name}}!
-
+do SignalManager.camera_move_to.emit(Vector2.ZERO)
+do SignalManager.dialogue_exit.emit()
 => END

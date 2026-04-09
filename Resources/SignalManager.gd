@@ -44,3 +44,6 @@ signal player_stop_looking
 signal pearl_anim(animation: String)
 signal move_pearl_to(marker_name: String, duration: float)
 signal pearl_marker(global_position: Vector2, duration: float)
+
+signal entered_chunk(chunk_name: String)
+signal show_chunk(chunks: Array)
