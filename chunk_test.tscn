@@ -15,12 +15,16 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAHAAMAAAAAAAEAAAAHAAMAAAAAAAIAAAAHAAM
 tile_set = ExtResource("1_alf0d")
 
 [node name="Area" type="Area2D" parent="."]
-visible = false
 position = Vector2(0, 2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
-visible = false
 position = Vector2(512, 510)
 shape = SubResource("RectangleShape2D_hrkvm")
+debug_color = Color(0, 0.595, 0.7, 0)
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(512, 512)
+scale = Vector2(52, 52)
 
 [connection signal="body_entered" from="Area" to="." method="_on_body_entered"]
