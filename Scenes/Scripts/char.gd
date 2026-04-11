@@ -48,7 +48,7 @@ func _ready() -> void:
 	#else:
 		#particles.process_mode = Node.PROCESS_MODE_INHERIT
 	
-	position = _convert(last_position)
+	#position = _convert(last_position)
 	ani_tree.set("parameters/Idle/blend_position", Vector2(0,1))
 	self.set_process_input(false) 
 	
