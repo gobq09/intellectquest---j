@@ -7,6 +7,9 @@ texture = ExtResource("1_l7l2b")
 0:0/size_in_atlas = Vector2i(2, 3)
 0:0/next_alternative_id = 2
 0:0/0 = 0
+2:0/size_in_atlas = Vector2i(2, 3)
+2:0/0 = 0
+4:0/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n86sy"]
 texture = ExtResource("1_l7l2b")
@@ -16,6 +19,12 @@ texture = ExtResource("1_l7l2b")
 1:1/0 = 0
 0:2/0 = 0
 1:2/0 = 0
+2:0/0 = 0
+2:1/0 = 0
+2:2/0 = 0
+3:0/0 = 0
+3:1/0 = 0
+3:2/0 = 0
 
 [resource]
 sources/0 = SubResource("TileSetAtlasSource_vgpgl")

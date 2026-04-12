@@ -1,12 +1,15 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://c4mv0nosf3h6p"]
+[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://c4mv0nosf3h6p"]
 
 [ext_resource type="Texture2D" uid="uid://k14o7vfgkm58" path="res://Sprites/tilesets/tileset-tree.png" id="2_8hp8l"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_n6cva"]
-tile_data = PackedInt32Array(0, 196609, 0, 65536, 262145, 4)
+tile_data = PackedInt32Array(0, 196609, 0)
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_8hp8l"]
 tile_data = PackedInt32Array(0, 1, 0, 131072, 65537, 5)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_eedwi"]
+tile_data = PackedInt32Array(0, 196609, 0, 65536, 262145, 4)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n6cva"]
 texture = ExtResource("2_8hp8l")
@@ -35,3 +38,4 @@ sources/1 = SubResource("TileSetAtlasSource_eedwi")
 sources/0 = SubResource("TileSetAtlasSource_n6cva")
 pattern_0 = SubResource("TileMapPattern_n6cva")
 pattern_1 = SubResource("TileMapPattern_8hp8l")
+pattern_2 = SubResource("TileMapPattern_eedwi")
