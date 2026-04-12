@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=4 uid="uid://cr2ru7vol8lts"]
 
 [ext_resource type="TileSet" uid="uid://dop58t8w0lmjn" path="res://Tileset/grass.tres" id="1_alf0d"]
-[ext_resource type="Script" uid="uid://bda7j6bik0jyi" path="res://chunk_test.gd" id="1_swfu5"]
+[ext_resource type="Script" uid="uid://bda7j6bik0jyi" path="res://Scenes/Scripts/chunk_test.gd" id="1_swfu5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hrkvm"]
 size = Vector2(1024, 1024)

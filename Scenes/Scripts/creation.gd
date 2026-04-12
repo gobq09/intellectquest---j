@@ -162,5 +162,5 @@ func _on_confirm_pressed() -> void:
 	SaveManager.save_game(SaveManager.inv_data, "inv_file")
 	await get_tree().create_timer(1.5).timeout
 	
-	SceneLoader.load_scene("uid://ff51jtud42m1")
+	SceneLoader.load_scene("uid://d4dgymuee0bxt")
 #endregion

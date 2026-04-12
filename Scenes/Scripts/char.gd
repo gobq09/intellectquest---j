@@ -48,7 +48,7 @@ func _ready() -> void:
 	#else:
 		#particles.process_mode = Node.PROCESS_MODE_INHERIT
 	
-	#position = _convert(last_position)
+	position = _convert(last_position)
 	ani_tree.set("parameters/Idle/blend_position", Vector2(0,1))
 	self.set_process_input(false) 
 	
@@ -60,6 +60,7 @@ func _ready() -> void:
 		_cutscene("wakeup")
 		await ani_tree.animation_finished
 	
+	game_data["last_scene"] = "uid://d4dgymuee0bxt"
 	game_data["global_position"] = position
 	SaveManager.save_game(game_data, "save_file")
 

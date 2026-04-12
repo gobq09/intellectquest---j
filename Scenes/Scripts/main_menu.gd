@@ -43,7 +43,7 @@ func _on_continue_pressed() -> void:
 	print("Continue Pressed")
 	game_data["in_game"] = true
 	SaveManager.save_game(game_data, "save_file")
-	SceneLoader.load_scene("uid://dt532wlk4w78h")
+	SceneLoader.load_scene("uid://d4dgymuee0bxt")
 	#get_tree().change_scene_to_file("res://Scenes/start_point_beach.tscn")
 
 func _on_settings_pressed() -> void:

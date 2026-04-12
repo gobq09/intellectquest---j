@@ -1,12 +1,18 @@
 extends Node2D
 
+@onready var game_data = SaveManager.load_game("save_file")
 @export var Chunk_Name : String = name
-var x_axis : Array = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"]
+var x_axis : Array = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 var y_axis : Array = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
 
 func _ready() -> void:
 	SignalManager.entered_chunk.connect(changed_chunk)
 	SignalManager.show_chunk.connect(show_chunk)
+	
+	if name == game_data["last_chunk"]:
+		print("true")
+		self.visible = true
+		self.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):

@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://b7jsh0ig40pa2"]
 
-[ext_resource type="Script" uid="uid://di6ab6ch3xp5f" path="res://pearl.gd" id="1_d4cid"]
+[ext_resource type="Script" uid="uid://di6ab6ch3xp5f" path="res://Scenes/Scripts/pearl.gd" id="1_d4cid"]
 [ext_resource type="Texture2D" uid="uid://cp84ckp6bwp2i" path="res://Sprites/misc/shadow.png" id="2_u20n5"]
 [ext_resource type="Texture2D" uid="uid://dwkp0myggjfya" path="res://Sprites/npc/sprite-npc-pearl.png" id="3_d4cid"]
 [ext_resource type="Texture2D" uid="uid://j43jxnnk3bmp" path="res://ui/hud/interface-interact-talk.png" id="4_nnjqi"]
