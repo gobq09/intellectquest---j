@@ -1,25 +1,37 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://c4mv0nosf3h6p"]
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://c4mv0nosf3h6p"]
 
-[ext_resource type="Texture2D" uid="uid://bomvqo6vev8mh" path="res://Sprites/tilesets/tree1.png" id="1_6m0kb"]
+[ext_resource type="Texture2D" uid="uid://k14o7vfgkm58" path="res://Sprites/tilesets/tileset-tree.png" id="2_8hp8l"]
 
-[sub_resource type="TileMapPattern" id="TileMapPattern_r2xkc"]
-tile_data = PackedInt32Array(0, 0, 0)
+[sub_resource type="TileMapPattern" id="TileMapPattern_n6cva"]
+tile_data = PackedInt32Array(0, 196609, 0, 65536, 262145, 4)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_mtqca"]
-polygon = PackedVector2Array(-4, -2, -4, -6, -2, -8, 2, -8, 4, -6, 4, -2, 6, 6, 2, 8, -2, 8, -6, 6)
+[sub_resource type="TileMapPattern" id="TileMapPattern_8hp8l"]
+tile_data = PackedInt32Array(0, 1, 0, 131072, 65537, 5)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a6ax4"]
-texture = ExtResource("1_6m0kb")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n6cva"]
+texture = ExtResource("2_8hp8l")
+0:0/size_in_atlas = Vector2i(3, 5)
+0:0/0 = 0
 1:5/0 = 0
-1:5/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_mtqca")
-1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.00693, -4.43723, 5.91046, -4.41969, 6.01569, 8, -5.98939, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eedwi"]
+texture = ExtResource("2_8hp8l")
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, -8, -8, 8, -8, 8, 8)
+4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 0:0/size_in_atlas = Vector2i(3, 5)
 0:0/0 = 0
 0:0/0/z_index = 3
+3:0/size_in_atlas = Vector2i(3, 4)
+3:0/0 = 0
+3:0/0/z_index = 3
 
 [resource]
 occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 7
-sources/0 = SubResource("TileSetAtlasSource_a6ax4")
-pattern_0 = SubResource("TileMapPattern_r2xkc")
+sources/1 = SubResource("TileSetAtlasSource_eedwi")
+sources/0 = SubResource("TileSetAtlasSource_n6cva")
+pattern_0 = SubResource("TileMapPattern_n6cva")
+pattern_1 = SubResource("TileMapPattern_8hp8l")
