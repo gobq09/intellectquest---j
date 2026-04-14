@@ -424,6 +424,7 @@ occluder = SubResource("OccluderPolygon2D_uj54u")
 texture = ExtResource("3_8gq2e")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 y_sort_enabled = true
 texture = ExtResource("3_uydtg")
 hframes = 8
@@ -436,7 +437,6 @@ wait_time = 0.1
 one_shot = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-z_index = -1
 position = Vector2(0, 9)
 emitting = false
 amount = 4

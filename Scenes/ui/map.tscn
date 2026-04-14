@@ -1,122 +1,191 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxogc44ghcvvr"]
+[gd_scene load_steps=12 format=3 uid="uid://dxogc44ghcvvr"]
 
-[ext_resource type="Texture2D" uid="uid://infc5wxfxikm" path="res://ui/map/interface-map.png" id="1_hbtx7"]
 [ext_resource type="Script" uid="uid://bbg4jyro5nm0" path="res://Scenes/Scripts/map.gd" id="1_s6brh"]
-[ext_resource type="Texture2D" uid="uid://drvcxbau8sei4" path="res://ui/map/interface-map-location.png" id="2_ev6pi"]
+[ext_resource type="Texture2D" uid="uid://cbolxup3jumob" path="res://ui/map/map-map.png" id="2_qfm5i"]
 [ext_resource type="Texture2D" uid="uid://gfo4nfxodp7d" path="res://ui/archive/interface-archive-closebutton.png" id="2_qw1bd"]
-[ext_resource type="Texture2D" uid="uid://rbkjb78oga8c" path="res://ui/map/interface-map-landmark.png" id="5_40ojq"]
+[ext_resource type="Script" uid="uid://ckfjv22bsis0u" path="res://Scenes/ui/map-chunk.gd" id="2_qx845"]
+[ext_resource type="Script" uid="uid://c5qt5boqalghj" path="res://Scenes/ui/map-camera.gd" id="3_40ojq"]
+[ext_resource type="Texture2D" uid="uid://fnxxmjyki0c3" path="res://ui/map/interface-map-test.png" id="5_40ojq"]
 [ext_resource type="Texture2D" uid="uid://p6r0vtb4vtv8" path="res://ui/map/interface-map-pointer.png" id="6_qx845"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbtx7"]
-bg_color = Color(0.121569, 0.0627451, 0.164706, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfm5i"]
+bg_color = Color(0.713726, 0.776471, 0.803922, 1)
 
-[node name="Map" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[sub_resource type="Animation" id="Animation_qx845"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/Map:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kmq71"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/Map:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5mmk2"]
+_data = {
+&"RESET": SubResource("Animation_kmq71"),
+&"fade": SubResource("Animation_qx845")
+}
+
+[node name="Map" type="Node2D"]
+
+[node name="Panel" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Map" type="Panel" parent="Panel"]
+z_index = -1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1033.0
+offset_top = -798.0
+offset_right = 1032.0
+offset_bottom = 798.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_qfm5i")
+
+[node name="Linguara" type="TextureRect" parent="Panel/Map"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -787.0
+offset_top = -636.0
+offset_right = -275.0
+offset_bottom = -220.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+texture = ExtResource("2_qfm5i")
+stretch_mode = 5
+script = ExtResource("2_qx845")
+columns = 8
+rows = 7
+
+[node name="Player" type="TextureRect" parent="Panel/Map/Linguara"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.8333
+offset_top = -32.0
+offset_right = -31.8333
+offset_bottom = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_qx845")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Camera2D" type="Camera2D" parent="Panel"]
+position = Vector2(722, 750)
+scale = Vector2(3, 3)
+script = ExtResource("3_40ojq")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -615.0
+offset_top = -270.0
+offset_right = -615.0
+offset_bottom = -270.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_s6brh")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hbtx7")
-
-[node name="Panel2" type="Panel" parent="."]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -431.0
-offset_top = -270.0
-offset_right = 441.0
-offset_bottom = 266.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -471.0
-offset_top = -302.0
-offset_right = -151.0
-offset_bottom = -110.0
+offset_left = -224.0
+offset_top = -192.0
+offset_right = 336.0
+offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
-texture = ExtResource("2_ev6pi")
+texture = ExtResource("5_40ojq")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -471.0
-offset_top = -334.0
-offset_right = -151.0
-offset_bottom = -94.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-texture = ExtResource("1_hbtx7")
-
-[node name="Close" type="TextureButton" parent="."]
+[node name="Close" type="TextureButton" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -94.0
-offset_right = -62.0
+offset_left = 1136.0
+offset_right = 1168.0
 offset_bottom = 32.0
 grow_horizontal = 0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("2_qw1bd")
 stretch_mode = 3
 
-[node name="TextureRect3" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 41.0
-offset_top = -158.0
-offset_right = 81.0
-offset_bottom = -118.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-texture = ExtResource("5_40ojq")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5mmk2")
+}
 
-[node name="TextureRect4" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -62.0
-offset_right = 20.0
-offset_bottom = -14.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-texture = ExtResource("6_qx845")
-
-[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Close" to="CanvasLayer/Control" method="_on_close_pressed"]

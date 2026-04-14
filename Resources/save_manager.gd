@@ -27,6 +27,7 @@ var game_data: Dictionary = {
 	"global_position": Vector2.ZERO,
 	"respawn_point": Vector2.ZERO,
 	"last_chunk": "Chunk_B1",
+	"chunk_grid": 4,
 	"last_scene": "uid://d4dgymuee0bxt",
 	"defeated_enemies": {},
 	"eng_topics": {},
@@ -224,9 +225,10 @@ func save_game(data: Dictionary, savePath: String) -> void:
 	if file:
 		file.store_string(JSON.stringify(data))
 		file.close()
-		print("Game saved at: ", savePath)
+		#print("Game saved at: ", savePath)
 	else:
-		print("Failed to save! Error: ", FileAccess.get_open_error())
+		pass
+		#print("Failed to save! Error: ", FileAccess.get_open_error())
 
 func load_game(savePath: String) -> Dictionary:
 	var data
@@ -281,7 +283,7 @@ func load_game(savePath: String) -> Dictionary:
 			
 			if savePath == quest:
 				if result.size() == 0:
-					print("result size is 0")
+					#print("result size is 0")
 					QuestManager._clear_quests()
 			
 			if added == true:
