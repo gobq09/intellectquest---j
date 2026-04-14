@@ -9,23 +9,23 @@ func _ready() -> void:
 	SignalManager.show_chunk.connect(show_chunk)
 
 func changed_chunk(chunk_name: String):
-	if chunk_name == name:
-		var neighbors = get_neighbors(chunk_name)
-		
-		SignalManager.show_chunk.emit(neighbors)
+	pass
+	#var neighbors = get_neighbors(chunk_name)
+	
+	#SignalManager.show_chunk.emit(neighbors)
 
 func get_chunk(chunk: String):
-	var split = chunk.split("_")
+	var split : Array = chunk.split("_")
 	
-	var result = [split[1].substr(0, 1), split[1].substr(1, 1)]
+	var result : Array  = [split[1].substr(0, 1), split[1].substr(1, 1)]
 	return result
 
 func get_neighbors(chunk_name: String):
 	var chunk = get_chunk(chunk_name)
-	var chunk_x = chunk[0]
-	var chunk_y = chunk[1]
+	var chunk_x : String = chunk[0]
+	var chunk_y : String = chunk[1]
 	
-	var x_index = x_axis.find(chunk_x)
+	var x_index : = x_axis.find(chunk_x)
 	var y_index = y_axis.find(chunk_y)
 	
 	#print("chunk x: ", chunk_x, "\nchunk y: ", chunk_y)
@@ -43,39 +43,17 @@ func get_neighbors(chunk_name: String):
 	return visible_chunks
 
 func show_chunk(chunks: Array):
-	if name in chunks:
-		#print(name, " shown")
-		self.visible = true
-		self.process_mode = Node.PROCESS_MODE_INHERIT
-	else:
-		#print(name, " hidden")
-		self.visible = false
-		self.process_mode = Node.PROCESS_MODE_DISABLED
-
-
-func _on_grid_1_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	if body.is_in_group("Player"):
-		var game_data = SaveManager.load_game("save_file")
-		game_data["chunk_grid"] = 1
-		SaveManager.save_game(game_data, "save_file")
-
-
-func _on_grid_2_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	if body.is_in_group("Player"):
-		var game_data = SaveManager.load_game("save_file")
-		game_data["chunk_grid"] = 2
-		SaveManager.save_game(game_data, "save_file")
-
-
-func _on_grid_3_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	if body.is_in_group("Player"):
-		var game_data = SaveManager.load_game("save_file")
-		game_data["chunk_grid"] = 3
-		SaveManager.save_game(game_data, "save_file")
-
-
-func _on_grid_4_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	if body.is_in_group("Player"):
-		var game_data = SaveManager.load_game("save_file")
-		game_data["chunk_grid"] = 4
-		SaveManager.save_game(game_data, "save_file")
+	#for child in get_children():
+		##print(child, " hidden")
+		#child.visible = false
+		#child.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	for child in get_children():
+		if chunks.has(child.name):
+			#print(child.name, " shown")
+			if child.visible == false:
+				child.visible = true
+				child.process_mode = Node.PROCESS_MODE_INHERIT
+		else:
+			child.visible = false
+			child.process_mode = Node.PROCESS_MODE_DISABLED

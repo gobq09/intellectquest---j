@@ -19,6 +19,7 @@ tile_set = ExtResource("1_alf0d")
 
 [node name="Area" type="Area2D" parent="."]
 position = Vector2(0, 2)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
 position = Vector2(512, 510)
@@ -32,6 +33,7 @@ scale = Vector2(52, 52)
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Grid1" type="Area2D" parent="Node2D"]
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Grid1"]
 position = Vector2(251, 251)
@@ -39,6 +41,7 @@ shape = SubResource("RectangleShape2D_7607o")
 
 [node name="Grid2" type="Area2D" parent="Node2D"]
 position = Vector2(522, 0)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Grid2"]
 position = Vector2(251, 251)
@@ -46,6 +49,7 @@ shape = SubResource("RectangleShape2D_7607o")
 
 [node name="Grid3" type="Area2D" parent="Node2D"]
 position = Vector2(0, 522)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Grid3"]
 position = Vector2(251, 251)
@@ -53,6 +57,7 @@ shape = SubResource("RectangleShape2D_7607o")
 
 [node name="Grid4" type="Area2D" parent="Node2D"]
 position = Vector2(522, 522)
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Grid4"]
 position = Vector2(251, 251)

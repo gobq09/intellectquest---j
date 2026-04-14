@@ -17,8 +17,8 @@ func _on_body_entered(body: Node2D) -> void:
 		game_data["last_chunk"] = name
 		SaveManager.save_game(game_data, "save_file")
 		
-		#SignalManager.entered_chunk.emit(name)
-		#print("entered ", name)
+		SignalManager.entered_chunk.emit(name)
+		print("entered ", name)
 
 func _on_grid_1_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body.is_in_group("Player"):
