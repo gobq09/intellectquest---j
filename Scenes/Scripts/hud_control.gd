@@ -29,6 +29,7 @@ func player_defeated():
 	hp_bar.value = (player_data["player_hp"] / max_hp) * 100
 
 func _on_interfacehudtodo_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	SignalManager.interface_changed.emit()
 	print("Pressed")
 	var tween = create_tween()
@@ -47,23 +48,27 @@ func _on_interfacehudtodo_pressed() -> void:
 		Task_Expanded = false
 
 func _on_settings_button_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	SignalManager.interface_changed.emit()
 	
 	SceneLoader.load_scene("uid://tj4vo1mmxfyt")
 
 
 func _on_map_button_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	SignalManager.interface_changed.emit()
 	print("Map")
 	SceneLoader.load_scene("uid://dxogc44ghcvvr")
 
 
 func _on_archive_button_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	SignalManager.interface_changed.emit()
 	SceneLoader.load_scene("uid://cfvteqvw7wwp")
 
 
 func _on_interfacehudlevel_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	SignalManager.interface_changed.emit()
 	SceneLoader.load_scene("uid://0q5mlknq6fk0")
 

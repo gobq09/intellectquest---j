@@ -28,6 +28,38 @@ var locked = false
 
 var getting_tracked : bool = false
 
+@onready var footstep_player = $FootstepPlayer
+
+var footstep_sounds_dirt = [
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-001.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-002.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-003.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-004.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-005.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-006.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-007.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-008.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-009.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-010.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-011.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-012.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-013.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-014.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-015.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-016.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-017.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-018.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-019.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-020.ogg"),
+	preload("res://Audio/SFX/Footsteps/Dirt/Steps_dirt-021.ogg"),
+]
+var current_surface: String = "dirt"
+var step_timer := 0.0
+var footstep_cooldown = 0.2
+var _footstep_timer = 0.0
+
+var current_chunk: Node2D = null
+
 func _ready() -> void:
 	SignalManager.map_changed.connect(map_changed)
 	SignalManager.trigger_ui.connect(disable_movement)
@@ -213,3 +245,38 @@ func _on_timer_timeout() -> void:
 	game_data = SaveManager.load_game("save_file")
 	game_data["global_position"] = position
 	SaveManager.save_game(game_data, "save_file")
+	
+#region Player Footsteps
+func _process(delta):
+	if _footstep_timer > 0:
+		_footstep_timer -= delta
+			
+func is_moving() -> bool:
+	return velocity.length() > 0
+	
+func _play_footstep():
+	if _footstep_timer > 0:
+		return
+	_footstep_timer = footstep_cooldown
+	
+	var surface_sounds: Array
+	
+	match  current_surface:
+		"dirt":
+			surface_sounds = footstep_sounds_dirt
+		#"grass":
+			#surface_sounds = footstep_sounds_grass
+		#"stone":
+			#suface_sounds = footstep_sounds_stone
+		_:
+			surface_sounds = footstep_sounds_dirt
+			
+	if footstep_player.playing:
+		footstep_player.stop()
+		
+	footstep_player.stream = surface_sounds.pick_random()
+	#footstep_player.volume_db = linear_to_db(0.5)
+	footstep_player.pitch_scale = randf_range(0.9, 1.1)
+	footstep_player.play()
+
+#endregion

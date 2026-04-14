@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://chlb2132e00kb"
+path="res://.godot/imported/Steps Beyond the Shore.mp3-154ceb618396ced379a5a3883f94ab39.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Exploration Themes/Steps Beyond the Shore.mp3"
+dest_files=["res://.godot/imported/Steps Beyond the Shore.mp3-154ceb618396ced379a5a3883f94ab39.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

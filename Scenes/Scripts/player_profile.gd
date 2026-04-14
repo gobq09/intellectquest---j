@@ -86,21 +86,25 @@ func _ready() -> void:
 
 #region help
 func _on_help_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	help_panel.visible = true
 	anim_player.play("fade")
 
 
 func _on_button_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	anim_player.play_backwards("fade")
 	await anim_player.animation_finished
 	help_panel.visible = false
 #endregion
 
 func _on_close_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	SceneLoader.load_scene(last_scene)
 
 #region stat
 func _on_reset_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	unused_stat += int_counter
 	unused_stat += end_counter
 	unused_stat += wis_counter
@@ -130,6 +134,7 @@ func _on_reset_pressed() -> void:
 
 
 func _on_confirm_pressed() -> void:
+	SignalManager.play_sfx.emit("confirm_sfx")
 	player_int += int(int_button_label.text)
 	player_end += int(end_button_label.text)
 	player_wis += int(wis_button_label.text)
@@ -182,6 +187,7 @@ func _on_confirm_pressed() -> void:
 #region stat_add
 
 func _on_int_add_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	if unused_stat == 0:
 		int_button_add.disabled = true
 		int_button_sub.disabled = true
@@ -198,6 +204,7 @@ func _on_int_add_pressed() -> void:
 
 
 func _on_int_sub_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	int_counter -= 1
 	unused_stat += 1
 	unused_stat_counter.text = "[b]Unused Stat Points:[/b] " + str(unused_stat)
@@ -210,6 +217,7 @@ func _on_int_sub_pressed() -> void:
 
 
 func _on_end_add_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	if unused_stat == 0:
 		end_button_add.disabled = true
 		end_button_sub.disabled = true
@@ -226,6 +234,7 @@ func _on_end_add_pressed() -> void:
 
 
 func _on_end_sub_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	end_counter -= 1
 	unused_stat += 1
 	unused_stat_counter.text = "[b]Unused Stat Points:[/b] " + str(unused_stat)
@@ -238,6 +247,7 @@ func _on_end_sub_pressed() -> void:
 
 
 func _on_wis_add_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	if unused_stat == 0:
 		wis_button_add.disabled = true
 		wis_button_sub.disabled = true
@@ -254,6 +264,7 @@ func _on_wis_add_pressed() -> void:
 
 
 func _on_wis_sub_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	wis_counter -= 1
 	unused_stat += 1
 	unused_stat_counter.text = "[b]Unused Stat Points:[/b] " + str(unused_stat)
@@ -266,6 +277,7 @@ func _on_wis_sub_pressed() -> void:
 
 
 func _on_str_add_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	if unused_stat == 0:
 		str_button_add.disabled = true
 		str_button_sub.disabled = true
@@ -282,6 +294,7 @@ func _on_str_add_pressed() -> void:
 
 
 func _on_str_sub_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	str_counter -= 1
 	unused_stat += 1
 	unused_stat_counter.text = "[b]Unused Stat Points:[/b] " + str(unused_stat)
@@ -295,4 +308,5 @@ func _on_str_sub_pressed() -> void:
 
 
 func _on_inventory_pressed() -> void:
+	SignalManager.play_sfx.emit("bag_open")
 	SceneLoader.load_scene("uid://gbgxli02186y")

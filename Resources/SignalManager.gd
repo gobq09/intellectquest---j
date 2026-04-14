@@ -47,3 +47,9 @@ signal pearl_marker(global_position: Vector2, duration: float)
 
 signal entered_chunk(chunk_name: String)
 signal show_chunk(chunks: Array)
+
+signal play_music(track_name: String)
+signal play_sfx(sfx_name: String)
+signal play_ambience(ambience_name: String)
+signal stop_music()
+signal stop_ambience()

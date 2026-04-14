@@ -17,6 +17,9 @@ extends Control
 var pressed : String
 
 func _ready() -> void:
+	var main_theme = preload("res://Audio/Music/IntelliQuest.mp3")
+	AudioManager.play_music(main_theme)
+	
 	game_data["in_game"] = false
 	SaveManager.save_game(game_data, "save_file")
 	
@@ -33,13 +36,19 @@ func _ready() -> void:
 
 func _on_new_game_pressed() -> void:
 	print("New Game Pressed")
+	SignalManager.play_sfx.emit("click_sfx")
 	
 	if $Control/Control/Continue.disabled == true:
+			AudioManager.stop_music_fade()
+			AudioManager.stop_all_ambience_instant()
 			SceneLoader.load_scene("uid://dvf5porvudl4f")
 	else:
 		_load_prompt("New")
 
 func _on_continue_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
+	AudioManager.stop_music_fade()
+	AudioManager.stop_all_ambience_instant()
 	print("Continue Pressed")
 	game_data["in_game"] = true
 	SaveManager.save_game(game_data, "save_file")
@@ -47,11 +56,13 @@ func _on_continue_pressed() -> void:
 	#get_tree().change_scene_to_file("res://Scenes/start_point_beach.tscn")
 
 func _on_settings_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	print("Settings Pressed")
 	SceneLoader.load_scene("uid://tj4vo1mmxfyt")
 	#get_tree().change_scene_to_file("res://Scenes/settings.tscn")
 
 func _on_quit_game_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	print("Quit Game Pressed")
 	#SceneLoader.load_scene("uid://nxlclj2vm1y2")
 	_load_prompt("Quit")
@@ -74,14 +85,19 @@ func _on_confirm_pressed() -> void:
 	prompt_cancel.disabled = true
 	
 	if pressed == "New":
+		SignalManager.play_sfx.emit("click_sfx")
+		AudioManager.stop_music_fade()
+		AudioManager.stop_all_ambience_instant()
 		SceneLoader.load_scene("uid://dvf5porvudl4f")
 	elif pressed == "Quit":
+		SignalManager.play_sfx.emit("click_sfx")
 		get_tree().quit()
 	else:
 		return
 
 
 func _on_cancel_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	prompt_confirm.disabled = true
 	prompt_cancel.disabled = true
 	prompt.visible = false

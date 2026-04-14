@@ -36,6 +36,7 @@ func _insert_item(item_id):
 	box.add_child(instance)
 
 func _item_select(id):
+	SignalManager.play_sfx.emit("click_sfx")
 	SignalManager.inventory_select.emit(id)
 	#SignalManager.item_used.connect(_used)
 	
@@ -67,6 +68,7 @@ func _update():
 	
 
 func _on_button_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	if selected != null:
 		if inv_data[selected]["Quantity"] > 0:
 			inv_data[selected]["Quantity"] -= 1
@@ -88,6 +90,7 @@ func _used(state):
 			use.visible = true
 
 func _on_texture_button_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	if game_data["in_combat"] == true:
 		self.visible = false
 	else:

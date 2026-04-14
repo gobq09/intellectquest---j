@@ -49,10 +49,10 @@ func _load_config(data):
 	else:
 		joystick_dynamic.button_pressed = true
 	
-	master_slider.value = data["Master_Vol"]
-	music_slider.value = data["Music_Vol"]
-	sfx_slider.value = data["SFX_Vol"]
-	ambience_slider.value = data["Ambience_Vol"]
+	master_slider.value = data.get("Master_Vol", 1.0) * 100 
+	music_slider.value = data.get("Music_Vol", 1.0) * 100 
+	sfx_slider.value = data.get("SFX_Vol", 1.0) * 100 
+	ambience_slider.value = data.get("Ambience_Vol", 1.0) * 100 
 
 func _on_reset_pressed() -> void:
 	new_config = default_config
@@ -68,21 +68,26 @@ func _on_save_pressed() -> void:
 	SettingsManager._load_settings()
 
 #region Volume
+	
 func _on_master_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(0, linear_to_db(value))
-	new_config["Master_Vol"] = value
+	var normalized = value / 100.0
+	AudioServer.set_bus_volume_db(0, linear_to_db(normalized))
+	new_config["Master_Vol"] = normalized
 
 func _on_music_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(1, linear_to_db(value))
-	new_config["Music_Vol"] = value
+	var normalized = value / 100.0
+	AudioServer.set_bus_volume_db(1, linear_to_db(normalized))
+	new_config["Music_Vol"] = normalized
 
 func _on_sfx_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(2, linear_to_db(value))
-	new_config["SFX_Vol"] = value
+	var normalized = value / 100.0
+	AudioServer.set_bus_volume_db(2, linear_to_db(normalized))
+	new_config["SFX_Vol"] = normalized
 
 func _on_ambience_slider_value_changed(value: float) -> void:
-	AudioServer.set_bus_volume_db(3, linear_to_db(value))
-	new_config["Ambience_Vol"] = value
+	var normalized = value / 100.0
+	AudioServer.set_bus_volume_db(3, linear_to_db(normalized))
+	new_config["Ambience_Vol"] = normalized
 
 #endregion
 

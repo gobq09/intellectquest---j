@@ -118,6 +118,33 @@ var quests = {
 					"goal": 1
 				}
 			},
+	"4": {
+		"name": "Pearl's First Task",
+		"tasks": {
+			"0": {
+				"task_name": "Talk to Pearl",
+				"progress": 0,
+				"goal": 1
+			},
+			"1": {
+				"task_name": "Go to the Training Area",
+				"progress": 0,
+				"goal": 1
+			},
+			"2": {
+				"task_name": "Defeat the Training Monster",
+				"progress": 0,
+				"goal": 1
+			},
+			"3": {
+				"task_name": "Return to Pearl",
+				"progress": 0,
+				"goal": 1
+			}
+		},
+		"completed": false,
+		"type": "main"
+		},
 		"completed": false,
 		"type": "side"
 		},

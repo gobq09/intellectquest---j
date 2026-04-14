@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dj0l447gmpfp7"
+path="res://.godot/imported/bag-close.mp3-7c26afa96746d009ea39af74b6dd902a.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/UI sfx/bag-close.mp3"
+dest_files=["res://.godot/imported/bag-close.mp3-7c26afa96746d009ea39af74b6dd902a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

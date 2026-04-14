@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dkefgsuwak2hj"]
+[gd_scene load_steps=34 format=3 uid="uid://dkefgsuwak2hj"]
 
 [ext_resource type="Script" uid="uid://dfqow415vx5vr" path="res://Scenes/Scripts/main_menu.gd" id="1_48xlc"]
 [ext_resource type="Texture2D" uid="uid://b3m83wyb23gjs" path="res://ui/title/interface-background-background.png" id="2_yhxw7"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bbsfdtp4q4a4h" path="res://ui/title/interface-prompt-newgame.png" id="15_ujyyl"]
 [ext_resource type="Texture2D" uid="uid://csc0os8ayadj1" path="res://ui/title/interface-prompt-cancel.png" id="16_mkpwh"]
 [ext_resource type="Texture2D" uid="uid://d0ycw54b0kcxd" path="res://ui/title/interface-prompt-confirm.png" id="17_4nkqq"]
+[ext_resource type="Script" uid="uid://cpu2tpb8a8bsj" path="res://Scenes/ui/ambience_timer.gd" id="18_3no6k"]
 
 [sub_resource type="Animation" id="Animation_vtepg"]
 length = 0.001
@@ -577,6 +578,9 @@ text = "Are you sure you want to start a new game?
 [b]This will overwrite your current save.[/b]"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Ambience Timer" type="Timer" parent="."]
+script = ExtResource("18_3no6k")
 
 [connection signal="pressed" from="Control/Control/Quit Game" to="." method="_on_quit_game_pressed"]
 [connection signal="pressed" from="Control/Control/Settings" to="." method="_on_settings_pressed"]

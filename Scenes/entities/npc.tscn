@@ -1,73 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfhccnj4vvm1r"]
+[gd_scene load_steps=9 format=3 uid="uid://dfhccnj4vvm1r"]
 
 [ext_resource type="Script" uid="uid://0rwh2a1atk8u" path="res://Scenes/Scripts/npc.gd" id="1_fjoax"]
-[ext_resource type="Texture2D" uid="uid://br1lan3wx6wr5" path="res://Sprites/npc/npc-male1.png" id="2_h1ryf"]
 [ext_resource type="Texture2D" uid="uid://cp84ckp6bwp2i" path="res://Sprites/misc/shadow.png" id="3_e4l46"]
+[ext_resource type="SpriteFrames" uid="uid://qf46wp1v5rbe" path="res://Sprites/npc tres/npc_male14.tres" id="3_wqd84"]
 [ext_resource type="PackedScene" uid="uid://boxx7tqk1eq7f" path="res://Scenes/dialogue.tscn" id="4_h1ryf"]
 [ext_resource type="PackedScene" uid="uid://dp00pu2vy6uq6" path="res://Scenes/entities/npc_quest.tscn" id="5_1ig1v"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1ig1v"]
-atlas = ExtResource("2_h1ryf")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6atyd"]
-atlas = ExtResource("2_h1ryf")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2xkex"]
-atlas = ExtResource("2_h1ryf")
-region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8gudg"]
-atlas = ExtResource("2_h1ryf")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qi7up"]
-atlas = ExtResource("2_h1ryf")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_a6nw3"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1ig1v")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6atyd")
-}],
-"loop": true,
-"name": &"walk_e",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2xkex")
-}],
-"loop": true,
-"name": &"walk_n",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8gudg")
-}],
-"loop": true,
-"name": &"walk_s",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qi7up")
-}],
-"loop": true,
-"name": &"walk_w",
-"speed": 5.0
-}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8n2s3"]
 radius = 8.0
@@ -88,10 +25,12 @@ script = ExtResource("1_fjoax")
 texture = ExtResource("3_e4l46")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_a6nw3")
-animation = &"walk_s"
+z_index = 1
+sprite_frames = ExtResource("3_wqd84")
+animation = &"walk_w"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+y_sort_enabled = true
 position = Vector2(0, 5)
 shape = SubResource("CapsuleShape2D_8n2s3")
 
@@ -107,12 +46,14 @@ shape = SubResource("CircleShape2D_g6unj")
 autostart = true
 
 [node name="Dialogue" parent="." instance=ExtResource("4_h1ryf")]
+visible = false
 offset_left = -152.0
 offset_top = -185.0
 offset_right = 153.0
 offset_bottom = 116.0
 
 [node name="npc_quest" parent="." instance=ExtResource("5_1ig1v")]
+visible = false
 
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]

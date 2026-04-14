@@ -279,8 +279,6 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
-max_value = 1.0
-step = 0.1
 value = 1.0
 
 [node name="Music" type="HBoxContainer" parent="Control2/Settings/Audio"]
@@ -303,8 +301,6 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
-max_value = 1.0
-step = 0.1
 value = 1.0
 
 [node name="SFX" type="HBoxContainer" parent="Control2/Settings/Audio"]
@@ -327,8 +323,6 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
-max_value = 1.0
-step = 0.1
 value = 1.0
 
 [node name="Ambience" type="HBoxContainer" parent="Control2/Settings/Audio"]
@@ -351,8 +345,6 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
-max_value = 1.0
-step = 0.1
 value = 1.0
 
 [node name="Divider2" type="Panel" parent="Control2/Settings"]

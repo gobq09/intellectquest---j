@@ -225,10 +225,9 @@ func save_game(data: Dictionary, savePath: String) -> void:
 	if file:
 		file.store_string(JSON.stringify(data))
 		file.close()
-		#print("Game saved at: ", savePath)
+		print("Game saved at: ", savePath)
 	else:
-		pass
-		#print("Failed to save! Error: ", FileAccess.get_open_error())
+		print("Failed to save! Error: ", FileAccess.get_open_error())
 
 func load_game(savePath: String) -> Dictionary:
 	var data
@@ -283,7 +282,7 @@ func load_game(savePath: String) -> Dictionary:
 			
 			if savePath == quest:
 				if result.size() == 0:
-					#print("result size is 0")
+					print("result size is 0")
 					QuestManager._clear_quests()
 			
 			if added == true:

@@ -51,6 +51,7 @@ func _ready() -> void:
 		if defeated_enemies[str(enemy_id)] <= Time.get_unix_time_from_system():
 			#print("initially respawned")
 			self.visible = true
+			$CollisionShape2D.disabled = false
 			detect_area.process_mode = Node.PROCESS_MODE_INHERIT
 			battle_area.process_mode = Node.PROCESS_MODE_INHERIT
 			defeated_enemies.erase(str(enemy_id))
@@ -60,6 +61,7 @@ func _ready() -> void:
 			#print("remaining time: ", remaining_time)
 			timer.start(remaining_time)
 			self.visible = false
+			$CollisionShape2D.disabled = true
 			detect_area.process_mode = Node.PROCESS_MODE_DISABLED
 			battle_area.process_mode = Node.PROCESS_MODE_DISABLED
 		

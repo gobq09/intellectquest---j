@@ -15,6 +15,10 @@ run/main_scene="uid://bv2jvo7wjipfe"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="uid://3ceg65rhyjob"
 
+[audio]
+
+buses/default_bus_layout="res://Audio/default_bus_layout.tres"
+
 [autoload]
 
 SceneLoader="*res://Scenes/Scripts/scene_loader.gd"
@@ -29,6 +33,7 @@ QuestManager="*res://Resources/quest_manager.gd"
 Quests="*res://Resources/quests.gd"
 Handler="*res://Resources/handler.gd"
 PlayerDataLoader="*res://Resources/PlayerData_Loader.gd"
+AudioManager="*res://Audio/AudioManager.gd"
 
 [display]
 
@@ -45,6 +50,21 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://add
 
 Player=""
 Items=""
+
+[importer_defaults]
+
+wav={
+"compress/mode": 2,
+"edit/loop_begin": 0,
+"edit/loop_end": -1,
+"edit/loop_mode": 0,
+"edit/normalize": false,
+"edit/trim": false,
+"force/8_bit": true,
+"force/max_rate": false,
+"force/max_rate_hz": 44100,
+"force/mono": false
+}
 
 [input]
 

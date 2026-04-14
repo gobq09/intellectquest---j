@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bfij76q2avcxh"
+path="res://.godot/imported/Eerie Ambient Sound Effect.mp3-e2fe8e752d80b6ae7ea49756f2c16e53.mp3str"
+
+[deps]
+
+source_file="res://Audio/ambience/Eerie Ambient Sound Effect.mp3"
+dest_files=["res://.godot/imported/Eerie Ambient Sound Effect.mp3-e2fe8e752d80b6ae7ea49756f2c16e53.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

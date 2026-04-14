@@ -18,6 +18,7 @@ extends Control
 var pressed: String
 
 func _ready() -> void:
+	#AudioManager.duck_music()
 	if game_data["in_game"] == true:
 		menu.visible = true
 		menu.disabled = false
@@ -44,9 +45,11 @@ func _on_video_pressed() -> void:
 	pass # Replace with function body.
 
 func _on_menu_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	_load_prompt("Menu")
 
 func _on_quit_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	_load_prompt("Quit")
 
 
@@ -62,6 +65,8 @@ func _load_prompt(press):
 		label.text = "Are you sure you want to [b]Quit the Game[/b]?"
 
 func _on_close_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
+	#AudioManager.restore_music()
 	game_data = SaveManager.load_game("save_file")
 	
 	if last_scene == "game":
@@ -74,6 +79,7 @@ func _on_close_pressed() -> void:
 
 
 func _on_confirm_pressed() -> void:
+	SignalManager.play_sfx.emit("confirm_sfx")
 	confirm.disabled = true
 	cancel.disabled = true
 	

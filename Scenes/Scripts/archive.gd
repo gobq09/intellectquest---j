@@ -66,6 +66,7 @@ func _ready() -> void:
 
 
 func _on_close_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	SceneLoader.load_scene(last_scene["last_scene"])
 
 func _load_topic(subject: Dictionary, source: Dictionary, action: String = "next") -> void:
@@ -118,6 +119,7 @@ func _toggle_input(action: bool)-> void:
 	fil_button.disabled = action
 
 func _on_next_pressed() -> void:
+	SignalManager.play_sfx.emit("page_flips")
 	_toggle_input(true)
 	
 	if count <= 1:
@@ -132,6 +134,7 @@ func _on_next_pressed() -> void:
 	_toggle_input(false)
 
 func _on_previous_pressed() -> void:
+	SignalManager.play_sfx.emit("page_flips")
 	_toggle_input(true)
 	
 	anim_player.play("archive-previous")

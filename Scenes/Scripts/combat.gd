@@ -142,6 +142,8 @@ var buffs = {
 #region combat load
 func _ready() -> void:
 	#ui.visible = false
+	SignalManager.stop_ambience.emit()
+	SignalManager.play_music.emit("battle_theme")
 	SignalManager.buff.connect(_update_buffs)
 	SignalManager.item_used.connect(_used_item)
 	
@@ -407,6 +409,10 @@ func _on_wrong_answer():
 		_show_actions()
 
 func _on_enemy_defeated():
+	SignalManager.stop_music.emit()
+	#var music = preload("res://Audio/Music/Event Themes/Triumph.mp3")
+	#AudioManager.music_player.play(music)
+	
 	print("Enemy defeated! You win!")
 	player_won = true
 	
@@ -444,6 +450,7 @@ func _on_enemy_defeated():
 	#winner_label.visible = true
 
 func _on_player_defeated():
+	SignalManager.stop_music.emit()
 	print("Player defeated! Game over!")
 	player_won = false
 	

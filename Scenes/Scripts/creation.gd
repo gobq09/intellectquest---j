@@ -39,6 +39,8 @@ var player_name: String = "Quinn"
 
 #region Prologue
 func _ready() -> void:
+	var ambience = preload("res://Audio/ambience/Eerie Ambient Sound Effect.mp3")
+	AudioManager.play_ambience(ambience)
 	transition.visible = false
 	prologue_anim.play("prologue")
 	prologue_skip.visible = false
@@ -46,6 +48,7 @@ func _ready() -> void:
 	prologue_skip.visible = true
 
 func _on_skip_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	prologue_anim.stop()
 	prologue_panel.visible = false
 	transition.visible = true
@@ -56,6 +59,7 @@ func _on_skip_pressed() -> void:
 	transition_anim.play_backwards("transition")
 	await transition_anim.animation_finished
 	transition.visible = false
+	AudioManager.stop_ambiance_fade()
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	transition.visible = true
@@ -67,10 +71,13 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	transition_anim.play_backwards("transition")
 	await transition_anim.animation_finished
 	transition.visible = false
+	AudioManager.stop_ambiance_fade()
+	
 #endregion
 
 #region Choose Character
 func _on_male_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	if chosen == "Male":
 		return
 	anim_player.play_backwards("fade")
@@ -85,6 +92,7 @@ func _on_male_pressed() -> void:
 
 
 func _on_female_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	if chosen == "Female":
 		return
 	
@@ -99,6 +107,7 @@ func _on_female_pressed() -> void:
 	confirm_button.visible = true
 
 func _on_button_pressed() -> void:
+	SignalManager.play_sfx.emit("confirm_sfx")
 	if chosen == "Male":
 		player_sprite.texture = male_texture
 	elif chosen == "Female":
@@ -124,6 +133,7 @@ func _on_button_pressed() -> void:
 #region Name Input
 
 func _on_next_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	if i == 3:
 		i = 0
 	else:
@@ -132,6 +142,7 @@ func _on_next_pressed() -> void:
 
 
 func _on_previous_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	if i == 0:
 		i = 3
 	else:
@@ -140,6 +151,7 @@ func _on_previous_pressed() -> void:
 
 
 func _on_confirm_pressed() -> void:
+	SignalManager.play_sfx.emit("confirm_sfx")
 	confirm1_button.visible = false
 	name_input.editable = false
 	diff_next.disabled = true
@@ -164,3 +176,6 @@ func _on_confirm_pressed() -> void:
 	
 	SceneLoader.load_scene("uid://d4dgymuee0bxt")
 #endregion
+
+func _glitch():
+	SignalManager.play_sfx.emit("glitch_sfx")

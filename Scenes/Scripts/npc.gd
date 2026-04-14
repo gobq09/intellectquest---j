@@ -9,13 +9,16 @@ var start_pos
 var is_roaming = true
 var is_chatting = false
 
+
 var player
 var player_in_chat_zone = false
 
 @export var NPC_ID = "null"
 @export var Sprite = "male1"
+#@export var npc_texture: Texture2D
 @export_enum("Down", "Left", "Right", "Up") var face
-@onready var texture_load: Texture2D = load("res://Sprites/npc/npc-" + Sprite + ".png")
+@export var roam_area_path: NodePath
+@onready var roam_area = get_node(roam_area_path)
 #@onready var sprite_2d = $Sprite2D
 
 enum {
@@ -27,6 +30,17 @@ enum {
 func _ready():
 	randomize()
 	start_pos = position
+	
+	apply_sprite()
+	
+func apply_sprite():
+	var path = "res://Sprites/npc tres/npc_" + Sprite + ".tres"
+	
+	if ResourceLoader.exists(path):
+		var frames = load(path)
+		$AnimatedSprite2D.sprite_frames = frames
+	else:
+		print("Sprite not found:", path)
 	
 func _process(delta):
 	if current_state == 0 or current_state == 1:
@@ -69,11 +83,29 @@ func choose(array):
 	
 func move(delta):
 	if !is_chatting:
-		position += dir * speed * delta
+		var next_pos = global_position + dir * speed * delta
 		
+		if is_inside_roam_area(next_pos):
+			velocity = dir * speed
+			move_and_slide()
+		else:
+			current_state = NEW_DIR
 
-	 
-
+func is_inside_roam_area(pos: Vector2) -> bool:
+	var shape = roam_area.get_node("CollisionShape2D").shape
+	
+	if shape is RectangleShape2D:
+		var extents = shape.extents
+		var center = roam_area.global_position
+		
+		return (
+			pos.x > center.x - extents.x and
+			pos.x < center.x + extents.x and
+			pos.y > center.y - extents.y and
+			pos.y < center.y + extents.y
+		)
+	
+	return true
 
 func _on_detection_body_entered(body: Node2D) -> void:
 	if body.has_method("player"):
