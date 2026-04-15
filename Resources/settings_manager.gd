@@ -11,6 +11,10 @@ var master_vol
 var music_vol
 var sfx_vol
 var ambience_vol
+var animals
+var clouds
+var particles
+var lights
 
 func _ready() -> void:
 	SignalManager.settings_updated.connect(_load_settings)
@@ -22,6 +26,10 @@ func _load_settings():
 	joystick_mode = config_data["Joystick_Mode"]
 	graphics_mode = config_data["Graphics_Mode"]
 	frame_rate = config_data["Frame_Rate"]
+	animals = config_data["Animals"]
+	clouds = config_data["Clouds"]
+	particles = config_data["Particles"]
+	lights = config_data["Lights"]
 	vsync = config_data["VSync"]
 	master_vol = config_data["Master_Vol"]
 	music_vol = config_data["Music_Vol"]

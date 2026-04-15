@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://cr2ru7vol8lts"]
+[gd_scene load_steps=6 format=4 uid="uid://cr2ru7vol8lts"]
 
 [ext_resource type="TileSet" uid="uid://dop58t8w0lmjn" path="res://Tileset/grass.tres" id="1_alf0d"]
 [ext_resource type="Script" uid="uid://bda7j6bik0jyi" path="res://Scenes/Scripts/chunk_test.gd" id="1_swfu5"]
+[ext_resource type="PackedScene" uid="uid://bfewmeg28r0y6" path="res://cloud.tscn" id="3_b53fu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hrkvm"]
 size = Vector2(1024, 1024)
@@ -30,7 +31,7 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
 position = Vector2(512, 510)
 shape = SubResource("RectangleShape2D_hrkvm")
-debug_color = Color(0, 0.595, 0.7, 0)
+debug_color = Color(0, 0.596078, 0.701961, 0.129412)
 
 [node name="Grid1" type="Area2D" parent="."]
 visible = false
@@ -66,6 +67,8 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grid4"]
 position = Vector2(256, 256)
 shape = SubResource("RectangleShape2D_7607o")
+
+[node name="Cloud" parent="." instance=ExtResource("3_b53fu")]
 
 [connection signal="body_entered" from="Area" to="." method="_on_body_entered"]
 [connection signal="body_exited" from="Area" to="." method="_on_area_body_exited"]

@@ -6,6 +6,7 @@ extends Node
 #@onready var enemy : String = str(OS.get_executable_path().get_base_dir()) + "/enemy_data.json"
 
 @onready var save_file : String = "user://save_game.json"
+@onready var position_file : String = "user://position.json"
 @onready var player : String = "user://player.json"
 @onready var player_questions : String = "user://player_questions.json"
 @onready var enemy : String = "user://enemy_data.json"
@@ -21,14 +22,9 @@ var game_data: Dictionary = {
 	"player_lost": false,
 	"in_game": true,
 	"tutorial": true,
-	"ui_tutorial": false,
 	"in_combat": false,
 	"player_ran": false,
-	"global_position": Vector2.ZERO,
 	"respawn_point": Vector2.ZERO,
-	"last_chunk": "Chunk_B1",
-	"chunk_grid": 4,
-	"last_scene": "uid://d4dgymuee0bxt",
 	"defeated_enemies": {},
 	"eng_topics": {},
 	"sci_topics": {},
@@ -37,6 +33,13 @@ var game_data: Dictionary = {
 	"active_quest": "none",
 	"triggered_dialogues": {},
 	"score": 0,
+}
+
+var position_data: Dictionary = {
+	"global_position": Vector2.ZERO,
+	"last_chunk": "Chunk_B1",
+	"chunk_grid": 4,
+	"last_scene": "uid://d4dgymuee0bxt",
 }
 
 var player_data: Dictionary = {
@@ -52,6 +55,17 @@ var player_data: Dictionary = {
 	"player_str": 0,
 	"unused_stats": 0,
 	"walk_buff": 0,
+	"ui_tutorial": {
+		"joystick": false, 
+		"interact": false,
+		"level": false,  
+		"hp": false, 
+		"archive": false,
+		"task": false,
+		"map": false,
+		"settings": false,
+		"combat": false,
+		},
 }
 
 var enemy_data: Dictionary = {
@@ -184,6 +198,10 @@ var config_data: Dictionary = {
 	"Joystick_Mode": "Dynamic",
 	"Graphics_Mode": "Low",
 	"Frame_Rate": 30,
+	"Animals": false,
+	"Clouds": false,
+	"Particles": false,
+	"Lights": false,
 	"VSync": false,
 	"Master_Vol": 1.0,
 	"Music_Vol": 1.0,
@@ -209,6 +227,8 @@ func save_game(data: Dictionary, savePath: String) -> void:
 		savePath = save_file
 	elif savePath == "player_file":
 		savePath = player
+	elif savePath == "position_file":
+		savePath = position_file
 	elif savePath == "player_questions":
 		savePath = player_questions
 	elif savePath == "enemy_file":
@@ -234,6 +254,9 @@ func load_game(savePath: String) -> Dictionary:
 	if savePath == "save_file":
 		savePath = save_file
 		data = game_data
+	elif savePath == "position_file":
+		savePath = position_file
+		data = position_data
 	elif savePath == "player_file":
 		savePath = player
 		data = player_data

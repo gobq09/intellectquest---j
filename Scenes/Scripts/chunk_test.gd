@@ -1,6 +1,13 @@
 extends Node2D
 
-@onready var game_data = SaveManager.load_game("save_file")
+@onready var position_data = SaveManager.load_game("position_file")
+@onready var enabler = $VisibleOnScreenEnabler2D
+@onready var chunk_area = $Area
+@onready var grid1 = $Grid1
+@onready var grid2 = $Grid2
+@onready var grid3 = $Grid3
+@onready var grid4 = $Grid4
+
 @export var Chunk_Name : String = name
 @export var music_track: String = ""
 @export var ambience_zone: String = ""
@@ -13,7 +20,14 @@ func _ready() -> void:
 	SignalManager.entered_chunk.connect(changed_chunk)
 	SignalManager.show_chunk.connect(show_chunk)
 	
-	if name == game_data["last_chunk"]:
+	enabler.visible = true
+	chunk_area.visible = true
+	grid1.visible = true
+	grid2.visible = true
+	grid3.visible = true
+	grid4.visible = true
+	
+	if name == position_data["last_chunk"]:
 		print("true")
 		self.visible = true
 		self.process_mode = Node.PROCESS_MODE_INHERIT
@@ -22,9 +36,9 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player_inside = true
 		
-		var game_data = SaveManager.load_game("save_file")
-		game_data["last_chunk"] = name
-		SaveManager.save_game(game_data, "save_file")
+		var position_data = SaveManager.load_game("position_file")
+		position_data["last_chunk"] = name
+		SaveManager.save_game(position_data, "position_file")
 		
 		#SignalManager.entered_chunk.emit(name)
 		print("entered ", name)
@@ -89,27 +103,27 @@ func show_chunk(chunks: Array):
 
 func _on_grid_1_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body.is_in_group("Player"):
-		var game_data = SaveManager.load_game("save_file")
-		game_data["chunk_grid"] = 1
-		SaveManager.save_game(game_data, "save_file")
+		var position_data = SaveManager.load_game("position_file")
+		position_data["chunk_grid"] = 1
+		SaveManager.save_game(position_data, "position_file")
 
 
 func _on_grid_2_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body.is_in_group("Player"):
-		var game_data = SaveManager.load_game("save_file")
-		game_data["chunk_grid"] = 2
-		SaveManager.save_game(game_data, "save_file")
+		var position_data = SaveManager.load_game("position_file")
+		position_data["chunk_grid"] = 2
+		SaveManager.save_game(position_data, "position_file")
 
 
 func _on_grid_3_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body.is_in_group("Player"):
-		var game_data = SaveManager.load_game("save_file")
-		game_data["chunk_grid"] = 3
-		SaveManager.save_game(game_data, "save_file")
+		var position_data = SaveManager.load_game("position_file")
+		position_data["chunk_grid"] = 3
+		SaveManager.save_game(position_data, "position_file")
 
 
 func _on_grid_4_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	if body.is_in_group("Player"):
-		var game_data = SaveManager.load_game("save_file")
-		game_data["chunk_grid"] = 4
-		SaveManager.save_game(game_data, "save_file")
+		var position_data = SaveManager.load_game("position_file")
+		position_data["chunk_grid"] = 4
+		SaveManager.save_game(position_data, "position_file")

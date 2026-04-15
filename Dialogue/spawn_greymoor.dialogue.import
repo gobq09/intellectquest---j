@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cbwjsirbw8126"
+path="res://.godot/imported/spawn_greymoor.dialogue-0ca6963f4f2b85888c0e75dd70e17666.tres"
+
+[deps]
+
+source_file="res://Dialogue/spawn_greymoor.dialogue"
+dest_files=["res://.godot/imported/spawn_greymoor.dialogue-0ca6963f4f2b85888c0e75dd70e17666.tres"]
+
+[params]
+
+defaults=true

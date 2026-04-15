@@ -221,4 +221,6 @@ func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 	next(response.next_id)
 
 
+func skip_dialogue():
+	next(dialogue_line.next_id)
 #endregion

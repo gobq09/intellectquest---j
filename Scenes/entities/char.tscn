@@ -97,7 +97,7 @@ states/Start/position = Vector2(325, 72)
 states/Walk/node = SubResource("AnimationNodeBlendSpace2D_231on")
 states/Walk/position = Vector2(479, 159)
 transitions = ["Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_tr5dq"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_6w5cu"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_1iy3q"), "Stand Up", "Idle", SubResource("AnimationNodeStateMachineTransition_sf4kk")]
-graph_offset = Vector2(38, -74)
+graph_offset = Vector2(-87, -198)
 
 [sub_resource type="Animation" id="Animation_ap31j"]
 length = 0.001
@@ -455,12 +455,11 @@ gravity = Vector3(0, 20, 0)
 scale_min = 0.25
 scale_curve = SubResource("CurveTexture_mq0tv")
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ani_tree") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 y_sort_enabled = true
 collision_mask = 11
 script = ExtResource("1_gv012")
-ani_tree = NodePath("Player_AnimTree")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)

@@ -1,0 +1,8 @@
+~ start
+Innkeeper: [[Hi|Hello|Howdy]].
+Innkeeper: Would you like to set your Spawn Point here?
+- Yes
+	do SignalManager.spawn_point_set.emit("Linguara")
+	Spawn Point Set.
+- No
+=> END

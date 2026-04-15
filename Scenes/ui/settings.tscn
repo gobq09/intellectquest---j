@@ -24,9 +24,9 @@ bg_color = Color(0.404586, 0.180298, 0.184072, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vmqi3"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_vmqi3"]
-
 [sub_resource type="ButtonGroup" id="ButtonGroup_1c72s"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_vmqi3"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_g8dc3"]
 
@@ -123,84 +123,6 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_1c72s")
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Mode" type="HBoxContainer" parent="Control2/Settings/Graphics"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Graphics/Mode"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Graphics Mode"
-fit_content = true
-scroll_active = false
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Custom" type="Button" parent="Control2/Settings/Graphics/Mode"]
-visible = false
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_vmqi3")
-text = "Custom"
-
-[node name="Low" type="Button" parent="Control2/Settings/Graphics/Mode"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_vmqi3")
-text = "Low"
-
-[node name="High" type="Button" parent="Control2/Settings/Graphics/Mode"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-toggle_mode = true
-button_group = SubResource("ButtonGroup_vmqi3")
-text = "High"
-
-[node name="Particles" type="HBoxContainer" parent="Control2/Settings/Graphics"]
-visible = false
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Graphics/Particles"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Particles"
-fit_content = true
-scroll_active = false
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CheckBox" type="CheckBox" parent="Control2/Settings/Graphics/Particles"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Lights" type="HBoxContainer" parent="Control2/Settings/Graphics"]
-visible = false
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Graphics/Lights"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Lights and Shadows"
-fit_content = true
-scroll_active = false
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="CheckBox" type="CheckBox" parent="Control2/Settings/Graphics/Lights"]
-custom_minimum_size = Vector2(32, 32)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
 [node name="FPS" type="HBoxContainer" parent="Control2/Settings/Graphics"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
@@ -228,6 +150,121 @@ layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_1c72s")
 text = "60 FPS"
+
+[node name="Mode" type="HBoxContainer" parent="Control2/Settings/Graphics"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Graphics/Mode"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Graphics Mode"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Custom" type="Button" parent="Control2/Settings/Graphics/Mode"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vmqi3")
+text = "Custom"
+
+[node name="Low" type="Button" parent="Control2/Settings/Graphics/Mode"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vmqi3")
+text = "Low"
+
+[node name="High" type="Button" parent="Control2/Settings/Graphics/Mode"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_vmqi3")
+text = "High"
+
+[node name="Animals" type="HBoxContainer" parent="Control2/Settings/Graphics"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Graphics/Animals"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Animals"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Control2/Settings/Graphics/Animals"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Clouds" type="HBoxContainer" parent="Control2/Settings/Graphics"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Graphics/Clouds"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Clouds"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Control2/Settings/Graphics/Clouds"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Particles" type="HBoxContainer" parent="Control2/Settings/Graphics"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Graphics/Particles"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Particles"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Control2/Settings/Graphics/Particles"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Lights" type="HBoxContainer" parent="Control2/Settings/Graphics"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Graphics/Lights"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Lights"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Control2/Settings/Graphics/Lights"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="VSync" type="HBoxContainer" parent="Control2/Settings/Graphics"]
 custom_minimum_size = Vector2(0, 32)
@@ -389,6 +426,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_1c72s")
 
 [node name="Bug Report" type="HBoxContainer" parent="Control2/Settings"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 
@@ -408,6 +446,30 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 text = "Report to us"
+
+[node name="Credits" type="VBoxContainer" parent="Control2/Settings"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/Settings/Credits"]
+custom_minimum_size = Vector2(120, 32)
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]CREDITS[/b]
+
+[u]Prof. Neil Richard S. Colada[/u]
+Adviser
+
+[b]Developers:[/b]
+
+Earl Jancen B. Hapita
+
+Jake Libumfacil
+
+Kyzille P. Magpantay"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Divider6" type="Panel" parent="Control2/Settings"]
 custom_minimum_size = Vector2(0, 32)
@@ -621,13 +683,15 @@ vertical_alignment = 1
 [connection signal="pressed" from="Control2/Settings/Buttons/Mode/Reset" to="Control2" method="_on_reset_pressed"]
 [connection signal="pressed" from="Control2/Settings/Buttons/Mode/Revert" to="Control2" method="_on_revert_pressed"]
 [connection signal="pressed" from="Control2/Settings/Buttons/Mode/Save" to="Control2" method="_on_save_pressed"]
-[connection signal="pressed" from="Control2/Settings/Graphics/Mode/Custom" to="Control2" method="_on_high_pressed"]
-[connection signal="pressed" from="Control2/Settings/Graphics/Mode/Low" to="Control2" method="_on_low_pressed"]
-[connection signal="pressed" from="Control2/Settings/Graphics/Mode/High" to="Control2" method="_on_high_pressed"]
-[connection signal="pressed" from="Control2/Settings/Graphics/Particles/CheckBox" to="Control2" method="_on_check_box_pressed"]
-[connection signal="pressed" from="Control2/Settings/Graphics/Lights/CheckBox" to="Control2" method="_on_check_box_pressed"]
 [connection signal="pressed" from="Control2/Settings/Graphics/FPS/30" to="Control2" method="_on_30_pressed"]
 [connection signal="pressed" from="Control2/Settings/Graphics/FPS/60" to="Control2" method="_on_60_pressed"]
+[connection signal="pressed" from="Control2/Settings/Graphics/Mode/Custom" to="Control2" method="_on_custom_pressed"]
+[connection signal="pressed" from="Control2/Settings/Graphics/Mode/Low" to="Control2" method="_on_low_pressed"]
+[connection signal="pressed" from="Control2/Settings/Graphics/Mode/High" to="Control2" method="_on_high_pressed"]
+[connection signal="pressed" from="Control2/Settings/Graphics/Animals/CheckBox" to="Control2" method="_on_animals_pressed"]
+[connection signal="pressed" from="Control2/Settings/Graphics/Clouds/CheckBox" to="Control2" method="_on_clouds_pressed"]
+[connection signal="pressed" from="Control2/Settings/Graphics/Particles/CheckBox" to="Control2" method="_on_particles_pressed"]
+[connection signal="pressed" from="Control2/Settings/Graphics/Lights/CheckBox" to="Control2" method="_on_lights_pressed"]
 [connection signal="pressed" from="Control2/Settings/Graphics/VSync/CheckBox" to="Control2" method="_on_check_box_pressed"]
 [connection signal="value_changed" from="Control2/Settings/Audio/Master/MasterSlider" to="Control2" method="_on_master_slider_value_changed"]
 [connection signal="value_changed" from="Control2/Settings/Audio/Music/MusicSlider" to="Control2" method="_on_music_slider_value_changed"]

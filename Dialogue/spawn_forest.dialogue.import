@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://x78shpm8go2q"
+path="res://.godot/imported/spawn_forest.dialogue-0b48508773f0645cfcbc0437a62d13bb.tres"
+
+[deps]
+
+source_file="res://Dialogue/spawn_forest.dialogue"
+dest_files=["res://.godot/imported/spawn_forest.dialogue-0b48508773f0645cfcbc0437a62d13bb.tres"]
+
+[params]
+
+defaults=true

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6vw60kkhwt0y"]
+
+[ext_resource type="Script" uid="uid://lkpa2503oe7e" path="res://Scenes/Scripts/tutorial_trigger.gd" id="1_2dm2t"]
+
+[node name="Area2D" type="Area2D"]
+monitorable = false
+script = ExtResource("1_2dm2t")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

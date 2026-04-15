@@ -42,7 +42,7 @@ func apply_sprite():
 	else:
 		print("Sprite not found:", path)
 	
-func _process(delta):
+func _physics_process(delta: float) -> void:
 	if current_state == 0 or current_state == 1:
 		$AnimatedSprite2D.play("idle")
 	elif current_state == 2 and !is_chatting:

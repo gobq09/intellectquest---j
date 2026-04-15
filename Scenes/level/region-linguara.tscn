@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://d4dgymuee0bxt"]
+[gd_scene load_steps=34 format=4 uid="uid://d4dgymuee0bxt"]
 
 [ext_resource type="PackedScene" uid="uid://b4qaqebdse2qj" path="res://Scenes/entities/char.tscn" id="1_5ky5g"]
 [ext_resource type="PackedScene" uid="uid://g3w75c5xrktm" path="res://Scenes/camera.tscn" id="2_qs2e4"]
@@ -15,6 +15,7 @@
 [ext_resource type="TileSet" uid="uid://jnmii1v82ic3" path="res://Tileset/tile_path.tres" id="10_tuvng"]
 [ext_resource type="TileSet" uid="uid://di7ocykekmaw2" path="res://Tileset/stone-border.tres" id="11_et777"]
 [ext_resource type="PackedScene" uid="uid://bjdr8y5w68q6l" path="res://Scenes/move_marker.tscn" id="11_iemxt"]
+[ext_resource type="PackedScene" uid="uid://c6vw60kkhwt0y" path="res://Scenes/tutorial_trigger.tscn" id="12_et777"]
 [ext_resource type="TileSet" uid="uid://dkygyeegsgi5y" path="res://Tileset/door.tres" id="12_iemxt"]
 [ext_resource type="TileSet" uid="uid://cw2087whh866g" path="res://Tileset/pillars.tres" id="13_lxs7d"]
 [ext_resource type="TileSet" uid="uid://c57htxv0o11hr" path="res://Tileset/box.tres" id="13_okubx"]
@@ -23,12 +24,25 @@
 [ext_resource type="PackedScene" uid="uid://dfhccnj4vvm1r" path="res://Scenes/entities/npc.tscn" id="16_40sqr"]
 [ext_resource type="PackedScene" uid="uid://bkchteg2njvve" path="res://Scenes/entities/animal.tscn" id="17_1sm0l"]
 [ext_resource type="Texture2D" uid="uid://3lee4rs5uuoy" path="res://Sprites/tilesets/tileset-stalls.png" id="17_l3hrx"]
+[ext_resource type="PackedScene" uid="uid://dd5k01cxmgxoh" path="res://Scenes/lantern.tscn" id="22_iemxt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lxs7d"]
 size = Vector2(32, 202)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iemxt"]
+size = Vector2(224, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_et777"]
+size = Vector2(32, 136)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40sqr"]
 size = Vector2(75.625, 99.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjwcf"]
+size = Vector2(32, 346)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4el7r"]
+size = Vector2(448, 34)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cgu63"]
 texture = ExtResource("17_l3hrx")
@@ -338,6 +352,7 @@ sources/0 = SubResource("TileSetAtlasSource_cgu63")
 y_sort_enabled = true
 
 [node name="Player" type="Node2D" parent="."]
+y_sort_enabled = true
 position = Vector2(-568, 728)
 
 [node name="Player" parent="Player" instance=ExtResource("1_5ky5g")]
@@ -908,6 +923,18 @@ tile_set = ExtResource("6_40sqr")
 
 [node name="Entities" type="Node2D" parent="Chunks/Land/A/Chunk_A2"]
 
+[node name="enemy" parent="Chunks/Land/A/Chunk_A2/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(696, 112)
+enemy_id = "eng_large-12"
+enemy_type = "large"
+enemy_subject = "English"
+
+[node name="enemy2" parent="Chunks/Land/A/Chunk_A2/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(832, 224)
+enemy_id = "eng_med-13"
+enemy_type = "med"
+enemy_subject = "English"
+
 [node name="Chunk_A3" parent="Chunks/Land/A" instance=ExtResource("3_okubx")]
 position = Vector2(0, -3072)
 
@@ -938,6 +965,36 @@ tile_set = ExtResource("6_40sqr")
 
 [node name="Entities" type="Node2D" parent="Chunks/Land/A/Chunk_A3"]
 y_sort_enabled = true
+
+[node name="enemy" parent="Chunks/Land/A/Chunk_A3/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(880, 920)
+enemy_id = "eng_small-14"
+enemy_type = "small"
+enemy_subject = "English"
+
+[node name="enemy2" parent="Chunks/Land/A/Chunk_A3/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(672, 776)
+enemy_id = "eng_small-15"
+enemy_type = "small"
+enemy_subject = "English"
+
+[node name="enemy3" parent="Chunks/Land/A/Chunk_A3/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(744, 376)
+enemy_id = "eng_large-15"
+enemy_type = "large"
+enemy_subject = "English"
+
+[node name="enemy4" parent="Chunks/Land/A/Chunk_A3/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(600, 488)
+enemy_id = "eng_med-16"
+enemy_type = "med"
+enemy_subject = "English"
+
+[node name="enemy5" parent="Chunks/Land/A/Chunk_A3/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(944, 680)
+enemy_id = "eng_med-17"
+enemy_type = "med"
+enemy_subject = "English"
 
 [node name="B" type="Node2D" parent="Chunks/Land"]
 y_sort_enabled = true
@@ -972,23 +1029,42 @@ tile_set = ExtResource("6_40sqr")
 y_sort_enabled = true
 
 [node name="Pearl" parent="Chunks/Land/B/Chunk_B1/Entities" instance=ExtResource("8_p2y41")]
-position = Vector2(254, 573)
+position = Vector2(272, 608)
+State = "Sleep"
 
 [node name="enemy" parent="Chunks/Land/B/Chunk_B1/Entities" instance=ExtResource("8_1sm0l")]
 position = Vector2(827, 517)
-enemy_id = "eng_0"
+enemy_id = "tutorial_eng"
 enemy_type = "small"
 enemy_subject = "English"
 
 [node name="enemy2" parent="Chunks/Land/B/Chunk_B1/Entities" instance=ExtResource("8_1sm0l")]
 position = Vector2(716, 645)
-enemy_id = "eng_0"
+enemy_id = "eng_small-0"
 enemy_type = "small"
 enemy_subject = "English"
 
 [node name="enemy3" parent="Chunks/Land/B/Chunk_B1/Entities" instance=ExtResource("8_1sm0l")]
 position = Vector2(545, 554)
-enemy_id = "eng_0"
+enemy_id = "eng_small-00"
+enemy_type = "small"
+enemy_subject = "English"
+
+[node name="enemy4" parent="Chunks/Land/B/Chunk_B1/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(320, 184)
+enemy_id = "eng_med-3"
+enemy_type = "med"
+enemy_subject = "English"
+
+[node name="enemy5" parent="Chunks/Land/B/Chunk_B1/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(568, 112)
+enemy_id = "eng_large-1"
+enemy_type = "large"
+enemy_subject = "English"
+
+[node name="enemy6" parent="Chunks/Land/B/Chunk_B1/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(528, 280)
+enemy_id = "eng_small-5"
 enemy_type = "small"
 enemy_subject = "English"
 
@@ -1015,8 +1091,24 @@ position = Vector2(2, 31)
 marker_name = "test_3"
 
 [node name="Pearl_Marker" parent="Chunks/Land/B/Chunk_B1/Area2D" instance=ExtResource("11_iemxt")]
-position = Vector2(40, 31)
+position = Vector2(29.7278, 30.9092)
 marker_name = "pearl_marker"
+
+[node name="Tutorial" type="Node2D" parent="Chunks/Land/B/Chunk_B1"]
+
+[node name="Area2D" parent="Chunks/Land/B/Chunk_B1/Tutorial" instance=ExtResource("12_et777")]
+tutorial_name = "settings"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Chunks/Land/B/Chunk_B1/Tutorial/Area2D"]
+position = Vector2(456, 704.5)
+shape = SubResource("RectangleShape2D_iemxt")
+
+[node name="Area2D2" parent="Chunks/Land/B/Chunk_B1/Tutorial" instance=ExtResource("12_et777")]
+tutorial_name = "level"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Chunks/Land/B/Chunk_B1/Tutorial/Area2D2"]
+position = Vector2(584, 580)
+shape = SubResource("RectangleShape2D_et777")
 
 [node name="Chunk_B2" parent="Chunks/Land/B" instance=ExtResource("3_okubx")]
 position = Vector2(1024, -2048)
@@ -1043,6 +1135,55 @@ tile_set = ExtResource("6_40sqr")
 [node name="TileMapLayer5" type="TileMapLayer" parent="Chunks/Land/B/Chunk_B2/Tiles"]
 
 [node name="Entities" type="Node2D" parent="Chunks/Land/B/Chunk_B2"]
+y_sort_enabled = true
+
+[node name="enemy" parent="Chunks/Land/B/Chunk_B2/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(440, 232)
+enemy_id = "eng_large-5"
+enemy_type = "large"
+enemy_subject = "English"
+
+[node name="enemy2" parent="Chunks/Land/B/Chunk_B2/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(336, 304)
+enemy_id = "eng_med-5"
+enemy_type = "med"
+enemy_subject = "English"
+
+[node name="enemy3" parent="Chunks/Land/B/Chunk_B2/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(72, 496)
+enemy_id = "eng_large-6"
+enemy_type = "large"
+enemy_subject = "English"
+
+[node name="enemy4" parent="Chunks/Land/B/Chunk_B2/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(368, 688)
+enemy_id = "eng_small-6"
+enemy_type = "small"
+enemy_subject = "English"
+
+[node name="enemy5" parent="Chunks/Land/B/Chunk_B2/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(392, 896)
+enemy_id = "eng_small-7"
+enemy_type = "small"
+enemy_subject = "English"
+
+[node name="enemy6" parent="Chunks/Land/B/Chunk_B2/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(64, 792)
+enemy_id = "eng_small-8"
+enemy_type = "small"
+enemy_subject = "English"
+
+[node name="enemy8" parent="Chunks/Land/B/Chunk_B2/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(912, 880)
+enemy_id = "eng_small-9"
+enemy_type = "small"
+enemy_subject = "English"
+
+[node name="enemy7" parent="Chunks/Land/B/Chunk_B2/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(856, 400)
+enemy_id = "eng_med-8"
+enemy_type = "med"
+enemy_subject = "English"
 
 [node name="Chunk_B3" parent="Chunks/Land/B" instance=ExtResource("3_okubx")]
 position = Vector2(1024, -3072)
@@ -1285,6 +1426,37 @@ scale = Vector2(3.52438, 0.850193)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chunks/Land/C/Chunk_C1/C1_RoamArea8"]
 shape = SubResource("RectangleShape2D_40sqr")
 
+[node name="Node2D" type="Node2D" parent="Chunks/Land/C/Chunk_C1"]
+
+[node name="Area2D" parent="Chunks/Land/C/Chunk_C1/Node2D" instance=ExtResource("12_et777")]
+tutorial_name = "map"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chunks/Land/C/Chunk_C1/Node2D/Area2D"]
+position = Vector2(16, 139)
+shape = SubResource("RectangleShape2D_wjwcf")
+
+[node name="Area2D2" parent="Chunks/Land/C/Chunk_C1/Node2D" instance=ExtResource("12_et777")]
+position = Vector2(1000, 0)
+tutorial_name = "map"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chunks/Land/C/Chunk_C1/Node2D/Area2D2"]
+position = Vector2(16, 227)
+shape = SubResource("RectangleShape2D_wjwcf")
+
+[node name="Area2D3" parent="Chunks/Land/C/Chunk_C1/Node2D" instance=ExtResource("12_et777")]
+position = Vector2(512, -56)
+tutorial_name = "map"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chunks/Land/C/Chunk_C1/Node2D/Area2D3"]
+position = Vector2(16, 57)
+shape = SubResource("RectangleShape2D_4el7r")
+
+[node name="Lanterns" type="Node2D" parent="Chunks/Land/C/Chunk_C1"]
+y_sort_enabled = true
+
+[node name="Lantern" parent="Chunks/Land/C/Chunk_C1/Lanterns" instance=ExtResource("22_iemxt")]
+position = Vector2(384, 480)
+
 [node name="Chunk_C2" parent="Chunks/Land/C" instance=ExtResource("3_okubx")]
 unique_name_in_owner = true
 position = Vector2(2048, -2048)
@@ -1372,6 +1544,30 @@ tile_set = ExtResource("14_wjwcf")
 [node name="TileMapLayer4" type="TileMapLayer" parent="Chunks/Land/C/Chunk_C2/Tiles"]
 
 [node name="Entities" type="Node2D" parent="Chunks/Land/C/Chunk_C2"]
+
+[node name="enemy" parent="Chunks/Land/C/Chunk_C2/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(248, 184)
+enemy_id = "eng_small-9"
+enemy_type = "small"
+enemy_subject = "English"
+
+[node name="enemy2" parent="Chunks/Land/C/Chunk_C2/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(440, 208)
+enemy_id = "eng_small-10"
+enemy_type = "small"
+enemy_subject = "English"
+
+[node name="enemy3" parent="Chunks/Land/C/Chunk_C2/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(792, 216)
+enemy_id = "eng_med-10"
+enemy_type = "med"
+enemy_subject = "English"
+
+[node name="enemy4" parent="Chunks/Land/C/Chunk_C2/Entities" instance=ExtResource("8_1sm0l")]
+position = Vector2(608, 48)
+enemy_id = "eng_large-11"
+enemy_type = "large"
+enemy_subject = "English"
 
 [node name="Chunk_C3" parent="Chunks/Land/C" instance=ExtResource("3_okubx")]
 unique_name_in_owner = true

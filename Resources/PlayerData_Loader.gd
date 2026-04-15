@@ -5,6 +5,7 @@ extends Node
 @onready var gender = player_data["chosen"]
 @onready var difficulty = player_data["difficulty"]
 
+@onready var Mister = "Mister"
 @onready var mister = "mister"
 @onready var He = "He"
 @onready var he = "he"
@@ -15,6 +16,7 @@ extends Node
 
 func _ready() -> void:
 	if gender == "Female":
+		Mister = "Miss"
 		mister = "miss"
 		He = "She"
 		he = "she"
@@ -23,6 +25,7 @@ func _ready() -> void:
 		His = "Her"
 		his = "her"
 	else:
+		Mister = "Mister"
 		mister = "mister"
 		He = "He"
 		He = "He"
@@ -31,5 +34,29 @@ func _ready() -> void:
 		him = "him"
 		His = "His"
 		his = "his"
+
+func update_playerdata():
+	player_data = SaveManager.load_game("player_file")
+	player_name = player_data["player_name"]
+	gender = player_data["chosen"]
+	difficulty = player_data["difficulty"]
 	
-	
+	if gender == "Female":
+		Mister = "Miss"
+		mister = "miss"
+		He = "She"
+		he = "she"
+		Him = "Her"
+		him = "her"
+		His = "Her"
+		his = "her"
+	else:
+		Mister = "Mister"
+		mister = "mister"
+		He = "He"
+		He = "He"
+		he = "he"
+		Him = "Him"
+		him = "him"
+		His = "His"
+		his = "his"

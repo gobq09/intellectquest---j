@@ -154,7 +154,7 @@ func _ready() -> void:
 	
 	$Summary.visible = false
 	game_data["in_combat"] = true
-	SaveManager.save_game(game_data, "in_combat")
+	SaveManager.save_game(game_data, "save_file")
 	
 	if player_data["chosen"] == "Female":
 		player_sprite.texture = female_sprite
@@ -187,7 +187,7 @@ func _load_enemy() -> void:
 		enemy_health = randi_range(50, 100)
 	
 	enemy_damage += int(player_level * 1.5)
-	enemy_health += int(player_level * 1.5)
+	enemy_health += int(player_level * 5)
 	
 	enemy_max_health = enemy_health
 	enemy_health_bar.max_value = enemy_health
@@ -463,6 +463,7 @@ func _on_enemy_defeated():
 	
 	await get_tree().create_timer(1).timeout
 	
+	game_data = SaveManager.load_game("save_file")
 	game_data["defeated_enemies"][enemy_id] = Time.get_unix_time_from_system() + respawn_duration
 	game_data["player_lost"] = false
 	game_data["in_combat"] = false
@@ -501,6 +502,7 @@ func _on_player_defeated():
 	
 	await get_tree().create_timer(1).timeout
 	
+	game_data = SaveManager.load_game("save_file")
 	player_data["player_hp"] = default_maxhp
 	game_data["global_position"] = game_data["respawn_point"]
 	game_data["player_lost"] = true
@@ -591,6 +593,7 @@ func _evaluate():
 	
 	summary_text.text += "\n\n\n"
 	
+	player_data = SaveManager.load_game("player_file")
 	player_data["player_level"] = level_up
 	player_data["player_hp"] = player_health
 	player_data["unused_stats"] = stats_add

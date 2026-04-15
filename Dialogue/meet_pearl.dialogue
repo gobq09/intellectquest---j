@@ -3,6 +3,7 @@
 #Pearls honorifics determine by the player's gender pick!
 do SignalManager.dialogue_enter.emit()
 do SignalManager.camera_move_to.emit(Vector2(0, 20))
+do PlayerDataLoader.update_playerdata()
 
 {{PlayerDataLoader.player_name}}: Man... how did I even end up in a place like this...
 {{PlayerDataLoader.player_name}}: ...
@@ -12,9 +13,13 @@ Pearl: Hey there, you!
 {{PlayerDataLoader.player_name}}: Huh?
 Pearl: I'm talking to you, {{PlayerDataLoader.mister}}!
 #pag idle lang kailangan nung direction
+do SignalManager.player_anim.emit("Idle", "Right")
+[next=1]
 do SignalManager.player_anim.emit("Idle", "Left")
 [next=1]
-do SignalManager.player_anim.emit("Idle", "Right")
+do SignalManager.player_anim.emit("Idle", "Up")
+[next=1]
+do SignalManager.player_anim.emit("Idle", "Down")
 [next=1]
 {{PlayerDataLoader.player_name}}: Is someone there?
 Pearl: I'm over here, {{PlayerDataLoader.mister}}!
@@ -37,12 +42,12 @@ Pearl: Yep! hehe~
 {{PlayerDataLoader.player_name}}: A talking book...
 do SignalManager.pearl_anim.emit("Wake Up")
 do wait(0.5)
-do SignalManager.pearl_anim.emit("Down")
+do SignalManager.look_at_player.emit("Pearl")
 do wait(0.5)
 Pearl: That's me!
 do SignalManager.move_pearl_to.emit("pearl_marker")
 do wait(1)
-do SignalManager.pearl_anim.emit("Left")
+do SignalManager.look_at_player.emit("Pearl")
 do SignalManager.player_look_at.emit("Pearl")
 {{PlayerDataLoader.player_name}}: A *TALKING* book!
 {{PlayerDataLoader.player_name}}: AAHHHH!
@@ -55,7 +60,7 @@ Pearl: It's like you've seen a ghost or something.
 {{PlayerDataLoader.player_name}}: I must've gone crazy!
 do SignalManager.player_anim.emit("Idle", "Up")
 {{PlayerDataLoader.player_name}}: So this is a dream! [wait=1]HAHAHAHA!
-Pearl: Mister, what are you talking about?
+Pearl: {{PlayerDataLoader.Mister}}, what are you talking about?
 Pearl: Are you alright?
 {{PlayerDataLoader.player_name}}: I need to wake up,[wait=1] NOW!
 #move_to_marker.emit("marker_name", duration = default 1.0),
@@ -74,9 +79,9 @@ do SignalManager.move_to_marker.emit("test_3")
 #pa-disable lang ulit nung movement after gumalaw,
 #though di rin naman makakagalaw yung player since di nagagalaw yung joystick
 do SignalManager.movement_disabled.emit()
-Pearl: Hey mister, calm down!
+Pearl: Hey {{PlayerDataLoader.mister}}, calm down!
 #{{PlayerDataLoader.player_name}} stops and looks at Pearl
-do SignalManager.player_anim.emit("Idle", "Down")
+do SignalManager.player_look_at.emit("Pearl")
 {{PlayerDataLoader.player_name}}: No way I'm calming down!
 {{PlayerDataLoader.player_name}}: A strange beach... and a talking book!
 {{PlayerDataLoader.player_name}}: Is this a punishment... for being a bum in class?
@@ -90,10 +95,10 @@ Pearl: "Ad"? What is that?
 {{PlayerDataLoader.player_name}}: Doesn't matter now...
 {{PlayerDataLoader.player_name}}: This is a punishment for me... for being bad in class... *sob*
 Pearl: ...
-Pearl: Mister, you mentioned that you're bad in class?
+Pearl: {{PlayerDataLoader.Mister}}, you mentioned that you're bad in class?
 {{PlayerDataLoader.player_name}}: Yes...
 Pearl: ...
-Pearl: Hey mister, let me help you get back home!
+Pearl: Hey {{PlayerDataLoader.mister}}, let me help you get back home!
 {{PlayerDataLoader.player_name}}: What?
 Pearl: There must be a reason for you to be transported into this world.
 {{PlayerDataLoader.player_name}}: Where are we anyway...
@@ -103,7 +108,7 @@ Pearl: Intellectraxis! The world where knowledge is power!
 {{PlayerDataLoader.player_name}}: I think I've heard that line back in my world before...
 Pearl: You're currently in the nation of Linguara.
 {{PlayerDataLoader.player_name}}: Ling-what now?
-Pearl: *Sigh* Linguara, mister. An ancient name that means Language! Therefore, you are currently in the Nation of Language!
+Pearl: *Sigh* Linguara, {{PlayerDataLoader.mister}}. An ancient name that means Language! Therefore, you are currently in the Nation of Language!
 {{PlayerDataLoader.player_name}}: Nation of Language...
 {{PlayerDataLoader.player_name}}: That's ridiculous. The nation here is made up of different languages?
 Pearl: Yes and no!
@@ -128,26 +133,26 @@ Pearl: I think it's because of me.
 Pearl: I don't really know... I've lost my memories 2 months ago... so...
 {{PlayerDataLoader.player_name}}: It's fine...
 {{PlayerDataLoader.player_name}}: I should thank you.
-Pearl: Thank me? Why, mister?
+Pearl: Thank me? Why, {{PlayerDataLoader.mister}}?
 {{PlayerDataLoader.player_name}}: Nothing... the feeling of being here still creeps me out.
 {{PlayerDataLoader.player_name}}: But you helped me get back to my senses...
 {{PlayerDataLoader.player_name}}: And even told me where the heck I am.
-Pearl: Mister...
+Pearl: {{PlayerDataLoader.Mister}}...
 {{PlayerDataLoader.player_name}}: You're like a walking archive!
 {{PlayerDataLoader.player_name}}: So what should I call you?
-Pearl: I-I don't know, mister... I'm sorry.
-Pearl: I was just wandering everywhere after I lost my memories before I stumbled here, mister!
+Pearl: I-I don't know, {{PlayerDataLoader.mister}}... I'm sorry.
+Pearl: I was just wandering everywhere after I lost my memories before I stumbled here, {{PlayerDataLoader.mister}}!
 {{PlayerDataLoader.player_name}}: Oh, I see...
 {{PlayerDataLoader.player_name}}: Hmmm...
 {{PlayerDataLoader.player_name}}: Let's see...
 {{PlayerDataLoader.player_name}}: Maybe I should call you... Pearl!
 Pearl: ...!
 Pearl: ...
-Pearl: W-why Pearl, mister, if I may ask?
+Pearl: W-why Pearl, {{PlayerDataLoader.mister}}, if I may ask?
 {{PlayerDataLoader.player_name}}: Well... you have a goldish pearl-like gem in the middle of you!
 {{PlayerDataLoader.player_name}}: And it sounds about right!
 Pearl: ...
-Pearl: Thank you, mister!
+Pearl: Thank you, {{PlayerDataLoader.mister}}!
 Pearl: ...
 Pearl: So I'm... Pearl!
 Pearl: Oh hey, master!

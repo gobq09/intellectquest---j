@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://b54su3yysxvlp"
+path="res://.godot/imported/spawn_linguara.dialogue-e80ce60cce64dc66a64362887acaad77.tres"
+
+[deps]
+
+source_file="res://Dialogue/spawn_linguara.dialogue"
+dest_files=["res://.godot/imported/spawn_linguara.dialogue-e80ce60cce64dc66a64362887acaad77.tres"]
+
+[params]
+
+defaults=true

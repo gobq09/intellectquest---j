@@ -22,10 +22,15 @@ var bottom_limit: float = 600.0
 @onready var sprite = $Sprite2D
 @onready var anim_player = $AnimationPlayer
 
+@onready var config_data = SaveManager.load_game("config_file")
+
 @onready var chicken_sprite = preload("res://Sprites/npc/animals/animal-chicken.png")
 @onready var chick_sprite = preload("res://Sprites/npc/animals/animal-chick.png")
 
 func _ready() -> void:
+	if config_data["Animals"] == false:
+		self.queue_free()
+	
 	if type == "Chicken":
 		sprite.texture = chicken_sprite
 	elif type == "Chick":

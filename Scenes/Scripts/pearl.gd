@@ -45,7 +45,7 @@ func look_at_player(npc_name: String, player_pos: Vector2):
 		var distance
 		looking_at_player = true
 		#while looking_at_player == true:
-		distance = (player_pos - npc_position).normalized()
+		distance = (player_pos - self.global_position).normalized()
 		
 		if abs(distance.x) > abs(distance.y):
 			if distance.x < 0:

@@ -44,7 +44,7 @@ func _ready() -> void:
 	if game_data["player_ran"] == true:
 		_on_player_ran()
 	
-	print(defeated_enemies)
+	#print(defeated_enemies)
 	if defeated_enemies.has(enemy_id):
 		#print("freed " + str(enemy_id))
 		#print(str(defeated_enemies[str(enemy_id)]))
@@ -54,7 +54,10 @@ func _ready() -> void:
 			$CollisionShape2D.disabled = false
 			detect_area.process_mode = Node.PROCESS_MODE_INHERIT
 			battle_area.process_mode = Node.PROCESS_MODE_INHERIT
+			game_data = SaveManager.load_game("save_file")
+			defeated_enemies = game_data["defeated_enemies"]
 			defeated_enemies.erase(str(enemy_id))
+			SaveManager.save_game(game_data, "save_file")
 		else:
 			#print("not respawned")
 			remaining_time = defeated_enemies[str(enemy_id)] - Time.get_unix_time_from_system()
@@ -96,7 +99,11 @@ func _on_timer_timeout() -> void:
 	
 	detect_area.process_mode = Node.PROCESS_MODE_INHERIT
 	battle_area.process_mode = Node.PROCESS_MODE_INHERIT
+	
+	game_data = SaveManager.load_game("save_file")
+	defeated_enemies = game_data["defeated_enemies"]
 	defeated_enemies.erase(str(enemy_id))
+	SaveManager.save_game(game_data, "save_file")
 	
 	effects.visible = true
 	effects_anim.play("spawn")
@@ -146,6 +153,13 @@ func start_battle() -> void:
 	enemy_data["enemy_size"] = enemy_type
 	enemy_data["enemy_subject"] = enemy_subject
 	game_data["in_combat"] = true
+	
+	var player_data = SaveManager.load_game("player_file")
+	
+	if player_data["ui_tutorial"]["combat"] == false:
+		battle_scene = "uid://55y6ic4bok7m"
+	else:
+		battle_scene = "uid://dxhaxrctujkex"
 	
 	SaveManager.save_game(game_data, "save_file")
 	SaveManager.save_game(enemy_data, "enemy_file")

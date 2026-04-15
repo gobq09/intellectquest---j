@@ -6,6 +6,7 @@ signal enemy_collected
 
 var locked = false
 @onready var game_data = SaveManager.load_game("save_file")
+@onready var position_data = SaveManager.load_game("position_file")
 @onready var config_data = SaveManager.load_game("config_file")
 @onready var timer = $SaveTimer
 @onready var anim_player = $Player_AnimTree/AnimationPlayer
@@ -19,11 +20,11 @@ var locked = false
 @export var speed = 80
 @export var friction = 0.3
 @export var acceleration = 0.2
-@export var ani_tree: AnimationTree
+@onready var ani_tree: AnimationTree = $Player_AnimTree
 
 #@onready var ani_tree: AnimationTree = $AnimationTree
 @onready var joystick = get_tree().get_first_node_in_group("joystick")
-@onready var last_position : String = game_data["global_position"]
+@onready var last_position : String = position_data["global_position"]
 @onready var particles: GPUParticles2D = $GPUParticles2D
 
 var getting_tracked : bool = false
@@ -62,7 +63,6 @@ var current_chunk: Node2D = null
 
 func _ready() -> void:
 	SignalManager.map_changed.connect(map_changed)
-	SignalManager.trigger_ui.connect(disable_movement)
 	SignalManager.movement_disabled.connect(disable_movement)
 	SignalManager.move_player.connect(move_player)
 	SignalManager.player_anim.connect(player_anim)
@@ -75,25 +75,31 @@ func _ready() -> void:
 	else:
 		sprite.texture = male_sprite
 	
-	#if config_data["Graphics_Mode"] == "Low":
-		#particles.process_mode = Node.PROCESS_MODE_DISABLED
-	#else:
-		#particles.process_mode = Node.PROCESS_MODE_INHERIT
+	if config_data["Particles"] == false:
+		particles.process_mode = Node.PROCESS_MODE_DISABLED
+	else:
+		particles.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	position = _convert(last_position)
 	ani_tree.set("parameters/Idle/blend_position", Vector2(0,1))
 	self.set_process_input(false) 
 	
-	SignalManager.entered_chunk.emit(game_data["last_chunk"])
+	SignalManager.entered_chunk.emit(position_data["last_chunk"])
 	
-	if  game_data["new_game"] ||  game_data["player_lost"] == true:
+	if game_data["new_game"] == true:
 		set_physics_process(false)
-		SignalManager.player_defeated.emit()
 		_cutscene("wakeup")
 		await ani_tree.animation_finished
 	
+	if game_data["player_lost"] == true:
+		set_physics_process(false)
+		SignalManager.player_defeated.emit()
+		_cutscene("respawn")
+		await ani_tree.animation_finished
+	
 	game_data["last_scene"] = "uid://d4dgymuee0bxt"
-	game_data["global_position"] = position
+	position_data["global_position"] = position
+	SaveManager.save_game(position_data, "position_file")
 	SaveManager.save_game(game_data, "save_file")
 
 func _convert(string):
@@ -138,15 +144,36 @@ func collect(item):
 
 func _cutscene(animation: String = "null") -> void:
 	if animation == "wakeup":
+		print("wtf")
+		ani_tree.get("parameters/playback").travel("Wake Up")
+		await ani_tree.animation_finished
+		print("wtf2")
+		await get_tree().create_timer(1).timeout
+		ani_tree.get("parameters/playback").travel("Look Around")
+		await get_tree().create_timer(2).timeout
+		ani_tree.get("parameters/playback").travel("Pinch")
+		await ani_tree.animation_finished
+		await get_tree().create_timer(1).timeout
+		ani_tree.get("parameters/playback").travel("Look Around")
+		await get_tree().create_timer(1).timeout
+		ani_tree.get("parameters/playback").travel("Stand Up")
+		await ani_tree.animation_finished
+		
+		await get_tree().create_timer(1).timeout
+		SignalManager.ui_tutorial.emit("joystick")
+		game_data["new_game"] = false
+		SaveManager.save_game(game_data, "save_file")
+	elif animation == "respawn":
 		ani_tree.get("parameters/playback").travel("Wake Up")
 		await ani_tree.animation_finished
 		ani_tree.get("parameters/playback").travel("Stand Up")
 		await ani_tree.animation_finished
-		game_data["new_game"] = false
+		
 		game_data["player_lost"] = false
 		SaveManager.save_game(game_data, "save_file")
-	set_physics_process(true)
-	print("after cutscene: ", game_data["new_game"])
+	
+	SignalManager.movement_enabled.emit()
+	#print("after cutscene: ", game_data["new_game"])
 
 func disable_movement():
 	#joystick.process_mode = Node.PROCESS_MODE_DISABLED
@@ -221,7 +248,7 @@ func send_player_pos(target_name):
 	SignalManager.send_player_position.emit(target_name, self.global_position)
 
 func player_look_at(node_name: String, node_pos: Vector2):
-	var distance = (node_pos - self.position).normalized()
+	var distance = (node_pos - self.global_position).normalized()
 	var face: Vector2
 	
 	if abs(distance.x) > abs(distance.y):
@@ -242,9 +269,9 @@ func map_changed(scene):
 	Handler.map_changed(scene, position)
 
 func _on_timer_timeout() -> void:
-	game_data = SaveManager.load_game("save_file")
-	game_data["global_position"] = position
-	SaveManager.save_game(game_data, "save_file")
+	position_data = SaveManager.load_game("position_file")
+	position_data["global_position"] = position
+	SaveManager.save_game(position_data, "position_file")
 	
 #region Player Footsteps
 func _process(delta):

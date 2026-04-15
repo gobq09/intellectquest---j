@@ -16,7 +16,6 @@ signal player_defeated
 signal interface_changed
 
 signal ui_tutorial(type)
-signal trigger_ui
 signal ui_tutorial_end
 
 signal movement_disabled
@@ -53,3 +52,5 @@ signal play_sfx(sfx_name: String)
 signal play_ambience(ambience_name: String)
 signal stop_music()
 signal stop_ambience()
+
+signal spawn_point_set(spawn_point: String)

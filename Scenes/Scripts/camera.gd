@@ -1,7 +1,5 @@
 extends Camera2D
 
-@onready var game_data = SaveManager.load_game("save_file")
-
 func _ready() -> void:
 	SignalManager.camera_move_to.connect(camera_move_to)
 	
