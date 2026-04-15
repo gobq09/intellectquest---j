@@ -8,12 +8,14 @@ extends Control
 @onready var fil_questions = SaveManager.load_game("player_questions")["fil_questions"]
 @onready var game_data = SaveManager.load_game("save_file")
 @onready var player_data = SaveManager.load_game("player_file")
+@onready var inv_data = SaveManager.load_game("inv_file")
 @onready var damage_scene = preload("uid://jedq6o8gy80k")
 
 @onready var eng_topics = Questions.english_topic
 @onready var sci_topics = Questions.science_topic
 @onready var math_topics = Questions.math_topic
 @onready var fil_topics = Questions.fil_topic
+
 
 @onready var last_scene = SaveManager.load_game("save_file")["last_scene"]
 #@onready var last_position = SaveManager.load_game("save_file")["global_position"]
@@ -96,6 +98,9 @@ extends Control
 @onready var enemy_size = enemy_data["enemy_size"]
 @onready var question_subject = enemy_data["enemy_subject"]
 @onready var perfect : bool = true
+@onready var drop_chance: float = 0.1
+
+var received_items : Array = []
 
 var temp_dmg = 0
 var temp_reduce = 0
@@ -248,7 +253,23 @@ func _new_question() -> void:
 	
 	countdown.start(time_duration)
 	timer_node.visible = true
-	
+
+func item_drop(result):
+	var modified_drop : float
+	if result == "correct":
+		modified_drop = drop_chance * 2
+	else:
+		modified_drop = drop_chance / 2
+	if randf() <= modified_drop:
+		var items : Array = inv_data.keys()
+		var dropped_item = items[randi_range(0, items.size() - 1)]
+		
+		received_items.append(dropped_item)
+	pass
+
+func give_items():
+	for item in received_items:
+		InventoryManager.add_item(item)
 
 func _process(delta: float) -> void:
 	timer_label.set_text(str(countdown.get_time_left()).pad_decimals(0))
@@ -335,6 +356,7 @@ func _on_correct_answer():
 	await anim_player.animation_finished
 	print("Correct! Enemy HP: ", enemy_health)
 	
+	item_drop("correct")
 	set_process_input(false)
 	anim_player.play("RESET")
 	await anim_player.animation_finished
@@ -382,6 +404,7 @@ func _on_wrong_answer():
 	await anim_player.animation_finished
 
 	print("Wrong! Player HP: ", player_health)
+	item_drop("wrong")
 	
 	set_process_input(false)
 	anim_player.play("RESET")
@@ -513,7 +536,9 @@ func _evaluate():
 	var summary_cor: String
 	var count: int = 1
 	var exp_gain: int
-
+	
+	give_items()
+	
 	#show question
 	for ques in encountered_questions:
 		summary_ques = encountered_questions[count]["Question"]
