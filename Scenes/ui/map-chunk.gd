@@ -4,9 +4,9 @@ extends TextureRect
 @export var rows: int
 
 @onready var player = $Player
-@onready var game_data = SaveManager.load_game("save_file")
-@onready var chunk = game_data["last_chunk"]
-@onready var grid = game_data["chunk_grid"]
+@onready var player_data = SaveManager.load_game("player_file")
+@onready var chunk = player_data["last_chunk"]
+@onready var grid = player_data["chunk_grid"]
 
 var x_axis : Array = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 var y_axis : Array = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]

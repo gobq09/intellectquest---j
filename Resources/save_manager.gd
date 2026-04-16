@@ -124,7 +124,7 @@ var inv_data: Dictionary = {
 		"ItemID": 5,
 		"Type": "Consumable",
 		"Name": "Speed Potion",
-		"Desc": "A potion that energizes the body and increases movement speed.",
+		"Desc": "A potion that energizes the body and increases movement speed. Increases run chance when in combat",
 		"Quantity": 0,
 		"Effect": "Walk_Speed",
 		"Sprite": "res://ui/inventory/items/items-potion2.png"

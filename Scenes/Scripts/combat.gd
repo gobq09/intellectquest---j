@@ -156,6 +156,9 @@ func _ready() -> void:
 	game_data["in_combat"] = true
 	SaveManager.save_game(game_data, "save_file")
 	
+	if player_data["walk_buff"] > 0:
+		run_chance *= 4
+	
 	if player_data["chosen"] == "Female":
 		player_sprite.texture = female_sprite
 		portrait.texture = female_portrait
@@ -187,7 +190,7 @@ func _load_enemy() -> void:
 		enemy_health = randi_range(50, 100)
 	
 	enemy_damage += int(player_level * 1.5)
-	enemy_health += int(player_level * 5)
+	enemy_health += (int(player_level * 5) + int(player_int))
 	
 	enemy_max_health = enemy_health
 	enemy_health_bar.max_value = enemy_health
@@ -343,7 +346,9 @@ func _save_question(topic_type: String):
 	print(game_data[topic_type].values().has(int(question_type[str(question_id)]["TopicID"])))
 	
 	if not game_data[topic_type].values().has(int(question_type[str(question_id)]["TopicID"])):
+		game_data = SaveManager.load_game("save_file")
 		game_data[topic_type][game_data[topic_type].size() + 1] = int(question_type[str(question_id)]["TopicID"])
+		SaveManager.save_game(game_data, "save_file")
 	
 func _on_correct_answer():
 	player_damage = randi_range(player_min_damage, player_max_damage)

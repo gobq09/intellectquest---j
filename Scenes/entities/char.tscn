@@ -503,6 +503,9 @@ vframes = 8
 wait_time = 0.1
 one_shot = true
 
+[node name="BuffTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(0, 9)
 emitting = false
@@ -518,3 +521,4 @@ process_material = SubResource("ParticleProcessMaterial_dk8q8")
 bus = &"Sound Effects"
 
 [connection signal="timeout" from="SaveTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="BuffTimer" to="." method="_on_buff_timer_timeout"]

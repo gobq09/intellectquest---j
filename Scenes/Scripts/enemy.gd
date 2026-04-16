@@ -30,6 +30,8 @@ var remaining_time
 var sprite
 
 func _ready() -> void:
+	enemy_id = enemy_subject + "_" + enemy_type + "-" + enemy_id
+	
 	if enemy_type == "small":
 		sprite = enemy_small
 	elif enemy_type == "med":

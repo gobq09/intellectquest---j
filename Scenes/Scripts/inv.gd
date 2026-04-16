@@ -129,7 +129,7 @@ func apply_buff(id):
 		"Stat":
 			player_data["unused_stats"] += 5
 		"Walk_Speed":
-			player_data["walk_buff"] = 180
+			player_data["walk_buff"] = Time.get_unix_time_from_system() + 180
 	
 	SaveManager.save_game(player_data, "player_file")
 	SaveManager.save_game(game_data, "save_file")

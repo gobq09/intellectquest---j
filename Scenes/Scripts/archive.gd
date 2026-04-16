@@ -94,7 +94,7 @@ func _load_topic(subject: Dictionary, source: Dictionary, action: String = "next
 	
 	count += 1
 	
-	if count == current_subject.size():
+	if count >= current_subject.size():
 		page_right.visible = false
 	else: 
 		page_right.visible = true

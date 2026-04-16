@@ -2,8 +2,6 @@ extends Node2D
 
 @export_enum("Down", "Up", "Left", "Right") var face
 
-@onready var light1 = $StaticBody2D/PointLight2D
-@onready var light2 = $StaticBody2D/PointLight2D2
 @onready var config_file = SaveManager.load_game("config_file")
 
 # Called when the node enters the scene tree for the first time.

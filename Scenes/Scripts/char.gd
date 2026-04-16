@@ -70,6 +70,8 @@ func _ready() -> void:
 	SignalManager.look_at_player.connect(send_player_pos)
 	SignalManager.send_node_position.connect(player_look_at)
 	
+	walk_speed_buff()
+	
 	if player_data["chosen"] == "Female":
 		sprite.texture = female_sprite
 	else:
@@ -101,6 +103,22 @@ func _ready() -> void:
 	position_data["global_position"] = position
 	SaveManager.save_game(position_data, "position_file")
 	SaveManager.save_game(game_data, "save_file")
+
+func walk_speed_buff():
+	player_data =SaveManager.load_game("player_file")
+	
+	print(player_data["walk_buff"])
+	print(Time.get_unix_time_from_system())
+	
+	if player_data["walk_buff"] > Time.get_unix_time_from_system():
+		print("sped up")
+		speed *= 1.5
+		$BuffTimer.start(player_data["walk_buff"] - Time.get_unix_time_from_system())
+		print(player_data["walk_buff"] - Time.get_unix_time_from_system())
+
+func _on_buff_timer_timeout() -> void:
+	print("back to normal")
+	speed /= 1.5
 
 func _convert(string):
 	var new_string: String = str(string)

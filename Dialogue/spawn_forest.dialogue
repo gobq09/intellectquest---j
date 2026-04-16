@@ -1,8 +1,21 @@
 ~ start
+
+do SignalManager.dialogue_enter.emit()
+do SignalManager.camera_move_to.emit(Vector2(0, 20))
+
+do wait(0.1)
+do SignalManager.move_to_marker.emit("Forest_Innkeeper", 0.5)
+do wait(1)
+do SignalManager.movement_disabled.emit()
+do SignalManager.player_look_at.emit("Forest_Innkeeper")
+
 Innkeeper: [[Hi|Hello|Howdy]].
 Innkeeper: Would you like to set your Spawn Point here?
 - Yes
 	do SignalManager.spawn_point_set.emit("Forest")
-	Spawn Point Set.
+	Innkeeper: Spawn Point Set.
 - No
+
+do SignalManager.camera_move_to.emit(Vector2.ZERO)
+do SignalManager.dialogue_exit.emit()
 => END
