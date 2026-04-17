@@ -186,9 +186,6 @@ func _handle_event(event_type: String, target: String):
 		
 func _on_enemy_killed(subject: String):
 	_handle_event("kill", subject)
-	print("ENEMY DEFEATED TRIGGERED")
-	print("RECEIVED KILL:", subject)
-	_handle_event("kill", subject)
 	
 func _on_npc_talked(npc_id: String):
 	_handle_event("talk", npc_id)
@@ -198,18 +195,6 @@ func _on_area_entered(area_id: String):
 	_handle_event("area", area_id)
 	#incomplete_quests("talk", area_id)
 	
-
-func incomplete_quests(task_type, target):
-	var quest_data = SaveManager.load_game("quest_file")
-	
-	for id in quest_data:
-		if not id == "none":
-			if quest_data[id]["completed"] == false:
-				for task in quest_data[id]["tasks"]:
-					if quest_data[id]["tasks"][task]["type"] == task_type:
-						if quest_data[id]["tasks"][task]["target"] == target:
-							var task_id = str(quest_data[str(id)]["tasks"][task])
-							_update_task(id, task_id, 1)
 
 func advance_current_task(amount: int = 1):
 	var game_data = SaveManager.load_game("save_file")
