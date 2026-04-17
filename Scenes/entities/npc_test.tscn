@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://dqg8pwixr1xje"]
+[gd_scene load_steps=15 format=3 uid="uid://dqg8pwixr1xje"]
 
 [ext_resource type="Texture2D" uid="uid://br1lan3wx6wr5" path="res://Sprites/npc/npc-male1.png" id="1_c8h45"]
 [ext_resource type="Texture2D" uid="uid://cp84ckp6bwp2i" path="res://Sprites/misc/shadow.png" id="1_omft8"]
 [ext_resource type="Script" uid="uid://cjaqwhmhtfunl" path="res://Scenes/Scripts/npc_test.gd" id="1_pll2s"]
-[ext_resource type="PackedScene" uid="uid://bmalbfcbg5qhy" path="res://Scenes/npc_interact.tscn" id="4_tkykd"]
 [ext_resource type="Texture2D" uid="uid://j43jxnnk3bmp" path="res://ui/hud/interface-interact-talk.png" id="4_ylyrk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_omft8"]
@@ -166,5 +165,3 @@ libraries = {
 &"": SubResource("AnimationLibrary_4uugg")
 }
 autoplay = "float"
-
-[node name="Interactable" parent="." instance=ExtResource("4_tkykd")]

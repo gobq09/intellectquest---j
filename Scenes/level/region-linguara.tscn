@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://d4dgymuee0bxt"]
+[gd_scene load_steps=48 format=4 uid="uid://d4dgymuee0bxt"]
 
 [ext_resource type="PackedScene" uid="uid://b4qaqebdse2qj" path="res://Scenes/entities/char.tscn" id="1_5ky5g"]
 [ext_resource type="PackedScene" uid="uid://g3w75c5xrktm" path="res://Scenes/camera.tscn" id="2_qs2e4"]
@@ -11,14 +11,17 @@
 [ext_resource type="TileSet" uid="uid://byyck7socg513" path="res://Tileset/rock-wall.tres" id="8_6487e"]
 [ext_resource type="PackedScene" uid="uid://b7jsh0ig40pa2" path="res://Scenes/entities/pearl.tscn" id="8_p2y41"]
 [ext_resource type="TileSet" uid="uid://dokuecav10rh5" path="res://Tileset/whitewall.tres" id="9_p2y41"]
-[ext_resource type="Script" uid="uid://kudfge835vls" path="res://new folder/dialogue_trigger.gd" id="10_et777"]
 [ext_resource type="TileSet" uid="uid://jnmii1v82ic3" path="res://Tileset/tile_path.tres" id="10_tuvng"]
+[ext_resource type="Resource" uid="uid://bgqhln5jp0k78" path="res://Dialogue/meet_pearl.dialogue" id="11_6ttx2"]
 [ext_resource type="TileSet" uid="uid://di7ocykekmaw2" path="res://Tileset/stone-border.tres" id="11_et777"]
 [ext_resource type="PackedScene" uid="uid://bjdr8y5w68q6l" path="res://Scenes/move_marker.tscn" id="11_iemxt"]
 [ext_resource type="PackedScene" uid="uid://c6vw60kkhwt0y" path="res://Scenes/tutorial_trigger.tscn" id="12_et777"]
 [ext_resource type="TileSet" uid="uid://dkygyeegsgi5y" path="res://Tileset/door.tres" id="12_iemxt"]
 [ext_resource type="TileSet" uid="uid://cw2087whh866g" path="res://Tileset/pillars.tres" id="13_lxs7d"]
 [ext_resource type="TileSet" uid="uid://c57htxv0o11hr" path="res://Tileset/box.tres" id="13_okubx"]
+[ext_resource type="PackedScene" uid="uid://c8mc71x16fhhf" path="res://Scenes/dialogue_area.tscn" id="13_rhoyo"]
+[ext_resource type="PackedScene" uid="uid://bmtg35qqwog2u" path="res://quest_area.tscn" id="14_8edvc"]
+[ext_resource type="Resource" uid="uid://btfbhw7ol32gv" path="res://Dialogue/first_combat.dialogue" id="14_hrb5s"]
 [ext_resource type="TileSet" uid="uid://cwwa3ega1srxf" path="res://Tileset/roof.tres" id="14_wjwcf"]
 [ext_resource type="TileSet" uid="uid://clvadl4qhsqom" path="res://Tileset/dock.tres" id="15_qs2e4"]
 [ext_resource type="PackedScene" uid="uid://dfhccnj4vvm1r" path="res://Scenes/entities/npc.tscn" id="16_40sqr"]
@@ -28,18 +31,25 @@
 [ext_resource type="PackedScene" uid="uid://dqg8pwixr1xje" path="res://Scenes/entities/npc_test.tscn" id="23_lxs7d"]
 [ext_resource type="Texture2D" uid="uid://br1lan3wx6wr5" path="res://Sprites/npc/npc-male1.png" id="24_wjwcf"]
 [ext_resource type="PackedScene" uid="uid://bmalbfcbg5qhy" path="res://Scenes/npc_interact.tscn" id="25_4el7r"]
+[ext_resource type="Resource" uid="uid://46yeq7l8jgka" path="res://Dialogue/quest_2.dialogue" id="26_8edvc"]
 [ext_resource type="Resource" uid="uid://cbwjsirbw8126" path="res://Dialogue/spawn_greymoor.dialogue" id="26_ckvbg"]
 [ext_resource type="Resource" uid="uid://b54su3yysxvlp" path="res://Dialogue/spawn_linguara.dialogue" id="29_50784"]
 [ext_resource type="Resource" uid="uid://x78shpm8go2q" path="res://Dialogue/spawn_forest.dialogue" id="30_6fw01"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxs7d"]
-size = Vector2(32, 202)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iemxt"]
 size = Vector2(224, 17)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_et777"]
-size = Vector2(32, 136)
+size = Vector2(32, 104)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrb5s"]
+size = Vector2(170, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhoyo"]
+size = Vector2(24, 88)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8edvc"]
+radius = 32.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_40sqr"]
 size = Vector2(75.625, 99.5)
@@ -52,6 +62,9 @@ size = Vector2(448, 34)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_50784"]
 radius = 32.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8edvc"]
+size = Vector2(66, 128)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cgu63"]
 texture = ExtResource("17_l3hrx")
@@ -1077,32 +1090,6 @@ enemy_id = "eng_small-5"
 enemy_type = "small"
 enemy_subject = "English"
 
-[node name="Area2D" type="Area2D" parent="Chunks/Land/B/Chunk_B1"]
-y_sort_enabled = true
-position = Vector2(299, 614)
-rotation = -1.57964
-script = ExtResource("10_et777")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Chunks/Land/B/Chunk_B1/Area2D"]
-position = Vector2(2, 54)
-shape = SubResource("RectangleShape2D_lxs7d")
-
-[node name="Move_Marker" parent="Chunks/Land/B/Chunk_B1/Area2D" instance=ExtResource("11_iemxt")]
-position = Vector2(2, 9)
-marker_name = "test_1"
-
-[node name="Move_Marker2" parent="Chunks/Land/B/Chunk_B1/Area2D" instance=ExtResource("11_iemxt")]
-position = Vector2(2, 51)
-marker_name = "test_2"
-
-[node name="Move_Marker3" parent="Chunks/Land/B/Chunk_B1/Area2D" instance=ExtResource("11_iemxt")]
-position = Vector2(2, 31)
-marker_name = "test_3"
-
-[node name="Pearl_Marker" parent="Chunks/Land/B/Chunk_B1/Area2D" instance=ExtResource("11_iemxt")]
-position = Vector2(29.7278, 30.9092)
-marker_name = "pearl_marker"
-
 [node name="Tutorial" type="Node2D" parent="Chunks/Land/B/Chunk_B1"]
 
 [node name="Area2D" parent="Chunks/Land/B/Chunk_B1/Tutorial" instance=ExtResource("12_et777")]
@@ -1116,8 +1103,43 @@ shape = SubResource("RectangleShape2D_iemxt")
 tutorial_name = "level"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Chunks/Land/B/Chunk_B1/Tutorial/Area2D2"]
-position = Vector2(584, 580)
+position = Vector2(576, 572)
 shape = SubResource("RectangleShape2D_et777")
+
+[node name="Areas" type="Node2D" parent="Chunks/Land/B/Chunk_B1"]
+
+[node name="Dialogue" parent="Chunks/Land/B/Chunk_B1/Areas" instance=ExtResource("13_rhoyo")]
+dialogue_resource = ExtResource("11_6ttx2")
+dialogue_id = "meet_pearl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chunks/Land/B/Chunk_B1/Areas/Dialogue"]
+position = Vector2(373, 609)
+shape = SubResource("RectangleShape2D_hrb5s")
+
+[node name="Dialogue2" parent="Chunks/Land/B/Chunk_B1/Areas" instance=ExtResource("13_rhoyo")]
+position = Vector2(424, 536)
+dialogue_resource = ExtResource("14_hrb5s")
+dialogue_id = "first_combat"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chunks/Land/B/Chunk_B1/Areas/Dialogue2"]
+position = Vector2(12, -4)
+shape = SubResource("RectangleShape2D_rhoyo")
+
+[node name="Move_Marker" parent="Chunks/Land/B/Chunk_B1/Areas" instance=ExtResource("11_iemxt")]
+position = Vector2(368, 616)
+marker_name = "test_3"
+
+[node name="Move_Marker2" parent="Chunks/Land/B/Chunk_B1/Areas" instance=ExtResource("11_iemxt")]
+position = Vector2(336, 616)
+marker_name = "test_1"
+
+[node name="Move_Marker3" parent="Chunks/Land/B/Chunk_B1/Areas" instance=ExtResource("11_iemxt")]
+position = Vector2(400, 616)
+marker_name = "test_2"
+
+[node name="Move_Marker4" parent="Chunks/Land/B/Chunk_B1/Areas" instance=ExtResource("11_iemxt")]
+position = Vector2(368, 592)
+marker_name = "pearl_marker"
 
 [node name="Chunk_B2" parent="Chunks/Land/B" instance=ExtResource("3_okubx")]
 position = Vector2(1024, -2048)
@@ -1447,6 +1469,16 @@ z_index = 0
 position = Vector2(413, 385)
 type = "Chick"
 
+[node name="NPC" parent="Chunks/Land/C/Chunk_C1/Entities" instance=ExtResource("23_lxs7d")]
+position = Vector2(448, 344)
+NPC_Name = "Jeff"
+
+[node name="Interactable" parent="Chunks/Land/C/Chunk_C1/Entities/NPC" instance=ExtResource("25_4el7r")]
+Dialogue = ExtResource("26_8edvc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chunks/Land/C/Chunk_C1/Entities/NPC/Interactable"]
+shape = SubResource("CircleShape2D_8edvc")
+
 [node name="C1_RoamArea1" type="Area2D" parent="Chunks/Land/C/Chunk_C1"]
 position = Vector2(100, 641)
 
@@ -1546,6 +1578,16 @@ shape = SubResource("CircleShape2D_50784")
 [node name="Move_Marker" parent="Chunks/Land/C/Chunk_C1/NPC" instance=ExtResource("11_iemxt")]
 position = Vector2(0, 16)
 marker_name = "Greymoor_Innkeeper"
+
+[node name="Areas" type="Node2D" parent="Chunks/Land/C/Chunk_C1"]
+
+[node name="Quest_Area" parent="Chunks/Land/C/Chunk_C1" instance=ExtResource("14_8edvc")]
+position = Vector2(56, 560)
+Quest_Target = "path_area"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chunks/Land/C/Chunk_C1/Quest_Area"]
+position = Vector2(-23, 32)
+shape = SubResource("RectangleShape2D_8edvc")
 
 [node name="Chunk_C2" parent="Chunks/Land/C" instance=ExtResource("3_okubx")]
 unique_name_in_owner = true
@@ -2707,5 +2749,3 @@ tile_set = ExtResource("5_cgu63")
 [node name="Move_Marker" parent="." instance=ExtResource("11_iemxt")]
 position = Vector2(2544, -1376)
 marker_name = "Linguara_Innkeeper"
-
-[connection signal="body_entered" from="Chunks/Land/B/Chunk_B1/Area2D" to="Chunks/Land/B/Chunk_B1/Area2D" method="_on_body_entered"]

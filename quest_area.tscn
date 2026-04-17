@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmtg35qqwog2u"]
+
+[ext_resource type="Script" uid="uid://dykur2nu717ph" path="res://quest_area.gd" id="1_2ho5t"]
+
+[node name="Quest_Area" type="Area2D"]
+script = ExtResource("1_2ho5t")
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

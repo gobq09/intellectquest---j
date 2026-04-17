@@ -1,0 +1,33 @@
+~ first_combat
+
+do SignalManager.dialogue_enter.emit()
+do SignalManager.camera_move_to.emit(Vector2(0, 20))
+
+{{PlayerDataLoader.player_name}}: What was that?
+do SignalManager.player_anim.emit("Idle", "Up")
+do SignalManager.player_anim.emit("Idle", "Down")
+[wait=2]
+do SignalManager.player_anim.emit("Idle", "Left")
+{{PlayerDataLoader.player_name}}: Hey, Pearl I think I heard something...
+Pearl: Carefull now Master {{PlayerDataLoader.player_name}}!
+do SignalManager.camera_move_to.emit(Vector2(0, 20))
+Pearl: Look! There are enemies ahead.
+do SignalManager.player_anim.emit("Idle", "Right")
+[wait=1]
+{{PlayerDataLoader.player_name}}: What the-
+{{PlayerDataLoader.player_name}}: What are those? [wait=1] They look like a shadow.
+Pearl: Yes they're a lost fragments of knowledge that will manifest in to a former Linguara creatures...
+Pearl: I see...
+do SignalManager.camera_move_to.emit(Vector2(0, 0))
+{{PlayerDataLoader.player_name}}: So, what do we do?
+Pearl: Well, there is no other path because of the high cliffs of the sea side Master {{PlayerDataLoader.player_name}}...
+Pearl: ...
+Pearl: We have to fight...
+do SignalManager.player_anim.emit("Idle", "Down")
+{{PlayerDataLoader.player_name}}: What?
+Pearl: You can do it Master and I'm with you!
+do SignalManager.dialogue_exit.emit()
+
+do SignalManager.area_entered.emit("path_area")
+
+=> END

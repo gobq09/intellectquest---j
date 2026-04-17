@@ -1,0 +1,27 @@
+~ after_combat
+
+do SignalManager.dialogue_enter.emit()
+
+Quinn: That was... intense.
+Pearl: You did well, Master Quinn.
+
+[wait=1]
+
+Quinn: Well the combat heres seems odd.
+Pearl: How so?
+Quinn: We are using... 
+Quinn: ...
+Quinn: You know what. Nevermind.
+Pearl: Oh okay!
+do SignalManager.player_anim.emit("Idle", "Right")
+[wait=1]
+Quinn: So this is just the beginning?
+Pearl: Yes… Greymoor Town lies ahead.
+
+do SignalManager.camera_move_to.emit(Vector2(0, 0))
+
+Pearl: We should head there next.
+
+do SignalManager.dialogue_exit.emit()
+
+=> END

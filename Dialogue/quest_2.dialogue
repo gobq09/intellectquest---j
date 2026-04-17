@@ -1,0 +1,12 @@
+~ start
+do SignalManager.dialogue_enter.emit()
+do SignalManager.camera_move_to.emit(Vector2(0, 20))
+
+Jeff: Would you like to help me deal with monsters?
+- Yes
+	do QuestManager._add_quest("2")
+- No
+
+do SignalManager.dialogue_exit.emit()
+do SignalManager.camera_move_to.emit(Vector2.ZERO)
+=> END

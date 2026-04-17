@@ -96,6 +96,7 @@ func _ready() -> void:
 	if game_data["player_lost"] == true:
 		set_physics_process(false)
 		SignalManager.player_defeated.emit()
+		position = _convert(game_data["respawn_point"])
 		_cutscene("respawn")
 		await ani_tree.animation_finished
 	
@@ -325,3 +326,7 @@ func _play_footstep():
 	footstep_player.play()
 
 #endregion
+
+
+func _on_quest_area_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	pass # Replace with function body.

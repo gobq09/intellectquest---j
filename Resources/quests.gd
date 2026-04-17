@@ -6,146 +6,55 @@ var quests = {
 		"tasks": {
 				"0": {
 					"task_name": "",
-					"progress": "",
-					"goal": ""
+					"progress": 0,
+					"goal": 0,
+					"type": "",
+					"target": ""
 				},
 			},
 		"completed": false,
 		"type": "main"
 		},
-	"0": {
-		"name": "The Chosen Challenger",
-		"tasks": {
-				"0": {
-					"task_name": "Look Around",
-					"progress": 0,
-					"goal": 1
-				},
-				"1": {
-					"task_name": "Head to Greymoor Town",
-					"progress": 0,
-					"goal": 1
-				},
-				"2": {
-					"task_name": "Save the Greymoor Villager",
-					"progress": 0,
-					"goal": 1 
-				},
-				"3": {
-					"task_name": "Talk to Elwin",
-					"progress": 0,
-					"goal": 1 
-				},
-				"4": {
-					"task_name": "Help Greymoor Town",
-					"progress": 0,
-					"goal": 3
-				}
-			},
-		"completed": false,
-		"type": "main"
+"1": {
+	"name": "The Chosen Challenger",
+	"tasks": {
+		"0": {
+			"task_name": "Look Around",
+			"progress": 0,
+			"goal": 1,
+			"type": "talk",
+			"target": "pearl"
 		},
-	"1": {
-		"name": "Disruption",
-		"tasks": {
-				"0": {
-					"task_name": "Talk to Pearl at the Greymoor Docks",
-					"progress": 0,
-					"goal": 1
-				},
-				"1": {
-					"task_name": "Investigate the area",
-					"progress": 0,
-					"goal": 1
-				},
-				"2": {
-					"task_name": "Defeat ALL the Monsters",
-					"progress": 0,
-					"goal": 5
-				}
-			},
-		"completed": false,
-		"type": "main"
+		"1": {
+			"task_name": "Go to Greymoor Town",
+			"progress": 0,
+			"goal": 1,
+			"type": "area",
+			"target": "path_area"
 		},
-	"2": {
-		"name": "Missing Words",
-		"tasks": {
-				"0": {
-					"task_name": "Talk to Clara",
-					"progress": 0,
-					"goal": 1
-				},
-				"1": {
-					"task_name": "Go to the East of Greymoor",
-					"progress": 0,
-					"goal": 1
-				},
-				"2": {
-					"task_name": "Solve the Missing Words",
-					"progress": 0,
-					"goal": 1
-				}
-			},
-		"completed": false,
-		"type": "side"
+		"2": {
+			"task_name": "Defeat ALL the Monsters",
+			"progress": 0,
+			"goal": 5,
+			"type": "kill",
+			"target": "English"
+		}
+	},
+	"completed": false,
+	"type": "main"
+	},
+"2": {
+	"name": "Defeat Enemies",
+	"tasks": {
+		"0": {
+			"task_name": "Defeat 10 Enemies.",
+			"progress": 0,
+			"goal": 10,
+			"type": "talk",
+			"target": "English"
 		},
-	"3": {
-		"name": "Ominous Library",
-		"tasks": {
-				"0": {
-					"task_name": "Talk to Benedict",
-					"progress": 0,
-					"goal": 1
-				},
-				"1": {
-					"task_name": "Head to Greymoor Library",
-					"progress": 0,
-					"goal": 1
-				},
-				"2": {
-					"task_name": "Search the Area",
-					"progress": 0,
-					"goal": 1
-				},
-				"3": {
-					"task_name": "Defeat the Enemies",
-					"progress": 0,
-					"goal": 3
-				},
-				"4": {
-					"task_name": "Talk to Benedict",
-					"progress": 0,
-					"goal": 1
-				}
-			},
-	"4": {
-		"name": "Pearl's First Task",
-		"tasks": {
-			"0": {
-				"task_name": "Talk to Pearl",
-				"progress": 0,
-				"goal": 1
-			},
-			"1": {
-				"task_name": "Go to the Training Area",
-				"progress": 0,
-				"goal": 1
-			},
-			"2": {
-				"task_name": "Defeat the Training Monster",
-				"progress": 0,
-				"goal": 1
-			},
-			"3": {
-				"task_name": "Return to Pearl",
-				"progress": 0,
-				"goal": 1
-			}
-		},
-		"completed": false,
-		"type": "main"
-		},
-		"completed": false,
-		"type": "side"
-		},
+	},
+	"completed": false,
+	"type": "main"
+	},
 }

@@ -193,6 +193,7 @@ func tutorial_archive():
 	SaveManager.save_game(player_data, "player_file")
 
 func tutorial_task():
+	
 	var text = "[b]This is the Task Button. Here you can view the progress of your quest. \n\nPressing and Holding this button will lead you to the Quests Screen, where you can view all of your quests."
 	top_right.z_index = top_index
 	top_right1.modulate = Color(0.5, 0.5, 0.5, 1.0)
@@ -249,6 +250,10 @@ func tutorial_settings():
 	player_data = SaveManager.load_game("player_file")
 	player_data["ui_tutorial"]["settings"] = true
 	SaveManager.save_game(player_data, "player_file")
+	
+	await proceed_button.pressed
+	
+	trigger_tutorial("task")
 
 func tutorial_joystick():
 	joystick.visible = true

@@ -9,6 +9,12 @@ signal item_used(state)
 signal settings_updated
 signal quest_selected(id)
 signal quest_updated
+signal quest_start(quest_id: String)
+signal quest_advance()
+signal quest_completed(quest_id)
+signal enemy_killed(enemy_id: String)
+signal npc_talked(npc_id: String)
+signal area_entered(area_id: String)
 
 signal map_changed(scene)
 signal tutorial_ended

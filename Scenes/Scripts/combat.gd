@@ -16,10 +16,14 @@ extends Control
 @onready var math_topics = Questions.math_topic
 @onready var fil_topics = Questions.fil_topic
 
+@onready var background = $Back/Background
 
 @onready var last_scene = SaveManager.load_game("save_file")["last_scene"]
 #@onready var last_position = SaveManager.load_game("save_file")["global_position"]
 @onready var buff : PackedScene = preload("uid://cp7gt4xiy6vve")
+
+@onready var bg_1 = "uid://cocirnqmaocmm"
+@onready var bg_2 = "uid://bufog2tp2wvp2"
 
 @onready var critical: RichTextLabel = $HP/Critical
 @onready var ques_label: Label = $Control/Control/QuestionBg/QuestionLabel
@@ -113,7 +117,8 @@ var respawn_duration = 180
 # Enemy Stats
 var enemy_health: int
 var enemy_max_health: int
-var enemy_damage = 25
+var enemy_max_damage = 25
+var enemy_damage
 
 # Shake settings
 var shake_amount = 8
@@ -176,20 +181,25 @@ func _ready() -> void:
 	#_new_question()
 
 func _load_enemy() -> void:
+	if randi_range(1, 2) == 1:
+		background.texture = load(bg_1)
+	else:
+		background.texture = load(bg_2)
+	
 	if enemy_size == "small":
 		enemy_sprite.texture = load(enemy_small[randi_range(0, enemy_small.size() - 1)])
-		enemy_damage = randi_range(5, 10)
+		enemy_max_damage = randi_range(5, 10)
 		enemy_health = randi_range(15, 30)
 	elif enemy_size == "med":
 		enemy_sprite.texture = load(enemy_med[randi_range(0, enemy_med.size() - 1)])
-		enemy_damage = randi_range(10, 20)
+		enemy_max_damage = randi_range(10, 20)
 		enemy_health = randi_range(30, 50)
 	elif enemy_size == "large":
 		enemy_sprite.texture = load(enemy_large[randi_range(0, enemy_large.size() - 1)])
-		enemy_damage = randi_range(20, 30)
+		enemy_max_damage = randi_range(20, 30)
 		enemy_health = randi_range(50, 100)
 	
-	enemy_damage += int(player_level * 1.5)
+	enemy_max_damage += int(player_level * 1.5)
 	enemy_health += (int(player_level * 5) + int(player_int))
 	
 	enemy_max_health = enemy_health
@@ -400,7 +410,9 @@ func _on_correct_answer():
 
 func _on_wrong_answer():
 	perfect = false
-	player_health = round(player_health - (randi_range(enemy_damage - 5, enemy_damage) - (enemy_damage * temp_reduce)))
+	enemy_damage = randi_range(enemy_max_damage - 5, enemy_max_damage)
+	enemy_damage = round(enemy_damage - (enemy_damage * temp_reduce))
+	player_health = player_health - enemy_damage
 	
 	timer_node.visible = false
 	countdown.stop()
@@ -438,6 +450,8 @@ func _on_wrong_answer():
 
 func _on_enemy_defeated():
 	SignalManager.stop_music.emit()
+	SignalManager.play_music.emit("win_combat")
+	SignalManager.enemy_killed.emit(question_subject)
 	#var music = preload("res://Audio/Music/Event Themes/Triumph.mp3")
 	#AudioManager.music_player.play(music)
 	

@@ -30,7 +30,7 @@ var game_data: Dictionary = {
 	"sci_topics": {},
 	"math_topics": {},
 	"fil_topics": {},
-	"active_quest": "none",
+	"active_quest": "1",
 	"triggered_dialogues": {},
 	"score": 0,
 }

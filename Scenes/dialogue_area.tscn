@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8mc71x16fhhf"]
+
+[ext_resource type="Script" uid="uid://b0q6ylihb3cwq" path="res://dialogue_area.gd" id="1_awspb"]
+
+[node name="Dialogue" type="Area2D"]
+monitorable = false
+script = ExtResource("1_awspb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

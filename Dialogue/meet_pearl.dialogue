@@ -4,6 +4,7 @@
 do SignalManager.dialogue_enter.emit()
 do SignalManager.camera_move_to.emit(Vector2(0, 20))
 do PlayerDataLoader.update_playerdata()
+do SignalManager.npc_talked.emit("pearl")
 
 {{PlayerDataLoader.player_name}}: Man... how did I even end up in a place like this...
 {{PlayerDataLoader.player_name}}: ...
@@ -175,6 +176,8 @@ Pearl: It's the nearest town here.
 {{PlayerDataLoader.player_name}}: Hmmm... okay!
 {{PlayerDataLoader.player_name}}: Let's take a look, shall we?
 Pearl: Let's go, Master {{PlayerDataLoader.player_name}}!
+
+
 do SignalManager.camera_move_to.emit(Vector2.ZERO)
 do SignalManager.dialogue_exit.emit()
 => END
