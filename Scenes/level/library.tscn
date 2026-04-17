@@ -11,7 +11,7 @@
 [ext_resource type="TileSet" uid="uid://cwwa3ega1srxf" path="res://Tileset/roof.tres" id="9_38s7l"]
 [ext_resource type="Texture2D" uid="uid://k14o7vfgkm58" path="res://Sprites/tilesets/tileset-tree.png" id="10_igf5e"]
 [ext_resource type="PackedScene" uid="uid://b4qaqebdse2qj" path="res://Scenes/entities/char.tscn" id="10_k823c"]
-[ext_resource type="PackedScene" uid="uid://g3w75c5xrktm" path="res://Scenes/camera.tscn" id="11_kg2tg"]
+[ext_resource type="PackedScene" uid="uid://g3w75c5xrktm" path="res://Scenes/others/camera.tscn" id="11_kg2tg"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_igf5e"]
 tile_data = PackedInt32Array(0, 0, 0, 131072, 65536, 5)

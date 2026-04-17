@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://0q5mlknq6fk0"]
+[gd_scene load_steps=18 format=3 uid="uid://0q5mlknq6fk0"]
 
 [ext_resource type="Texture2D" uid="uid://o342v3n4w6uf" path="res://ui/profile/interface-profile.png" id="1_3u2c1"]
 [ext_resource type="Script" uid="uid://dx7c1wnqfm8e4" path="res://Scenes/Scripts/player_profile.gd" id="1_qnuou"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://blwsadja7kaou" path="res://ui/profile/interface-profile-prompt.png" id="4_jwamr"]
 [ext_resource type="Texture2D" uid="uid://brx3lcr31qduk" path="res://ui/profile/interface-profile-confirm.png" id="4_q38xl"]
 [ext_resource type="Texture2D" uid="uid://06xk3bsequyh" path="res://Sprites/player/sprite-playermale.png" id="5_wl0qr"]
+[ext_resource type="Texture2D" uid="uid://u71comj8oonp" path="res://ui/profile/interface-shop-goldicon.png" id="6_nwxr4"]
 [ext_resource type="Texture2D" uid="uid://btetvnx21xfkc" path="res://ui/inventory/interface-inventory-icon.png" id="9_csj3o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vtj1"]
@@ -446,6 +447,35 @@ text = "0
 fit_content = true
 scroll_active = false
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 49.0
+offset_top = -94.0
+offset_right = 145.0
+offset_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("6_nwxr4")
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(56, 32)
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "213123"
+fit_content = true
+scroll_active = false
 vertical_alignment = 1
 
 [node name="Close" type="TextureButton" parent="."]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cdxej0wj8yfjr" path="res://Scenes/Scripts/lantern.gd" id="1_5r8xx"]
 [ext_resource type="Texture2D" uid="uid://c50lq6ngqmurc" path="res://Sprites/tilesets/lantern-1.png" id="1_hmmny"]
-[ext_resource type="PackedScene" uid="uid://djojy8tn5hyco" path="res://lights.tscn" id="3_g4uhy"]
+[ext_resource type="PackedScene" uid="uid://djojy8tn5hyco" path="res://Scenes/others/lights.tscn" id="3_g4uhy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hew7k"]
 radius = 7.0

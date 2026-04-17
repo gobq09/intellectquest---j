@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cahvsoexi8i3n"
-path="res://.godot/imported/charsprite_n.png-72e08dd005cecf5c0dab0841e0c87126.ctex"
+uid="uid://beemx268x3ers"
+path="res://.godot/imported/interface-shop-gold.png-f5c0a208fe80769985a3e9bc5ad31952.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/charsprite_n.png"
-dest_files=["res://.godot/imported/charsprite_n.png-72e08dd005cecf5c0dab0841e0c87126.ctex"]
+source_file="res://ui/shop/interface-shop-gold.png"
+dest_files=["res://.godot/imported/interface-shop-gold.png-f5c0a208fe80769985a3e9bc5ad31952.ctex"]
 
 [params]
 

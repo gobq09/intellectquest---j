@@ -10,6 +10,7 @@ extends Control
 @onready var level_counter = $Control/Control/Level
 @onready var exp_counter = $Control/Control/Exp
 @onready var exp_bar = $Control/Control/ProgressBar
+@onready var gold_label = $Control/HBoxContainer/RichTextLabel
 @onready var player_sprite = $Control/Sprite2D
 @onready var reset = $Control/Reset
 @onready var confirm = $Control/Confirm
@@ -40,6 +41,7 @@ extends Control
 @onready var level : int = player_data["player_level"]
 @onready var player_exp = player_data["player_exp"]
 @onready var exp_require: float
+@onready var gold : float = player_data["gold"]
 @onready var unused_stat : int = player_data["unused_stats"]
 @onready var game_data =SaveManager.load_game("save_file")
 @onready var last_scene = game_data["last_scene"]
@@ -73,6 +75,8 @@ func _ready() -> void:
 	exp_counter.text = "[b]Exp:[/b] " + str(player_exp) + "/" + str(exp_require)
 	exp_bar.value = (player_exp / exp_require) * 100
 	
+	gold_label.text = abbreviate_number(gold)
+	
 	unused_stat_counter.text = "[b]Unused Stat Points:[/b] " + str(unused_stat)
 	int_label.text = "[b]Intelligence:[/b] " + str(player_int)
 	end_label.text = "[b]Endurance:[/b] " + str(player_end)
@@ -83,6 +87,16 @@ func _ready() -> void:
 		$Control/Stats/Control.visible = false
 	else:
 		$Control/Stats/Control.visible = true
+
+func abbreviate_number(n: float) -> String:
+	if n >= 1_000_000_000:
+		return str(snapped(n / 1_000_000_000, 0.1)) + "B"
+	elif n >= 1_000_000:
+		return str(snapped(n / 1_000_000, 0.1)) + "M"
+	elif n >= 1_000:
+		return str(snapped(n / 1_000, 0.1)) + "k"
+	else:
+		return str(int(n))
 
 #region help
 func _on_help_pressed() -> void:

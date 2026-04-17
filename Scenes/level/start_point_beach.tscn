@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://c63ji8ldobs4i" path="res://Tileset/effects/chimneysmoke_04.png" id="16_qtxsg"]
 [ext_resource type="PackedScene" uid="uid://b4qaqebdse2qj" path="res://Scenes/entities/char.tscn" id="17_0skr4"]
 [ext_resource type="PackedScene" uid="uid://dt0reecx2hip5" path="res://Scenes/entities/enemy.tscn" id="18_78hur"]
-[ext_resource type="PackedScene" uid="uid://g3w75c5xrktm" path="res://Scenes/camera.tscn" id="18_qr1oh"]
+[ext_resource type="PackedScene" uid="uid://g3w75c5xrktm" path="res://Scenes/others/camera.tscn" id="18_qr1oh"]
 [ext_resource type="Script" uid="uid://b3pwebufi6pox" path="res://Scenes/Scripts/start_point_beach.gd" id="19_aetfx"]
 [ext_resource type="Shader" uid="uid://bdw6ayaiexuau" path="res://Scenes/cloud1.gdshader" id="20_vnhnk"]
 [ext_resource type="PackedScene" uid="uid://dvdiugbr15cvs" path="res://Scenes/ui/item.tscn" id="21_3ilpf"]

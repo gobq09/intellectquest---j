@@ -117,7 +117,7 @@ pointing/emulate_touch_from_mouse=true
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://Dialogue/start.dialogue", "res://Dialogue/meet_pearl.dialogue", "res://Dialogue/npc_test.dialogue", "res://Dialogue/spawn_greymoor.dialogue", "res://Dialogue/spawn_linguara.dialogue", "res://Dialogue/spawn_forest.dialogue", "res://Dialogue/after_first_combat.dialogue", "res://Dialogue/first_combat.dialogue", "res://Dialogue/quest_2.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Dialogue/start.dialogue", "res://Dialogue/meet_pearl.dialogue", "res://Dialogue/npc_test.dialogue", "res://Dialogue/spawn_greymoor.dialogue", "res://Dialogue/spawn_linguara.dialogue", "res://Dialogue/spawn_forest.dialogue", "res://Dialogue/after_first_combat.dialogue", "res://Dialogue/first_combat.dialogue", "res://Dialogue/quest_2.dialogue", "res://Dialogue/shopkeeper.dialogue")
 
 [layer_names]
 
@@ -126,6 +126,11 @@ locale/translations_pot_files=PackedStringArray("res://Dialogue/start.dialogue",
 2d_physics/layer_3="NPC"
 2d_physics/layer_4="Items"
 2d_physics/layer_5="Enemies"
+
+[physics]
+
+common/physics_jitter_fix=0.0
+common/physics_interpolation=true
 
 [rendering]
 

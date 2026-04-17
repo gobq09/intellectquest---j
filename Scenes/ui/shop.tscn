@@ -1,0 +1,438 @@
+[gd_scene load_steps=11 format=3 uid="uid://dltbuv5c8rl7a"]
+
+[ext_resource type="Script" uid="uid://bbdmerfd77g1p" path="res://Scenes/Scripts/shop.gd" id="1_dokti"]
+[ext_resource type="Texture2D" uid="uid://crbbq3ksuqxps" path="res://ui/inventory/interface-inventory-bg.png" id="2_gq2pb"]
+[ext_resource type="Texture2D" uid="uid://t4o41ob41n2f" path="res://ui/shop/interface-shop-stand.png" id="3_dokti"]
+[ext_resource type="Texture2D" uid="uid://beemx268x3ers" path="res://ui/shop/interface-shop-gold.png" id="3_gq2pb"]
+[ext_resource type="Texture2D" uid="uid://bxvugt5xovjt2" path="res://ui/shop/interface-shop-desc.png" id="5_8vxot"]
+[ext_resource type="Texture2D" uid="uid://gfo4nfxodp7d" path="res://ui/archive/interface-archive-closebutton.png" id="5_kdvqs"]
+[ext_resource type="Texture2D" uid="uid://onfjwptt0io4" path="res://ui/shop/interface-shop-button1.png" id="6_88v7r"]
+[ext_resource type="Texture2D" uid="uid://bjjyx75754f48" path="res://ui/shop/interface-shop-buy.png" id="6_gk2um"]
+[ext_resource type="Texture2D" uid="uid://bx8xvx53kuxmh" path="res://ui/shop/interface-shop-buy1.png" id="7_kdvqs"]
+[ext_resource type="Texture2D" uid="uid://bn7xess1q3jg4" path="res://ui/shop/interface-shop-button2.png" id="7_qfi22"]
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dokti")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Items" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/Items"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -367.0
+offset_top = -230.0
+offset_right = -223.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+mouse_filter = 2
+texture = ExtResource("2_gq2pb")
+stretch_mode = 5
+
+[node name="Panel" type="ScrollContainer" parent="Control/Items"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -286.0
+offset_top = -174.0
+offset_right = -192.0
+offset_bottom = -70.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+mouse_filter = 0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Items/Panel"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 104)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+mouse_filter = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Control/Items"]
+layout_mode = 0
+offset_left = -113.0
+offset_top = 84.0
+offset_right = -65.0
+offset_bottom = 124.0
+scale = Vector2(3, 3)
+texture = ExtResource("3_gq2pb")
+stretch_mode = 5
+
+[node name="Gold" type="RichTextLabel" parent="Control/Items"]
+layout_mode = 0
+offset_left = -75.0
+offset_top = 137.0
+offset_right = 29.0
+offset_bottom = 157.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[b]1000"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -128.0
+offset_right = 116.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Bg" type="TextureRect" parent="Control/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 41.0
+offset_top = -212.0
+offset_right = 153.0
+offset_bottom = -132.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+texture = ExtResource("3_dokti")
+stretch_mode = 5
+
+[node name="Description" type="TextureRect" parent="Control/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 65.0
+offset_top = -94.0
+offset_right = 161.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+texture = ExtResource("5_8vxot")
+
+[node name="Name" type="RichTextLabel" parent="Control/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 105.0
+offset_top = -70.0
+offset_right = 313.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Control/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 189.0
+offset_top = -150.0
+offset_right = 229.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 113.0
+offset_top = -46.0
+offset_right = 305.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="Desc" type="RichTextLabel" parent="Control/Control/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bulk" type="HBoxContainer" parent="Control/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 53.0
+offset_top = 106.0
+offset_right = 365.0
+offset_bottom = 146.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Min" type="TextureButton" parent="Control/Control/Bulk"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture_normal = ExtResource("6_88v7r")
+texture_pressed = ExtResource("7_qfi22")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/Control/Bulk/Min"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Min"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Minus_10" type="TextureButton" parent="Control/Control/Bulk"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture_normal = ExtResource("6_88v7r")
+texture_pressed = ExtResource("7_qfi22")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/Control/Bulk/Minus_10"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "-10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Minus" type="TextureButton" parent="Control/Control/Bulk"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture_normal = ExtResource("6_88v7r")
+texture_pressed = ExtResource("7_qfi22")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/Control/Bulk/Minus"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Amount" type="LineEdit" parent="Control/Control/Bulk"]
+layout_mode = 2
+text = "1"
+placeholder_text = "Amount"
+alignment = 1
+expand_to_text_length = true
+virtual_keyboard_type = 2
+
+[node name="Add" type="TextureButton" parent="Control/Control/Bulk"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture_normal = ExtResource("6_88v7r")
+texture_pressed = ExtResource("7_qfi22")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/Control/Bulk/Add"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Add_10" type="TextureButton" parent="Control/Control/Bulk"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture_normal = ExtResource("6_88v7r")
+texture_pressed = ExtResource("7_qfi22")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/Control/Bulk/Add_10"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "+10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Max" type="TextureButton" parent="Control/Control/Bulk"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+texture_normal = ExtResource("6_88v7r")
+texture_pressed = ExtResource("7_qfi22")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/Control/Bulk/Max"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -8.0
+offset_right = 20.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Max"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="TextureButton" parent="Control/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 161.0
+offset_top = 146.0
+offset_right = 193.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+texture_normal = ExtResource("6_gk2um")
+texture_pressed = ExtResource("7_kdvqs")
+stretch_mode = 3
+
+[node name="Close" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -94.0
+offset_right = -62.0
+offset_bottom = 32.0
+grow_horizontal = 0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("5_kdvqs")
+stretch_mode = 3
+
+[connection signal="pressed" from="Control/Control/Bulk/Min" to="." method="_on_min_pressed"]
+[connection signal="pressed" from="Control/Control/Bulk/Minus_10" to="." method="_on_minus_10_pressed"]
+[connection signal="pressed" from="Control/Control/Bulk/Minus" to="." method="_on_minus_pressed"]
+[connection signal="text_changed" from="Control/Control/Bulk/Amount" to="." method="_on_amount_text_changed"]
+[connection signal="pressed" from="Control/Control/Bulk/Add" to="." method="_on_add_pressed"]
+[connection signal="pressed" from="Control/Control/Bulk/Add_10" to="." method="_on_add_10_pressed"]
+[connection signal="pressed" from="Control/Control/Bulk/Max" to="." method="_on_max_pressed"]
+[connection signal="pressed" from="Control/Control/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

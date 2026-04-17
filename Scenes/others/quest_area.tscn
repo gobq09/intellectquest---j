@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bmtg35qqwog2u"]
 
-[ext_resource type="Script" uid="uid://dykur2nu717ph" path="res://quest_area.gd" id="1_2ho5t"]
+[ext_resource type="Script" uid="uid://dykur2nu717ph" path="res://Scenes/Scripts/quest_area.gd" id="1_2ho5t"]
 
 [node name="Quest_Area" type="Area2D"]
 script = ExtResource("1_2ho5t")

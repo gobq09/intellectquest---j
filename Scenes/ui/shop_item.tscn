@@ -1,0 +1,87 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba6jq88wt51m4"]
+
+[ext_resource type="Texture2D" uid="uid://fen2vu00ypr0" path="res://ui/shop/interface-shop-item.png" id="1_anydk"]
+[ext_resource type="Script" uid="uid://dicakv331e1cy" path="res://Scenes/Scripts/shop_item.gd" id="2_anydk"]
+[ext_resource type="Texture2D" uid="uid://bmovu1ln6s8a0" path="res://ui/shop/interface-shop-tag.png" id="3_g00am"]
+
+[node name="Button" type="TextureButton"]
+custom_minimum_size = Vector2(96, 32)
+offset_right = 96.0
+offset_bottom = 32.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+texture_normal = ExtResource("1_anydk")
+ignore_texture_size = true
+stretch_mode = 3
+script = ExtResource("2_anydk")
+
+[node name="Label" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -9.99998
+offset_top = -8.0
+offset_right = 194.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 20
+bbcode_enabled = true
+text = "Sample"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+
+[node name="ColorRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 9.0
+offset_top = -8.0
+offset_right = 25.0
+offset_bottom = 8.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 10.6667
+offset_right = 32.0
+offset_bottom = 10.6667
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_g00am")
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 72.6667
+offset_top = 26.6667
+offset_right = 148.667
+offset_bottom = 46.6667
+rotation = -0.0474844
+scale = Vector2(0.25, 0.25)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "1000"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

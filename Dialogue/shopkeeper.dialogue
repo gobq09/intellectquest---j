@@ -1,0 +1,18 @@
+~ start
+do SignalManager.dialogue_enter.emit()
+do SignalManager.camera_move_to.emit(Vector2(0, 20))
+do wait(0.1)
+do SignalManager.look_at_player.emit("Shopkeeper")
+do SignalManager.player_look_at.emit("Shopkeeper")
+
+Shopkeeper: [[Hi|Hello|Howdy]]. Would you like to see my wares?
+- Shop
+	do SignalManager.camera_move_to.emit(Vector2.ZERO)
+	do SignalManager.dialogue_exit.emit()
+	do SceneLoader.load_scene("uid://dltbuv5c8rl7a")
+- Leave
+	Shopkeeper: Hope to see you again!
+
+do SignalManager.camera_move_to.emit(Vector2.ZERO)
+do SignalManager.dialogue_exit.emit()
+=> END
