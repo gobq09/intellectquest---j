@@ -66,6 +66,7 @@ var player_data: Dictionary = {
 		"settings": false,
 		"combat": false,
 		},
+	"gold": 0,
 }
 
 var enemy_data: Dictionary = {
@@ -82,7 +83,8 @@ var inv_data: Dictionary = {
 		"Desc": "A fresh and juicy apple. Restores a small amount of health.",
 		"Quantity": 0,
 		"Effect": "Heal",
-		"Sprite": "res://ui/inventory/items/items-apple.png"
+		"Sprite": "res://ui/inventory/items/items-apple.png",
+		"Price": 10
 	},
 	"1": {
 		"ItemID": 1,
@@ -91,7 +93,8 @@ var inv_data: Dictionary = {
 		"Desc": "A well-aged cheese that hardens the body. Reduces damage taken for a short time.",
 		"Quantity": 0,
 		"Effect": "Damage_Reduction",
-		"Sprite": "res://ui/inventory/items/items-cheese.png"
+		"Sprite": "res://ui/inventory/items/items-cheese.png",
+		"Price": 100
 	},
 	"2": {
 		"ItemID": 2,
@@ -100,7 +103,8 @@ var inv_data: Dictionary = {
 		"Desc": "A powerful red potion brewed to restore a large amount of health.",
 		"Quantity": 0,
 		"Effect": "Heal",
-		"Sprite": "res://ui/inventory/items/items-potion.png"
+		"Sprite": "res://ui/inventory/items/items-potion.png",
+		"Price": 200
 	},
 	"3": {
 		"ItemID": 3,
@@ -109,7 +113,8 @@ var inv_data: Dictionary = {
 		"Desc": "A rare leaf said to contain hidden power. Temporarily increases damage.",
 		"Quantity": 0,
 		"Effect": "Damage",
-		"Sprite": "res://ui/inventory/items/items-leaf.png"
+		"Sprite": "res://ui/inventory/items/items-leaf.png",
+		"Price": 150
 	},
 	"4": {
 		"ItemID": 4,
@@ -118,7 +123,8 @@ var inv_data: Dictionary = {
 		"Desc": "A delicate flower from the valley that sharpens a warrior’s instincts, increasing critical hit chance.",
 		"Quantity": 0,
 		"Effect": "Crit_Chance",
-		"Sprite": "res://ui/inventory/items/items-flower.png"
+		"Sprite": "res://ui/inventory/items/items-flower.png",
+		"Price": 150
 	},
 	"5": {
 		"ItemID": 5,
@@ -127,7 +133,8 @@ var inv_data: Dictionary = {
 		"Desc": "A potion that energizes the body and increases movement speed. Increases run chance when in combat",
 		"Quantity": 0,
 		"Effect": "Walk_Speed",
-		"Sprite": "res://ui/inventory/items/items-potion2.png"
+		"Sprite": "res://ui/inventory/items/items-potion2.png",
+		"Price": 200
 	},
 	"6": {
 		"ItemID": 6,
@@ -136,7 +143,8 @@ var inv_data: Dictionary = {
 		"Desc": "A pill made from medicinal herbs that strengthens the body and increases maximum health.",
 		"Quantity": 0,
 		"Effect": "Max_Health",
-		"Sprite": "res://ui/inventory/items/items-pill.png"
+		"Sprite": "res://ui/inventory/items/items-pill.png",
+		"Price": 100
 	},
 	"7": {
 		"ItemID": 7,
@@ -145,7 +153,8 @@ var inv_data: Dictionary = {
 		"Desc": "A mysterious forest mushroom that enhances the power of critical strikes.",
 		"Quantity": 0,
 		"Effect": "Crit_Damage",
-		"Sprite": "res://ui/inventory/items/items-mushroom.png"
+		"Sprite": "res://ui/inventory/items/items-mushroom.png",
+		"Price": 150
 	},
 	"8": {
 		"ItemID": 8,
@@ -154,7 +163,8 @@ var inv_data: Dictionary = {
 		"Desc": "A freshly caught fish. Better cook before eating.",
 		"Quantity": 0,
 		"Effect": "Raw",
-		"Sprite": "res://ui/inventory/items/items-fish.png"
+		"Sprite": "res://ui/inventory/items/items-fish.png",
+		"Price": 1
 	},
 	"9": {
 		"ItemID": 9,
@@ -163,7 +173,8 @@ var inv_data: Dictionary = {
 		"Desc": "A fresh squid straight from the sea. Not very appetizing uncooked.",
 		"Quantity": 0,
 		"Effect": "Raw",
-		"Sprite": "res://ui/inventory/items/items-squid.png"
+		"Sprite": "res://ui/inventory/items/items-squid.png",
+		"Price": 1
 	},
 	"10": {
 		"ItemID": 10,
@@ -172,7 +183,8 @@ var inv_data: Dictionary = {
 		"Desc": "A well-cooked fish that restores health when eaten.",
 		"Quantity": 0,
 		"Effect": "Heal",
-		"Sprite": "res://ui/inventory/items/items-cookedfish.png"
+		"Sprite": "res://ui/inventory/items/items-cookedfish.png",
+		"Price": 100
 	},
 	"11": {
 		"ItemID": 11,
@@ -181,7 +193,8 @@ var inv_data: Dictionary = {
 		"Desc": "Grilled squid that restores health.",
 		"Quantity": 0,
 		"Effect": "Heal",
-		"Sprite": "res://ui/inventory/items/items-grilledsquid.png"
+		"Sprite": "res://ui/inventory/items/items-grilledsquid.png",
+		"Price": 100
 	},
 	"12": {
 		"ItemID": 12,
@@ -190,7 +203,8 @@ var inv_data: Dictionary = {
 		"Desc": "A magical scroll infused with ancient power. Grants +5 stat points.",
 		"Quantity": 0,
 		"Effect": "Stat",
-		"Sprite": "res://ui/inventory/items/items-scroll.png"
+		"Sprite": "res://ui/inventory/items/items-scroll.png",
+		"Price": 1000
 	},
 }
 

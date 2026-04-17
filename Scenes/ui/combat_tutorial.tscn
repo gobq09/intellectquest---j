@@ -676,7 +676,7 @@ _data = {
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_tmuf1"]
-font_size = 20
+font_size = 24
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="FontVariation" id="FontVariation_iuatm"]
@@ -1046,13 +1046,13 @@ grow_vertical = 2
 scale = Vector2(4, 4)
 texture = ExtResource("13_ijttx")
 
-[node name="QuestionLabel" type="Label" parent="Control/Control/QuestionBg"]
+[node name="QuestionLabel" type="Label" parent="Control/Control"]
 layout_mode = 0
-offset_left = 22.0
-offset_top = 18.0
-offset_right = 306.0
-offset_bottom = 138.0
-scale = Vector2(0.25, 0.25)
+offset_left = -175.0
+offset_top = -76.0
+offset_right = 121.0
+offset_bottom = 42.0
+text = "text"
 label_settings = SubResource("LabelSettings_tmuf1")
 horizontal_alignment = 1
 vertical_alignment = 1

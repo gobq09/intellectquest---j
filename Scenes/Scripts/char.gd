@@ -64,6 +64,7 @@ var current_chunk: Node2D = null
 func _ready() -> void:
 	SignalManager.map_changed.connect(map_changed)
 	SignalManager.movement_disabled.connect(disable_movement)
+	SignalManager.movement_enabled.connect(enable_movement)
 	SignalManager.move_player.connect(move_player)
 	SignalManager.player_anim.connect(player_anim)
 	SignalManager.send_marker.connect(move_player_to)
@@ -96,7 +97,7 @@ func _ready() -> void:
 	if game_data["player_lost"] == true:
 		set_physics_process(false)
 		SignalManager.player_defeated.emit()
-		position = _convert(game_data["respawn_point"])
+		global_position = _convert(game_data["respawn_point"])
 		_cutscene("respawn")
 		await ani_tree.animation_finished
 	
@@ -191,6 +192,8 @@ func _cutscene(animation: String = "null") -> void:
 		game_data["player_lost"] = false
 		SaveManager.save_game(game_data, "save_file")
 	
+	await get_tree().create_timer(0.1).timeout
+	print("test")
 	SignalManager.movement_enabled.emit()
 	#print("after cutscene: ", game_data["new_game"])
 
@@ -203,12 +206,14 @@ func disable_movement():
 	velocity = Vector2(0, 0)
 	ani_tree.get("parameters/playback").travel("Idle")
 	
-	await SignalManager.movement_enabled
+
+func enable_movement():
 	print("character movement enabled")
 	self.set_process_input(true)
 	self.set_physics_process(true)
 	#joystick.process_mode = Node.PROCESS_MODE_INHERIT
 
+#region Cutscene
 func move_player(direction: String, duration: int):
 	self.set_physics_process(true)
 	
@@ -283,6 +288,7 @@ func player_look_at(node_name: String, node_pos: Vector2):
 		
 	ani_tree.set("parameters/Idle/blend_position", face)
 	ani_tree.get("parameters/playback").travel("Idle")
+#endregion
 
 func map_changed(scene):
 	Handler.map_changed(scene, position)
@@ -292,6 +298,7 @@ func _on_timer_timeout() -> void:
 	position_data["global_position"] = position
 	SaveManager.save_game(position_data, "position_file")
 	
+
 #region Player Footsteps
 func _process(delta):
 	if _footstep_timer > 0:
@@ -326,7 +333,3 @@ func _play_footstep():
 	footstep_player.play()
 
 #endregion
-
-
-func _on_quest_area_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	pass # Replace with function body.

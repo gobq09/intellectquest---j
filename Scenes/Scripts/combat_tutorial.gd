@@ -98,6 +98,8 @@ func attack_tutorial():
 	tutorial_panel.visible = true
 	tutorial_panel.mouse_filter = MOUSE_FILTER_STOP
 	
+	$"../Control/Time/Timer".paused = true
+	
 	question.z_index = top_index
 	right_text.visible = true
 	right_text.text = "This is the [b]Question.[/b]"
@@ -171,6 +173,8 @@ func attack_tutorial():
 	await next_pressed
 	
 	tutorial_end()
+	
+	$"../Control/Time/Timer".paused = false
 
 func _on_attack_pressed() -> void:
 	if player_data["ui_tutorial"]["combat"] == false:

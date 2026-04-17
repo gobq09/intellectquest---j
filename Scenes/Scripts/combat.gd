@@ -26,7 +26,7 @@ extends Control
 @onready var bg_2 = "uid://bufog2tp2wvp2"
 
 @onready var critical: RichTextLabel = $HP/Critical
-@onready var ques_label: Label = $Control/Control/QuestionBg/QuestionLabel
+@onready var ques_label: Label = $Control/Control/QuestionLabel
 @onready var ans_button1: TextureButton = $Control/Control2/AnswerButton1
 @onready var ans_button2: TextureButton = $Control/Control2/AnswerButton2
 @onready var ans_label: Label = $Control/Control2/AnswerLabel
@@ -87,7 +87,7 @@ extends Control
 @onready var player_critdamage: float = 1.5 + (player_str * 0.15)
 @onready var default_maxhp : int = 50 + (player_end * 2)
 @onready var run_chance : float = 0.2
-@onready var time_duration: int = 99
+@onready var time_duration: int = 60 + (player_wis * 2)
 
 @onready var enemy_small : Array = ["uid://0ucxefbgrc6k", "uid://ru5xvbb0a361", "uid://m4i1wivj2ipr", "uid://bf15bsf0jltyv", "uid://c7e178xq656dn"]
 @onready var enemy_med : Array = ["uid://pncvdy7b8gkp", "uid://fhr10ndgwdev", "uid://c5dy25laifsp5", "uid://bsjwi1ke36jh8"]
@@ -172,7 +172,9 @@ func _ready() -> void:
 		portrait.texture = male_portrait
 	
 	_load_enemy()
+	
 	player_health_bar.max_value = player_max_health
+	player_health_bar.value = player_hp
 	enemy_health_bar.max_value = enemy_max_health
 	player_hplabel.text = "[b]" + str(player_health) + " / " + str(player_max_health) +"[/b]"
 	enemy_hplabel.text = "[b]" + str(enemy_health) + " / " + str(enemy_max_health) +"[/b]"
@@ -352,12 +354,12 @@ func shake(node):
 #region combat logic
 
 func _save_question(topic_type: String):
-	print(int(question_type[str(question_id)]["TopicID"]))
-	print(game_data[topic_type].values().has(int(question_type[str(question_id)]["TopicID"])))
+	print(question_type[str(question_id)]["TopicID"])
+	print(game_data[topic_type].values().has(str(question_type[str(question_id)]["TopicID"])))
 	
-	if not game_data[topic_type].values().has(int(question_type[str(question_id)]["TopicID"])):
+	if not game_data[topic_type].values().has(str(question_type[str(question_id)]["TopicID"])):
 		game_data = SaveManager.load_game("save_file")
-		game_data[topic_type][game_data[topic_type].size() + 1] = int(question_type[str(question_id)]["TopicID"])
+		game_data[topic_type][game_data[topic_type].size() + 1] = str(question_type[str(question_id)]["TopicID"])
 		SaveManager.save_game(game_data, "save_file")
 	
 func _on_correct_answer():
@@ -557,6 +559,7 @@ func _evaluate():
 	var summary_cor: String
 	var count: int = 1
 	var exp_gain: int
+	var gold_gain: int
 	
 	give_items()
 	
@@ -567,6 +570,7 @@ func _evaluate():
 		if encountered_questions[count]["Correct"] == true:
 			summary_cor = "  ✔"
 			exp_gain += randi_range(5, 10)
+			gold_gain += randi_range(5, 10)
 		else:
 			summary_cor = "  ❌"
 			exp_gain += randi_range(1, 5)
@@ -589,12 +593,12 @@ func _evaluate():
 		await get_tree().create_timer(timer).timeout
 	
 	summary_text.text += "Experience Gained: " + str(exp_gain) + "\n\n"
+
 	
 	var total_exp : float = player_exp + exp_gain
 	var exp_require : float = player_level * 15.5
 	var level_up: int = player_level
 	var stats_add: int = unused_stats
-	
 		
 	while total_exp >= exp_require:
 		await get_tree().create_timer(timer).timeout
@@ -609,6 +613,14 @@ func _evaluate():
 		stats_add += 3
 		
 		await get_tree().create_timer(timer).timeout
+	
+	summary_text.text += "\n"
+	summary_text.text += "Gold Gained: " + str(gold_gain) + "\n\n"
+	
+	for items in received_items:
+		await get_tree().create_timer(timer).timeout
+		var item_name = inv_data[items]["Name"]
+		summary_text.text += "[b]"+ item_name +"[/b] received!\n"
 	
 	summary_text.text += "\n\n\n"
 	

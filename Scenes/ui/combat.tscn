@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://dxhaxrctujkex"]
+[gd_scene load_steps=72 format=3 uid="uid://dxhaxrctujkex"]
 
 [ext_resource type="Script" uid="uid://c0dbktvohlh5" path="res://Scenes/Scripts/combat.gd" id="1_8xcd4"]
 [ext_resource type="Texture2D" uid="uid://cocirnqmaocmm" path="res://ui/combat/interface-combat-bg1.png" id="1_xisnc"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://jsiqpuvw66oh" path="res://ui/combat/combat_sprites/enemy_large/combat-driftwood.png" id="5_ley77"]
 [ext_resource type="Texture2D" uid="uid://churc6kbe1e4c" path="res://ui/combat/interface-combat-playerportait2.png" id="6_ceo1n"]
 [ext_resource type="Texture2D" uid="uid://bpltk3o4cxcrg" path="res://ui/combat/interface-combat-playerportait1-male.png" id="7_jcm61"]
+[ext_resource type="FontFile" uid="uid://dnloe2nlb6ii4" path="res://addons/fonts/Ablasco.otf" id="8_thf0w"]
 [ext_resource type="Texture2D" uid="uid://tbos3kc0l44d" path="res://ui/combat/interface-combat-enemyhpbar1.png" id="9_tmuf1"]
 [ext_resource type="Texture2D" uid="uid://cv2fha2nuioc8" path="res://ui/combat/interface-combat-enemyportait2.png" id="10_5kjvk"]
 [ext_resource type="Texture2D" uid="uid://c85q4uooseg3u" path="res://ui/combat/interface-combat-enemyportait1.png" id="11_3cqtn"]
@@ -675,7 +676,7 @@ _data = {
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_tmuf1"]
-font_size = 20
+font_size = 24
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="FontVariation" id="FontVariation_iuatm"]
@@ -867,6 +868,7 @@ offset_top = 66.0
 offset_right = 318.0
 offset_bottom = 89.0
 theme_override_constants/outline_size = 8
+theme_override_fonts/bold_font = ExtResource("8_thf0w")
 theme_override_font_sizes/bold_font_size = 14
 bbcode_enabled = true
 text = "[b]100/100"
@@ -932,6 +934,7 @@ offset_top = 68.0
 offset_right = 1020.0
 offset_bottom = 91.0
 theme_override_constants/outline_size = 8
+theme_override_fonts/bold_font = ExtResource("8_thf0w")
 theme_override_font_sizes/bold_font_size = 14
 bbcode_enabled = true
 text = "[b]100/100"
@@ -1042,13 +1045,13 @@ grow_vertical = 2
 scale = Vector2(4, 4)
 texture = ExtResource("11_w6tjk")
 
-[node name="QuestionLabel" type="Label" parent="Control/Control/QuestionBg"]
+[node name="QuestionLabel" type="Label" parent="Control/Control"]
 layout_mode = 0
-offset_left = 22.0
-offset_top = 18.0
-offset_right = 306.0
-offset_bottom = 138.0
-scale = Vector2(0.25, 0.25)
+offset_left = -160.0
+offset_top = -76.0
+offset_right = 124.0
+offset_bottom = 44.0
+text = "text"
 label_settings = SubResource("LabelSettings_tmuf1")
 horizontal_alignment = 1
 vertical_alignment = 1

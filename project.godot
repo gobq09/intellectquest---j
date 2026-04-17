@@ -39,6 +39,8 @@ AudioManager="*res://Audio/AudioManager.gd"
 
 window/size/viewport_width=1230
 window/size/viewport_height=540
+window/size/window_width_override=1230
+window/size/window_height_override=540
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
@@ -50,6 +52,11 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://add
 
 Player=""
 Items=""
+
+[gui]
+
+theme/custom_font="uid://caa5b1uwiyq6r"
+theme/default_font_multichannel_signed_distance_field=true
 
 [importer_defaults]
 
