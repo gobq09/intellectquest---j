@@ -1,6 +1,10 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://jnmii1v82ic3"]
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://jnmii1v82ic3"]
 
 [ext_resource type="Texture2D" uid="uid://b8shqttteil10" path="res://Sprites/tilesets/tileset-tilepath.png" id="1_rry0c"]
+[ext_resource type="Texture2D" uid="uid://dnqtqwqkjagd6" path="res://Sprites/tilesets/tileset-library-woodwall.png" id="2_esnq2"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_esnq2"]
+tile_data = PackedInt32Array(0, 262145, 3, 1, 327681, 3)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ehkex"]
 texture = ExtResource("1_rry0c")
@@ -279,6 +283,13 @@ texture = ExtResource("1_rry0c")
 7:7/0/terrains_peering_bit/top_side = 1
 7:7/0/terrains_peering_bit/top_right_corner = 1
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2f4qg"]
+texture = ExtResource("2_esnq2")
+4:3/0 = 0
+5:3/0 = 0
+3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
 [resource]
 physics_layer_0/collision_layer = 2
 terrain_set_0/mode = 0
@@ -287,3 +298,5 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 terrain_set_0/terrain_1/name = "Terrain 1"
 terrain_set_0/terrain_1/color = Color(0.622924, 0.318787, 0.52709, 1)
 sources/0 = SubResource("TileSetAtlasSource_ehkex")
+sources/1 = SubResource("TileSetAtlasSource_2f4qg")
+pattern_0 = SubResource("TileMapPattern_esnq2")

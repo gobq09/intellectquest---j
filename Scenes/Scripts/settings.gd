@@ -256,5 +256,4 @@ func _on_dynamic_pressed() -> void:
 
 func _on_unstick_pressed() -> void:
 	var game_data = SaveManager.load_game("save_file")
-	game_data["global_position"] = game_data["respawn_point"]
-	SaveManager.save_game(game_data, "save_file")
+	SceneLoader.load_map("uid://d4dgymuee0bxt", game_data["respawn_point"])

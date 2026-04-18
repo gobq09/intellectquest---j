@@ -83,7 +83,7 @@ func _ready() -> void:
 	else:
 		particles.process_mode = Node.PROCESS_MODE_INHERIT
 	
-	position = _convert(last_position)
+	global_position = _convert(last_position)
 	ani_tree.set("parameters/Idle/blend_position", Vector2(0,1))
 	self.set_process_input(false) 
 	
@@ -146,6 +146,7 @@ func _physics_process(_delta):
 	var direction = get_input()
 	
 	if direction.length() > 0:
+		print(global_position)
 		particles.emitting = true
 		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
 		#print(position)
@@ -295,7 +296,7 @@ func map_changed(scene):
 
 func _on_timer_timeout() -> void:
 	position_data = SaveManager.load_game("position_file")
-	position_data["global_position"] = position
+	position_data["global_position"] = global_position
 	SaveManager.save_game(position_data, "position_file")
 	
 

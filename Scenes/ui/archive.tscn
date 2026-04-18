@@ -388,6 +388,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
+horizontal_alignment = 1
 
 [node name="Right" type="Control" parent="Topics"]
 layout_mode = 1
@@ -469,6 +470,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="Next" to="." method="_on_next_pressed"]

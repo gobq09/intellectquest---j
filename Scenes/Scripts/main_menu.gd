@@ -3,6 +3,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 
 @onready var game_data = SaveManager.load_game("save_file")
+@onready var position_data = SaveManager.load_game("position_file")
 @onready var menu_anim = $Control/AnimationPlayer
 @onready var menu = $Control/Control
 @onready var prompt = $Prompt
@@ -52,7 +53,8 @@ func _on_continue_pressed() -> void:
 	print("Continue Pressed")
 	game_data["in_game"] = true
 	SaveManager.save_game(game_data, "save_file")
-	SceneLoader.load_scene("uid://d4dgymuee0bxt")
+	
+	SceneLoader.load_scene(position_data["last_scene"])
 	#get_tree().change_scene_to_file("res://Scenes/start_point_beach.tscn")
 
 func _on_settings_pressed() -> void:

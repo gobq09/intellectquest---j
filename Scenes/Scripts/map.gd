@@ -1,6 +1,6 @@
 extends Control
 
-@onready var game_data = SaveManager.load_game("save_file")
+@onready var position_data = SaveManager.load_game("position_file")
 
 func _on_close_pressed() -> void:
-	SceneLoader.load_scene(game_data["last_scene"])
+	SceneLoader.load_scene(position_data["last_scene"])

@@ -67,10 +67,10 @@ func _load_prompt(press):
 func _on_close_pressed() -> void:
 	SignalManager.play_sfx.emit("click_sfx")
 	#AudioManager.restore_music()
-	game_data = SaveManager.load_game("save_file")
+	var position_data = SaveManager.load_game("position_file")
 	
 	if last_scene == "game":
-		last_scene = game_data["last_scene"]
+		last_scene = position_data["last_scene"]
 	elif last_scene == "menu":
 		last_scene = menu_uid
 	

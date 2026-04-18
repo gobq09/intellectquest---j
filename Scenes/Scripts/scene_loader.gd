@@ -24,7 +24,34 @@ func load_scene(_scene_path: String) -> void:
 	await new_load_screen.loading_screen_ready
 	
 	start_load()
+
+func load_map(_scene_path: String, position: String) -> void:
+	scene_path = _scene_path
 	
+
+	
+	var new_load_screen = loading_screen.instantiate()
+	add_child(new_load_screen)
+	progress_changed.connect(new_load_screen._on_progress_changed)
+	load_finished.connect(new_load_screen._on_load_finished)
+	
+	await new_load_screen.loading_screen_ready
+	
+	var convert_position = _convert(position)
+	
+	var position_data = SaveManager.load_game("position_file")
+	position_data["global_position"] = convert_position
+	position_data["last_scene"] = scene_path
+	SaveManager.save_game(position_data, "position_file")
+	
+	start_load()
+
+func _convert(string):
+	var new_string: String = str(string)
+	new_string = new_string.erase(0, 1)
+	new_string = new_string.erase(new_string.length() - 1, 1)
+	var array: Array = new_string.split(", ")
+	return Vector2(int(array[0]), int(array[1]))
 
 func start_load() -> void:
 	var state = ResourceLoader.load_threaded_request(scene_path, "", use_sub_threads)

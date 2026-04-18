@@ -13,6 +13,7 @@ config_version=5
 config/name="IntelliQuest"
 run/main_scene="uid://bv2jvo7wjipfe"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/bg_color=Color(0.117647, 0.0627451, 0.160784, 1)
 config/icon="uid://3ceg65rhyjob"
 
 [audio]

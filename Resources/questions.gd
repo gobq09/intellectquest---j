@@ -2,308 +2,272 @@ extends Node
 
 #region english
 var english_topic = {
-	
 	0: {
 		"TopicID": "0",
-		"TopicName": "Parts of Speech ",
-		"TopicDesc": "Parts of speech are the building blocks of English grammar that classify words by their role in a sentence. The eight main parts of speech are nouns (naming words like 'dog' or 'city'), verbs (action or state words like 'run' or 'is'), adjectives (describing words like 'happy' or 'big'), adverbs (words that modify verbs or adjectives like 'quickly' or 'very'), pronouns (words that replace nouns like 'he,' 'she,' or 'they'), prepositions (words showing relationship like 'in,' 'on,' or 'under'), conjunctions (connecting words like 'and,' 'but,' or 'so'), and interjections (exclamations like 'Wow!' or 'Oh!'). Recognizing parts of speech helps students understand how sentences are built and how words work together."
+		"TopicName": "Parts of Speech",
+		"TopicDesc": "[b]Parts of speech[/b] are the building blocks of English grammar. The eight main parts are: [u]nouns[/u] ([i]'dog'[/i]), [u]verbs[/u] ([i]'run'[/i]), [u]adjectives[/u] ([i]'happy'[/i]), [u]adverbs[/u] ([i]'quickly'[/i]), [u]pronouns[/u] ([i]'she'[/i]), [u]prepositions[/u] ([i]'under'[/i]), [u]conjunctions[/u] ([i]'and'[/i]), and [u]interjections[/u] ([i]'Wow!'[/i]). Recognizing these helps students understand how sentences work together."
 	},
 	1: {
 		"TopicID": "1",
 		"TopicName": "Sentence Structure",
-		"TopicDesc": "A sentence is a group of words that expresses a complete thought and must have a subject (who or what the sentence is about) and a predicate (what the subject does or is). For example, in 'The cat sleeps,' 'The cat' is the subject and 'sleeps' is the predicate. Sentences can be declarative (making a statement: 'Birds fly.'), interrogative (asking a question: 'Do birds fly?'), imperative (giving a command: 'Fly away!'), or exclamatory (showing strong feeling: 'How fast they fly!'). Understanding sentence structure helps students write clear and complete thoughts."
+		"TopicDesc": "A [b]sentence[/b] must have a [u]subject[/u] (who/what) and a [u]predicate[/u] (action). For example, in [i]'The cat sleeps,'[/i] the cat is the subject. Sentences can be [b]declarative[/b] (statements), [b]interrogative[/b] (questions), [b]imperative[/b] (commands), or [b]exclamatory[/b] (strong feelings)."
 	},
 	2: {
 		"TopicID": "2",
-		"TopicName": "Punctuation ",
-		"TopicDesc": "Punctuation marks are symbols used in writing to make meaning clear and to show pauses, stops, and expression. A period (.) ends a statement: 'The sun is bright.' A question mark (?) ends a question: 'Is it sunny?' An exclamation mark (!) shows strong feeling: 'What a beautiful day!' A comma (,) separates items in a list or clauses in a sentence, such as 'I like apples, bananas, and grapes.' An apostrophe (') is used in contractions (can't, don't) and to show possession (Maria's book). Learning punctuation helps readers understand where sentences begin and end and how ideas are connected."
+		"TopicName": "Punctuation",
+		"TopicDesc": "[b]Punctuation marks[/b] make meaning clear. A [u]period (.)[/u] ends a statement, a [u]question mark (?)[/u] ends a query, and an [u]exclamation mark (!)[/u] shows feeling. [u]Commas (,)[/u] separate items in a list, while [u]apostrophes (')[/u] are used for contractions ([i]can't[/i]) or possession ([i]Maria's[/i])."
 	},
 	3: {
 		"TopicID": "3",
-		"TopicName": "Capitalization ",
-		"TopicDesc": "Capitalization is the use of uppercase letters to mark the importance or beginning of certain words. In English, we capitalize the first word of every sentence (e.g., 'The dog barked.'), proper nouns such as names of people (Maria), places (Manila, Pacific Ocean), and organizations (Red Cross), the pronoun 'I' when used alone, titles when used before a name (Dr. Santos, President Marcos), and the names of days (Monday), months (January), and holidays (Christmas). Correct capitalization signals to readers which words are special or carry particular significance."
+		"TopicName": "Capitalization",
+		"TopicDesc": "[b]Capitalization[/b] uses uppercase letters for importance. We capitalize the first word of a sentence, [u]proper nouns[/u] (names like [i]Maria[/i] or places like [i]Manila[/i]), the pronoun [i]'I'[/i], titles, and days/months/holidays. This signals to readers which words carry particular significance."
 	},
 	4: {
 		"TopicID": "4",
-		"TopicName": "Nouns ",
-		"TopicDesc": "A noun is a word that names a person, place, thing, or idea. Common nouns refer to general people, places, or things (teacher, city, table), while proper nouns name specific ones and are always capitalized (Mrs. Reyes, Cebu, Eiffel Tower). Nouns can also be concrete (things you can touch or see, like 'book' or 'rain') or abstract (ideas or feelings you cannot touch, like 'freedom' or 'happiness'). A collective noun names a group as one unit, such as 'team,' 'flock,' or 'family.' Nouns often appear as the subject or object of a sentence, making them essential to communication."
+		"TopicName": "Nouns",
+		"TopicDesc": "A [b]noun[/b] names a person, place, thing, or idea. [u]Common nouns[/u] are general ([i]teacher[/i]), while [u]proper nouns[/u] are specific ([i]Mrs. Reyes[/i]). Nouns can be [b]concrete[/b] (tangible items like [i]book[/i]) or [b]abstract[/b] (ideas like [i]freedom[/i]). [b]Collective nouns[/b] name groups, such as [i]'team'[/i] or [i]'family.'[/i]"
 	},
-
-
 	5: {
 		"TopicID": "5",
-		"TopicName": "Sentence Formation ",
-		"TopicDesc": "A well-formed sentence must express a complete thought and contain at least a subject and a verb. Simple sentences have one independent clause: 'The girl sings.' Compound sentences join two independent clauses with a coordinating conjunction (for, and, nor, but, or, yet, so — FANBOYS): 'The girl sings, and the boy dances.' To form strong sentences, students should avoid fragments (incomplete thoughts like 'Running fast.') and run-ons (two sentences joined without proper punctuation: 'I was tired I went to bed'). Good sentence formation is the foundation of clear, effective writing."
+		"TopicName": "Sentence Formation",
+		"TopicDesc": "[b]Simple sentences[/b] have one independent clause ([i]'The girl sings'[/i]). [b]Compound sentences[/b] join two clauses using conjunctions like [i]and, but, or so[/i]. Writers should avoid [u]fragments[/u] (incomplete thoughts) and [u]run-ons[/u] (sentences joined without proper punctuation)."
 	},
 	6: {
 		"TopicID": "6",
-		"TopicName": "Paragraph Writing ",
-		"TopicDesc": "A paragraph is a group of related sentences that develops one main idea. It typically begins with a topic sentence that states the main idea (e.g., 'Dogs make wonderful pets.'), followed by supporting sentences that give details, examples, or reasons, and ends with a concluding sentence that restates or wraps up the idea (e.g., 'That is why dogs are loved by so many families.'). A well-written paragraph stays focused on one topic, flows logically from one sentence to the next, and uses transition words like 'first,' 'next,' 'also,' and 'finally' to connect ideas smoothly."
+		"TopicName": "Paragraph Writing",
+		"TopicDesc": "A [b]paragraph[/b] develops one main idea. It starts with a [u]topic sentence[/u], followed by [u]supporting sentences[/u] with details, and ends with a [u]concluding sentence[/u]. Transition words like [i]'first,' 'next,'[/i] and [i]'finally'[/i] help connect ideas smoothly."
 	},
 	7: {
 		"TopicID": "7",
 		"TopicName": "Descriptive Writing",
-		"TopicDesc": "Descriptive writing uses vivid details and sensory language to paint a picture with words so that readers can see, hear, smell, taste, or feel what is being described. Instead of writing 'The food was good,' a descriptive writer might say 'The warm adobo smelled of garlic and vinegar, and every bite was tender and savory.' Good descriptive writing uses specific adjectives (not just 'big' but 'towering'), strong verbs (not 'walked' but 'shuffled'), and figurative language like similes ('as bright as the sun') to make writing come alive."
+		"TopicDesc": "[b]Descriptive writing[/b] uses sensory language to paint a picture. Instead of [i]'The food was good,'[/i] one might say [i]'The warm adobo smelled of garlic and vinegar.'[/i] It uses specific adjectives, strong verbs, and figurative language like [u]similes[/u] to make writing come alive."
 	},
 	8: {
 		"TopicID": "8",
-		"TopicName": "Story Structure ",
-		"TopicDesc": "Every story is built around a structure that guides readers from beginning to end. The beginning introduces the characters, setting (where and when the story takes place), and the problem or conflict. The middle, or rising action, shows the characters' attempts to solve the problem, building toward the climax — the most exciting or important moment in the story. The end, or resolution, shows how the problem is solved and how things turn out. This structure is sometimes called a story map or narrative arc. Understanding story structure helps students both read stories with deeper comprehension and write their own with clear organization."
+		"TopicName": "Story Structure",
+		"TopicDesc": "Stories follow a [b]narrative arc[/b]: [u]Beginning[/u] (characters and setting), [u]Middle[/u] (rising action and conflict), [u]Climax[/u] (the turning point), and [u]End[/u] (resolution). Understanding this map helps students read with deeper comprehension and write organized stories."
 	},
 	9: {
 		"TopicID": "9",
 		"TopicName": "Basic Composition Techniques",
-		"TopicDesc": "Composition refers to how a piece of writing is organized and developed. Key techniques include prewriting (brainstorming ideas using webs, lists, or outlines before writing), drafting (writing a first version without worrying about perfection), revising (improving content by adding details, removing repetition, or reorganizing ideas), editing (correcting spelling, grammar, and punctuation errors), and publishing (sharing the final work). Using transition words such as 'first,' 'however,' 'in addition,' and 'in conclusion' helps connect ideas and guide the reader through the piece."
+		"TopicDesc": "[b]Composition[/b] involves several stages: [u]Prewriting[/u] (brainstorming), [u]Drafting[/u] (first version), [u]Revising[/u] (improving content), and [u]Editing[/u] (correcting errors). Using transition words helps guide the reader through the piece clearly."
 	},
-
-
 	10: {
 		"TopicID": "10",
 		"TopicName": "Synonyms and Antonyms",
-		"TopicDesc": "Synonyms are words that have the same or nearly the same meaning as another word. For example, 'happy,' 'glad,' and 'joyful' are synonyms because they all express a positive feeling. Using synonyms helps writers avoid repeating the same word and makes writing more interesting. Antonyms are words that have opposite meanings. For example, 'hot' and 'cold,' 'big' and 'small,' and 'fast' and 'slow' are antonym pairs. Knowing synonyms and antonyms builds vocabulary, improves reading comprehension, and helps students choose the most precise words when writing or speaking."
+		"TopicDesc": "[b]Synonyms[/b] are words with similar meanings ([i]happy/joyful[/i]), helping writers avoid repetition. [b]Antonyms[/b] are words with opposite meanings ([i]hot/cold[/i]). Knowing both builds vocabulary and helps in choosing precise words."
 	},
 	11: {
 		"TopicID": "11",
-		"TopicName": "Context Clues ",
-		"TopicDesc": "Context clues are hints found within a sentence or paragraph that help readers figure out the meaning of an unfamiliar word without using a dictionary. Types of context clues include definition clues (the meaning is stated directly: 'A nocturnal animal, one that is active at night, like the owl...'), example clues (examples are given: 'Citrus fruits, such as oranges, lemons, and limes, are rich in Vitamin C.'), and contrast clues (an opposite idea is given: 'Unlike her timid brother, Ana was bold and fearless.'). Using context clues is a powerful reading strategy that builds independence and comprehension."
+		"TopicName": "Context Clues",
+		"TopicDesc": "[b]Context clues[/b] are hints in a text that help figure out unfamiliar words. These include [u]definition clues[/u] (stated directly), [u]example clues[/u] (using [i]'such as'[/i]), and [u]contrast clues[/u] (using [i]'unlike'[/i]). This is a powerful strategy for independent reading."
 	},
 	12: {
 		"TopicID": "12",
-		"TopicName": "Prefixes and Suffixes ",
-		"TopicDesc": "A prefix is a group of letters added to the beginning of a root word to change its meaning. Common prefixes include un- (meaning 'not': unhappy, unkind), re- (meaning 'again': rewrite, redo), pre- (meaning 'before': preview, preheat), and dis- (meaning 'not' or 'opposite': dislike, disagree). A suffix is a group of letters added to the end of a root word. Common suffixes include -ful (meaning 'full of': joyful, hopeful), -less (meaning 'without': careless, hopeless), -er (meaning 'one who': teacher, singer), and -ly (meaning 'in a way': quickly, softly). Understanding prefixes and suffixes helps students decode unfamiliar words and expand their vocabulary."
+		"TopicName": "Prefixes and Suffixes",
+		"TopicDesc": "A [b]prefix[/b] is added to the [i]beginning[/i] of a word ([i]un-, re-, pre-[/i]), while a [b]suffix[/b] is added to the [i]end[/i] ([i]-ful, -less, -ly[/i]). Understanding these helps students decode unfamiliar words and expand their vocabulary quickly."
 	},
 	13: {
 		"TopicID": "13",
-		"TopicName": "Word Meanings and Vocabulary Building ",
-		"TopicDesc": "Building a strong vocabulary means learning new words and understanding how to use them correctly. Students can expand their vocabulary by reading widely, keeping a personal word journal, practicing with flashcards, and paying attention to words in context. Strategies for learning word meanings include using a dictionary or glossary, breaking words into parts (prefix + root + suffix), and looking for context clues in surrounding sentences. For example, understanding that 'aqua' means water helps a student figure out that 'aquarium' is a water tank and 'aquatic' relates to water. A rich vocabulary improves reading comprehension, writing quality, and overall communication skills."
+		"TopicName": "Word Meanings and Vocabulary Building",
+		"TopicDesc": "[b]Vocabulary building[/b] involves reading widely and using tools like dictionaries or word journals. Breaking words into parts (prefix + root + suffix) is a key strategy. For example, knowing [i]'aqua'[/i] means water helps define [i]'aquarium'[/i] and [i]'aquatic.'[/i]"
 	},
-
-
-
 	14: {
 		"TopicID": "14",
 		"TopicName": "Verbal Expression",
-		"TopicDesc": "Verbal expression refers to the ability to communicate ideas, feelings, and information clearly through spoken language. Good verbal expression involves speaking in complete sentences, using appropriate vocabulary, varying tone and volume to match the message, and making eye contact with the listener. For example, instead of saying 'It was, like, really fun,' a student with strong verbal expression might say 'The Science Fair was exciting because we got to build and test our own experiments.' Practicing verbal expression through class discussions, Show-and-Tell, oral reports, and read-alouds helps students become more confident and effective communicators."
+		"TopicDesc": "[b]Verbal expression[/b] is communicating ideas clearly through speech. It involves complete sentences, appropriate tone, and eye contact. Practicing through [i]Show-and-Tell[/i] or oral reports helps students become confident and effective communicators."
 	},
 	15: {
 		"TopicID": "15",
-		"TopicName": "Active Listening ",
-		"TopicDesc": "Active listening is a communication skill that involves fully concentrating on what a speaker is saying rather than passively hearing their words. An active listener makes eye contact, nods or responds appropriately, avoids interrupting, and can summarize or ask questions about what was said. For example, after a classmate explains a story, an active listener might say 'So the main character was trying to find his way home — what happened next?' In contrast, passive hearing is when someone is present but not truly paying attention. Practicing active listening helps students follow directions more accurately, participate better in discussions, and show respect for others when they speak."
+		"TopicName": "Active Listening",
+		"TopicDesc": "[b]Active listening[/b] requires concentrating fully on the speaker. It involves eye contact, nodding, and asking follow-up questions. Unlike passive hearing, active listening shows respect and helps students follow directions more accurately."
 	},
 	16: {
 		"TopicID": "16",
-		"TopicName": "Following Directions ",
-		"TopicDesc": "Following directions is the ability to listen to or read a set of instructions and carry them out correctly, in the right order, and completely. This skill requires careful attention, listening for key words (first, next, then, finally), remembering multi-step instructions, and asking for clarification when something is unclear. For example, a student following directions for a craft project must listen for each step — 'First, fold the paper in half. Next, draw a heart on one side. Then, cut along the line.' — before moving on. Strong direction-following skills are essential for academic tasks, safety situations, and everyday activities."
+		"TopicName": "Following Directions",
+		"TopicDesc": "This is the ability to carry out instructions in the right order. It requires listening for keywords like [i]'first,' 'then,'[/i] and [i]'finally.'[/i] Strong direction-following skills are essential for academics, safety, and everyday activities."
 	},
-
-
 	17: {
 		"TopicID": "17",
 		"TopicName": "Main Idea and Supporting Details",
-		"TopicDesc": "The main idea is the most important point or central message of a paragraph or passage — what the entire text is mostly about. It is often stated in the topic sentence, usually found at the beginning or end of a paragraph. Supporting details are facts, examples, descriptions, or reasons that explain or prove the main idea. For example, in a passage about dolphins, the main idea might be 'Dolphins are intelligent animals.' Supporting details might include the facts that they can learn tricks, communicate using sounds, and solve simple puzzles. Identifying the main idea and supporting details helps readers distinguish important information from minor details."
+		"TopicDesc": "The [b]main idea[/b] is the central message, often found in the [u]topic sentence[/u]. [u]Supporting details[/u] provide facts or examples that explain the main idea. For example: [i]'Dolphins are intelligent'[/i] (main idea) because [i]'they can learn tricks'[/i] (detail)."
 	},
 	18: {
 		"TopicID": "18",
-		"TopicName": "Character, Setting, and Plot ",
-		"TopicDesc": "Character, setting, and plot are the three essential elements of a story. Characters are the people, animals, or beings in the story — the protagonist is the main character (e.g., Harry Potter), and the antagonist creates conflict (e.g., Voldemort). The setting is where and when the story takes place (e.g., a magical school in England during modern times). The plot is the sequence of events including the exposition (introduction), rising action (building tension), climax (turning point), falling action, and resolution (ending). Understanding these elements helps students analyze stories more deeply and write their own with stronger structure."
+		"TopicName": "Character, Setting, and Plot",
+		"TopicDesc": "Every story needs [b]characters[/b] (protagonist/antagonist), a [b]setting[/b] (time and place), and a [b]plot[/b] (the sequence of events). Analyzing these elements helps students understand the deeper structure of the narratives they read."
 	},
 	19: {
 		"TopicID": "19",
-		"TopicName": "Literary Elements: Poems and Stories ",
-		"TopicDesc": "Literary elements are the features and techniques that writers use to create meaning in poems and stories. In stories, key elements include theme (the central message or life lesson, e.g., 'honesty is the best policy'), mood (the feeling a story creates, such as suspense, joy, or sadness), and point of view (who is telling the story — first person uses 'I,' while third person uses 'he/she/they'). In poetry, key elements include rhyme (words that end with the same sound), rhythm (the beat or flow of a poem), repetition (repeating words or lines for effect), and imagery (vivid word pictures). Recognizing literary elements enriches reading comprehension and helps students appreciate the craft of writing."
+		"TopicName": "Literary Elements: Poems and Stories",
+		"TopicDesc": "In stories, key elements include [u]theme[/u] and [u]point of view[/u]. In poetry, focus is on [u]rhyme[/u], [u]rhythm[/u], and [u]imagery[/u]. Recognizing these enriches comprehension and helps students appreciate the craft of professional writing."
 	},
 	20: {
 		"TopicID": "20",
-		"TopicName": "Verb Tenses ",
-		"TopicDesc": "Verb tenses indicate when an action takes place — in the past, present, or future — and also express whether an action is completed, ongoing, or habitual. The six main tenses are: simple present ('She writes every day.'), simple past ('She wrote yesterday.'), simple future ('She will write tomorrow.'), present perfect ('She has written three chapters.'), past perfect ('She had written the letter before leaving.'), and future perfect ('She will have written the novel by December.'). Progressive tenses (e.g., 'She is writing') indicate ongoing action, while perfect progressive tenses (e.g., 'She has been writing for hours') show duration. Correct verb tense usage is essential for clear, precise communication."
+		"TopicName": "Verb Tenses",
+		"TopicDesc": "[b]Verb tenses[/b] show when an action happens. [u]Simple tenses[/u] cover past, present, and future. [u]Perfect tenses[/u] ([i]'has written'[/i]) show completed actions, while [u]progressive tenses[/u] ([i]'is writing'[/i]) indicate ongoing actions. Correct usage is vital for clear communication."
 	},
 	21: {
 		"TopicID": "21",
-		"TopicName": "Active and Passive Voice ",
-		"TopicDesc": "In active voice, the subject performs the action: 'The teacher explained the lesson.' In passive voice, the subject receives the action: 'The lesson was explained by the teacher.' Active voice is generally preferred in writing because it is more direct, clear, and concise. Passive voice is used when the doer of the action is unknown ('The window was broken.'), unimportant, or when the writer wants to emphasize the object or result. Passive constructions use a form of 'be' (is, was, were, been) plus a past participle. Students learn to identify and convert between active and passive voice to improve clarity and style in their writing."
+		"TopicName": "Active and Passive Voice",
+		"TopicDesc": "In [b]active voice[/b], the subject does the action ([i]'The teacher explained'[/i]). In [b]passive voice[/b], the subject receives it ([i]'The lesson was explained'[/i]). Active voice is preferred for clarity and directness in academic writing."
 	},
 	22: {
 		"TopicID": "22",
-		"TopicName": "Complex Sentence Structures ",
-		"TopicDesc": "A complex sentence contains one independent clause (a complete thought that can stand alone) and at least one dependent clause (an incomplete thought that cannot stand alone). Dependent clauses begin with subordinating conjunctions such as because, although, when, since, if, unless, and after. Example: 'Although it was raining heavily, the students continued their outdoor activity.' A compound-complex sentence has two independent clauses and at least one dependent clause: 'She studied hard because she wanted to pass, and her efforts paid off.' Using varied sentence structures — simple, compound, complex, and compound-complex — makes writing more sophisticated and engaging."
+		"TopicName": "Complex Sentence Structures",
+		"TopicDesc": "A [b]complex sentence[/b] combines an independent clause with a [u]dependent clause[/u] (starting with [i]because, although, if[/i]). Varying structures—simple, compound, and complex—makes writing more sophisticated and engaging for the reader."
 	},
 	23: {
 		"TopicID": "23",
 		"TopicName": "Advanced Punctuation",
-		"TopicDesc": "Beyond basic punctuation, advanced marks include the semicolon, colon, dash, and hyphen. A semicolon (;) joins two closely related independent clauses without a conjunction: 'She loved reading; her brother preferred sports.' A colon (:) introduces a list, explanation, or quotation: 'He had three goals: to study, to travel, and to write a book.' An em dash (—) sets off a dramatic pause or adds emphasis: 'She finally arrived — three hours late.' A hyphen (-) links compound modifiers before a noun (well-known author, five-year-old child). Mastery of advanced punctuation enables students to express nuanced ideas with greater precision and style."
+		"TopicDesc": "[b]Advanced punctuation[/b] includes the [u]semicolon (;)[/u] for related clauses, the [u]colon (:)[/u] for lists, the [u]em dash (—)[/u] for emphasis, and the [u]hyphen (-)[/u] for compound modifiers. Mastery allows for more precise and stylish expression."
 	},
-
-
 	24: {
 		"TopicID": "24",
-		"TopicName": "Essay Organization ",
-		"TopicDesc": "A well-organized essay follows a three-part structure: introduction, body, and conclusion. The introduction opens with a hook (an interesting question, quote, or fact), provides brief background information, and ends with a thesis statement — a clear sentence stating the essay's main argument. The body consists of multiple paragraphs, each beginning with a topic sentence and supported by evidence, examples, and analysis. The conclusion restates the thesis in new words, summarizes the key points, and ends with a clincher — a memorable final thought or call to action. Strong essay organization ensures ideas flow logically and convincingly from start to finish."
+		"TopicName": "Essay Organization",
+		"TopicDesc": "An essay follows a three-part structure: [u]Introduction[/u] (hook and thesis), [u]Body[/u] (topic sentences and evidence), and [u]Conclusion[/u] (summary and clincher). This ensures ideas flow logically and convincingly from start to finish."
 	},
 	25: {
 		"TopicID": "25",
-		"TopicName": "Thesis Development ",
-		"TopicDesc": "A thesis statement is a concise sentence, usually placed at the end of the introduction, that presents the central argument or claim of an essay. A strong thesis is specific, debatable, and supportable — not a vague statement like 'Social media affects teens' but rather a clear claim like 'Excessive social media use negatively affects teenagers' mental health by increasing anxiety, reducing face-to-face interaction, and distorting self-image.' The rest of the essay is built around proving and developing this thesis. Students write working thesis statements during drafting and refine them through revision as their arguments become more focused and supported."
+		"TopicName": "Thesis Development",
+		"TopicDesc": "A [b]thesis statement[/b] is the central claim of an essay. It should be specific, debatable, and supportable. Instead of a vague topic, it provides a clear argument that the rest of the essay will work to prove through evidence."
 	},
 	26: {
 		"TopicID": "26",
-		"TopicName": "Research and Note-Taking Skills ",
-		"TopicDesc": "Research writing involves gathering, evaluating, and synthesizing information from multiple sources to support a thesis or answer a research question. Students learn to identify credible sources (academic journals, reputable websites, textbooks), distinguish between primary sources (original documents like speeches or diaries) and secondary sources (analyses or summaries of primary sources), and take effective notes by paraphrasing key ideas rather than copying word-for-word. Proper citation using formats such as MLA or APA prevents plagiarism and credits original authors. Note-taking strategies such as outlining, Cornell notes, and annotation help students organize information before writing."
+		"TopicName": "Research and Note-Taking Skills",
+		"TopicDesc": "[b]Research[/b] involves evaluating credible sources and avoiding plagiarism through proper citation (MLA/APA). Effective note-taking techniques like [u]paraphrasing[/u] and [u]Cornell notes[/u] help students organize information before they begin writing."
 	},
-
-
 	27: {
 		"TopicID": "27",
 		"TopicName": "Greek and Latin Roots",
-		"TopicDesc": "Many English words are built from Greek and Latin roots — the core units of meaning. Knowing common roots helps students decode unfamiliar words across all subjects. For example, the Latin root 'scrib/script' (to write) gives us describe, prescribe, manuscript, and inscription. The Greek root 'bio' (life) appears in biology, biography, and antibiotic. The Latin root 'port' (to carry) is found in transport, export, import, and portable. The Greek root 'graph' (to write or draw) gives us photograph, autograph, and geography. Recognizing roots, especially when combined with prefixes and suffixes, empowers students to infer word meanings independently and build vocabulary efficiently."
+		"TopicDesc": "Many English words come from [b]Greek and Latin roots[/b]. For example, [i]'bio'[/i] (life) appears in [i]biology[/i], and [i]'scrib'[/i] (to write) is in [i]manuscript[/i]. Knowing roots empowers students to infer the meanings of complex academic terms independently."
 	},
 	28: {
 		"TopicID": "28",
 		"TopicName": "Word Origins and Etymology",
-		"TopicDesc": "Etymology is the study of the origin and historical development of words. Understanding where words come from — their language of origin and how usage has shifted over time — deepens vocabulary knowledge. For example, 'salary' comes from the Latin 'salarium,' related to 'sal' (salt), because Roman soldiers were sometimes paid in salt. 'Disaster' comes from Italian, combining 'dis' (bad) and 'astro' (star), reflecting the ancient belief that misfortune was linked to unfavorable stars. 'Sandwich' is named after the Earl of Sandwich, who popularized eating meat between slices of bread. Studying etymology reveals the rich history embedded in everyday language."
+		"TopicDesc": "[b]Etymology[/b] is the study of word history. It reveals how words like [i]'salary'[/i] (from Latin for salt) evolved. Understanding origins deepens vocabulary knowledge and connects language to history and culture."
 	},
-
 	29: {
 		"TopicID": "29",
 		"TopicName": "Public Speaking",
-		"TopicDesc": "Public speaking is the act of delivering a prepared speech or presentation to an audience in a clear, organized, and confident manner. Effective public speakers consider their purpose (to inform, persuade, or entertain), know their audience, and structure their speech with an introduction, body, and conclusion. Delivery elements include volume (speaking loudly enough to be heard), pace (not too fast or too slow), clarity (clear pronunciation), eye contact (engaging the audience), and body language (purposeful gestures and posture). Common speaking formats include informative speeches, persuasive speeches, oral reports, and debates. Overcoming stage fright through preparation and practice is a key skill developed at this level."
+		"TopicDesc": "[b]Public speaking[/b] involves preparing and delivering a speech with confidence. Key elements include volume, pace, clarity, and eye contact. Overcoming stage fright through practice is a primary goal at this level."
 	},
 	30: {
 		"TopicID": "30",
 		"TopicName": "Verbal and Non-Verbal Communication",
-		"TopicDesc": "Communication involves both verbal (spoken and written words) and non-verbal (body language, facial expressions, gestures, posture, eye contact, and tone of voice) elements. Non-verbal cues often reinforce or contradict verbal messages — a speaker saying 'I'm fine' while slouching and avoiding eye contact sends a mixed signal. Key non-verbal elements include proxemics (personal space and distance), kinesics (body movements and gestures), paralanguage (tone, pitch, volume, and speech rate), and facial expressions. For example, maintaining eye contact shows confidence and engagement, while crossed arms can signal defensiveness. Students learn to align their verbal and non-verbal communication for consistent, credible, and effective messages."
+		"TopicDesc": "Communication is both [u]verbal[/u] (words) and [u]non-verbal[/u] (body language, tone, gestures). Non-verbal cues can reinforce or contradict a message. Aligning both is key to being a credible and effective communicator."
 	},
-
-
-
 	31: {
 		"TopicID": "31",
 		"TopicName": "Literary Elements and Analysis",
-		"TopicDesc": "Literary analysis involves examining the specific elements an author uses to construct meaning in a text. Key elements include plot (sequence of events: exposition, rising action, climax, falling action, resolution), characterization (how an author reveals character through description, dialogue, actions, and thoughts — direct vs. indirect characterization), setting (time, place, and atmosphere), theme (the central message or life lesson), point of view (first person, third person limited, or omniscient), tone (the author's attitude toward the subject), and mood (the feeling created in the reader). Analyzing these elements helps students move beyond surface-level reading toward a deeper understanding of how literature communicates human experience."
+		"TopicDesc": "[b]Literary analysis[/b] examines how authors create meaning using plot, characterization, setting, and tone. Moving beyond surface reading helps students understand how literature communicates the human experience."
 	},
 	32: {
 		"TopicID": "32",
 		"TopicName": "Theme Identification",
-		"TopicDesc": "A theme is the central message, insight, or truth about human life that a literary work communicates. Unlike a topic (a subject like 'war' or 'friendship'), a theme is a complete statement of the author's message, such as 'War destroys the innocent' or 'True friendship requires sacrifice.' Themes are rarely stated directly — readers must infer them from characters' actions, conflicts, and changes. For example, in George Orwell's Animal Farm, a key theme is that power corrupts those who seek it, as seen through the pigs' gradual transformation from liberators to tyrants. Learning to identify themes helps students connect literature to broader human experiences and ethical questions."
+		"TopicDesc": "A [b]theme[/b] is a central insight about life, such as [i]'power corrupts.'[/i] Themes are rarely stated directly; readers must infer them from character changes and conflicts within the story."
 	},
-
 	33: {
 		"TopicID": "33",
-		"TopicName": "Verbals: Gerunds, Participles, and Infinitives ",
-		"TopicDesc": "Verbals are verb forms that function as different parts of speech rather than as the main verb of a sentence. A gerund is a verb ending in -ing used as a noun: 'Swimming is great exercise.' A participle is a verb form used as an adjective: 'The broken window let in cold air' (past participle) or 'The running water filled the tub' (present participle). An infinitive is the base form of a verb preceded by 'to,' used as a noun, adjective, or adverb: 'To succeed requires dedication.' Dangling verbals cause confusion: 'Walking down the street, the rain began to fall' (dangling — the rain wasn't walking). Mastering verbals enhances sentence variety and stylistic sophistication in academic writing."
+		"TopicName": "Verbals: Gerunds, Participles, and Infinitives",
+		"TopicDesc": "[b]Verbals[/b] are verb forms used as other parts of speech. [u]Gerunds[/u] act as nouns ([i]swimming[/i]), [u]participles[/u] act as adjectives ([i]broken[/i]), and [u]infinitives[/u] act as nouns/adjectives ([i]to succeed[/i]). Mastery enhances sentence variety."
 	},
 	34: {
 		"TopicID": "34",
 		"TopicName": "Parallel Structure",
-		"TopicDesc": "Parallel structure (also called parallelism) means using the same grammatical form for elements that are coordinated or listed in a sentence, creating balance, clarity, and rhythm. For example, 'She likes to read, to write, and to explore new ideas' is parallel because all three items use the infinitive form. Breaking parallelism creates awkward sentences: 'She likes reading, to write, and explores new ideas.' Parallelism applies to lists, paired elements (both...and, either...or, not only...but also), and across sentences in a paragraph. In formal academic and professional writing, parallel structure is a marker of careful, polished prose. Correct example: 'Not only did he study hard, but he also practiced consistently.'"
+		"TopicDesc": "[b]Parallelism[/b] means using the same grammatical form for lists or paired elements ([i]'to read, to write, and to explore'[/i]). It creates balance and rhythm, marking polished professional and academic prose."
 	},
 	35: {
 		"TopicID": "35",
 		"TopicName": "Syntax and Advanced Sentence Construction",
-		"TopicDesc": "Syntax refers to the rules and patterns governing how words are arranged in sentences. At the senior high school level, students manipulate syntax for effect — varying sentence length, structure, and arrangement to create rhythm, emphasis, and clarity. Techniques include periodic sentences (the main clause comes at the end: 'Despite years of rejection and failure, he never gave up.'), cumulative sentences (the main clause comes first, followed by modifying phrases: 'She ran, arms pumping, lungs burning, heart pounding.'), and rhetorical fragments used for emphasis: 'Never. Not once.' Advanced syntax also involves appositives ('My mentor, a retired professor, reviewed my thesis.') and absolute phrases ('The storm having passed, they ventured outside.')."
+		"TopicDesc": "[b]Syntax[/b] is the arrangement of words. Advanced writers vary sentence length and use [u]periodic sentences[/u] or [u]appositives[/u] to create emphasis, rhythm, and clarity in their writing."
 	},
-
-
-
 	36: {
 		"TopicID": "36",
 		"TopicName": "Academic Essay Writing",
-		"TopicDesc": "Academic essay writing at the senior high school level requires formal, evidence-based arguments that conform to conventions of academic discourse. A well-crafted academic essay has a strong thesis supported by clearly organized body paragraphs, each following the PIE structure: Point (topic sentence stating the paragraph's argument), Illustration (evidence such as quotes, statistics, or examples), and Explanation (analysis linking the evidence back to the thesis). Students must integrate sources using proper in-text citation, maintain a formal and objective tone, and avoid informal language. Common essay types include argumentative, analytical, expository, and compare-and-contrast essays."
+		"TopicDesc": "Academic writing requires a formal, evidence-based approach. Body paragraphs often follow the [u]PIE structure[/u]: [b]Point[/b] (topic), [b]Illustration[/b] (evidence), and [b]Explanation[/b] (analysis)."
 	},
 	37: {
 		"TopicID": "37",
 		"TopicName": "Rhetorical Strategies and Persuasion",
-		"TopicDesc": "Rhetoric is the art of effective and persuasive communication. The three classical rhetorical appeals introduced by Aristotle are ethos (appeal to credibility — establishing the writer's expertise and trustworthiness), pathos (appeal to emotion — using vivid language, personal stories, or emotional examples to connect with the audience), and logos (appeal to logic — using facts, statistics, evidence, and sound reasoning to build an argument). Effective persuasive writing skillfully combines all three. For example, an essay arguing for climate action might use logos (scientific data), pathos (stories of displaced communities), and ethos (citing respected scientists). Students also study logical fallacies — errors in reasoning such as ad hominem, strawman, and false dichotomy — to avoid them in writing and recognize them in others'."
+		"TopicDesc": "Persuasion uses three appeals: [b]Ethos[/b] (credibility), [b]Pathos[/b] (emotion), and [b]Logos[/b] (logic). Effective writers combine these while avoiding logical fallacies like [i]ad hominem[/i] or [i]strawman[/i] arguments."
 	},
-
-
 	38: {
 		"TopicID": "38",
 		"TopicName": "Academic Vocabulary and Formal Register",
-		"TopicDesc": "Academic vocabulary consists of words that appear frequently in academic texts and are essential for higher-level reading, writing, and critical thinking. The Academic Word List (AWL) includes words like analyze, concept, context, derive, establish, evaluate, imply, perceive, significant, and structure, which appear across textbooks, essays, and research. Register refers to the level of formality in language — academic writing demands a formal register that avoids slang ('kids' → 'children'), contractions ('don't' → 'do not'), and vague language ('stuff' → 'evidence'). Students develop academic vocabulary through wide reading, targeted study, and deliberate use in writing and discussion, significantly improving performance in standardized tests and college-level coursework."
+		"TopicDesc": "Academic vocabulary includes words like [i]analyze, context,[/i] and [i]evaluate[/i]. Students must maintain a [b]formal register[/b], avoiding slang or contractions to meet the standards of college-level coursework."
 	},
 	39: {
 		"TopicID": "39",
 		"TopicName": "Advanced Etymology and Word Formation",
-		"TopicDesc": "Word formation processes explain how new words enter the English language. Derivation adds affixes to existing words (happy → happiness → unhappiness). Compounding joins two or more words (bookstore, fireplace, self-confidence). Blending fuses parts of two words (breakfast + lunch = brunch; smoke + fog = smog). Clipping shortens a longer word (examination → exam; laboratory → lab). Acronyms form words from initials (NASA, UNESCO, ASAP). Conversion shifts a word's part of speech without changing its form (e.g., 'a text' → 'to text'). Back-formation creates new words by removing a supposed suffix (the verb 'edit' came from the noun 'editor'). Understanding word formation helps students decode unfamiliar terms across disciplines."
+		"TopicDesc": "New words enter English through [b]derivation[/b], [b]compounding[/b], [b]blending[/b] ([i]brunch[/i]), or [b]acronyms[/b] ([i]NASA[/i]). Understanding these processes helps students decode unfamiliar terms across all disciplines."
 	},
-
-
 	40: {
 		"TopicID": "40",
 		"TopicName": "Speech Styles and Communication Registers",
-		"TopicDesc": "Speech styles refer to variations in language use based on the relationship between speakers, the purpose of communication, and the context. Linguist Martin Joos identified five speech styles: frozen (fixed, formal language used in rituals or legal documents, e.g., the Pledge of Allegiance), formal (structured, professional language used in presentations or speeches), consultative (collaborative, informational exchanges between professionals or strangers, e.g., a doctor-patient conversation), casual (relaxed, informal language used among friends, with slang and incomplete sentences), and intimate (very personal language between close family members or partners, often involving private code words). Students learn to identify and shift appropriately between styles depending on context, audience, and purpose."
+		"TopicDesc": "There are five speech styles: [b]Frozen[/b] (rituals), [b]Formal[/b] (speeches), [b]Consultative[/b] (professional), [b]Casual[/b] (friends), and [b]Intimate[/b] (family). Shifting appropriately is a key communication skill."
 	},
 	41: {
 		"TopicID": "41",
 		"TopicName": "Oral Presentations and Public Discourse",
-		"TopicDesc": "Effective oral presentations require careful preparation, clear organization, confident delivery, and purposeful use of visual aids such as PowerPoint slides, charts, or props. A strong presentation opens with a compelling hook, states its purpose clearly, develops key points with evidence and transitions, and closes with a memorable conclusion. Students are also introduced to formal debate (structured argumentation following rules of evidence and rebuttal), panel discussions (collaborative exploration of a topic), and symposiums (formal presentations on specialized topics). Evaluating oral presentations involves criteria such as content (accuracy and depth), organization, delivery (eye contact, volume, pacing), and the effective use of rhetorical strategies."
+		"TopicDesc": "[b]Oral presentations[/b] require preparation, organization, and purposeful use of visual aids. A strong presentation includes a [u]hook[/u], a clear purpose, and a [u]memorable conclusion[/u]. Students also explore [b]formal debate[/b] (structured argumentation), [b]panel discussions[/b], and [b]symposiums[/b]. Evaluation is based on content, delivery (eye contact, volume, pacing), and rhetorical strategies."
 	},
-
 	42: {
 		"TopicID": "42",
 		"TopicName": "Literary Analysis and Critical Reading",
-		"TopicDesc": "Literary analysis involves interpreting texts using specific analytical frameworks and supporting interpretations with textual evidence. Students analyze literary devices such as imagery (language that appeals to the senses), symbolism (objects or characters representing larger ideas, e.g., the green light in The Great Gatsby symbolizes Gatsby's unattainable dreams), irony (dramatic, verbal, or situational incongruity), allegory (extended metaphor where characters and events represent abstract ideas, e.g., Animal Farm as a critique of Stalinism), and allusion (references to other texts, events, or cultural figures). Critical reading includes identifying the author's purpose and bias, distinguishing fact from opinion, and evaluating the validity and strength of arguments in both literary and non-literary texts."
+		"TopicDesc": "[b]Literary analysis[/b] interprets texts using frameworks and evidence. Key devices include [u]imagery[/u], [u]symbolism[/u] (e.g., [i]the green light in Gatsby[/i]), [u]irony[/u], [u]allegory[/u] (e.g., [i]Animal Farm[/i]), and [u]allusion[/u]. [b]Critical reading[/b] involves identifying author bias, distinguishing fact from opinion, and evaluating the strength of arguments."
 	},
 	43: {
 		"TopicID": "43",
 		"TopicName": "World Literature and Cultural Contexts",
-		"TopicDesc": "World literature introduces students to literary works from diverse cultures, time periods, and traditions, broadening their understanding of the human experience beyond a single cultural perspective. Students engage with canonical texts such as Homer's The Odyssey (ancient Greece), Chinua Achebe's Things Fall Apart (postcolonial Nigeria), Gabriel García Márquez's One Hundred Years of Solitude (Latin American magical realism), and works by Filipino authors such as Nick Joaquin and F. Sionil José. Studying world literature involves situating texts within their historical and cultural contexts, analyzing how social structures, colonialism, gender roles, and religious traditions shape storytelling, and reflecting on universal themes — love, identity, justice, loss, and belonging — that transcend cultural boundaries."
+		"TopicDesc": "[b]World literature[/b] explores diverse cultures and traditions through canonical texts like [i]The Odyssey[/i] or [i]Things Fall Apart[/i], and Filipino works by [i]Nick Joaquin[/i]. Analysis involves situating texts within historical contexts to see how social structures, colonialism, and religion shape storytelling and universal themes like justice and identity."
 	},
-
-
 	44: {
 		"TopicID": "44",
 		"TopicName": "Advanced Syntax and Sentence-Level Editing",
-		"TopicDesc": "At the college level, syntax is studied as a craft tool — writers learn to manipulate sentence structure deliberately to control emphasis, pace, and clarity. Students analyze and correct issues such as dangling modifiers ('Having studied all night, the exam seemed easy' — who studied?), faulty predication ('The reason for my absence is because I was ill' — corrected: 'The reason for my absence is that I was ill'), and mixed constructions ('By staying up late is how I finished' — corrected: 'By staying up late, I finished'). College-level editing also involves recognizing wordiness and redundancy (e.g., 'advance planning' → 'planning'), achieving sentence economy, and producing prose that is simultaneously precise, readable, and stylistically distinct."
+		"TopicDesc": "At the college level, [b]syntax[/b] is a craft tool used to control pace and emphasis. Students learn to correct [u]dangling modifiers[/u], [u]faulty predication[/u], and [u]mixed constructions[/u]. Editing also focuses on eliminating [i]wordiness[/i] and [i]redundancy[/i] to produce prose that is precise, readable, and stylistically distinct."
 	},
 	45: {
 		"TopicID": "45",
 		"TopicName": "Complex Punctuation and Academic Conventions",
-		"TopicDesc": "College writing demands precise control of complex punctuation to signal logical relationships between ideas. The semicolon separates independent clauses sharing a close relationship and is used before transitional adverbs such as therefore, however, and moreover: 'The data was inconclusive; however, preliminary findings suggest a strong correlation.' The colon introduces a formal explanation, list, or quotation following an independent clause. Parentheses enclose supplementary information that is relevant but not essential. Brackets [ ] are used within quotations to insert editorial clarifications: '[The defendant] was found not guilty.' Ellipses (...) indicate omissions within quoted material. Mastering these conventions is essential for college-level research papers, thesis writing, and academic publications."
+		"TopicDesc": "College writing requires precise [b]punctuation[/b] to show logic. [u]Semicolons[/u] separate related independent clauses, [u]colons[/u] introduce formal lists, and [u]brackets [ ][/u] insert editorial clarifications. Mastering these, along with [u]ellipses (...)[/u], is essential for research papers and formal academic publications."
 	},
-
- 
-
 	46: {
 		"TopicID": "46",
-		"TopicName": "Academic Research and Documentation ",
-		"TopicDesc": "College-level research writing requires students to locate, evaluate, integrate, and properly document sources from peer-reviewed journals, books, and credible databases. The three most common documentation styles are MLA (Modern Language Association), used primarily in humanities; APA (American Psychological Association), used in social sciences; and Chicago/Turabian, used in history and some humanities. Students must correctly format in-text citations and Works Cited/References pages, distinguish between direct quotation (reproducing an author's exact words), paraphrasing (restating ideas in one's own words), and summarizing (condensing a source's key points). Avoiding plagiarism — the unacknowledged use of another's ideas or language — is a fundamental academic integrity requirement."
+		"TopicName": "Academic Research and Documentation",
+		"TopicDesc": "[b]Research writing[/b] involves documenting sources using [u]MLA[/u], [u]APA[/u], or [u]Chicago[/u] styles. Students must distinguish between [i]direct quotation[/i], [i]paraphrasing[/i], and [i]summarizing[/i]. Avoiding [u]plagiarism[/u]—the unacknowledged use of another's work—is a fundamental requirement of academic integrity."
 	},
 	47: {
 		"TopicID": "47",
 		"TopicName": "Rhetorical Patterns in Academic Writing",
-		"TopicDesc": "Rhetorical patterns are the organizational frameworks writers use to develop and present their ideas effectively. Common patterns include narration (telling a story in chronological order), description (creating vivid sensory pictures), exemplification (using specific examples to illustrate a point), comparison and contrast (examining similarities and differences, organized by block or point-by-point method), cause and effect (exploring why events happen and what results they produce), classification and division (grouping items into categories), definition (explaining a complex or contested concept), and argumentation/persuasion (presenting and defending a claim with evidence and reasoning). Skilled writers choose rhetorical patterns based on their purpose, audience, and the demands of the writing situation, often combining multiple patterns within a single essay."
+		"TopicDesc": "[b]Rhetorical patterns[/b] are frameworks for developing ideas. Common patterns include [u]narration[/u], [u]description[/u], [u]comparison/contrast[/u], [u]cause and effect[/u], and [u]argumentation[/u]. Skilled writers choose these patterns based on their purpose and audience to present evidence more effectively."
 	},
-
 	48: {
 		"TopicID": "48",
 		"TopicName": "Discipline-Specific Vocabulary and Academic Lexicon",
-		"TopicDesc": "College students must navigate discipline-specific vocabulary — the specialized language that defines academic fields. In biology, students encounter terms such as mitosis, phenotype, and osmosis; in economics, terms like elasticity, equilibrium, and marginal utility; in philosophy, concepts such as epistemology, ontology, and dialectics. The Academic Word List (AWL) provides high-frequency academic vocabulary essential across disciplines. Strategies for mastering academic vocabulary include wide reading within and across disciplines, creating semantic maps linking words by concept, studying derivational families (analyze / analysis / analytical / analytically), and engaging with vocabulary in authentic academic contexts rather than isolated drills. A strong academic lexicon is a prerequisite for reading primary sources, participating in scholarly discourse, and producing college-level writing."
+		"TopicDesc": "Students must navigate [b]specialized language[/b] across fields, from [i]mitosis[/i] in biology to [i]epistemology[/i] in philosophy. Strategies for mastery include studying [u]derivational families[/u] (e.g., [i]analyze/analysis[/i]) and using the [u]Academic Word List (AWL)[/u] to build a lexicon capable of handling primary sources."
 	},
-
-
 	49: {
 		"TopicID": "49",
 		"TopicName": "Public Speaking and Argumentation",
-		"TopicDesc": "College-level public speaking involves delivering well-structured presentations and engaging in formal argumentation, debate, and scholarly discussion. Students study the classical canons of rhetoric: inventio (discovering arguments and evidence), dispositio (organizing the speech), elocutio (style and language choice), memoria (memorization and internalization of content), and pronuntiatio (delivery — voice, gesture, and movement). In formal academic debate, students construct arguments based on claims (assertions), warrants (reasoning connecting evidence to the claim), and backing (support for the warrant). Evaluating arguments includes identifying logical fallacies such as straw man (misrepresenting an opponent's argument), slippery slope (assuming one event will lead to extreme consequences), and false analogy (comparing two insufficiently similar cases)."
+		"TopicDesc": "[b]College-level speaking[/b] utilizes the classical canons of rhetoric: [i]inventio, dispositio, elocutio, memoria, and pronuntiatio[/i]. In formal debate, arguments are built on [u]claims[/u], [u]warrants[/u], and [u]backing[/u]. Evaluating these involves identifying fallacies like [i]straw man[/i] or [i]slippery slope[/i] arguments."
 	},
 	50: {
 		"TopicID": "50",
 		"TopicName": "Critical Listening and Communication Ethics",
-		"TopicDesc": "Critical listening is the active, analytical process of evaluating spoken messages for credibility, logic, completeness, and bias. Unlike passive hearing or basic active listening, critical listening involves questioning assumptions embedded in a message, identifying rhetorical strategies and emotional manipulation, recognizing logical fallacies, and evaluating the quality and source of evidence. Communication ethics refers to the moral principles that govern honest and responsible communication, including the obligation to avoid deception, respect audience autonomy, acknowledge uncertainty, attribute sources accurately, and avoid exploiting emotional vulnerabilities. These principles apply to academic presentations, professional communication, digital media, and interpersonal interactions. Students develop critical listening skills through practice evaluating speeches, media broadcasts, debates, and peer presentations."
+		"TopicDesc": "[b]Critical listening[/b] is the analytical process of evaluating messages for logic and bias. [b]Communication ethics[/b] refers to moral principles like honesty, source attribution, and avoiding deception. Students develop these skills by evaluating speeches and media to recognize emotional manipulation or logical errors."
 	},
-
-
 	51: {
 		"TopicID": "51",
 		"TopicName": "Literary Theory and Critical Approaches",
-		"TopicDesc": "Literary theory provides frameworks through which texts are analyzed and interpreted. Key approaches include formalism/New Criticism (focusing on the text itself — structure, imagery, irony, and ambiguity — without reference to external context), historical/biographical criticism (situating a text within its historical and authorial context), Marxist criticism (analyzing class struggle, economic power, and ideology in literature), feminist criticism (examining gender representation and patriarchal structures), psychoanalytic criticism (applying Freudian and Lacanian concepts of the unconscious, desire, and identity), postcolonial criticism (examining colonialism's legacy, cultural identity, and resistance), and reader-response theory (focusing on how individual readers create meaning). Students apply these lenses to canonical and contemporary texts, developing sophisticated, evidence-based literary arguments."
+		"TopicDesc": "[b]Literary theory[/b] provides lenses for analysis, such as [u]Formalism[/u], [u]Marxist criticism[/u] (class struggle), [u]Feminist criticism[/u] (gender), [u]Psychoanalytic criticism[/u], and [u]Postcolonial criticism[/u]. Applying these frameworks allows for sophisticated, evidence-based arguments regarding canonical and contemporary texts."
 	},
 	52: {
 		"TopicID": "52",
 		"TopicName": "Figurative Language and Poetic Devices",
-		"TopicDesc": "Figurative language uses words beyond their literal meaning to create vivid, layered, and profound effects. Key figures include metaphor (a direct comparison: 'Life is a journey'), simile (a comparison using 'like' or 'as': 'Her smile was like sunshine'), personification (giving human qualities to non-human entities: 'The wind whispered through the trees'), hyperbole (deliberate exaggeration: 'I've told you a million times'), synecdoche (a part representing the whole: 'All hands on deck'), metonymy (substituting an associated word for the actual term: 'The White House announced...'), and oxymoron (contradictory terms together: 'deafening silence'). Poetic devices include alliteration, assonance, consonance, enjambment, caesura, and anaphora. Recognizing and analyzing these devices is essential to college-level literary analysis."
+		"TopicDesc": "[b]Figurative language[/b] creates layered effects through [u]metaphor[/u], [u]simile[/u], [u]personification[/u], and [u]hyperbole[/u]. More advanced devices include [u]synecdoche[/u] and [u]metonymy[/u]. Poetic techniques like [u]alliteration[/u], [u]enjambment[/u], and [u]anaphora[/u] are essential for in-depth literary analysis."
 	}
+	
 }
 
 var elem_english_questions = {

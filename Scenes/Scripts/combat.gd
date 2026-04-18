@@ -18,7 +18,7 @@ extends Control
 
 @onready var background = $Back/Background
 
-@onready var last_scene = SaveManager.load_game("save_file")["last_scene"]
+@onready var last_scene = SaveManager.load_game("position_file")["last_scene"]
 #@onready var last_position = SaveManager.load_game("save_file")["global_position"]
 @onready var buff : PackedScene = preload("uid://cp7gt4xiy6vve")
 
@@ -205,6 +205,7 @@ func _load_enemy() -> void:
 	enemy_health += (int(player_level * 5) + int(player_int))
 	
 	enemy_max_health = enemy_health
+	enemy_health_bar.value = enemy_health
 	enemy_health_bar.max_value = enemy_health
 	
 	if question_subject == "English":

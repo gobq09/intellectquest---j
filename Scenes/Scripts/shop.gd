@@ -1,6 +1,6 @@
 extends Control
 
-@onready var game_data = SaveManager.load_game("save_file")
+@onready var position_data = SaveManager.load_game("position_file")
 @onready var player_data = SaveManager.load_game("player_file")
 @onready var inv_data = SaveManager.load_game("inv_file")
 @onready var item_data = SaveManager.inv_data
@@ -181,4 +181,4 @@ func _on_amount_text_changed(new_text: String) -> void:
 
 func _on_close_pressed() -> void:
 	SignalManager.play_sfx.emit("click_sfx")
-	SceneLoader.load_scene(game_data["last_scene"])
+	SceneLoader.load_scene(position_data["last_scene"])

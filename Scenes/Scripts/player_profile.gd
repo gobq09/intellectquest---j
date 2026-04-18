@@ -43,8 +43,8 @@ extends Control
 @onready var exp_require: float
 @onready var gold : float = player_data["gold"]
 @onready var unused_stat : int = player_data["unused_stats"]
-@onready var game_data =SaveManager.load_game("save_file")
-@onready var last_scene = game_data["last_scene"]
+@onready var game_data = SaveManager.load_game("save_file")
+@onready var last_scene = SaveManager.load_game("position_file")["last_scene"]
 
 @onready var male_texture: Texture2D = preload("res://Sprites/player/sprite-playermale.png")
 @onready var female_texture: Texture2D = preload("res://Sprites/player/sprite-playerfemale.png")
