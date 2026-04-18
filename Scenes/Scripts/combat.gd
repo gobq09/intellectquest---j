@@ -452,7 +452,8 @@ func _on_wrong_answer():
 		_show_actions()
 
 func _on_enemy_defeated():
-	SignalManager.stop_music.emit()
+	#SignalManager.stop_music.emit()
+	#await get_tree().create_timer(0.1).timeout
 	SignalManager.play_music.emit("win_combat")
 	SignalManager.enemy_killed.emit(question_subject)
 	#var music = preload("res://Audio/Music/Event Themes/Triumph.mp3")
@@ -784,6 +785,7 @@ func roll_run():
 		_on_wrong_answer()
 
 func run_success():
+	SignalManager.stop_music.emit()
 	game_data["player_ran"] = true
 	SaveManager.save_game(game_data, "save_file")
 	SceneLoader.load_scene(last_scene)

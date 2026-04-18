@@ -22,15 +22,15 @@ func _on_button_3_pressed() -> void:
 
 
 func _on_button_4_pressed() -> void:
-	SignalManager.player_look_at.emit("Jeff")
+	SignalManager.stop_music.emit()
 
 
 func _on_button_5_pressed() -> void:
-	SignalManager.look_at_player.emit("Jeff")
+	SignalManager.play_music.emit("battle_theme")
 
 
 func _on_button_6_pressed() -> void:
-	SignalManager.move_to_marker.emit("Bob Marker")
+	SignalManager.play_music.emit("win_combat")
 
 func _on_hide_pressed() -> void:
 	if panel_hidden:
