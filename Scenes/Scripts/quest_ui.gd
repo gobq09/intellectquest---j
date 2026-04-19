@@ -33,8 +33,9 @@ func _load_quests(id):
 
 
 func _on_close_pressed() -> void:
-	SceneLoader.load_scene(position_data["last_scene"])
-	pass # Replace with function body.
+	#SceneLoader.load_scene(position_data["last_scene"])
+	SignalManager.show_hud.emit()
+	self.queue_free()
 
 
 func _on_main_pressed() -> void:

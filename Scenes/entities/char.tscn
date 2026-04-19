@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cp84ckp6bwp2i" path="res://Sprites/misc/shadow.png" id="3_8gq2e"]
 [ext_resource type="Texture2D" uid="uid://06xk3bsequyh" path="res://Sprites/player/sprite-playermale.png" id="3_uydtg"]
 [ext_resource type="Texture2D" uid="uid://bsrorbskcnd2w" path="res://Sprites/misc/walk-particle.png" id="6_dk8q8"]
-[ext_resource type="PackedScene" uid="uid://dflg8r076r3qe" path="res://Scenes/ui/overworldhud.tscn" id="7_ljijv"]
+[ext_resource type="PackedScene" uid="uid://ceejreygelqh" path="res://Scenes/ui/hud_test.tscn" id="6_mq0tv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v3mp5"]
 radius = 6.0
@@ -497,8 +497,6 @@ texture = ExtResource("3_uydtg")
 hframes = 8
 vframes = 8
 
-[node name="HUD" parent="." instance=ExtResource("7_ljijv")]
-
 [node name="SaveTimer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
@@ -519,6 +517,8 @@ process_material = SubResource("ParticleProcessMaterial_dk8q8")
 
 [node name="FootstepPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Sound Effects"
+
+[node name="HUD" parent="." instance=ExtResource("6_mq0tv")]
 
 [connection signal="timeout" from="SaveTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="BuffTimer" to="." method="_on_buff_timer_timeout"]

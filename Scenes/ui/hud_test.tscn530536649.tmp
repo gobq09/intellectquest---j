@@ -1,23 +1,23 @@
-[gd_scene load_steps=37 format=3 uid="uid://dflg8r076r3qe"]
+[gd_scene load_steps=37 format=3 uid="uid://ceejreygelqh"]
 
-[ext_resource type="Script" uid="uid://cj0426geyvlas" path="res://Scenes/Scripts/hud.gd" id="1_2e4n8"]
-[ext_resource type="Script" uid="uid://b6hsrpxy0s404" path="res://Scenes/Scripts/hud_control.gd" id="2_kvcyq"]
-[ext_resource type="Texture2D" uid="uid://gaxtq7vrwunw" path="res://ui/hud/interface-hud-hpbar4.png" id="3_x1hdm"]
-[ext_resource type="Texture2D" uid="uid://cgk2a51he56qn" path="res://ui/hud/interface-hud-hpbar3.png" id="4_0avgh"]
-[ext_resource type="Texture2D" uid="uid://ceu81ju5a1voq" path="res://ui/hud/interface-hud-hpbar1.png" id="5_vrcni"]
-[ext_resource type="Texture2D" uid="uid://c6lkpumxvacb2" path="res://ui/hud/interface-hud-level.png" id="6_ntiss"]
-[ext_resource type="FontFile" uid="uid://bcd8phvnsnqfx" path="res://addons/fonts/Test-Regular.ttf" id="7_vsgkm"]
-[ext_resource type="Texture2D" uid="uid://oqc5jik5j7hs" path="res://ui/hud/interface-hud-archivebutton.png" id="8_6scjr"]
-[ext_resource type="Texture2D" uid="uid://bbyvf385jbh2v" path="res://ui/hud/interface-hud-topright2.png" id="9_mkm3g"]
-[ext_resource type="Texture2D" uid="uid://bw3331mxk3fd3" path="res://ui/hud/interface-hud-todo.png" id="10_6mwoh"]
-[ext_resource type="Script" uid="uid://cedfe03hbrrp2" path="res://Scenes/Scripts/task_hud.gd" id="11_03cp0"]
-[ext_resource type="Texture2D" uid="uid://btk3gygpn2ao1" path="res://ui/hud/interface-hud-topright1.png" id="12_1u44u"]
-[ext_resource type="Texture2D" uid="uid://dvciqueies7yf" path="res://ui/hud/interface-hud-mapbutton.png" id="13_j4rkm"]
-[ext_resource type="Texture2D" uid="uid://vgcrkf3sxh1o" path="res://ui/hud/interface-hud-settingsbutton.png" id="14_823us"]
-[ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="15_4y46l"]
-[ext_resource type="Texture2D" uid="uid://drsd8ovbsojux" path="res://ui/hud/interface-joystick-base.png" id="16_3xjng"]
-[ext_resource type="Texture2D" uid="uid://cnhcx0xvmmitb" path="res://ui/hud/interface-joystick-stick.png" id="17_w8uam"]
-[ext_resource type="Texture2D" uid="uid://bpgpym5w7drhb" path="res://ui/hud/interface-joystick-interact.png" id="18_s5qa6"]
+[ext_resource type="Script" uid="uid://cj0426geyvlas" path="res://Scenes/Scripts/hud.gd" id="1_mp7ro"]
+[ext_resource type="Script" uid="uid://b6hsrpxy0s404" path="res://Scenes/Scripts/hud_control.gd" id="2_3c2aa"]
+[ext_resource type="Texture2D" uid="uid://gaxtq7vrwunw" path="res://ui/hud/interface-hud-hpbar4.png" id="3_760st"]
+[ext_resource type="Texture2D" uid="uid://cgk2a51he56qn" path="res://ui/hud/interface-hud-hpbar3.png" id="4_vyt8d"]
+[ext_resource type="Texture2D" uid="uid://ceu81ju5a1voq" path="res://ui/hud/interface-hud-hpbar1.png" id="5_xxw7m"]
+[ext_resource type="Texture2D" uid="uid://c6lkpumxvacb2" path="res://ui/hud/interface-hud-level.png" id="6_e8waf"]
+[ext_resource type="FontFile" uid="uid://bcd8phvnsnqfx" path="res://addons/fonts/Test-Regular.ttf" id="7_52giw"]
+[ext_resource type="Texture2D" uid="uid://oqc5jik5j7hs" path="res://ui/hud/interface-hud-archivebutton.png" id="8_bv3mw"]
+[ext_resource type="Texture2D" uid="uid://bbyvf385jbh2v" path="res://ui/hud/interface-hud-topright2.png" id="9_d4kfi"]
+[ext_resource type="Texture2D" uid="uid://bw3331mxk3fd3" path="res://ui/hud/interface-hud-todo.png" id="10_rq5e4"]
+[ext_resource type="Script" uid="uid://cedfe03hbrrp2" path="res://Scenes/Scripts/task_hud.gd" id="11_6iibr"]
+[ext_resource type="Texture2D" uid="uid://btk3gygpn2ao1" path="res://ui/hud/interface-hud-topright1.png" id="12_1i21k"]
+[ext_resource type="Texture2D" uid="uid://dvciqueies7yf" path="res://ui/hud/interface-hud-mapbutton.png" id="13_bb5cu"]
+[ext_resource type="Texture2D" uid="uid://vgcrkf3sxh1o" path="res://ui/hud/interface-hud-settingsbutton.png" id="14_pb713"]
+[ext_resource type="PackedScene" uid="uid://btf0iccai10qr" path="res://addons/versatile-mobile-joystick/joystick.tscn" id="15_qh6kg"]
+[ext_resource type="Texture2D" uid="uid://drsd8ovbsojux" path="res://ui/hud/interface-joystick-base.png" id="16_kny3p"]
+[ext_resource type="Texture2D" uid="uid://cnhcx0xvmmitb" path="res://ui/hud/interface-joystick-stick.png" id="17_uglj5"]
+[ext_resource type="Texture2D" uid="uid://bpgpym5w7drhb" path="res://ui/hud/interface-joystick-interact.png" id="18_6e1ly"]
 
 [sub_resource type="Gradient" id="Gradient_wruxn"]
 colors = PackedColorArray(0.701961, 0.498039, 0.890196, 1, 0.701961, 0.498039, 0.890196, 1)
@@ -26,7 +26,7 @@ colors = PackedColorArray(0.701961, 0.498039, 0.890196, 1, 0.701961, 0.498039, 0
 gradient = SubResource("Gradient_wruxn")
 
 [sub_resource type="FontVariation" id="FontVariation_wruxn"]
-base_font = ExtResource("7_vsgkm")
+base_font = ExtResource("7_52giw")
 spacing_glyph = -4
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b3mme"]
@@ -191,6 +191,21 @@ bg_color = Color(0.0168, 0.01946, 0.07, 0.690196)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvcyq"]
 bg_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Animation" id="Animation_kvcyq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_2e4n8"]
 resource_name = "fade"
 length = 0.2
@@ -208,21 +223,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_kvcyq"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x1hdm"]
 _data = {
 &"RESET": SubResource("Animation_kvcyq"),
@@ -231,7 +231,7 @@ _data = {
 
 [node name="CanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("animation_player")]
 layer = 3
-script = ExtResource("1_2e4n8")
+script = ExtResource("1_mp7ro")
 animation_player = NodePath("Panels/AnimationPlayer")
 
 [node name="HUD" type="Control" parent="."]
@@ -244,7 +244,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("2_kvcyq")
+script = ExtResource("2_3c2aa")
 Task_Expanded = false
 
 [node name="HP" type="Control" parent="HUD"]
@@ -261,7 +261,7 @@ offset_bottom = 40.0
 [node name="Interface-hud-hpbar4" type="Sprite2D" parent="HUD/HP/Bar"]
 position = Vector2(215, 65)
 scale = Vector2(3, 3)
-texture = ExtResource("3_x1hdm")
+texture = ExtResource("3_760st")
 
 [node name="HP Bar" type="TextureProgressBar" parent="HUD/HP/Bar"]
 layout_mode = 0
@@ -278,13 +278,13 @@ tint_progress = Color(0.701961, 0.498039, 0.890196, 1)
 [node name="Interface-hud-hpbar3" type="Sprite2D" parent="HUD/HP/Bar"]
 position = Vector2(215, 65)
 scale = Vector2(3, 3)
-texture = ExtResource("4_0avgh")
+texture = ExtResource("4_vyt8d")
 
 [node name="Interface-hud-hpbar1" type="Sprite2D" parent="HUD/HP/Bar"]
 visible = false
 position = Vector2(200, 64)
 scale = Vector2(4, 4)
-texture = ExtResource("5_vrcni")
+texture = ExtResource("5_xxw7m")
 
 [node name="Interface-hud-level" type="TextureButton" parent="HUD/HP"]
 layout_mode = 0
@@ -293,7 +293,7 @@ offset_top = 8.0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(3, 3)
-texture_normal = ExtResource("6_ntiss")
+texture_normal = ExtResource("6_e8waf")
 
 [node name="RichTextLabel" type="Label" parent="HUD/HP/Interface-hud-level"]
 layout_mode = 0
@@ -322,7 +322,7 @@ offset_right = 40.0
 offset_bottom = 116.0
 grow_vertical = 2
 scale = Vector2(3, 3)
-texture_normal = ExtResource("8_6scjr")
+texture_normal = ExtResource("8_bv3mw")
 
 [node name="Control" type="Control" parent="HUD"]
 layout_mode = 1
@@ -336,7 +336,7 @@ scale = Vector2(3, 3)
 
 [node name="Interface-hud-topright2" type="Sprite2D" parent="HUD/Control"]
 position = Vector2(-22.6667, 24)
-texture = ExtResource("9_mkm3g")
+texture = ExtResource("9_d4kfi")
 
 [node name="Task" type="TextureButton" parent="HUD/Control"]
 layout_mode = 0
@@ -345,9 +345,9 @@ offset_top = -30.0
 offset_right = 6.0
 offset_bottom = 50.0
 button_mask = 3
-texture_normal = ExtResource("10_6mwoh")
+texture_normal = ExtResource("10_rq5e4")
 stretch_mode = 3
-script = ExtResource("11_03cp0")
+script = ExtResource("11_6iibr")
 
 [node name="Timer" type="Timer" parent="HUD/Control/Task"]
 one_shot = true
@@ -369,21 +369,21 @@ alignment = 1
 
 [node name="Interface-hud-topright1" type="Sprite2D" parent="HUD/Control"]
 position = Vector2(-22.6667, 24)
-texture = ExtResource("12_1u44u")
+texture = ExtResource("12_1i21k")
 
 [node name="Map Button" type="TextureButton" parent="HUD/Control"]
 layout_mode = 0
 offset_left = -50.0
 offset_right = -18.0
 offset_bottom = 32.0
-texture_normal = ExtResource("13_j4rkm")
+texture_normal = ExtResource("13_bb5cu")
 
 [node name="Settings Button" type="TextureButton" parent="HUD/Control"]
 layout_mode = 0
 offset_left = -20.0
 offset_right = 12.0
 offset_bottom = 32.0
-texture_normal = ExtResource("14_823us")
+texture_normal = ExtResource("14_pb713")
 
 [node name="Joystick" type="Control" parent="HUD"]
 layout_mode = 1
@@ -392,11 +392,11 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 grow_vertical = 0
 
-[node name="JoystickController" parent="HUD/Joystick" instance=ExtResource("15_4y46l")]
+[node name="JoystickController" parent="HUD/Joystick" instance=ExtResource("15_qh6kg")]
 position = Vector2(224, -168)
 scale = Vector2(3, 3)
-base_texture = ExtResource("16_3xjng")
-tip_texture = ExtResource("17_w8uam")
+base_texture = ExtResource("16_kny3p")
+tip_texture = ExtResource("17_uglj5")
 deadzone_circle = SubResource("CircleShape2D_b3mme")
 tip_limit_circle = SubResource("CircleShape2D_7bydo")
 touch_detection_region = SubResource("RectangleShape2D_dpbjw")
@@ -428,7 +428,7 @@ offset_right = -186.0
 offset_bottom = -148.0
 scale = Vector2(3, 3)
 action_mode = 0
-texture_normal = ExtResource("18_s5qa6")
+texture_normal = ExtResource("18_6e1ly")
 stretch_mode = 5
 
 [node name="Panels" type="Control" parent="."]

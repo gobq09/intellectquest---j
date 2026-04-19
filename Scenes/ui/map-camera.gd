@@ -7,7 +7,7 @@ var touch_points = {}
 
 func _ready():
 	var panel_rect = $"../Map".get_global_rect()
-	var player_pos = $"../Map/Linguara/Player".global_position
+	var player_pos = $"../Map/Linguara/Pointer".global_position
 	position = Vector2(player_pos.x + 32, player_pos.y + 32)
 	
 	# Apply limits to the camera

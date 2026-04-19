@@ -94,7 +94,9 @@ func _on_texture_button_pressed() -> void:
 	if game_data["in_combat"] == true:
 		self.visible = false
 	else:
-		SceneLoader.load_scene(profile)
+		#SceneLoader.load_scene(profile)
+		self.queue_free()
+		SignalManager.show_hud.emit()
 
 func apply_buff(id):
 	print("inv buffed ", id)

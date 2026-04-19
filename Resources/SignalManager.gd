@@ -20,6 +20,7 @@ signal map_changed(scene)
 signal tutorial_ended
 signal player_defeated
 signal interface_changed
+signal show_hud
 
 signal ui_tutorial(type)
 signal ui_tutorial_end
@@ -31,6 +32,8 @@ signal camera_move_to(position : Vector2)
 
 signal dialogue_enter
 signal dialogue_exit
+signal dialogue_skipped
+signal dialogue_skipped_ended
 
 signal move_player(direction : String, duration : int)
 signal player_anim(animation: String)

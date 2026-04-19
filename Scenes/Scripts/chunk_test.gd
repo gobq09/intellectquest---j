@@ -92,11 +92,11 @@ func get_neighbors(chunk_name: String):
 
 func show_chunk(chunks: Array):
 	if name in chunks:
-		print(name, " shown")
+		#print(name, " shown")
 		self.visible = true
 		self.process_mode = Node.PROCESS_MODE_INHERIT
 	else:
-		print(name, " hidden")
+		#print(name, " hidden")
 		self.visible = false
 		self.process_mode = Node.PROCESS_MODE_DISABLED
 

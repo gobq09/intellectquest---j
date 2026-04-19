@@ -37,6 +37,8 @@ var locals: Dictionary = {}
 
 var _locale: String = TranslationServer.get_locale()
 
+var skip_dialogue: bool = false
+
 ## The current line
 var dialogue_line: DialogueLine:
 	set(value):
@@ -91,7 +93,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if is_instance_valid(dialogue_line):
 		progress.visible = not dialogue_label.is_typing and dialogue_line.responses.size() == 0 and not dialogue_line.has_tag("voice")
-
+	if skip_dialogue == true:
+		dialogue_label.skip_typing()
+		next(dialogue_line.next_id)
 
 func _unhandled_input(_event: InputEvent) -> void:
 	# Only the balloon is allowed to handle input while it's showing
@@ -138,9 +142,16 @@ func apply_dialogue_line() -> void:
 
 	responses_menu.hide()
 	responses_menu.responses = dialogue_line.responses
-
+	
+	
+	if skip_dialogue == true:
+		#print("reached")
+		#dialogue_label.skip_typing()
+		#next(dialogue_line.next_id)
+		balloon.hide()
+	else:
 	# Show our balloon
-	balloon.show()
+		balloon.show()
 	will_hide_balloon = false
 
 	dialogue_label.show()
@@ -149,6 +160,8 @@ func apply_dialogue_line() -> void:
 		await dialogue_label.finished_typing
 
 	# Wait for next line
+
+	
 	if dialogue_line.has_tag("voice"):
 		audio_stream_player.stream = load(dialogue_line.get_tag_value("voice"))
 		audio_stream_player.play()
@@ -169,7 +182,10 @@ func apply_dialogue_line() -> void:
 
 ## Go to the next line
 func next(next_id: String) -> void:
-	dialogue_line = await dialogue_resource.get_next_dialogue_line(next_id, temporary_game_states)
+	if skip_dialogue == true:
+		dialogue_line = await dialogue_resource.get_next_dialogue_line(next_id, temporary_game_states, DMConstants.MutationBehaviour.DoNotWait)
+	else:
+		dialogue_line = await dialogue_resource.get_next_dialogue_line(next_id, temporary_game_states)
 
 
 #region Signals
@@ -215,3 +231,12 @@ func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 
 
 #endregion
+
+
+func _on_skip_pressed() -> void:
+	SignalManager.dialogue_skipped.emit()
+	skip_dialogue = true
+	balloon.hide()
+	next(dialogue_line.next_id)
+	#print(DMConstants.ID_END_CONVERSATION)
+	#next(DMConstants.ID_END_CONVERSATION)

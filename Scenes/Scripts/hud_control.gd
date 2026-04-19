@@ -7,16 +7,33 @@ extends Control
 @onready var bar: Sprite2D = $"HP/Bar/Interface-hud-hpbar1"
 @onready var level: Label = $"HP/Interface-hud-level/RichTextLabel"
 
+@onready var settings_scene : PackedScene = preload("uid://tj4vo1mmxfyt")
+@onready var map_scene : PackedScene = preload("uid://dxogc44ghcvvr")
+@onready var quest_scene : PackedScene = preload("uid://bn8572f758heh")
+@onready var archive_scene : PackedScene = preload("uid://cfvteqvw7wwp")
+@onready var profile_scene : PackedScene = preload("uid://0q5mlknq6fk0")
+
 var last_scene
 signal interacted
 
 func _ready() -> void:
+	SignalManager.show_hud.connect(show_hud)
+	
 	level.text = str(int(player_data["player_level"]))
 	var max_hp = (player_data["player_end"] * 2) + 50
 	hp_bar.value = (player_data["player_hp"] / max_hp) * 100
 	#bar.position.x = (hp_bar.value / 2) + 32
 	
 	SignalManager.player_defeated.connect(player_defeated)
+
+func show_ui(scene: PackedScene):
+	$".".hide()
+	var instance = scene.instantiate()
+	
+	$"..".add_child(instance)
+
+func show_hud():
+	$".".show()
 
 func player_defeated():
 	#print(player_data)
@@ -51,26 +68,31 @@ func _on_settings_button_pressed() -> void:
 	SignalManager.play_sfx.emit("click_sfx")
 	SignalManager.interface_changed.emit()
 	
-	SceneLoader.load_scene("uid://tj4vo1mmxfyt")
+	#SceneLoader.load_scene("uid://tj4vo1mmxfyt")
+	#$"../Settings".show()
+	show_ui(settings_scene)
 
 
 func _on_map_button_pressed() -> void:
 	SignalManager.play_sfx.emit("click_sfx")
 	SignalManager.interface_changed.emit()
 	print("Map")
-	SceneLoader.load_scene("uid://dxogc44ghcvvr")
+	#SceneLoader.load_scene("uid://dxogc44ghcvvr")
+	show_ui(map_scene)
 
 
 func _on_archive_button_pressed() -> void:
 	SignalManager.play_sfx.emit("click_sfx")
-	SignalManager.interface_changed.emit()
-	SceneLoader.load_scene("uid://cfvteqvw7wwp")
+	#SignalManager.interface_changed.emit()
+	#SceneLoader.load_scene("uid://cfvteqvw7wwp")
+	show_ui(archive_scene)
 
 
 func _on_interfacehudlevel_pressed() -> void:
 	SignalManager.play_sfx.emit("click_sfx")
 	SignalManager.interface_changed.emit()
-	SceneLoader.load_scene("uid://0q5mlknq6fk0")
+	#SceneLoader.load_scene("uid://0q5mlknq6fk0")
+	show_ui(profile_scene)
 
 
 func _on_interact_button_pressed() -> void:
@@ -89,4 +111,5 @@ func _on_task_button_up() -> void:
 
 func _on_timer_timeout() -> void:
 	SignalManager.interface_changed.emit()
-	SceneLoader.load_scene("uid://bn8572f758heh")
+	#SceneLoader.load_scene("uid://bn8572f758heh")
+	show_ui(quest_scene)

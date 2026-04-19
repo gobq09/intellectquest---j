@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cfvteqvw7wwp"]
+[gd_scene load_steps=18 format=3 uid="uid://cfvteqvw7wwp"]
 
 [ext_resource type="Script" uid="uid://m8s68lxdxkf0" path="res://Scenes/Scripts/archive.gd" id="1_mrhtk"]
 [ext_resource type="Texture2D" uid="uid://dgw5gi1dwvy3w" path="res://ui/archive/interface-archive-book.png" id="1_ycmab"]
@@ -11,11 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://r6rij06c8413" path="res://ui/archive/interface-archive-subj_math.png" id="6_oa377"]
 [ext_resource type="Texture2D" uid="uid://s0cwm8xwo3w0" path="res://ui/archive/interface-archive-subj_fil.png" id="7_0ulwn"]
 
-[sub_resource type="Gradient" id="Gradient_hdjji"]
-colors = PackedColorArray(0, 0, 0, 0.588235, 0, 0, 0, 0.588235)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_25x8g"]
-gradient = SubResource("Gradient_hdjji")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_870wx"]
+bg_color = Color(0.121569, 0.0627451, 0.164706, 1)
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_mrhtk"]
 
@@ -135,14 +132,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mrhtk")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TextureRect2" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_25x8g")
+theme_override_styles/panel = SubResource("StyleBoxFlat_870wx")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

@@ -86,6 +86,7 @@ func get_next_dialogue_line(resource: DialogueResource, key: String = "", extra_
 	var line = await _get_next_dialogue_line(resource, key, extra_game_states, mutation_behaviour)
 	if line == null:
 		# End the conversation
+		SignalManager.dialogue_skipped_ended.emit()
 		dialogue_ended.emit(resource)
 	return line
 
@@ -127,6 +128,7 @@ func _get_next_dialogue_line(resource: DialogueResource, key: String = "", extra
 			DMConstants.MutationBehaviour.Skip:
 				pass
 		if actual_next_id in [DMConstants.ID_END_CONVERSATION, DMConstants.ID_NULL, null]:
+			print("end conversation")
 			return null
 		else:
 			return await _get_next_dialogue_line(resource, dialogue.next_id, extra_game_states, mutation_behaviour)
@@ -166,6 +168,8 @@ func get_line(resource: DialogueResource, key: String, extra_game_states: Array)
 		else:
 			return null
 	elif key == DMConstants.ID_END_CONVERSATION:
+		SignalManager.camera_move_to.emit(Vector2.ZERO)
+		SignalManager.dialogue_exit.emit()
 		return null
 
 	# See if it is a title
@@ -562,10 +566,11 @@ func _start_balloon(balloon: Node, resource: DialogueResource, title: String, ex
 # Get the path to the example balloon
 func _get_example_balloon_path() -> String:
 	var is_small_window: bool = ProjectSettings.get_setting("display/window/size/viewport_width") < 400
-	var balloon_path: String = "/example_balloon/small_example_balloon.tscn" if is_small_window else "/example_balloon/example_balloon.tscn"
+	var balloon_path: String = "res://new folder/balloon.tscn" if is_small_window else "/example_balloon/example_balloon.tscn"
 	return get_script().resource_path.get_base_dir() + balloon_path
 
-
+#
+#"/example_balloon/small_example_balloon.tscn"
 #endregion
 
 #region dotnet bridge
@@ -584,8 +589,11 @@ func _bridge_get_next_dialogue_line(call_id: int, resource: DialogueResource, ke
 	bridge_get_next_dialogue_line_completed.emit(call_id, line)
 	if line == null:
 		# End the conversation
+		SignalManager.dialogue_skipped_ended.emit()
 		dialogue_ended.emit(resource)
 
+#func skip_dialogue():
+	#dialogue_ended.emit(resource)
 
 func _bridge_get_line(call_id: int, resource: DialogueResource, key: String, extra_game_states: Array = []) -> void:
 	# dotnet needs at least one await tick of the signal gets called too quickly

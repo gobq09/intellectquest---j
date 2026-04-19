@@ -8,6 +8,8 @@ extends CanvasLayer
 @onready var tutorial = $Tutorial
 @onready var tutorial_panel = $Tutorial/Panel
 
+@onready var screen_panel = $Screen_Panel
+
 @onready var bar = $HUD/HP/Bar
 @onready var level = $"HUD/HP/Interface-hud-level"
 @onready var archive = $"HUD/HP/Archive Button"
@@ -37,6 +39,7 @@ func _ready() -> void:
 	SignalManager.ui_tutorial.connect(trigger_tutorial)
 	SignalManager.dialogue_enter.connect(dialogue_enter)
 	SignalManager.dialogue_exit.connect(dialogue_exit)
+	SignalManager.dialogue_skipped.connect(dialogue_skipped)
 	
 	check_data()
 	
@@ -56,6 +59,15 @@ func _ready() -> void:
 	
 	hud.visible = true
 	hud.modulate.a = 1.0
+
+func dialogue_skipped():
+	screen_panel.visible = true
+	$Screen_Panel/AnimationPlayer.play("fade")
+	await SignalManager.dialogue_skipped_ended
+	#await get_tree().create_timer(0.2).timeout
+	$Screen_Panel/AnimationPlayer.play_backwards("fade")
+	await $Screen_Panel/AnimationPlayer.animation_finished
+	screen_panel.visible = false
 
 func check_data():
 	var player_data = SaveManager.load_game("player_file")

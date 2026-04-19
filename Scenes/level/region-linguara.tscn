@@ -1,8 +1,7 @@
-[gd_scene load_steps=51 format=4 uid="uid://d4dgymuee0bxt"]
+[gd_scene load_steps=50 format=4 uid="uid://d4dgymuee0bxt"]
 
 [ext_resource type="PackedScene" uid="uid://b4qaqebdse2qj" path="res://Scenes/entities/char.tscn" id="1_5ky5g"]
 [ext_resource type="PackedScene" uid="uid://g3w75c5xrktm" path="res://Scenes/others/camera.tscn" id="2_qs2e4"]
-[ext_resource type="PackedScene" uid="uid://c6o2va711dt3s" path="res://Scenes/others/debug_tool.tscn" id="3_61cg1"]
 [ext_resource type="PackedScene" uid="uid://cr2ru7vol8lts" path="res://Scenes/level/chunk_test.tscn" id="3_okubx"]
 [ext_resource type="TileSet" uid="uid://bi1c8cfsu2rx8" path="res://Tileset/ground_terrain.tres" id="4_l3hrx"]
 [ext_resource type="TileSet" uid="uid://fprd4vovuovo" path="res://Tileset/water.tres" id="5_cgu63"]
@@ -377,17 +376,6 @@ sources/0 = SubResource("TileSetAtlasSource_cgu63")
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
-
-[node name="Player" type="Node2D" parent="."]
-y_sort_enabled = true
-position = Vector2(-568, 728)
-
-[node name="Player" parent="Player" instance=ExtResource("1_5ky5g")]
-unique_name_in_owner = true
-
-[node name="Camera2D" parent="Player/Player" instance=ExtResource("2_qs2e4")]
-
-[node name="Debug Tool" parent="Player/Player" instance=ExtResource("3_61cg1")]
 
 [node name="Chunks" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -2767,3 +2755,9 @@ marker_name = "Linguara_Innkeeper"
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(544, -256)
+
+[node name="Player" parent="." instance=ExtResource("1_5ky5g")]
+unique_name_in_owner = true
+position = Vector2(-568, 728)
+
+[node name="Camera2D" parent="Player" instance=ExtResource("2_qs2e4")]

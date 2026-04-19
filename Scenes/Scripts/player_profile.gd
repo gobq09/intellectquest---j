@@ -114,7 +114,16 @@ func _on_button_pressed() -> void:
 
 func _on_close_pressed() -> void:
 	SignalManager.play_sfx.emit("click_sfx")
-	SceneLoader.load_scene(last_scene)
+	#SceneLoader.load_scene(last_scene)
+	SignalManager.show_hud.emit()
+	self.queue_free()
+
+func _on_inventory_pressed() -> void:
+	SignalManager.play_sfx.emit("bag_open")
+	#SceneLoader.load_scene("uid://gbgxli02186y")
+	var instance = preload("uid://gbgxli02186y").instantiate()
+	
+	add_child(instance)
 
 #region stat
 func _on_reset_pressed() -> void:
@@ -319,8 +328,3 @@ func _on_str_sub_pressed() -> void:
 	
 	str_button_add.disabled = false
 #endregion
-
-
-func _on_inventory_pressed() -> void:
-	SignalManager.play_sfx.emit("bag_open")
-	SceneLoader.load_scene("uid://gbgxli02186y")

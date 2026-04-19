@@ -37,7 +37,7 @@ const CUSTOM_TEST_SCENE_PATH = "editor/advanced/custom_test_scene_path"
 const EXTRA_AUTO_COMPLETE_SCRIPT_SOURCES = "editor/advanced/extra_auto_complete_script_sources"
 
 ## The custom balloon for this game.
-const BALLOON_PATH = "runtime/balloon_path"
+const BALLOON_PATH = "res://new folder/balloon.tscn"
 ## The names of any autoloads to shortcut into all dialogue files (so you don't have to write `using SomeGlobal` in each file).
 const STATE_AUTOLOAD_SHORTCUTS = "runtime/state_autoload_shortcuts"
 ## Check for possible naming conflicts in state shortcuts.

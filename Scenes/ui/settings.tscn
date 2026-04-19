@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://csc0os8ayadj1" path="res://ui/title/interface-prompt-cancel.png" id="14_owh40"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1c72s"]
-bg_color = Color(0.404586, 0.180298, 0.184072, 1)
+bg_color = Color(0.260542, 0.142005, 0.401859, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1c72s"]
 
@@ -39,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ayugb")
 
-[node name="TextureRect3" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

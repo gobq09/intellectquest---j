@@ -222,5 +222,9 @@ func _on_responses_menu_response_selected(response: DialogueResponse) -> void:
 
 
 func skip_dialogue():
-	next(dialogue_line.next_id)
+	next(DMConstants.ID_END)
 #endregion
+
+
+func _on_skip_pressed() -> void:
+	next(DMConstants.ID_END)

@@ -1,6 +1,9 @@
 extends Control
 
 @onready var game_data = SaveManager.load_game("save_file")
+@onready var position_data = SaveManager.load_game("position_file")
+@onready var load_scene = position_data["last_scene"]
+
 @onready var general: TextureButton = $Control/General
 @onready var video: TextureButton = $Control/Video
 @onready var audio: TextureButton = $Control/Audio
@@ -18,6 +21,7 @@ extends Control
 var pressed: String
 
 func _ready() -> void:
+	#ResourceLoader.load_threaded_request(load_scene)
 	#AudioManager.duck_music()
 	if game_data["in_game"] == true:
 		menu.visible = true
@@ -74,8 +78,10 @@ func _on_close_pressed() -> void:
 	elif last_scene == "menu":
 		last_scene = menu_uid
 	
-	print(last_scene)
-	SceneLoader.load_scene(last_scene)
+	#SceneLoader.load_scene(last_scene)
+	#self.hide()
+	SignalManager.show_hud.emit()
+	self.queue_free()
 
 
 func _on_confirm_pressed() -> void:

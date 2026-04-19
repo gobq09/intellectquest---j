@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://0q5mlknq6fk0"]
+[gd_scene load_steps=19 format=3 uid="uid://0q5mlknq6fk0"]
 
 [ext_resource type="Texture2D" uid="uid://o342v3n4w6uf" path="res://ui/profile/interface-profile.png" id="1_3u2c1"]
 [ext_resource type="Script" uid="uid://dx7c1wnqfm8e4" path="res://Scenes/Scripts/player_profile.gd" id="1_qnuou"]
@@ -10,9 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://06xk3bsequyh" path="res://Sprites/player/sprite-playermale.png" id="5_wl0qr"]
 [ext_resource type="Texture2D" uid="uid://u71comj8oonp" path="res://ui/profile/interface-shop-goldicon.png" id="6_nwxr4"]
 [ext_resource type="Texture2D" uid="uid://btetvnx21xfkc" path="res://ui/inventory/interface-inventory-icon.png" id="9_csj3o"]
+[ext_resource type="PackedScene" uid="uid://gbgxli02186y" path="res://Scenes/ui/inv.tscn" id="11_inwke"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vtj1"]
-bg_color = Color(0, 0, 0, 0.439216)
+bg_color = Color(0.121569, 0.0627451, 0.164706, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_csj3o"]
 bg_color = Color(0.239443, 0.308667, 0.261722, 1)
@@ -631,7 +632,7 @@ text = "[b]Strength[/b] determines the amount of bonus damage you deal in a crit
 fit_content = true
 scroll_active = false
 
-[node name="Inventory" type="TextureButton" parent="."]
+[node name="Inventory_Button" type="TextureButton" parent="."]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 98.0
@@ -640,6 +641,10 @@ offset_bottom = 117.0
 scale = Vector2(3, 3)
 texture_normal = ExtResource("9_csj3o")
 stretch_mode = 3
+
+[node name="Inventory" parent="." instance=ExtResource("11_inwke")]
+visible = false
+layout_mode = 1
 
 [connection signal="pressed" from="Control/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="Control/Confirm" to="." method="_on_confirm_pressed"]
@@ -654,4 +659,4 @@ stretch_mode = 3
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="Help" to="." method="_on_help_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Inventory" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="Inventory_Button" to="." method="_on_inventory_pressed"]

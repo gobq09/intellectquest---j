@@ -146,10 +146,9 @@ func _physics_process(_delta):
 	var direction = get_input()
 	
 	if direction.length() > 0:
-		print(global_position)
 		particles.emitting = true
 		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
-		#print(position)
+		#print(global_position)
 		ani_tree.get("parameters/playback").travel("Walk")
 		ani_tree.set("parameters/Walk/blend_position", velocity)
 		ani_tree.set("parameters/Idle/blend_position", velocity)

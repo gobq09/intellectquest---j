@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://gbgxli02186y"]
+[gd_scene load_steps=7 format=3 uid="uid://gbgxli02186y"]
 
 [ext_resource type="Script" uid="uid://0bcyf2d5wrau" path="res://Scenes/Scripts/inv.gd" id="1_7m4oq"]
 [ext_resource type="Texture2D" uid="uid://crbbq3ksuqxps" path="res://ui/inventory/interface-inventory-bg.png" id="2_7m4oq"]
 [ext_resource type="Texture2D" uid="uid://du46w62wm8crq" path="res://ui/inventory/interface-inventory-display.png" id="3_7mfnc"]
 [ext_resource type="Texture2D" uid="uid://b34k658ubuq43" path="res://ui/inventory/interface-inventory-use.png" id="4_kmlj5"]
 [ext_resource type="Texture2D" uid="uid://gfo4nfxodp7d" path="res://ui/archive/interface-archive-closebutton.png" id="5_1ly1c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cn2kn"]
+bg_color = Color(0.121569, 0.0627451, 0.164706, 1)
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -14,6 +17,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7m4oq")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cn2kn")
 
 [node name="Items" type="Control" parent="."]
 layout_mode = 1

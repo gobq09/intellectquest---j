@@ -67,7 +67,9 @@ func _ready() -> void:
 
 func _on_close_pressed() -> void:
 	SignalManager.play_sfx.emit("click_sfx")
-	SceneLoader.load_scene(last_scene["last_scene"])
+	#SceneLoader.load_scene(last_scene["last_scene"])
+	SignalManager.show_hud.emit()
+	self.queue_free()
 
 func _load_topic(subject: Dictionary, source: Dictionary, action: String = "next") -> void:
 	#print(subject[count])
