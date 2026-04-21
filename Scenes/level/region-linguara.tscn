@@ -2831,5 +2831,5 @@ position = Vector2(2544, -1376)
 marker_name = "Linguara_Innkeeper"
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(2544, -1376)
+position = Vector2(544, -255)
 script = ExtResource("40_c7w1h")

@@ -44,7 +44,7 @@ tile_set = ExtResource("6_apprl")
 [node name="Teleporter" parent="." instance=ExtResource("7_7w7ci")]
 position = Vector2(0, 48)
 Target_Scene = "uid://d4dgymuee0bxt"
-Target_Position = "(544, -256)"
+Target_Position = "(342, -208)"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Teleporter"]
 shape = SubResource("RectangleShape2D_apprl")
