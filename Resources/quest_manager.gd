@@ -2,6 +2,7 @@ extends Node
 
 @onready var game_data = SaveManager.load_game("save_file")
 @onready var quest_source = Quests.quests
+var last_task_id := ""
 
 var default_quest = {
 	"none": {
@@ -36,9 +37,9 @@ var default_quest = {
 			"target": "path_area"
 		},
 		"2": {
-			"task_name": "Defeat ALL the Monsters",
+			"task_name": "Defeat the Enemy",
 			"progress": 0,
-			"goal": 5,
+			"goal": 1,
 			"type": "kill",
 			"target": "English"
 		}
@@ -138,6 +139,20 @@ func get_current_task_id() -> String:
 	
 	return ""
 	
+func get_current_task():
+	var game_data = SaveManager.load_game("save_file")
+	var quest_data = SaveManager.load_game("quest_file")
+	
+	var quest_id = game_data["active_quest"]
+	if quest_id == "none":
+		return null
+		
+	var task_id = get_current_task_id()
+	if task_id == "":
+		return null
+		
+	return quest_data[quest_id]["tasks"][task_id]
+	
 func _handle_event(event_type: String, target: String):
 	print("HANDLE EVENT:", event_type, target)
 	var game_data = SaveManager.load_game("save_file")
@@ -184,6 +199,19 @@ func _handle_event(event_type: String, target: String):
 		game_data["active_quest"] = "none"
 		SaveManager.save_game(game_data, "save_file")
 		
+	var new_task_id = get_current_task_id()
+	
+	if new_task_id != last_task_id:
+		last_task_id = new_task_id
+		
+		quest_data = SaveManager.load_game("quest_file")
+		game_data = SaveManager.load_game("save_file")
+		quest_id = game_data["active_quest"]
+		
+		if quest_id != "none" and new_task_id != "":
+			task = quest_data[quest_id]["tasks"][new_task_id]
+			SignalManager.new_objective.emit(task["task_name"])
+		
 func _on_enemy_killed(subject: String):
 	_handle_event("kill", subject)
 	
@@ -229,25 +257,39 @@ func advance_current_task(amount: int = 1):
 		
 		game_data["active_quest"] = "none"
 		SaveManager.save_game(game_data, "save_file")
+		
+	var new_task_id = get_current_task_id()
+	
+	if new_task_id != last_task_id:
+		last_task_id = new_task_id
+		
+		quest_data = SaveManager.load_game("quest_file")
+		game_data = SaveManager.load_game("save_file")
+		quest_id = game_data["active_quest"]
+		
+		if quest_id != "none" and new_task_id != "":
+			task = quest_data[quest_id]["tasks"][new_task_id]
+			SignalManager.new_objective.emit(task["task_name"])
 
 #for overworld hud task tracker display
 func _active_quest():
-	game_data = SaveManager.load_game("save_file")
+	var game_data = SaveManager.load_game("save_file")
 	var quest_data = SaveManager.load_game("quest_file")
 	var active_quest_id = game_data["active_quest"]
 	
 	if active_quest_id == "none":
 		return null
 	
-	var active_quest = quest_data[active_quest_id]
-	var tasks_list = active_quest["tasks"]
+	var quest = quest_data[active_quest_id]
 	
-	var active_task
-	#get incomplete tasks
-	#for task in tasks_list:
-		#if task["progress"] < task["goal"]:
-			#active_task = task
-	#get first incomplete task
+	for task_id in quest["tasks"]:
+		var task = quest["tasks"][task_id]
+		
+		if task["progress"] < task["goal"]:
+			return {
+				"quest_id": active_quest_id,
+				"task_id": task_id,
+				"task_data": task
+			}
 	
-	
-	return active_task
+	return null

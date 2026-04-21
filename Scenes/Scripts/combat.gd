@@ -62,8 +62,6 @@ extends Control
 @onready var timer_node = $Control/Time
 @onready var countdown = $Control/Time/Timer
 @onready var timer_label = $Control/Time/RichTextLabel
-@onready var settings_button = $Settings_Button
-@onready var win_text = $"You Win"
 
 @onready var action: Control = $Action
 @onready var inventory: Control = $Action_Inv
@@ -166,7 +164,7 @@ var buffs = {
 func _ready() -> void:
 	#ui.visible = false
 	SignalManager.stop_ambience.emit()
-	SignalManager.play_music.emit("battle_theme")
+	SignalManager.play_music.emit("battle_themes")
 	SignalManager.buff.connect(_update_buffs)
 	SignalManager.item_used.connect(_used_item)
 	
@@ -184,14 +182,11 @@ func _ready() -> void:
 		player_sprite.texture = male_sprite
 		portrait.texture = male_portrait
 	
-	if enemy_size == "Final_Boss":
-		load_boss()
-	else:
-		_load_enemy()
+	_load_enemy()
 	
 	player_health_bar.max_value = player_max_health
 	player_health_bar.value = player_hp
-	#enemy_health_bar.max_value = enemy_max_health
+	enemy_health_bar.max_value = enemy_max_health
 	player_hplabel.text = "[b]" + str(player_health) + " / " + str(player_max_health) +"[/b]"
 	enemy_hplabel.text = "[b]" + str(enemy_health) + " / " + str(enemy_max_health) +"[/b]"
 	
@@ -223,47 +218,17 @@ func _load_enemy() -> void:
 		enemy_sprite.texture = load(enemy_large[randi_range(0, enemy_large.size() - 1)])
 		enemy_max_damage = randi_range(20, 30)
 		enemy_health = randi_range(50, 100)
+	elif enemy_size == "boss":
+		enemy_sprite.texture = load(enemy_boss)
+		enemy_max_damage = randi_range(60, 90)
+		enemy_health = randi_range(200, 300)
 	
 	enemy_max_damage += int(player_level * 1.5)
 	enemy_health += (int(player_level * 5) + int(player_int))
 	
 	enemy_max_health = enemy_health
-	enemy_health_bar.max_value = enemy_health
 	enemy_health_bar.value = enemy_health
-	
-	
-	if question_subject == "English":
-		topic_type = "eng_topics"
-		question_type = english_questions
-	elif question_subject == "Science":
-		topic_type = "sci_topics"
-		question_type = science_questions
-	elif question_subject == "Math":
-		topic_type = "math_topics"
-		question_type = math_questions
-	elif question_subject == "Filipino":
-		topic_type = "fil_topics"
-		question_type = fil_questions
-
-func load_boss():
-	background.texture = load(bg_3)
-	
-	enemy_sprite.texture = load(enemy_boss)
-	enemy_max_damage = 50
-	enemy_health = 300
-	
-	enemy_max_damage += int(player_level * 3)
-	enemy_health += (int(player_level * 10) + int(player_int))
-	
-	enemy_max_health = enemy_health
 	enemy_health_bar.max_value = enemy_health
-	enemy_health_bar.value = enemy_health
-	
-	random_subject()
-
-func random_subject():
-	var subjects : Array = ["English", "Science", "Math", "Filipino"]
-	question_subject = subjects.pick_random()
 	
 	if question_subject == "English":
 		topic_type = "eng_topics"
@@ -286,13 +251,6 @@ func slide_in():
 
 #region combat ui
 func _new_question() -> void:
-	settings_button.hide()
-	settings_button.disabled = true
-	
-	if enemy_size == "Final_Boss":
-		print("new question")
-		random_subject()
-	
 	ans_sprite = [ans1, ans2, ans3, ans4]
 	ans_button1.texture_normal = ans_sprite[0]
 	ans_button2.texture_normal = ans_sprite[1]
@@ -352,6 +310,7 @@ func _on_timer_timeout() -> void:
 	_on_wrong_answer()
 
 func _on_answer_button_1_pressed() -> void:
+	SignalManager.play_sfx.emit("index_card")
 	ans_button1.disabled = true
 	ans_button1.texture_normal = ans_sprite[0]
 	ans_button2.texture_normal = ans_sprite[1]
@@ -367,6 +326,7 @@ func _on_answer_button_1_pressed() -> void:
 	ans_sprite.push_back(ans_sprite.pop_at(0))
 
 func _on_ok_button_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	okay_button.disabled = true
 
 	
@@ -424,6 +384,7 @@ func _save_question(topic_type: String):
 		SaveManager.save_game(game_data, "save_file")
 	
 func _on_correct_answer():
+	SignalManager.play_sfx.emit("hurt_sfx")
 	player_damage = randi_range(player_min_damage, player_max_damage)
 	player_damage += player_damage * temp_dmg
 	
@@ -484,6 +445,7 @@ func _on_correct_answer():
 		_show_actions()
 
 func _on_wrong_answer():
+	SignalManager.play_sfx.emit("hurt_sfx")
 	perfect = false
 	enemy_damage = randi_range(enemy_max_damage - 5, enemy_max_damage)
 	enemy_damage = round(enemy_damage - (enemy_damage * temp_reduce))
@@ -536,9 +498,10 @@ func _on_wrong_answer():
 		_show_actions()
 
 func _on_enemy_defeated():
-	#SignalManager.stop_music.emit()
+	SignalManager.play_sfx.emit("defeat_sfx")
+	SignalManager.stop_music.emit()
 	#await get_tree().create_timer(0.1).timeout
-	SignalManager.play_music.emit("win_combat")
+	#SignalManager.play_music.emit("win_combat")
 	SignalManager.enemy_killed.emit(question_subject)
 	#var music = preload("res://Audio/Music/Event Themes/Triumph.mp3")
 	#AudioManager.music_player.play(music)
@@ -581,6 +544,7 @@ func _on_enemy_defeated():
 	#winner_label.visible = true
 
 func _on_player_defeated():
+	SignalManager.play_sfx.emit("defeat_sfx")
 	SignalManager.stop_music.emit()
 	print("Player defeated! Game over!")
 	player_won = false
@@ -618,38 +582,16 @@ func _on_player_defeated():
 	SaveManager.save_game(game_data, "save_file")
 	SaveManager.save_game(player_data, "player_file")
 	
-	last_scene = "uid://d4dgymuee0bxt"
-	
 	_battle_summary()
 	#$"textbox".visible = true
 	#loser_label.visible = true
 #endregion
 
 #region summary
-func show_win():
-	win_text.show()
-	if perfect == true:
-		win_text.text = "[b]PERFECT"
-	elif player_won == false:
-		win_text.text = "[b]YOU LOSE"
-	else:
-		win_text.text = "[b]YOU WIN"
-	
-	await get_tree().create_timer(1).timeout
-	win_text.hide()
-
 func _battle_summary():
+	SignalManager.play_music.emit("win_combat")
 	$Control.visible = false
 	$HP.visible = false
-	
-	await get_tree().create_timer(1).timeout
-	#show_win()
-	#await get_tree().create_timer(1.2).timeout
-	#show_win()
-	#await get_tree().create_timer(1.2).timeout
-	show_win()
-	await get_tree().create_timer(1).timeout
-	
 	$Summary/Control.modulate = Color(255, 255, 255, 0)
 	$Summary.visible = true
 	$Summary/Control/TextureButton.disabled = true
@@ -687,8 +629,6 @@ func _evaluate():
 		summary_text.text += "[b]" + summary_ques + "[/b]" + "\n" + summary_ans + summary_cor + "\n\n"
 		count += 1
 		
-		exp_gain += (player_level * 0.1)
-		
 		await get_tree().create_timer(timer).timeout
 	
 	if perfect == true:
@@ -696,6 +636,7 @@ func _evaluate():
 		exp_gain += (exp_gain * 0.1) + (player_level * 0.5)
 	
 	if player_won == false:
+		SignalManager.play_sfx.emit("defeated_sfx")
 		await get_tree().create_timer(timer).timeout
 		
 		summary_text.text += "[b]You'll get them next time![/b] \n-50% Exp Gained in this battle.\n\n"
@@ -717,6 +658,7 @@ func _evaluate():
 			break
 		else:
 			total_exp -= exp_require
+		SignalManager.play_sfx.emit("level_up")
 		summary_text.text += "[b]Leveled up![/b]\n"
 		
 		player_health = player_max_health
@@ -753,6 +695,7 @@ func _on_skip_pressed() -> void:
 
 func _on_texture_button_pressed() -> void:
 	anim_player.play("summary_confirm")
+	SignalManager.play_sfx.emit("stamp_sfx")
 	await anim_player.animation_finished
 	SceneLoader.load_scene(last_scene)
 #endregion
@@ -766,22 +709,21 @@ func _show_actions() -> void:
 	
 	action.visible = true
 	anim_player.play("show_action")
-	
-	settings_button.show()
-	settings_button.disabled = false
-	
 
 func _on_inv_close_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	inventory.visible = false
 	_show_actions()
 	
 
 func _on_arch_close_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	archive.visible = false
 	_show_actions()
 
 
 func _on_attack_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	print("attack pressed")
 	
 	if player_data["ui_tutorial"]["combat"] == false:
@@ -790,10 +732,10 @@ func _on_attack_pressed() -> void:
 	action.visible = false
 	await get_tree().create_timer(0.2).timeout
 	
-	
 	_new_question()
 
 func _on_inventory_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	print("inv pressed")
 	
 	action.visible = false
@@ -804,6 +746,7 @@ func _on_inventory_pressed() -> void:
 
 func _used_item(state):
 	if state == "used":
+		SignalManager.play_sfx.emit("use_item")
 		$Action/Inventory.disabled = true
 		$Action/Inventory.modulate = Color(0.5, 0.5, 0.5, 1.0)
 		inventory.visible = false
@@ -813,6 +756,7 @@ func _used_item(state):
 		$Action/Inventory.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 func _on_archive_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	print("arch pressed")
 	
 	action.visible = false
@@ -822,6 +766,7 @@ func _on_archive_pressed() -> void:
 
 
 func _on_run_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	print("run pressed")
 	
 	panel2.visible = true
@@ -829,11 +774,13 @@ func _on_run_pressed() -> void:
 
 
 func _on_run_cancel_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	panel2.visible = false
 	prompt.visible = false
 
 
 func _on_run_confirm_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	action.visible = false
 	prompt.visible = false
 	roll_run()
@@ -1020,9 +967,3 @@ func _show_buff(type: String, turns: int):
 	else:
 		return
 #endregion
-
-
-func _on_settings_button_pressed() -> void:
-	var instance = load("uid://tj4vo1mmxfyt").instantiate()
-	
-	add_child(instance)

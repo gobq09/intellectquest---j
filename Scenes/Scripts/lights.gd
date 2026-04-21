@@ -5,7 +5,6 @@ extends Node2D
 @onready var light2 = $PointLight2D2
 
 func _ready() -> void:
-	SignalManager.settings_updated.connect(load_graphics)
 	load_graphics()
 
 func load_graphics():

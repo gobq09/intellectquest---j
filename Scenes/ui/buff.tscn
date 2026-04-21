@@ -7,7 +7,6 @@
 bg_color = Color(0, 0, 0, 0.352941)
 
 [node name="Control" type="TextureButton"]
-z_index = 1
 custom_minimum_size = Vector2(0, 20)
 anchors_preset = 15
 anchor_right = 1.0

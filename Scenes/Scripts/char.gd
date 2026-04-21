@@ -70,7 +70,6 @@ func _ready() -> void:
 	SignalManager.send_marker.connect(move_player_to)
 	SignalManager.look_at_player.connect(send_player_pos)
 	SignalManager.send_node_position.connect(player_look_at)
-	SignalManager.settings_updated.connect(settings_updated)
 	
 	walk_speed_buff()
 	
@@ -79,7 +78,10 @@ func _ready() -> void:
 	else:
 		sprite.texture = male_sprite
 	
-	settings_updated()
+	if config_data["Particles"] == false:
+		particles.process_mode = Node.PROCESS_MODE_DISABLED
+	else:
+		particles.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	global_position = _convert(last_position)
 	ani_tree.set("parameters/Idle/blend_position", Vector2(0,1))
@@ -103,13 +105,6 @@ func _ready() -> void:
 	position_data["global_position"] = position
 	SaveManager.save_game(position_data, "position_file")
 	SaveManager.save_game(game_data, "save_file")
-
-func settings_updated():
-	config_data = SaveManager.load_game("config_file")
-	if config_data["Particles"] == false:
-		particles.process_mode = Node.PROCESS_MODE_DISABLED
-	else:
-		particles.process_mode = Node.PROCESS_MODE_INHERIT
 
 func walk_speed_buff():
 	player_data =SaveManager.load_game("player_file")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dqtuh4xeau6bu"
+path="res://.godot/imported/index_card1.mp3-ccb821a82f3d5c84bfa99abd65afaf14.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/UI sfx/index_card/index_card1.mp3"
+dest_files=["res://.godot/imported/index_card1.mp3-ccb821a82f3d5c84bfa99abd65afaf14.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

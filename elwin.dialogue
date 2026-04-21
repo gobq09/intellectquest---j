@@ -1,0 +1,32 @@
+~ elwin
+
+do SignalManager.dialogue_enter.emit()
+do SignalManager.camera_move_to.emit(Vector2(0, 20))
+do PlayerDataLoader.update_playerdata()
+
+if not DialogueState.met_elwin:
+	
+	do DialogueState.met_elwin = true
+	
+	Elwin: Hello traveler.
+	Quinn: Good day sir, Are you perhaps Professor Elwin?
+	Elwin: That I am lad!
+	Pearl: Nice to meet you sir!
+	Pearl: I am Pearl and this is Quinn.
+	Elwin: Nice to meet you, both of you.
+	Elwin: What is it? It seems that there is something that you want to talk about?
+	Quinn: Yes
+
+	do SignalManager.npc_talked.emit("elwin")
+	do SignalManager.camera_move_to.emit(Vector2.ZERO)
+	do SignalManager.dialogue_exit.emit()
+	
+	=> END
+
+else:
+	Elwin: Do BE careful young lad!
+	
+	do SignalManager.camera_move_to.emit(Vector2.ZERO)
+	do SignalManager.dialogue_exit.emit()
+
+	=> END

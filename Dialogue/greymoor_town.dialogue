@@ -1,0 +1,63 @@
+~ greymoor_town
+
+do SignalManager.dialogue_enter.emit()
+do SignalManager.camera_move_to.emit(Vector2(0, 20))
+do PlayerDataLoader.update_playerdata()
+do SignalManager.area_entered.emit("greymoor_town")
+
+do SignalManager.move_to_marker.emit("player_move1")
+do wait(0.5)
+
+{{PlayerDataLoader.player_name}}: Hey pearl.
+Pearl: What is it Master {{PlayerDataLoader.player_name}}?
+{{PlayerDataLoader.player_name}}: So what's up with this Greymoor Town?
+Pearl: Greymoor Town is one of the seven towns of Linguara.
+Pearl: and Greymoor town happens to have the second largest Library in whole Linguara!
+{{PlayerDataLoader.player_name}}: Woah!
+Pearl: I know right!
+Pearl: and-
+do wait(1)
+???: Hey you there!
+do SignalManager.move_to_marker.emit("harold", 1.5)
+do wait(1.5)
+???: You're new here in these parts?
+{{PlayerDataLoader.player_name}}: Uhmmm, Yeah...
+???: What's your name young lad?
+{{PlayerDataLoader.player_name}}: My name's {{PlayerDataLoader.player_name}}.
+Pearl: Oh my! Good sir you scared us to death!
+Harold: Oh my bad young lads! Harold is the name!
+Pearl: Hello Mister Harold!
+Harold: Hehe sorry to bother you... But can't help to notice you approaching Greymoor town.
+{{PlayerDataLoader.player_name}}: Yeah. We were about to go there and check some things out.
+Harold: Ohhh I see...
+Harold: But the problem is the town is kinda in some sort of danger.
+Pearl: ...
+do SignalManager.player_anim.emit("Idle", "Left")
+do wait(2)
+{{PlayerDataLoader.player_name}}: Pearl? Are you okay?
+Pearl: Yes Master {{PlayerDataLoader.player_name}}... Is just that I feel something not good in this town.
+{{PlayerDataLoader.player_name}}: What do you mean?
+Harold: Yeahh, bout' that...
+do SignalManager.player_anim.emit("Idle", "Right")
+do wait(0.5)
+Harold: We have a problem in this town.
+Harold: I think you should go and ask Professor Elwin yourself!
+{{PlayerDataLoader.player_name}}: Professor Elwin?
+Harold: Yes, he's one of the scholars of Linguara you see and he is a Keeper of the Greymoor Library.
+Pearl: Ohh I see...
+do SignalManager.player_anim.emit("Idle", "Left")
+Pearl: I want to see this person Master {{PlayerDataLoader.player_name}}!
+{{PlayerDataLoader.player_name}}: Okay let's go!
+do SignalManager.player_anim.emit("Idle", "Right")
+do wait(0.5)
+{{PlayerDataLoader.player_name}}: Thank you Sir!
+Harold: Ha! just call me Harold young lad!
+{{PlayerDataLoader.player_name}}: Oh okay Harold.
+{{PlayerDataLoader.player_name}}: Thanks again!
+Harold: HA! that's more like it.
+Harold: Being Seeing yah!
+
+do SignalManager.camera_move_to.emit(Vector2.ZERO)
+do SignalManager.dialogue_exit.emit()
+
+=> END

@@ -9,8 +9,7 @@ func _ready() -> void:
 
 func move_to_marker(target_name: String, duration: float = 1.0):
 	if target_name == marker_name:
-		print(global_position)
-		SignalManager.send_marker.emit(global_position, duration)
+		SignalManager.send_marker.emit(target_name, global_position, duration)
 	
 signal send_marker(global_position: Vector2, duration: float)
 

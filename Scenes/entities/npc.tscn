@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfhccnj4vvm1r"]
+[gd_scene load_steps=13 format=3 uid="uid://dfhccnj4vvm1r"]
 
 [ext_resource type="Script" uid="uid://0rwh2a1atk8u" path="res://Scenes/Scripts/npc.gd" id="1_fjoax"]
 [ext_resource type="Texture2D" uid="uid://cp84ckp6bwp2i" path="res://Sprites/misc/shadow.png" id="3_e4l46"]
-[ext_resource type="SpriteFrames" uid="uid://qf46wp1v5rbe" path="res://Sprites/npc tres/npc_male14.tres" id="3_wqd84"]
+[ext_resource type="SpriteFrames" uid="uid://cedji4ypvsaky" path="res://Sprites/npc tres/elwin.tres" id="3_qm688"]
 [ext_resource type="PackedScene" uid="uid://boxx7tqk1eq7f" path="res://Scenes/others/dialogue.tscn" id="4_h1ryf"]
 [ext_resource type="PackedScene" uid="uid://dp00pu2vy6uq6" path="res://Scenes/entities/npc_quest.tscn" id="5_1ig1v"]
+[ext_resource type="Texture2D" uid="uid://j43jxnnk3bmp" path="res://ui/hud/interface-interact-talk.png" id="6_qm688"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8n2s3"]
 radius = 8.0
@@ -17,6 +18,45 @@ polygon = PackedVector2Array(-5, 7, -4, 1, -5, -3, -3, -7, 3, -7, 5, -3, 4, 1, 5
 [sub_resource type="CircleShape2D" id="CircleShape2D_g6unj"]
 radius = 29.4279
 
+[sub_resource type="Animation" id="Animation_kwvc7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9, -11)]
+}
+
+[sub_resource type="Animation" id="Animation_nsl41"]
+resource_name = "float"
+length = 2.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-9, -11), Vector2(-9, -10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4uugg"]
+_data = {
+&"RESET": SubResource("Animation_kwvc7"),
+&"float": SubResource("Animation_nsl41")
+}
+
 [node name="NPC" type="CharacterBody2D"]
 z_index = 2
 y_sort_enabled = true
@@ -28,8 +68,8 @@ script = ExtResource("1_fjoax")
 texture = ExtResource("3_e4l46")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("3_wqd84")
-animation = &"walk_w"
+sprite_frames = ExtResource("3_qm688")
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
@@ -56,6 +96,18 @@ offset_bottom = 116.0
 
 [node name="npc_quest" parent="." instance=ExtResource("5_1ig1v")]
 visible = false
+
+[node name="Interaction_Icon" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+position = Vector2(-9, -11)
+texture = ExtResource("6_qm688")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interaction_Icon"]
+libraries = {
+&"": SubResource("AnimationLibrary_4uugg")
+}
+autoplay = "float"
 
 [connection signal="body_entered" from="detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="detection" to="." method="_on_detection_body_exited"]

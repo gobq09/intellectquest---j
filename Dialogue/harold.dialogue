@@ -1,0 +1,28 @@
+~ harold
+
+do SignalManager.dialogue_enter.emit()
+do SignalManager.camera_move_to.emit(Vector2(0, 20))
+do SignalManager.area_entered.emit("greymoor_town")
+
+if not DialogueState.met_harold:
+	set DialogueState.met_harold = true
+	
+	Harold: You're new here in these parts?
+	{{PlayerDataLoader.player_name}}: Uhmmm, Yeah...
+	Harold: What's your name young lad?
+	{{PlayerDataLoader.player_name}}: My name's {{PlayerDataLoader.player_name}}.
+	Harold: Nice to meet you {{PlayerDataLoader.player_name}}.
+	Harold: Welcome to Greymoor Town and enjoy your stay young lad!
+	
+	do SignalManager.camera_move_to.emit(Vector2.ZERO)
+	do SignalManager.dialogue_exit.emit()
+	
+	=> END
+
+else:
+	Harold: Hello {{PlayerDataLoader.player_name}}! How's it going?
+	
+	do SignalManager.camera_move_to.emit(Vector2.ZERO)
+	do SignalManager.dialogue_exit.emit()
+	
+	=> END

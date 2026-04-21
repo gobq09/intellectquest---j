@@ -28,9 +28,8 @@ var bottom_limit: float = 600.0
 @onready var chick_sprite = preload("res://Sprites/npc/animals/animal-chick.png")
 
 func _ready() -> void:
-	SignalManager.settings_updated.connect(settings_updated)
-	
-	settings_updated()
+	if config_data["Animals"] == false:
+		self.queue_free()
 	
 	if type == "Chicken":
 		sprite.texture = chicken_sprite
@@ -52,11 +51,6 @@ func _ready() -> void:
 	# Start animating immediately on spawn
 	anim_player.play("idle")
 	_enter_float_state()
-
-func settings_updated():
-	config_data = SaveManager.load_game("config_file")
-	if config_data["Animals"] == false:
-		self.queue_free()
 
 func _set_animal(animal, speed, min_idle, max_idle, min_swim, max_swim, left, right, top, bottom):
 	type = animal

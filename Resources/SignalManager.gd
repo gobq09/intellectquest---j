@@ -15,6 +15,7 @@ signal quest_completed(quest_id)
 signal enemy_killed(enemy_id: String)
 signal npc_talked(npc_id: String)
 signal area_entered(area_id: String)
+signal new_objective(task_name: String)
 
 signal map_changed(scene)
 signal tutorial_ended
@@ -40,11 +41,14 @@ signal move_player(direction : String, duration : int)
 signal player_anim(animation: String)
 
 signal move_to_marker(marker_name: String, duration: float)
-signal send_marker(global_position: Vector2, duration: float)
+signal send_marker(marker_name: String, global_position: Vector2, duration: float)
 
 signal look_at_player(node_name: String)
 signal send_player_position(node_name: String, global_pos: Vector2)
 signal stop_looking_at_player(node_name: String)
+signal npc_freeze(npc_id: String)
+signal npc_unfreeze(npc_id: String)
+signal npc_force_anim(npc_id: String, animation: String)
 
 signal player_look_at(node_name: String)
 signal send_node_position(global_pos: Vector2)

@@ -1,7 +1,6 @@
 extends ColorRect
 
 func _ready() -> void:
-	SignalManager.settings_updated.connect(load_graphics)
 	load_graphics()
 
 func load_graphics():
@@ -9,8 +8,7 @@ func load_graphics():
 	var mode = config_file["Clouds"]
 	
 	if mode == false:
-		self.visible = false
-		self.process_mode = Node.PROCESS_MODE_DISABLED
+		self.queue_free()
 	else:
 		self.visible = true
 		self.process_mode = Node.PROCESS_MODE_INHERIT

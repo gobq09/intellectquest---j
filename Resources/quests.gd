@@ -33,9 +33,9 @@ var quests = {
 			"target": "path_area"
 		},
 		"2": {
-			"task_name": "Defeat ALL the Monsters",
+			"task_name": "Defeat the Monster",
 			"progress": 0,
-			"goal": 5,
+			"goal": 1,
 			"type": "kill",
 			"target": "English"
 		}
@@ -43,14 +43,57 @@ var quests = {
 	"completed": false,
 	"type": "main"
 	},
+	
 "2": {
-	"name": "Defeat Enemies",
+	"name": "Greymoor Town",
+	"tasks": {
+		"0": {
+			"task_name": "Talk to Elwin",
+			"progress": 0,
+			"goal": 1,
+			"type": "talk",
+			"target": "elwin"
+		},
+		"1": {
+			"task_name": "Investigate the Greymoor Library",
+			"progress": 0,
+			"goal": 1,
+			"type": "area",
+			"target": "library_entrance"
+		},
+		"2": {
+			"task_name": "Explore the Area",
+			"progress": 0,
+			"goal": 1,
+			"type": "area",
+			"target": "library_inside"
+		},
+		"3": {
+			"task_name": "Investigate the Book",
+			"progress": 0,
+			"goal": 1,
+			"type": "interact",
+			"target": "mysterious_book"
+		},
+		"4": {
+			"task_name": "Defeat the Boss",
+			"progress": 0,
+			"goal": 1,
+			"type": "kill",
+			"target": "greymoor_boss"
+		}
+	},
+	"completed": false,
+	"type": "main"
+	},
+"3": {
+	"name": "Greymoor Hero I",
 	"tasks": {
 		"0": {
 			"task_name": "Defeat 10 Enemies.",
 			"progress": 0,
 			"goal": 10,
-			"type": "talk",
+			"type": "kill",
 			"target": "English"
 		},
 	},
