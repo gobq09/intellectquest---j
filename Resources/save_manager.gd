@@ -24,7 +24,7 @@ var game_data: Dictionary = {
 	"tutorial": true,
 	"in_combat": false,
 	"player_ran": false,
-	"respawn_point": Vector2(-568.0, 728.0),
+	"respawn_point": Vector2(-774.0, 776.0),
 	"defeated_enemies": {},
 	"eng_topics": {},
 	"sci_topics": {},
@@ -36,7 +36,7 @@ var game_data: Dictionary = {
 }
 
 var position_data: Dictionary = {
-	"global_position": Vector2(-568.0, 728.0),
+	"global_position": Vector2(-774.0, 776.0),
 	"last_chunk": "Chunk_B1",
 	"chunk_grid": 4,
 	"last_scene": "uid://d4dgymuee0bxt",

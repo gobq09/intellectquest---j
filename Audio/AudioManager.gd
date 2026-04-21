@@ -2,9 +2,13 @@ extends Node
 
 var music_player: AudioStreamPlayer = null
 var music_player_old: AudioStreamPlayer = null
+var current_track_name: String = ""
+var last_random_track: AudioStream = null
+var force_restart := false
 var ambience_player: AudioStreamPlayer = null	
 var ambience_player_old: AudioStreamPlayer = null
 var ambience_players: Array = []
+var current_ambience_name: String = ""
 var original_music_db: float = 0.0
 var last_music_time := 0.0
 var music_cooldown := 5.0
@@ -21,21 +25,49 @@ func _ready():
 #region AUDIO LIBRARY
 var music_library = {
 	"main_theme": preload("res://Audio/Music/IntelliQuest.mp3"),
-	"exploration_themes": preload("res://Audio/Music/Exploration Themes/Steps Beyond the Shore.mp3"),
-	"battle_theme": preload("res://Audio/Music/Battle Themes/Clash of Wits.mp3"),
+	"exploration_themes": [ preload("res://Audio/Music/Exploration Themes/Overworld/Steps Beyond the Shore.mp3"),
+				preload("res://Audio/Music/Exploration Themes/Overworld/Wander.mp3")
+	],
+	"exploration_theme": [ preload("res://Audio/Music/Exploration Themes/Overworld/Steps Beyond the Shore.mp3"),
+				preload("res://Audio/Music/Exploration Themes/Overworld/Wander.mp3")
+	],
+	"battle_theme": [ preload("res://Audio/Music/Battle Themes/Clash of Wits.mp3"),
+				preload("res://Audio/Music/Battle Themes/A Mind Opposes You.mp3")
+	],
 	"greymoor_town_theme": preload("res://Audio/Music/Town Themes/Greymoor Town.mp3"),
+	"greymoor_library": preload("res://Audio/Music/Exploration Themes/Greymoor Library/The Broken Script.mp3"),
 	"win_combat": [preload("res://Audio/Music/Event Themes/Triumph.mp3")]
 }
 
 var sfx_library = {
 	"glitch_sfx": [preload("res://Audio/SFX/UI sfx/Glitch Sound.mp3")],
 	"click_sfx": [preload("res://Audio/SFX/UI sfx/click.wav")],
+	"confirm_attack": [preload("res://Audio/SFX/UI sfx/confirm_attack.mp3")],
+	"use_item": [preload("res://Audio/SFX/UI sfx/use_item.mp3")],
+	"defeated_sfx": [preload("res://Audio/SFX/UI sfx/defeated.mp3")],
+	"stamp_sfx": [preload("res://Audio/SFX/UI sfx/stamp.mp3")],
+	"level_up": [preload("res://Audio/SFX/UI sfx/level_up.mp3")],
+	"hurt_sfx": [preload("res://Audio/SFX/UI sfx/hurt sfx1.mp3"),
+			preload("res://Audio/SFX/UI sfx/hurt sfx2.mp3")
+	],
+	"defeat_sfx": [preload("res://Audio/SFX/UI sfx/defeat sfx.mp3")],
 	"confirm_sfx": [preload("res://Audio/SFX/UI sfx/Confirm.wav")],
 	"bag_open": [preload("res://Audio/SFX/UI sfx/bag-open.mp3")],
 	"bag_close": [preload("res://Audio/SFX/UI sfx/bag-close.mp3")],
 	"page_flips": [preload("res://Audio/SFX/UI sfx/pageflip1.mp3"),
 			preload("res://Audio/SFX/UI sfx/pageflip2.mp3"),
 			preload("res://Audio/SFX/UI sfx/pageflip3.mp3")
+	],
+	"index_card": [preload("res://Audio/SFX/UI sfx/index_card/index_card1.mp3"),
+			preload("res://Audio/SFX/UI sfx/index_card/index_card2.mp3"),
+			preload("res://Audio/SFX/UI sfx/index_card/index_card3.mp3"),
+			preload("res://Audio/SFX/UI sfx/index_card/index_card4.mp3"),
+			preload("res://Audio/SFX/UI sfx/index_card/index_card5.mp3"),
+			preload("res://Audio/SFX/UI sfx/index_card/index_card6.mp3"),
+			preload("res://Audio/SFX/UI sfx/index_card/index_card7.mp3"),
+			preload("res://Audio/SFX/UI sfx/index_card/index_card8.mp3"),
+			preload("res://Audio/SFX/UI sfx/index_card/index_card9.mp3"),
+			preload("res://Audio/SFX/UI sfx/index_card/index_card10.mp3")
 	]
 }
 
@@ -56,18 +88,24 @@ var ambience_library = {
 #endregion
 
 #region MUSIC
-func play_music(stream: AudioStream):
+func play_music(stream: AudioStream, restart: bool = false):
 	var target_db = get_music_db()
 	
 	if music_player:
 		music_player_old = music_player
+	else:
+		music_player_old = null
 	
 	music_player = AudioStreamPlayer.new()
 	music_player.bus = "Music"
 	music_player.stream = stream
 	music_player.volume_db = -30
 	add_child(music_player)
-	music_player.play()
+	
+	if restart:
+		music_player.play(0.0)
+	else:
+		music_player.play()
 	
 	var tween_in = create_tween()
 	tween_in.set_trans(Tween.TRANS_SINE)
@@ -75,31 +113,43 @@ func play_music(stream: AudioStream):
 	tween_in.tween_property(music_player, "volume_db", target_db, 2.5)
 	
 	if music_player_old:
+		var old = music_player_old
+		
 		var tween_out = create_tween()
 		tween_out.set_trans(Tween.TRANS_SINE)
 		tween_out.set_ease(Tween.EASE_IN)
+		tween_out.tween_property(old, "volume_db", -40, 2.5)
 		
-		tween_out.tween_property(music_player_old, "volume_db", -40, 2.5)
 		await tween_out.finished
 		
-		if music_player_old:
-			music_player_old.stop()
-			music_player_old.queue_free()
-			music_player_old = null
+		if old:
+			old.stop()
+			old.queue_free()
 	
 func get_music_db():
 	return AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))
 	
-func _on_play_music(track_name: String):
-	if not music_library.has(track_name):
+func _on_play_music(track_name: String, restart: bool = false):
+	if music_player and track_name == current_track_name:
 		return
-	
+	if track_name == current_track_name and not restart:
+		return
+
+	current_track_name = track_name
+
 	var data = music_library[track_name]
-	
+
 	if data is Array:
-		play_music(data.pick_random())
+		var chosen = data.pick_random()
+		
+		# avoid repeating same track twice in a row
+		if chosen == last_random_track and data.size() > 1:
+			chosen = data.pick_random()
+		
+		last_random_track = chosen
+		play_music(chosen, restart)
 	else:
-		play_music(data)
+		play_music(data, restart)
 		
 #func duck_music():
 	#if music_player:
@@ -148,49 +198,55 @@ func _on_sfx_finished(player: AudioStreamPlayer):
 #endregion
 
 #region AMBIANCE
-func play_ambience(stream: AudioStream):
-	if ambience_player and ambience_player.stream == stream:
-		return
-
+func play_ambience(stream: AudioStream, restart: bool = false):
+	var target_db = 0
+	
 	if ambience_player:
 		ambience_player_old = ambience_player
-
+	else:
+		ambience_player_old = null
+	
 	ambience_player = AudioStreamPlayer.new()
 	ambience_player.bus = "Ambience"
 	ambience_player.stream = stream
 	ambience_player.volume_db = -40
 	add_child(ambience_player)
-	ambience_player.play()
-
-	# fade in new ambience
+	
+	if restart:
+		ambience_player.play(0.0)
+	else:
+		ambience_player.play()
+	
 	var tween_in = create_tween()
-	tween_in.tween_property(ambience_player, "volume_db", 0, 1.5)
-
-	# fade out old ambience
+	tween_in.tween_property(ambience_player, "volume_db", target_db, 1.5)
+	
 	if ambience_player_old:
 		var old = ambience_player_old
+		
 		var tween_out = create_tween()
 		tween_out.tween_property(old, "volume_db", -40, 1.5)
+		
 		await tween_out.finished
-
-		old.stop()
-		old.queue_free()
-		ambience_player_old = null
+		
+		if old:
+			old.stop()
+			old.queue_free()
 	
-func _on_play_ambience(ambience_name: String):
+func _on_play_ambience(ambience_name: String, restart: bool = false):
 	if not ambience_library.has(ambience_name):
 		return
-
+	
+	if ambience_player and ambience_name == current_ambience_name and not restart:
+		return
+	
+	current_ambience_name = ambience_name
+	
 	var audio_list = ambience_library[ambience_name]
-
-	# CASE 1: single stream (not array)
-	if audio_list is AudioStream:
-		play_ambience(audio_list)
+	
+	if audio_list is Array:
+		play_ambience(audio_list.pick_random(), restart)
 	else:
-		play_ambience_layer(audio_list.pick_random())
-
-	# CASE 2: array (layer system)
-	play_ambience_layer(audio_list.pick_random())
+		play_ambience(audio_list, restart)
 		
 func play_ambience_layer(stream: AudioStream):
 	var player = AudioStreamPlayer.new()

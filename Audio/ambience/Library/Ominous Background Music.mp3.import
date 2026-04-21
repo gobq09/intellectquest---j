@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cgs8gcxp0j6jx"
+path="res://.godot/imported/Ominous Background Music.mp3-00ea4f4c8a93afd199afa5a0d063f56c.mp3str"
+
+[deps]
+
+source_file="res://Audio/ambience/Library/Ominous Background Music.mp3"
+dest_files=["res://.godot/imported/Ominous Background Music.mp3-00ea4f4c8a93afd199afa5a0d063f56c.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

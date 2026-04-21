@@ -10,7 +10,8 @@ do SignalManager.player_anim.emit("Idle", "Down")
 do SignalManager.player_anim.emit("Idle", "Left")
 {{PlayerDataLoader.player_name}}: Hey, Pearl I think I heard something...
 Pearl: Carefull now Master {{PlayerDataLoader.player_name}}!
-do SignalManager.camera_move_to.emit(Vector2(0, 20))
+do SignalManager.move_pearl_to.emit("pearl_marker2")
+do SignalManager.camera_move_to.emit(Vector2(-20, 0))
 Pearl: Look! There are enemies ahead.
 do SignalManager.player_anim.emit("Idle", "Right")
 [wait=1]

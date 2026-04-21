@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://j456r0adq5xq"
+path="res://.godot/imported/defeated.mp3-f77c64bc06b821e1bb714f5f9453d413.mp3str"
+
+[deps]
+
+source_file="res://Audio/SFX/UI sfx/defeated.mp3"
+dest_files=["res://.godot/imported/defeated.mp3-f77c64bc06b821e1bb714f5f9453d413.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

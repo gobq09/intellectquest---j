@@ -27,15 +27,15 @@ func _ready() -> void:
 	SignalManager.quest_selected.connect(quest_select)
 	
 	var quest = quest_data[quest_id]
-	quest_name.text = "[b]" + str(quest["name"])
 	
-	for tasks in quest["tasks"]:
-		if quest["tasks"][tasks]["progress"] < quest["tasks"][tasks]["goal"]:
-			_load_tasks(quest_id, tasks)
+	if quest.has("name"):
+		quest_name.text = "[b]" + str(quest["name"])
 	
-	for tasks in quest["tasks"]:
-		if quest["tasks"][tasks]["progress"] >= quest["tasks"][tasks]["goal"]:
-			_load_tasks(quest_id, tasks)
+	var current_task_id = QuestManager.get_current_task_id()
+	
+	# Show ONLY current task
+	if current_task_id != "":
+		_load_tasks(quest_id, current_task_id)
 	
 	if quest["completed"] == true:
 		texture.texture_normal = load(complete)
@@ -45,6 +45,11 @@ func _ready() -> void:
 		texture.texture_normal = load(incomplete)
 		$Control.disabled = false
 		quest_name.modulate.a = 1.0
+		
+	for tasks in quest["tasks"]:
+		if tasks != current_task_id:
+			if quest["tasks"][tasks]["progress"] >= quest["tasks"][tasks]["goal"]:
+				_load_tasks(quest_id, tasks)
 
 func _load_tasks(quest_id, task_id):
 	var instance = tasks.instantiate()
@@ -85,4 +90,3 @@ func quest_select(id):
 
 func _on_control_pressed() -> void:
 	SignalManager.quest_selected.emit(quest_id)
-	

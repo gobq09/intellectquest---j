@@ -82,6 +82,7 @@ func _ready() -> void:
 	settings_updated()
 	
 	global_position = _convert(last_position)
+	print(global_position)
 	ani_tree.set("parameters/Idle/blend_position", Vector2(0,1))
 	self.set_process_input(false) 
 	
@@ -150,10 +151,12 @@ func get_input():
 func _physics_process(_delta):
 	var direction = get_input()
 	
+	#print(global_position)
+	
 	if direction.length() > 0:
 		particles.emitting = true
 		velocity = velocity.lerp(direction.normalized() * speed, acceleration)
-		#print(global_position)
+		#
 		ani_tree.get("parameters/playback").travel("Walk")
 		ani_tree.set("parameters/Walk/blend_position", velocity)
 		ani_tree.set("parameters/Idle/blend_position", velocity)

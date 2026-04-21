@@ -15,13 +15,13 @@ Pearl: Hey there, you!
 Pearl: I'm talking to you, {{PlayerDataLoader.mister}}!
 #pag idle lang kailangan nung direction
 do SignalManager.player_anim.emit("Idle", "Right")
-[next=1]
+do wait(1)
 do SignalManager.player_anim.emit("Idle", "Left")
-[next=1]
+do wait(1)
 do SignalManager.player_anim.emit("Idle", "Up")
-[next=1]
+do wait(1)
 do SignalManager.player_anim.emit("Idle", "Down")
-[next=1]
+do wait(1)
 {{PlayerDataLoader.player_name}}: Is someone there?
 Pearl: I'm over here, {{PlayerDataLoader.mister}}!
 #check mo yung animation tree ng player para dun sa names ng animations
@@ -76,13 +76,14 @@ do SignalManager.move_to_marker.emit("test_1", 0.5)
 do SignalManager.move_to_marker.emit("test_2", 0.5)
 [next=0.5]
 do SignalManager.move_to_marker.emit("test_3")
-[next=1]
+do wait(1)
 #pa-disable lang ulit nung movement after gumalaw,
 #though di rin naman makakagalaw yung player since di nagagalaw yung joystick
 do SignalManager.movement_disabled.emit()
 Pearl: Hey {{PlayerDataLoader.mister}}, calm down!
 #{{PlayerDataLoader.player_name}} stops and looks at Pearl
 do SignalManager.player_look_at.emit("Pearl")
+do wait(0.5)
 {{PlayerDataLoader.player_name}}: No way I'm calming down!
 {{PlayerDataLoader.player_name}}: A strange beach... and a talking book!
 {{PlayerDataLoader.player_name}}: Is this a punishment... for being a bum in class?

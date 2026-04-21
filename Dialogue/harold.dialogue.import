@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://pwn33cscce0u"
+path="res://.godot/imported/harold.dialogue-e60a55dc285d3e300f09b7736e61954e.tres"
+
+[deps]
+
+source_file="res://Dialogue/harold.dialogue"
+dest_files=["res://.godot/imported/harold.dialogue-e60a55dc285d3e300f09b7736e61954e.tres"]
+
+[params]
+
+defaults=true

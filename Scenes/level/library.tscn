@@ -7,7 +7,7 @@
 [ext_resource type="TileSet" uid="uid://b3oxrrj4quwxq" path="res://Tileset/library.tres" id="4_8vakt"]
 [ext_resource type="TileSet" uid="uid://c57htxv0o11hr" path="res://Tileset/box.tres" id="6_apprl"]
 [ext_resource type="PackedScene" uid="uid://chg44y3odpudf" path="res://teleporter.tscn" id="7_7w7ci"]
-[ext_resource type="PackedScene" uid="uid://dm7cjqu4780di" path="res://Scenes/entities/glint.tscn" id="8_xgnkr"]
+[ext_resource type="PackedScene" path="res://Scenes/entities/glint.tscn" id="8_xgnkr"]
 [ext_resource type="PackedScene" uid="uid://bmalbfcbg5qhy" path="res://Scenes/others/npc_interact.tscn" id="9_o6mbn"]
 [ext_resource type="Resource" uid="uid://cjp2on82qv725" path="res://Dialogue/boss_trigger.dialogue" id="10_88hm0"]
 

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cb71xb1788xk6"
+path="res://.godot/imported/greymoor_town.dialogue-ba1fe861cbba924a77450caf9626dbde.tres"
+
+[deps]
+
+source_file="res://Dialogue/greymoor_town.dialogue"
+dest_files=["res://.godot/imported/greymoor_town.dialogue-ba1fe861cbba924a77450caf9626dbde.tres"]
+
+[params]
+
+defaults=true
