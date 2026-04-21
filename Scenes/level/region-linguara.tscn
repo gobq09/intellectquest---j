@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://d4dgymuee0bxt"]
+[gd_scene load_steps=49 format=4 uid="uid://d4dgymuee0bxt"]
 
 [ext_resource type="PackedScene" uid="uid://b4qaqebdse2qj" path="res://Scenes/entities/char.tscn" id="1_5ky5g"]
 [ext_resource type="PackedScene" uid="uid://g3w75c5xrktm" path="res://Scenes/others/camera.tscn" id="2_qs2e4"]
@@ -29,7 +29,6 @@
 [ext_resource type="Texture2D" uid="uid://3lee4rs5uuoy" path="res://Sprites/tilesets/tileset-stalls.png" id="17_l3hrx"]
 [ext_resource type="PackedScene" uid="uid://dd5k01cxmgxoh" path="res://Scenes/others/lantern.tscn" id="22_iemxt"]
 [ext_resource type="PackedScene" uid="uid://dqg8pwixr1xje" path="res://Scenes/entities/npc_test.tscn" id="23_lxs7d"]
-[ext_resource type="Texture2D" uid="uid://br1lan3wx6wr5" path="res://Sprites/npc/npc-male1.png" id="24_wjwcf"]
 [ext_resource type="PackedScene" uid="uid://bmalbfcbg5qhy" path="res://Scenes/others/npc_interact.tscn" id="25_4el7r"]
 [ext_resource type="Resource" uid="uid://46yeq7l8jgka" path="res://Dialogue/quest_2.dialogue" id="26_8edvc"]
 [ext_resource type="Resource" uid="uid://cbwjsirbw8126" path="res://Dialogue/spawn_greymoor.dialogue" id="26_ckvbg"]
@@ -376,6 +375,12 @@ sources/0 = SubResource("TileSetAtlasSource_cgu63")
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_5ky5g")]
+unique_name_in_owner = true
+position = Vector2(-568, 728)
+
+[node name="Camera2D" parent="Player" instance=ExtResource("2_qs2e4")]
 
 [node name="Chunks" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -1526,6 +1531,7 @@ position = Vector2(378, 172)
 scale = Vector2(3.52438, 0.850193)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Chunks/Land/C/Chunk_C1/C1_RoamArea8"]
+position = Vector2(-0.567476, 4.70481)
 shape = SubResource("RectangleShape2D_40sqr")
 
 [node name="Node2D" type="Node2D" parent="Chunks/Land/C/Chunk_C1"]
@@ -1562,7 +1568,6 @@ position = Vector2(384, 480)
 [node name="NPC" parent="Chunks/Land/C/Chunk_C1" instance=ExtResource("23_lxs7d")]
 position = Vector2(400, 128)
 NPC_Name = "Greymoor_Innkeeper"
-Sprite = ExtResource("24_wjwcf")
 
 [node name="Interactable2" parent="Chunks/Land/C/Chunk_C1/NPC" instance=ExtResource("25_4el7r")]
 Dialogue = ExtResource("26_ckvbg")
@@ -2229,7 +2234,6 @@ tile_set = ExtResource("13_okubx")
 [node name="NPC" parent="Chunks/Land/E/Chunk_E3/Entities" instance=ExtResource("23_lxs7d")]
 position = Vector2(496, 656)
 NPC_Name = "Linguara_Innkeeper"
-Sprite = ExtResource("24_wjwcf")
 
 [node name="Interactable2" parent="Chunks/Land/E/Chunk_E3/Entities/NPC" instance=ExtResource("25_4el7r")]
 Dialogue = ExtResource("29_50784")
@@ -2390,7 +2394,6 @@ tile_set = ExtResource("13_okubx")
 [node name="NPC" parent="Chunks/Land/F/Chunk_F1/Entities" instance=ExtResource("23_lxs7d")]
 position = Vector2(512, 176)
 NPC_Name = "Forest_Innkeeper"
-Sprite = ExtResource("24_wjwcf")
 
 [node name="Interactable2" parent="Chunks/Land/F/Chunk_F1/Entities/NPC" instance=ExtResource("25_4el7r")]
 Dialogue = ExtResource("30_6fw01")
@@ -2755,9 +2758,3 @@ marker_name = "Linguara_Innkeeper"
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(544, -256)
-
-[node name="Player" parent="." instance=ExtResource("1_5ky5g")]
-unique_name_in_owner = true
-position = Vector2(-568, 728)
-
-[node name="Camera2D" parent="Player" instance=ExtResource("2_qs2e4")]

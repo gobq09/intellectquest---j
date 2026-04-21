@@ -23,7 +23,13 @@ var pressed: String
 func _ready() -> void:
 	#ResourceLoader.load_threaded_request(load_scene)
 	#AudioManager.duck_music()
-	if game_data["in_game"] == true:
+	if game_data["in_combat"] == true:
+		menu.visible = false
+		menu.disabled = true
+		quit.visible = false
+		quit.disabled = true
+		
+	elif game_data["in_game"] == true:
 		menu.visible = true
 		menu.disabled = false
 		quit.visible = true

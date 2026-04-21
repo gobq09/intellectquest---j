@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://ro8o0a8hhg7m"]
+[gd_scene load_steps=13 format=4 uid="uid://ro8o0a8hhg7m"]
 
 [ext_resource type="Script" uid="uid://cxrru4i53j4o5" path="res://Scenes/level/library.gd" id="1_7xbmv"]
 [ext_resource type="PackedScene" uid="uid://b4qaqebdse2qj" path="res://Scenes/entities/char.tscn" id="1_qloae"]
@@ -7,9 +7,15 @@
 [ext_resource type="TileSet" uid="uid://b3oxrrj4quwxq" path="res://Tileset/library.tres" id="4_8vakt"]
 [ext_resource type="TileSet" uid="uid://c57htxv0o11hr" path="res://Tileset/box.tres" id="6_apprl"]
 [ext_resource type="PackedScene" uid="uid://chg44y3odpudf" path="res://teleporter.tscn" id="7_7w7ci"]
+[ext_resource type="PackedScene" uid="uid://dm7cjqu4780di" path="res://Scenes/entities/glint.tscn" id="8_xgnkr"]
+[ext_resource type="PackedScene" uid="uid://bmalbfcbg5qhy" path="res://Scenes/others/npc_interact.tscn" id="9_o6mbn"]
+[ext_resource type="Resource" uid="uid://cjp2on82qv725" path="res://Dialogue/boss_trigger.dialogue" id="10_88hm0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apprl"]
 size = Vector2(48, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_88hm0"]
+radius = 16.0
 
 [node name="Library" type="Node2D"]
 script = ExtResource("1_7xbmv")
@@ -42,3 +48,13 @@ Target_Position = "(544, -256)"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Teleporter"]
 shape = SubResource("RectangleShape2D_apprl")
+
+[node name="Glint" parent="." instance=ExtResource("8_xgnkr")]
+position = Vector2(272, -1528)
+
+[node name="Interactable" parent="Glint" instance=ExtResource("9_o6mbn")]
+monitorable = false
+Dialogue = ExtResource("10_88hm0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Glint/Interactable"]
+shape = SubResource("CircleShape2D_88hm0")

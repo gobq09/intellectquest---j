@@ -46,6 +46,20 @@ func load_map(_scene_path: String, position: String) -> void:
 	
 	start_load()
 
+func boss_battle():
+	var game_data = SaveManager.load_game("save_file")
+	var enemy_data = SaveManager.load_game("enemy_file")
+	
+	enemy_data["enemy_id"] = "Final_Boss"
+	enemy_data["enemy_size"] = "Final_Boss"
+	enemy_data["enemy_subject"] = "Final_Boss"
+	game_data["in_combat"] = true
+	
+	SaveManager.save_game(game_data, "save_file")
+	SaveManager.save_game(enemy_data, "enemy_file")
+	
+	load_scene("uid://dxhaxrctujkex")
+
 func _convert(string):
 	var new_string: String = str(string)
 	new_string = new_string.erase(0, 1)

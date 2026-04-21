@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cjp2on82qv725"
+path="res://.godot/imported/boss_trigger.dialogue-7875d995f7ac7244d8c9bda70f908151.tres"
+
+[deps]
+
+source_file="res://Dialogue/boss_trigger.dialogue"
+dest_files=["res://.godot/imported/boss_trigger.dialogue-7875d995f7ac7244d8c9bda70f908151.tres"]
+
+[params]
+
+defaults=true

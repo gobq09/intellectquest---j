@@ -1,0 +1,124 @@
+[gd_scene load_steps=11 format=3 uid="uid://dm7cjqu4780di"]
+
+[ext_resource type="Script" uid="uid://eipval2jkws2" path="res://Scenes/entities/glint.gd" id="1_w55cy"]
+[ext_resource type="Texture2D" uid="uid://da38urgdxnmm2" path="res://Sprites/misc/glint.png" id="2_w55cy"]
+[ext_resource type="Texture2D" uid="uid://j43jxnnk3bmp" path="res://ui/hud/interface-interact-talk.png" id="4_icpgn"]
+
+[sub_resource type="Animation" id="Animation_c1pwd"]
+resource_name = "loop"
+length = 0.8
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [7, 0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_vqgym"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i127s"]
+_data = {
+&"RESET": SubResource("Animation_vqgym"),
+&"loop": SubResource("Animation_c1pwd")
+}
+
+[sub_resource type="Animation" id="Animation_kwvc7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-9, -11)]
+}
+
+[sub_resource type="Animation" id="Animation_nsl41"]
+resource_name = "float"
+length = 2.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-9, -11), Vector2(-9, -10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4uugg"]
+_data = {
+&"RESET": SubResource("Animation_kwvc7"),
+&"float": SubResource("Animation_nsl41")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c1pwd"]
+radius = 48.0
+
+[node name="Glint" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_w55cy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_w55cy")
+hframes = 8
+frame = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_i127s")
+}
+autoplay = "loop"
+
+[node name="Interaction_Icon" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+position = Vector2(-9, -11)
+texture = ExtResource("4_icpgn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interaction_Icon"]
+libraries = {
+&"": SubResource("AnimationLibrary_4uugg")
+}
+autoplay = "float"
+
+[node name="Near" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Near"]
+shape = SubResource("CircleShape2D_c1pwd")
+
+[connection signal="body_shape_entered" from="Near" to="." method="_on_near_body_shape_entered"]
+[connection signal="body_shape_exited" from="Near" to="." method="_on_near_body_shape_exited"]

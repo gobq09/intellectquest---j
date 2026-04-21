@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://dxhaxrctujkex"]
+[gd_scene load_steps=85 format=3 uid="uid://dxhaxrctujkex"]
 
 [ext_resource type="Script" uid="uid://c0dbktvohlh5" path="res://Scenes/Scripts/combat.gd" id="1_8xcd4"]
 [ext_resource type="Texture2D" uid="uid://cocirnqmaocmm" path="res://ui/combat/interface-combat-bg1.png" id="1_xisnc"]
@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://chafut360r0tq" path="res://ui/title/interface-prompt.png" id="32_800vx"]
 [ext_resource type="Texture2D" uid="uid://csc0os8ayadj1" path="res://ui/title/interface-prompt-cancel.png" id="33_ilwd3"]
 [ext_resource type="Texture2D" uid="uid://d0ycw54b0kcxd" path="res://ui/title/interface-prompt-confirm.png" id="34_iuatm"]
+[ext_resource type="Texture2D" uid="uid://vgcrkf3sxh1o" path="res://ui/hud/interface-hud-settingsbutton.png" id="37_vyh06"]
 
 [sub_resource type="Animation" id="Animation_f8ge6"]
 length = 0.001
@@ -901,6 +902,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
 script = ExtResource("1_8xcd4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1081,6 +1083,7 @@ offset_top = 144.0
 offset_right = 96.0
 offset_bottom = 267.0
 scale = Vector2(3, 3)
+mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HP/PlayerHP"]
 libraries = {
@@ -1435,7 +1438,22 @@ offset_top = -316.0
 offset_right = 253.0
 offset_bottom = -52.0
 
+[node name="Settings_Button" type="TextureButton" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -124.0
+offset_right = 40.0
+offset_bottom = -84.0
+grow_vertical = 0
+scale = Vector2(3, 3.03965)
+texture_normal = ExtResource("37_vyh06")
+stretch_mode = 5
+
 [node name="Action" type="Control" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 3
@@ -1753,6 +1771,29 @@ libraries = {
 &"": SubResource("AnimationLibrary_b2ar1")
 }
 
+[node name="You Win" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -404.0
+offset_top = -130.0
+offset_right = 401.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 32
+theme_override_font_sizes/bold_font_size = 80
+bbcode_enabled = true
+text = "[b]YOU WIN"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="value_changed" from="HP/PlayerHP/$PlayerHealthBar" to="." method="_on_player_health_bar_value_changed"]
 [connection signal="value_changed" from="HP/EnemyHP/$EnemyHealthBar" to="." method="_on_enemy_health_bar_value_changed"]
 [connection signal="pressed" from="Control/Control2/AnswerButton1" to="." method="_on_answer_button_1_pressed"]
@@ -1760,6 +1801,7 @@ libraries = {
 [connection signal="timeout" from="Control/Time/Timer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="Summary/Control/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="Summary/Control/Skip" to="." method="_on_skip_pressed"]
+[connection signal="pressed" from="Settings_Button" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="Action/Attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="Action/Inventory" to="." method="_on_inventory_pressed"]
 [connection signal="pressed" from="Action/Archive" to="." method="_on_archive_pressed"]

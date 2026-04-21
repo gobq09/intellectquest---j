@@ -1,0 +1,34 @@
+~ start
+do SignalManager.dialogue_enter.emit()
+do SignalManager.camera_move_to.emit(Vector2(0, 20))
+
+Your attention was drawn by a worn book by the bookshelf.
+At first glance, it doesn't seem any special at all.
+But the longer you stare at this book, you can almost hear it calling your name.
+Do you want to grab this book?
+- Yes
+	You grabbed the book.
+	After touching this book, there is definitely something weird about it.
+	Visually, there is really nothing special about this book. But somehow,[wait=0.5] you feel a strange sense of power.
+	The longer you held this book, the more you felt this power surging inside you.
+	Do you want to open this book?
+	- Yes
+		The moment you decided to open this book.[wait=0.5] It was already too late.
+		Your greed for power has consumed you. You feel like the world spinning, your vision starts to blur. 
+		[next=2]
+		And suddenly, it stops.
+		You hear a deep, eerie, intimidating voice.
+		???: YOU[wait=0.5], WHO DARE TO GAIN POWER YOU DON'T UNDERSTAND.
+		???: LET US SEE IF YOU TRULY ARE WORTHY OF THIS POWER YOU DESIRE TO CLAIM.
+		do SceneLoader.boss_battle()
+		=> END!
+	- No
+		You managed to resist being consumed by the book.
+		=> END!
+- No
+	You decide not to touch the book.
+	=> END!
+
+do SignalManager.camera_move_to.emit(Vector2.ZERO)
+do SignalManager.dialogue_exit.emit()
+=> END

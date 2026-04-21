@@ -156,8 +156,6 @@ func start_battle() -> void:
 	enemy_data["enemy_subject"] = enemy_subject
 	game_data["in_combat"] = true
 	
-	var player_data = SaveManager.load_game("player_file")
-	
 	SaveManager.save_game(game_data, "save_file")
 	SaveManager.save_game(enemy_data, "enemy_file")
 	
