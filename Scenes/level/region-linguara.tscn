@@ -39,7 +39,7 @@
 [ext_resource type="Resource" uid="uid://b54su3yysxvlp" path="res://Dialogue/spawn_linguara.dialogue" id="29_50784"]
 [ext_resource type="Resource" uid="uid://x78shpm8go2q" path="res://Dialogue/spawn_forest.dialogue" id="30_6fw01"]
 [ext_resource type="PackedScene" uid="uid://chg44y3odpudf" path="res://teleporter.tscn" id="33_egr6h"]
-[ext_resource type="Script" uid="uid://b36o0ylmmht37" path="res://Scenes/level/marker_2d.gd" id="40_c7w1h"]
+[ext_resource type="Script" path="res://Scenes/level/marker_2d.gd" id="40_c7w1h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iemxt"]
 size = Vector2(224, 17)
