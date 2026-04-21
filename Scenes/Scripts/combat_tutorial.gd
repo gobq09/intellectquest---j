@@ -90,8 +90,10 @@ func actions_tutorial():
 	right_text.text = "This is the [b]Attack Button[/b]. \nTry pressing it."
 	tutorial_panel.mouse_filter = MOUSE_FILTER_IGNORE
 	
-	await attack_pressed
+	await SignalManager.attack_pressed
 	tutorial_end()
+	
+	attack_tutorial()
 
 func attack_tutorial():
 	await get_tree().create_timer(0.5).timeout

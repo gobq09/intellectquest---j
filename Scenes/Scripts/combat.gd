@@ -24,7 +24,14 @@ extends Control
 
 @onready var bg_1 = "uid://cocirnqmaocmm"
 @onready var bg_2 = "uid://bufog2tp2wvp2"
+@onready var bg_3 = "uid://d3i0odlp8yoxl"
 
+@onready var low_hp : Control = $Low_HP
+@onready var low_hp_effect: TextureRect = $Low_HP/TextureRect
+@onready var low_hp_effect1: TextureRect = $Low_HP/TextureRect/TextureRect
+@onready var low_hp_anim: AnimationPlayer = $Low_HP/TextureRect/AnimationPlayer
+@onready var player_anim: AnimationPlayer = $Back/Control2/AnimationPlayer
+@onready var enemy_anim: AnimationPlayer = $Back/Control/AnimationPlayer
 @onready var critical: RichTextLabel = $HP/Critical
 @onready var ques_label: Label = $Control/Control/QuestionLabel
 @onready var ans_button1: TextureButton = $Control/Control2/AnswerButton1
@@ -42,6 +49,8 @@ extends Control
 @onready var ui = $Control
 @onready var panel = $Panel
 @onready var anim_player = $AnimationPlayer
+@onready var player_bar: Control = $HP/PlayerHP
+@onready var enemy_bar: Control = $HP/EnemyHP
 @onready var player_hplabel: RichTextLabel = $HP/PlayerHP/Player_Label
 @onready var enemy_hplabel: RichTextLabel = $HP/EnemyHP/Enemy_Label
 @onready var portrait : Sprite2D = $"HP/PlayerHP/Interface-combat-playerportait1-male"
@@ -92,6 +101,8 @@ extends Control
 @onready var enemy_small : Array = ["uid://0ucxefbgrc6k", "uid://ru5xvbb0a361", "uid://m4i1wivj2ipr", "uid://bf15bsf0jltyv", "uid://c7e178xq656dn"]
 @onready var enemy_med : Array = ["uid://pncvdy7b8gkp", "uid://fhr10ndgwdev", "uid://c5dy25laifsp5", "uid://bsjwi1ke36jh8"]
 @onready var enemy_large : Array = ["uid://jsiqpuvw66oh", "uid://blyn7fisxmv3j", "uid://bvg5syuxf8sc3"]
+@onready var enemy_boss: String = "uid://b0t3byo5xhy8r"
+
 
 #@export_dir var small_dir = "res://ui/combat/combat_sprites/enemy_small/"
 #@export_dir var med_dir = "res://ui/combat/combat_sprites/enemy_med/"
@@ -179,7 +190,14 @@ func _ready() -> void:
 	player_hplabel.text = "[b]" + str(player_health) + " / " + str(player_max_health) +"[/b]"
 	enemy_hplabel.text = "[b]" + str(enemy_health) + " / " + str(enemy_max_health) +"[/b]"
 	
+	
+	slide_in()
 	_show_actions()
+	
+	if player_data["ui_tutorial"]["combat"] == false:
+		var tutorial_instance = load("uid://55y6ic4bok7m").instantiate()
+		
+		add_child(tutorial_instance)
 	#_new_question()
 
 func _load_enemy() -> void:
@@ -200,6 +218,10 @@ func _load_enemy() -> void:
 		enemy_sprite.texture = load(enemy_large[randi_range(0, enemy_large.size() - 1)])
 		enemy_max_damage = randi_range(20, 30)
 		enemy_health = randi_range(50, 100)
+	elif enemy_size == "boss":
+		enemy_sprite.texture = load(enemy_boss)
+		enemy_max_damage = randi_range(60, 90)
+		enemy_health = randi_range(200, 300)
 	
 	enemy_max_damage += int(player_level * 1.5)
 	enemy_health += (int(player_level * 5) + int(player_int))
@@ -221,16 +243,10 @@ func _load_enemy() -> void:
 		topic_type = "fil_topics"
 		question_type = fil_questions
 
-func _load_sprites(type):
-	#var files : Array = DirAccess.get_files_at(path)
-	#var png_files = Array(files).filter(func(f): return f.ends_with(".png"))
-	##var loaded = GD.load<Texture>(str(path) + str(png_files[randi_range(0, png_files.size() - 1)]))
-	#var loaded = load(str(path) + str(png_files[randi_range(0, png_files.size() - 1)]))
-	#
-	#var loaded = load(type[randi_range(0, png_files.size() - 1)])
-	#load(enemy_small[randi_range(0, (enemy_small.size() - 1)])
-	#return loaded
-	pass
+func slide_in():
+	await player_anim.animation_finished
+	player_anim.play("sprite_anim")
+	enemy_anim.play("sprite_anim")
 #endregion
 
 #region combat ui
@@ -330,7 +346,7 @@ func _on_ok_button_pressed() -> void:
 		encountered_questions[encountered_questions.size()]["Correct"] = false
 		_on_wrong_answer()
 
-func shake(node):
+func shake(node, white : bool = true):
 	var origin = node.position
 	var elapsed = 0.0
 	var orig = node.modulate
@@ -344,9 +360,11 @@ func shake(node):
 			randf_range(-shake_amount, shake_amount)
 		)
 		node.position = origin + offset
-		node.modulate = Color(255, 255, 255)
+		if white:
+			node.modulate = Color(255, 255, 255)
 		await get_tree().process_frame
 		elapsed += get_process_delta_time()
+	
 	node.modulate = orig
 	node.position = origin
 	
@@ -394,13 +412,25 @@ func _on_correct_answer():
 		player_damage = round(player_damage * (player_critdamage + temp_critdmg))
 		critical.visible = false
 	
+	player_anim.play("attack")
+	await player_anim.animation_finished
+	player_anim.play("sprite_anim")
+	
+	enemy_anim.play_backwards("attack")
+	
 	enemy_health -= player_damage
 	var tween = create_tween()
 	tween.tween_property(enemy_health_bar, "value", enemy_health, 0.25)\
 	.set_ease(Tween.EASE_OUT)\
 	.set_trans(Tween.TRANS_SINE)
 	shake(enemy_sprite)
+	shake(enemy_bar, false)
+	shake(background, false)
 	take_damage(player_damage, enemy_hplabel)
+	
+	await enemy_anim.animation_finished
+	enemy_anim.play("sprite_anim")
+	
 	if enemy_health <= 0:
 		_on_enemy_defeated()
 	else:
@@ -434,12 +464,24 @@ func _on_wrong_answer():
 	ui.visible = false
 	panel.visible = false
 	
+	enemy_anim.play("attack")
+	
+	await enemy_anim.animation_finished
+	enemy_anim.play("sprite_anim")
+	
+	player_anim.play_backwards("attack")
 	var tween = create_tween()
 	tween.tween_property(player_health_bar, "value", player_health, 0.25)\
 	.set_ease(Tween.EASE_OUT)\
 	.set_trans(Tween.TRANS_SINE)
 	shake(player_sprite)
+	shake(player_bar, false)
+	shake(background, false)
 	take_damage(enemy_damage, player_hplabel)
+	
+	await player_anim.animation_finished
+	player_anim.play("sprite_anim")
+	
 	if player_health <= 0:
 		_on_player_defeated()
 	else:
@@ -651,6 +693,7 @@ func _on_texture_button_pressed() -> void:
 #region Action
 
 func _show_actions() -> void:
+	#await anim_player.animation_finished
 	okay_button.disabled = true
 	ans_button1.disabled = true
 	
@@ -669,6 +712,9 @@ func _on_arch_close_pressed() -> void:
 
 func _on_attack_pressed() -> void:
 	print("attack pressed")
+	
+	if player_data["ui_tutorial"]["combat"] == false:
+		SignalManager.attack_pressed.emit()
 	
 	action.visible = false
 	await get_tree().create_timer(0.2).timeout
@@ -818,9 +864,16 @@ func _on_player_health_bar_value_changed(value: float) -> void:
 	player_hplabel.text = "[b]" + str(player_health) + " / " + str(player_max_health) +"[/b]"
 	
 	if percent <= 0.35:
+		print("test")
 		$HP/PlayerHP/AnimationPlayer.play("danger")
+		low_hp.show()
+		low_hp_anim.play("fade")
+		await low_hp_anim.animation_finished
+		low_hp_anim.play("loop")
 	else:
+		print("test1")
 		$HP/PlayerHP/AnimationPlayer.play("RESET")
+		low_hp.hide()
 #endregion
 
 #region Buff

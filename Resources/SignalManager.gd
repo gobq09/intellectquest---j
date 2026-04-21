@@ -21,6 +21,7 @@ signal tutorial_ended
 signal player_defeated
 signal interface_changed
 signal show_hud
+signal attack_pressed
 
 signal ui_tutorial(type)
 signal ui_tutorial_end

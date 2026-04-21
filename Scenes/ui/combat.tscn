@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://dxhaxrctujkex"]
+[gd_scene load_steps=84 format=3 uid="uid://dxhaxrctujkex"]
 
 [ext_resource type="Script" uid="uid://c0dbktvohlh5" path="res://Scenes/Scripts/combat.gd" id="1_8xcd4"]
 [ext_resource type="Texture2D" uid="uid://cocirnqmaocmm" path="res://ui/combat/interface-combat-bg1.png" id="1_xisnc"]
@@ -226,6 +226,18 @@ tracks/15/path = NodePath("../Run/Attempt:modulate")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../HP:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -485,6 +497,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(3, 3)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Enemy:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-256, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_iuatm"]
 resource_name = "sprite_anim"
@@ -503,9 +527,44 @@ tracks/0/keys = {
 "values": [Vector2(3, 3), Vector2(3.125, 2.875)]
 }
 
+[sub_resource type="Animation" id="Animation_ev2dg"]
+resource_name = "slide_in"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.45, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(146, 0), Vector2(23, 0), Vector2(-144.836, 0), Vector2(-256, 0), Vector2(-270, 0), Vector2(-256, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w44m7"]
+resource_name = "attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Enemy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.266667, 0.333333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-256, 0), Vector2(-270, 0), Vector2(-222, 0), Vector2(-310, 0), Vector2(-256, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vyh06"]
 _data = {
 &"RESET": SubResource("Animation_thf0w"),
+&"attack": SubResource("Animation_w44m7"),
+&"slide_in": SubResource("Animation_ev2dg"),
 &"sprite_anim": SubResource("Animation_iuatm")
 }
 
@@ -522,6 +581,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(4, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(256, 166)]
 }
 
 [sub_resource type="Animation" id="Animation_vyh06"]
@@ -541,9 +612,44 @@ tracks/0/keys = {
 "values": [Vector2(4, 4), Vector2(4.125, 3.85417)]
 }
 
+[sub_resource type="Animation" id="Animation_knxoa"]
+resource_name = "slide_in"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-192, 166), Vector2(10.6526, 166), Vector2(195.046, 166), Vector2(256, 166), Vector2(280, 166), Vector2(256, 166)]
+}
+
+[sub_resource type="Animation" id="Animation_8ul8n"]
+resource_name = "attack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.101881, 0.266667, 0.333333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(256, 166), Vector2(312, 166), Vector2(232, 166), Vector2(344, 166), Vector2(256, 166)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w4qbd"]
 _data = {
 &"RESET": SubResource("Animation_w4qbd"),
+&"attack": SubResource("Animation_8ul8n"),
+&"slide_in": SubResource("Animation_knxoa"),
 &"sprite_anim": SubResource("Animation_vyh06")
 }
 
@@ -695,6 +801,97 @@ bg_color = Color(0, 0, 0, 0.752941)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3cqtn"]
 bg_color = Color(0, 0, 0, 0.898039)
 
+[sub_resource type="Gradient" id="Gradient_thf0w"]
+offsets = PackedFloat32Array(0, 0.338843, 0.743802, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.027617, 1.17468e-08, 5.74287e-09, 0.173554, 0.0835085, 3.552e-08, 1.73654e-08, 0.524793, 0.159127, 6.76839e-08, 3.30899e-08, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vyh06"]
+gradient = SubResource("Gradient_thf0w")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.481081, 0.475676)
+
+[sub_resource type="Gradient" id="Gradient_sod0y"]
+offsets = PackedFloat32Array(0, 0.652893, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.0279047, 0, 0, 0.173554, 0.160784, 0, 0, 0.682353)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kwix6"]
+gradient = SubResource("Gradient_sod0y")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.513514, 0.454054)
+
+[sub_resource type="Animation" id="Animation_jmqe4"]
+resource_name = "loop"
+length = 3.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t4j40"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b2ar1"]
+resource_name = "fade"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b2ar1"]
+_data = {
+&"RESET": SubResource("Animation_t4j40"),
+&"fade": SubResource("Animation_b2ar1"),
+&"loop": SubResource("Animation_jmqe4")
+}
+
 [node name="Combat" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -755,7 +952,7 @@ texture = ExtResource("5_ley77")
 libraries = {
 &"": SubResource("AnimationLibrary_vyh06")
 }
-autoplay = "sprite_anim"
+autoplay = "slide_in"
 
 [node name="Control2" type="Control" parent="Back"]
 layout_mode = 1
@@ -776,7 +973,7 @@ texture = ExtResource("4_ley77")
 libraries = {
 &"": SubResource("AnimationLibrary_w4qbd")
 }
-autoplay = "sprite_anim"
+autoplay = "slide_in"
 
 [node name="Panel" type="Panel" parent="."]
 visible = false
@@ -1518,6 +1715,43 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Low_HP" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Low_HP"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_vyh06")
+
+[node name="TextureRect" type="TextureRect" parent="Low_HP/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_kwix6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Low_HP/TextureRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_b2ar1")
+}
 
 [connection signal="value_changed" from="HP/PlayerHP/$PlayerHealthBar" to="." method="_on_player_health_bar_value_changed"]
 [connection signal="value_changed" from="HP/EnemyHP/$EnemyHealthBar" to="." method="_on_enemy_health_bar_value_changed"]

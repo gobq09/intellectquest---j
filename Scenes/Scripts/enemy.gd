@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var enemy_id: String
-@export_enum("small", "med", "large") var enemy_type: String
+@export_enum("small", "med", "large", "boss") var enemy_type: String
 @export_enum("English", "Science", "Math", "Filipino") var enemy_subject: String
 
 @export var speed = 30
@@ -158,15 +158,10 @@ func start_battle() -> void:
 	
 	var player_data = SaveManager.load_game("player_file")
 	
-	if player_data["ui_tutorial"]["combat"] == false:
-		battle_scene = "uid://55y6ic4bok7m"
-	else:
-		battle_scene = "uid://dxhaxrctujkex"
-	
 	SaveManager.save_game(game_data, "save_file")
 	SaveManager.save_game(enemy_data, "enemy_file")
 	
-	SceneLoader.load_scene(battle_scene)
+	SceneLoader.load_scene("uid://dxhaxrctujkex")
 
 func _on_detection_area_area_entered(_area: Area2D) -> void:
 	#print("Test")
