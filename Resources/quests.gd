@@ -98,6 +98,6 @@ var quests = {
 		},
 	},
 	"completed": false,
-	"type": "main"
+	"type": "side"
 	},
 }

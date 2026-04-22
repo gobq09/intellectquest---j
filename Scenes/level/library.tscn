@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://ro8o0a8hhg7m"]
+[gd_scene load_steps=14 format=4 uid="uid://ro8o0a8hhg7m"]
 
 [ext_resource type="Script" uid="uid://cxrru4i53j4o5" path="res://Scenes/level/library.gd" id="1_7xbmv"]
 [ext_resource type="PackedScene" uid="uid://b4qaqebdse2qj" path="res://Scenes/entities/char.tscn" id="1_qloae"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dm7cjqu4780di" path="res://Scenes/entities/glint.tscn" id="8_xgnkr"]
 [ext_resource type="PackedScene" uid="uid://bmalbfcbg5qhy" path="res://Scenes/others/npc_interact.tscn" id="9_o6mbn"]
 [ext_resource type="Resource" uid="uid://cjp2on82qv725" path="res://Dialogue/boss_trigger.dialogue" id="10_88hm0"]
+[ext_resource type="PackedScene" uid="uid://dt0reecx2hip5" path="res://Scenes/entities/enemy.tscn" id="11_xsbhn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apprl"]
 size = Vector2(48, 20)
@@ -44,7 +45,7 @@ tile_set = ExtResource("6_apprl")
 [node name="Teleporter" parent="." instance=ExtResource("7_7w7ci")]
 position = Vector2(0, 48)
 Target_Scene = "uid://d4dgymuee0bxt"
-Target_Position = "(342, -208)"
+Target_Position = "(544, -256)"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Teleporter"]
 shape = SubResource("RectangleShape2D_apprl")
@@ -58,3 +59,119 @@ Dialogue = ExtResource("10_88hm0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Glint/Interactable"]
 shape = SubResource("CircleShape2D_88hm0")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="enemy" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(-85, -329)
+enemy_id = "1231"
+enemy_type = "med"
+enemy_subject = "English"
+
+[node name="enemy2" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(448, -360)
+enemy_id = "1231123"
+enemy_type = "med"
+enemy_subject = "English"
+
+[node name="enemy3" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(264, -512)
+enemy_id = "asdlj1"
+enemy_type = "small"
+enemy_subject = "English"
+
+[node name="enemy4" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(-16, -520)
+enemy_id = "as123"
+enemy_type = "large"
+enemy_subject = "English"
+
+[node name="enemy6" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(-432, -520)
+enemy_id = "as1123"
+enemy_type = "large"
+enemy_subject = "English"
+
+[node name="enemy7" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(-248, -752)
+enemy_id = "uh1d1"
+enemy_type = "small"
+enemy_subject = "English"
+
+[node name="enemy8" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(-160, -976)
+enemy_id = "sdsau"
+enemy_type = "large"
+enemy_subject = "English"
+
+[node name="enemy9" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(256, -944)
+enemy_id = "asd"
+enemy_type = "med"
+enemy_subject = "English"
+
+[node name="enemy10" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(296, -752)
+enemy_id = "asdas"
+enemy_type = "small"
+enemy_subject = "English"
+
+[node name="enemy11" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(256, -1176)
+enemy_id = "asdsav"
+enemy_type = "med"
+enemy_subject = "English"
+
+[node name="enemy12" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(256, -1176)
+enemy_id = "asdsav"
+enemy_type = "med"
+enemy_subject = "English"
+
+[node name="enemy13" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(320, -1416)
+enemy_id = "asdsavvas"
+enemy_type = "large"
+enemy_subject = "English"
+
+[node name="enemy14" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(-176, -1320)
+enemy_id = "vasiuh"
+enemy_type = "large"
+enemy_subject = "English"
+
+[node name="enemy15" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(-424, -1576)
+enemy_id = "safash"
+enemy_type = "large"
+enemy_subject = "English"
+
+[node name="enemy17" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(-144, -1624)
+enemy_id = "vaiysuhd"
+enemy_type = "med"
+enemy_subject = "English"
+
+[node name="enemy18" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(-680, -1400)
+enemy_id = "vvas"
+enemy_type = "large"
+enemy_subject = "English"
+
+[node name="enemy19" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(-768, -1448)
+enemy_id = "oaisudas"
+enemy_type = "med"
+enemy_subject = "English"
+
+[node name="enemy20" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(64, -264)
+enemy_id = "vasudhj"
+enemy_type = "small"
+enemy_subject = "English"
+
+[node name="enemy16" parent="Enemies" instance=ExtResource("11_xsbhn")]
+position = Vector2(-408, -1400)
+enemy_id = "baoisdj"
+enemy_type = "small"
+enemy_subject = "English"

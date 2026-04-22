@@ -397,6 +397,9 @@ y_sort_enabled = true
 unique_name_in_owner = true
 position = Vector2(-572, 729)
 scale = Vector2(0.999721, 1)
+speed = null
+friction = null
+acceleration = null
 
 [node name="Camera2D" parent="Player" instance=ExtResource("2_qs2e4")]
 
@@ -2892,17 +2895,5 @@ position = Vector2(2544, -1376)
 marker_name = "Linguara_Innkeeper"
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(-572, 733)
-script = ExtResource("40_c7w1h")
-
-[node name="Marker2D4" type="Marker2D" parent="."]
-position = Vector2(544, -256)
-script = ExtResource("40_c7w1h")
-
-[node name="Marker2D2" type="Marker2D" parent="."]
-position = Vector2(3584, 192)
-script = ExtResource("40_c7w1h")
-
-[node name="Marker2D3" type="Marker2D" parent="."]
-position = Vector2(2544, -1376)
+position = Vector2(544, -255)
 script = ExtResource("40_c7w1h")

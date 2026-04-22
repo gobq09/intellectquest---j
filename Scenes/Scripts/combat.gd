@@ -352,6 +352,8 @@ func _on_timer_timeout() -> void:
 	_on_wrong_answer()
 
 func _on_answer_button_1_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
+	
 	ans_button1.disabled = true
 	ans_button1.texture_normal = ans_sprite[0]
 	ans_button2.texture_normal = ans_sprite[1]
@@ -367,6 +369,7 @@ func _on_answer_button_1_pressed() -> void:
 	ans_sprite.push_back(ans_sprite.pop_at(0))
 
 func _on_ok_button_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	okay_button.disabled = true
 
 	
@@ -611,7 +614,6 @@ func _on_player_defeated():
 	
 	game_data = SaveManager.load_game("save_file")
 	player_data["player_hp"] = default_maxhp
-	game_data["global_position"] = game_data["respawn_point"]
 	game_data["player_lost"] = true
 	game_data["in_combat"] = false
 	
@@ -740,6 +742,7 @@ func _evaluate():
 	player_data["player_hp"] = player_health
 	player_data["unused_stats"] = stats_add
 	player_data["player_exp"] = total_exp
+	player_data["gold"] = gold_gain
 	SaveManager.save_game(player_data, "player_file")
 	
 	await get_tree().create_timer(2).timeout
@@ -782,6 +785,7 @@ func _on_arch_close_pressed() -> void:
 
 
 func _on_attack_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	print("attack pressed")
 	
 	if player_data["ui_tutorial"]["combat"] == false:
@@ -794,6 +798,7 @@ func _on_attack_pressed() -> void:
 	_new_question()
 
 func _on_inventory_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	print("inv pressed")
 	
 	action.visible = false
@@ -813,6 +818,7 @@ func _used_item(state):
 		$Action/Inventory.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 func _on_archive_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	print("arch pressed")
 	
 	action.visible = false
@@ -822,6 +828,7 @@ func _on_archive_pressed() -> void:
 
 
 func _on_run_pressed() -> void:
+	SignalManager.play_sfx.emit("click_sfx")
 	print("run pressed")
 	
 	panel2.visible = true

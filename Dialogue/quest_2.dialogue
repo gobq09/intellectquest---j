@@ -6,7 +6,7 @@ Jeff: Hello, We're having a monster problem.
 
 Jeff: Would you like to help me deal with monsters?
 - Yes
-	do QuestManager._add_quest("2")
+	do QuestManager._add_quest("3")
 	Jeff: Thank you.
 	Jeff: I'll reward you handsomely.
 	

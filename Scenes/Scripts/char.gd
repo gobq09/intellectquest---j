@@ -62,7 +62,6 @@ var _footstep_timer = 0.0
 var current_chunk: Node2D = null
 
 func _ready() -> void:
-	SignalManager.map_changed.connect(map_changed)
 	SignalManager.movement_disabled.connect(disable_movement)
 	SignalManager.movement_enabled.connect(enable_movement)
 	SignalManager.move_player.connect(move_player)
@@ -297,9 +296,6 @@ func player_look_at(node_name: String, node_pos: Vector2):
 	ani_tree.set("parameters/Idle/blend_position", face)
 	ani_tree.get("parameters/playback").travel("Idle")
 #endregion
-
-func map_changed(scene):
-	Handler.map_changed(scene, position)
 
 func _on_timer_timeout() -> void:
 	position_data = SaveManager.load_game("position_file")

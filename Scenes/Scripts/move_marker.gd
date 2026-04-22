@@ -21,11 +21,11 @@ func pearl_marker(target_name: String, duration: float = 1.0):
 func spawn_point_set(spawn_point: String):
 	var coords: Vector2
 	if spawn_point == "Greymoor":
-		coords = Vector2(198.0, 191.0)
+		coords = Vector2(400.0, 144.0)
 	elif spawn_point == "Linguara":
-		coords = Vector2(2342.0, -1329.0)
+		coords = Vector2(2544.0, -1376.0)
 	elif spawn_point == "Forest":
-		coords = Vector2(3382.0, 239.0)
+		coords = Vector2(3584.0, 192.0)
 	
 	var game_data = SaveManager.load_game("save_file")
 	game_data["respawn_point"] = coords
