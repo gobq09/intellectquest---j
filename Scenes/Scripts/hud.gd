@@ -57,6 +57,9 @@ func _ready() -> void:
 		animation_player.play("hud_fade")
 		await animation_player.animation_finished
 	
+	if player_data["ui_tutorial"]["first_combat"] == 1:
+		trigger_tutorial("level")
+	
 	hud.visible = true
 	hud.modulate.a = 1.0
 
@@ -202,6 +205,7 @@ func tutorial_archive():
 	
 	player_data = SaveManager.load_game("player_file")
 	player_data["ui_tutorial"]["archive"] = true
+	player_data["ui_tutorial"]["first_combat"] = 2
 	SaveManager.save_game(player_data, "player_file")
 
 func tutorial_task():

@@ -3,7 +3,8 @@ extends TextureRect
 @export var columns: int
 @export var rows: int
 
-@onready var pointer = $Pointer
+@onready var pointer: Node2D = $Pointer
+@onready var shadow: TextureRect = $Shadow
 #@onready var player_data = SaveManager.load_game("player_file")
 @onready var position_data = SaveManager.load_game("position_file")
 @onready var chunk = position_data["last_chunk"]
@@ -14,6 +15,14 @@ var y_axis : Array = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "1
 
 func _ready() -> void:
 	pointer.position = (chunk_grid(get_chunk(chunk)))
+	#shadow.position = pointer.position
+
+func _convert(string):
+	var new_string: String = str(string)
+	new_string = new_string.erase(0, 1)
+	new_string = new_string.erase(new_string.length() - 1, 1)
+	var array: Array = new_string.split(", ")
+	return Vector2(int(array[0])/5, int(array[1])/5)
 
 func get_chunk(chunk: String):
 	var split = chunk.split("_")

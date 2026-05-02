@@ -1,15 +1,54 @@
-[gd_scene load_steps=12 format=3 uid="uid://dxogc44ghcvvr"]
+[gd_scene load_steps=16 format=3 uid="uid://dxogc44ghcvvr"]
 
 [ext_resource type="Script" uid="uid://bbg4jyro5nm0" path="res://Scenes/Scripts/map.gd" id="1_s6brh"]
 [ext_resource type="Texture2D" uid="uid://cbolxup3jumob" path="res://ui/map/map-map.png" id="2_qfm5i"]
 [ext_resource type="Texture2D" uid="uid://gfo4nfxodp7d" path="res://ui/archive/interface-archive-closebutton.png" id="2_qw1bd"]
 [ext_resource type="Script" uid="uid://ckfjv22bsis0u" path="res://Scenes/ui/map-chunk.gd" id="2_qx845"]
 [ext_resource type="Script" uid="uid://c5qt5boqalghj" path="res://Scenes/ui/map-camera.gd" id="3_40ojq"]
+[ext_resource type="Texture2D" uid="uid://ojyg367nnk86" path="res://ui/map/interface-map-pointer-shadow.png" id="4_kmq71"]
 [ext_resource type="Texture2D" uid="uid://fnxxmjyki0c3" path="res://ui/map/interface-map-test.png" id="5_40ojq"]
 [ext_resource type="Texture2D" uid="uid://p6r0vtb4vtv8" path="res://ui/map/interface-map-pointer.png" id="6_qx845"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfm5i"]
 bg_color = Color(0.713726, 0.776471, 0.803922, 1)
+
+[sub_resource type="Animation" id="Animation_p0pdx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-15.8333, -19.3333)]
+}
+
+[sub_resource type="Animation" id="Animation_5mmk2"]
+resource_name = "loop"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.999093),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(-15.8333, -19.3333), Vector2(-15.8333, -24.6667)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ea58r"]
+_data = {
+&"RESET": SubResource("Animation_p0pdx"),
+&"loop": SubResource("Animation_5mmk2")
+}
 
 [sub_resource type="Animation" id="Animation_kmq71"]
 length = 0.001
@@ -124,9 +163,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -787.0
-offset_top = -636.0
+offset_top = -652.0
 offset_right = -275.0
-offset_bottom = -220.0
+offset_bottom = -204.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
@@ -137,23 +176,39 @@ columns = 8
 rows = 7
 metadata/_edit_use_anchors_ = true
 
-[node name="Pointer" type="TextureRect" parent="SubViewportContainer/SubViewport/Panel/Map/Linguara"]
-layout_mode = 1
-anchors_preset = 8
+[node name="Pointer" type="Node2D" parent="SubViewportContainer/SubViewport/Panel/Map/Linguara"]
+
+[node name="Shadow" type="TextureRect" parent="SubViewportContainer/SubViewport/Panel/Map/Linguara/Pointer"]
+offset_left = -15.8333
+offset_top = -19.3333
+offset_right = 16.1667
+offset_bottom = 12.6667
+texture = ExtResource("4_kmq71")
+expand_mode = 1
+stretch_mode = 3
+
+[node name="Pointer" type="TextureRect" parent="SubViewportContainer/SubViewport/Panel/Map/Linguara/Pointer"]
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.480655
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -63.8333
-offset_top = -32.0
-offset_right = -31.8333
-offset_bottom = -3.05176e-05
+anchor_bottom = 0.480655
+offset_left = -15.8333
+offset_top = -19.3333
+offset_right = 16.1667
+offset_bottom = 12.6667
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_qx845")
 expand_mode = 1
 stretch_mode = 3
 metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewportContainer/SubViewport/Panel/Map/Linguara/Pointer/Pointer"]
+libraries = {
+&"": SubResource("AnimationLibrary_ea58r")
+}
+autoplay = "loop"
 
 [node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport/Panel"]
 position = Vector2(722, 750)

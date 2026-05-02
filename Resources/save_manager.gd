@@ -65,6 +65,7 @@ var player_data: Dictionary = {
 		"map": false,
 		"settings": false,
 		"combat": false,
+		"first_combat": 0
 		},
 	"gold": 0,
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://d4dgymuee0bxt"]
+[gd_scene load_steps=59 format=4 uid="uid://d4dgymuee0bxt"]
 
 [ext_resource type="PackedScene" uid="uid://b4qaqebdse2qj" path="res://Scenes/entities/char.tscn" id="1_5ky5g"]
 [ext_resource type="PackedScene" uid="uid://g3w75c5xrktm" path="res://Scenes/others/camera.tscn" id="2_qs2e4"]
@@ -46,9 +46,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iemxt"]
 size = Vector2(224, 17)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_et777"]
-size = Vector2(32, 104)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hrb5s"]
 size = Vector2(170, 34)
@@ -1123,10 +1120,6 @@ shape = SubResource("RectangleShape2D_iemxt")
 
 [node name="Area2D2" parent="Chunks/Land/B/Chunk_B1/Tutorial" instance=ExtResource("12_et777")]
 tutorial_name = "level"
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Chunks/Land/B/Chunk_B1/Tutorial/Area2D2"]
-position = Vector2(576, 572)
-shape = SubResource("RectangleShape2D_et777")
 
 [node name="Areas" type="Node2D" parent="Chunks/Land/B/Chunk_B1"]
 
@@ -2892,17 +2885,5 @@ position = Vector2(2544, -1376)
 marker_name = "Linguara_Innkeeper"
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(-572, 733)
-script = ExtResource("40_c7w1h")
-
-[node name="Marker2D4" type="Marker2D" parent="."]
 position = Vector2(544, -256)
-script = ExtResource("40_c7w1h")
-
-[node name="Marker2D2" type="Marker2D" parent="."]
-position = Vector2(3584, 192)
-script = ExtResource("40_c7w1h")
-
-[node name="Marker2D3" type="Marker2D" parent="."]
-position = Vector2(2544, -1376)
 script = ExtResource("40_c7w1h")

@@ -743,6 +743,7 @@ func _evaluate():
 	player_data["unused_stats"] = stats_add
 	player_data["player_exp"] = total_exp
 	player_data["gold"] = gold_gain
+	player_data["ui_tutorial"]["first_combat"] = 1
 	SaveManager.save_game(player_data, "player_file")
 	
 	await get_tree().create_timer(2).timeout
